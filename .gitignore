@@ -169,3 +169,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# JupyerBook
+
+notebooks/_build
+notebooks/_build/*/
+__pycache__
