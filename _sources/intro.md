@@ -1,5 +1,17 @@
-# Welcome to your Jupyter Book
+# Welcome to Data Mining Course
 
+**Mahmood Amintoosi, Spring 2025**
+
+Computer Science Dept, Ferdowsi University of Mashhad
+
+```{note}
+These lectures were built using the new Sphinx-based [Jupyter Book
+2.0](https://jupyterbook.org/) tool set, as part of the
+[ExecutableBookProject](https://ebp.jupyterbook.org/en/latest/).  They are
+intended mainly as a demonstration of these tools.
+Instructions for how to build them from source can be found in the Jupyter
+Book documentation.
+```
 
 ```{tableofcontents}
 ```
@@ -13,3 +25,7 @@
 - [*Introduction to Machine Learning with Python*](http://shop.oreilly.com/product/0636920030515.do), by Andreas C. Müller and Sarah Guido (O'Reilly). This book covers many of the machine learning fundamentals discussed in these chapters, but is particularly relevant for its coverage of more advanced features of Scikit-Learn, including additional estimators, model validation approaches, and pipelining.
 
 - [*Machine Learning with PyTorch and Scikit-Learn*](https://www.packtpub.com/product/machine-learning-with-pytorch-and-scikit-learn/9781801819312), by Sebastian Raschka (Packt). Sebastian Raschka's most recent book starts with some of the fundamental topics covered in these chapters, but goes deeper and shows how those concepts apply to more sophisticated and computationally intensive deep learning and reinforcement learning models using the well-known [PyTorch library](https://pytorch.org/).
+
+---
+
+I should mention that the original material was from [Jake VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/). I used his notebooks and modified it to suit my own needs and preferences. I would like to thank him for his great work and generosity.
