@@ -1,0 +1,1661 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Pivot Tables &#8212; Data Mining</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '03.09-Pivot-Tables';</script>
+    <link rel="icon" href="_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Vectorized String Operations" href="03.10-Working-With-Strings.html" />
+    <link rel="prev" title="Aggregation and Grouping" href="03.08-Aggregation-and-Grouping.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fum-cs-logo.png" class="logo__image only-light" alt="Data Mining - Home"/>
+    <script>document.write(`<img src="_static/fum-cs-logo.png" class="logo__image only-dark" alt="Data Mining - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to NumPy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="02.00-Introduction-to-NumPy.html">Introduction to NumPy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02.01-Understanding-Data-Types.html">Understanding Data Types in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.02-The-Basics-Of-NumPy-Arrays.html">The Basics of NumPy Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.03-Computation-on-arrays-ufuncs.html">Computation on NumPy Arrays: Universal Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.04-Computation-on-arrays-aggregates.html">Aggregations: min, max, and Everything in Between</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.05-Computation-on-arrays-broadcasting.html">Computation on Arrays: Broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.07-Fancy-Indexing.html">Fancy Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.08-Sorting.html">Sorting Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.09-Structured-Data-NumPy.html">Structured Data: NumPy’s Structured Arrays</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Manipulation with Pandas</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="03.00-Introduction-to-Pandas.html">Data Manipulation with Pandas</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="03.01-Introducing-Pandas-Objects.html">Introducing Pandas Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.03-Operations-in-Pandas.html">Operating on Data in Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.04-Missing-Values.html">Handling Missing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.05-Hierarchical-Indexing.html">Hierarchical Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.06-Concat-And-Append.html">Combining Datasets: concat and append</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.07-Merge-and-Join.html">Combining Datasets: merge and join</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.08-Aggregation-and-Grouping.html">Aggregation and Grouping</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.10-Working-With-Strings.html">Vectorized String Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.11-Working-with-Time-Series.html">Working with Time Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.12-Performance-Eval-and-Query.html">High-Performance Pandas: eval and query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.13-Further-Resources.html">Further Resources</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization with Matplotlib</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a></li>
+
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="05.00-Machine-Learning.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fum-cs/data-mining/blob/main/docs/03.09-Pivot-Tables.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/data-mining/issues/new?title=Issue%20on%20page%20%2F03.09-Pivot-Tables.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/03.09-Pivot-Tables.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Pivot Tables</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-pivot-tables">Motivating Pivot Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-tables-by-hand">Pivot Tables by Hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-table-syntax">Pivot Table Syntax</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-pivot-tables">Multilevel Pivot Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-pivot-table-options">Additional Pivot Table Options</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-birthrate-data">Example: Birthrate Data</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="pivot-tables">
+<h1>Pivot Tables<a class="headerlink" href="#pivot-tables" title="Link to this heading">#</a></h1>
+<p>We have seen how the <code class="docutils literal notranslate"><span class="pre">groupby</span></code> abstraction lets us explore relationships within a dataset.
+A <em>pivot table</em> is a similar operation that is commonly seen in spreadsheets and other programs that operate on tabular data.
+The pivot table takes simple column-wise data as input, and groups the entries into a two-dimensional table that provides a multidimensional summarization of the data.
+The difference between pivot tables and <code class="docutils literal notranslate"><span class="pre">groupby</span></code> can sometimes cause confusion; it helps me to think of pivot tables as essentially a <em>multidimensional</em> version of <code class="docutils literal notranslate"><span class="pre">groupby</span></code> aggregation.
+That is, you split-apply-combine, but both the split and the combine happen across not a one-dimensional index, but across a two-dimensional grid.</p>
+<section id="motivating-pivot-tables">
+<h2>Motivating Pivot Tables<a class="headerlink" href="#motivating-pivot-tables" title="Link to this heading">#</a></h2>
+<p>For the examples in this section, we’ll use the database of passengers on the <em>Titanic</em>, available through the Seaborn library (see <a class="reference internal" href="04.14-Visualization-With-Seaborn.html"><span class="std std-doc">Visualization With Seaborn</span></a>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
+<span class="n">titanic</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;titanic&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+      <th>pclass</th>
+      <th>sex</th>
+      <th>age</th>
+      <th>sibsp</th>
+      <th>parch</th>
+      <th>fare</th>
+      <th>embarked</th>
+      <th>class</th>
+      <th>who</th>
+      <th>adult_male</th>
+      <th>deck</th>
+      <th>embark_town</th>
+      <th>alive</th>
+      <th>alone</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>22.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>7.2500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>38.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>71.2833</td>
+      <td>C</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Cherbourg</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1</td>
+      <td>3</td>
+      <td>female</td>
+      <td>26.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>7.9250</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>True</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1</td>
+      <td>1</td>
+      <td>female</td>
+      <td>35.0</td>
+      <td>1</td>
+      <td>0</td>
+      <td>53.1000</td>
+      <td>S</td>
+      <td>First</td>
+      <td>woman</td>
+      <td>False</td>
+      <td>C</td>
+      <td>Southampton</td>
+      <td>yes</td>
+      <td>False</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0</td>
+      <td>3</td>
+      <td>male</td>
+      <td>35.0</td>
+      <td>0</td>
+      <td>0</td>
+      <td>8.0500</td>
+      <td>S</td>
+      <td>Third</td>
+      <td>man</td>
+      <td>True</td>
+      <td>NaN</td>
+      <td>Southampton</td>
+      <td>no</td>
+      <td>True</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>As the output shows, this contains a number of data points on each passenger on that ill-fated voyage, including sex, age, class, fare paid, and much more.</p>
+</section>
+<section id="pivot-tables-by-hand">
+<h2>Pivot Tables by Hand<a class="headerlink" href="#pivot-tables-by-hand" title="Link to this heading">#</a></h2>
+<p>To start learning more about this data, we might begin by grouping according to sex, survival status, or some combination thereof.
+If you read the previous chapter, you might be tempted to apply a <code class="docutils literal notranslate"><span class="pre">groupby</span></code> operation—for example, let’s look at survival rate by sex:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;sex&#39;</span><span class="p">)[[</span><span class="s1">&#39;survived&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>survived</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.742038</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.188908</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This gives us some initial insight: overall, three of every four females on board survived, while only one in five males survived!</p>
+<p>This is useful, but we might like to go one step deeper and look at survival rates by both sex and, say, class.
+Using the vocabulary of <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, we might proceed using a process like this:
+we first <em>group by</em> class and sex, then <em>select</em> survival, <em>apply</em> a mean aggregate, <em>combine</em> the resulting groups, and finally <em>unstack</em> the hierarchical index to reveal the hidden multidimensionality. In code:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">])[</span><span class="s1">&#39;survived&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">aggregate</span><span class="p">(</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.968085</td>
+      <td>0.921053</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.368852</td>
+      <td>0.157407</td>
+      <td>0.135447</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This gives us a better idea of how both sex and class affected survival, but the code is starting to look a bit garbled.
+While each step of this pipeline makes sense in light of the tools we’ve previously discussed, the long string of code is not particularly easy to read or use.
+This two-dimensional <code class="docutils literal notranslate"><span class="pre">groupby</span></code> is common enough that Pandas includes a convenience routine, <code class="docutils literal notranslate"><span class="pre">pivot_table</span></code>, which succinctly handles this type of multidimensional aggregation.</p>
+</section>
+<section id="pivot-table-syntax">
+<h2>Pivot Table Syntax<a class="headerlink" href="#pivot-table-syntax" title="Link to this heading">#</a></h2>
+<p>Here is the equivalent to the preceding operation using the <code class="docutils literal notranslate"><span class="pre">DataFrame.pivot_table</span></code> method:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;survived&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.968085</td>
+      <td>0.921053</td>
+      <td>0.500000</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.368852</td>
+      <td>0.157407</td>
+      <td>0.135447</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>This is eminently more readable than the manual <code class="docutils literal notranslate"><span class="pre">groupby</span></code> approach, and produces the same result.
+As you might expect of an early 20th-century transatlantic cruise, the survival gradient favors both higher classes and people recorded as females in the
+data. First-class females survived with near certainty (hi, Rose!), while only one in eight or so third-class males survived (sorry, Jack!).</p>
+<section id="multilevel-pivot-tables">
+<h3>Multilevel Pivot Tables<a class="headerlink" href="#multilevel-pivot-tables" title="Link to this heading">#</a></h3>
+<p>Just as in a <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, the grouping in pivot tables can be specified with multiple levels and via a number of options.
+For example, we might be interested in looking at age as a third dimension.
+We’ll bin the age using the <code class="docutils literal notranslate"><span class="pre">pd.cut</span></code> function:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">age</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">cut</span><span class="p">(</span><span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;age&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">80</span><span class="p">])</span>
+<span class="n">titanic</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;survived&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">],</span> <span class="s1">&#39;class&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th>age</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">female</th>
+      <th>(0, 18]</th>
+      <td>0.909091</td>
+      <td>1.000000</td>
+      <td>0.511628</td>
+    </tr>
+    <tr>
+      <th>(18, 80]</th>
+      <td>0.972973</td>
+      <td>0.900000</td>
+      <td>0.423729</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">male</th>
+      <th>(0, 18]</th>
+      <td>0.800000</td>
+      <td>0.600000</td>
+      <td>0.215686</td>
+    </tr>
+    <tr>
+      <th>(18, 80]</th>
+      <td>0.375000</td>
+      <td>0.071429</td>
+      <td>0.133663</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can apply the same strategy when working with the columns as well; let’s add info on the fare paid, using <code class="docutils literal notranslate"><span class="pre">pd.qcut</span></code> to automatically compute quantiles:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fare</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">qcut</span><span class="p">(</span><span class="n">titanic</span><span class="p">[</span><span class="s1">&#39;fare&#39;</span><span class="p">],</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">titanic</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;survived&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">age</span><span class="p">],</span> <span class="p">[</span><span class="n">fare</span><span class="p">,</span> <span class="s1">&#39;class&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th>fare</th>
+      <th colspan="3" halign="left">(-0.001, 14.454]</th>
+      <th colspan="3" halign="left">(14.454, 512.329]</th>
+    </tr>
+    <tr>
+      <th></th>
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th>age</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="2" valign="top">female</th>
+      <th>(0, 18]</th>
+      <td>NaN</td>
+      <td>1.000000</td>
+      <td>0.714286</td>
+      <td>0.909091</td>
+      <td>1.000000</td>
+      <td>0.318182</td>
+    </tr>
+    <tr>
+      <th>(18, 80]</th>
+      <td>NaN</td>
+      <td>0.880000</td>
+      <td>0.444444</td>
+      <td>0.972973</td>
+      <td>0.914286</td>
+      <td>0.391304</td>
+    </tr>
+    <tr>
+      <th rowspan="2" valign="top">male</th>
+      <th>(0, 18]</th>
+      <td>NaN</td>
+      <td>0.000000</td>
+      <td>0.260870</td>
+      <td>0.800000</td>
+      <td>0.818182</td>
+      <td>0.178571</td>
+    </tr>
+    <tr>
+      <th>(18, 80]</th>
+      <td>0.0</td>
+      <td>0.098039</td>
+      <td>0.125000</td>
+      <td>0.391304</td>
+      <td>0.030303</td>
+      <td>0.192308</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The result is a four-dimensional aggregation with hierarchical indices (see <a class="reference internal" href="03.05-Hierarchical-Indexing.html"><span class="std std-doc">Hierarchical Indexing</span></a>), shown in a grid demonstrating the relationship between the values.</p>
+</section>
+<section id="additional-pivot-table-options">
+<h3>Additional Pivot Table Options<a class="headerlink" href="#additional-pivot-table-options" title="Link to this heading">#</a></h3>
+<p>The full call signature of the <code class="docutils literal notranslate"><span class="pre">DataFrame.pivot_table</span></code> method is as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># call signature as of Pandas 1.3.5</span>
+<span class="n">DataFrame</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">values</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+                      <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">margins</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                      <span class="n">dropna</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">margins_name</span><span class="o">=</span><span class="s1">&#39;All&#39;</span><span class="p">,</span> <span class="n">observed</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+                      <span class="n">sort</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We’ve already seen examples of the first three arguments; here we’ll take a quick look at some of the remaining ones.
+Two of the options, <code class="docutils literal notranslate"><span class="pre">fill_value</span></code> and <code class="docutils literal notranslate"><span class="pre">dropna</span></code>, have to do with missing data and are fairly straightforward; I will not show examples of them here.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">aggfunc</span></code> keyword controls what type of aggregation is applied, which is a mean by default.
+As with <code class="docutils literal notranslate"><span class="pre">groupby</span></code>, the aggregation specification can be a string representing one of several common choices (<code class="docutils literal notranslate"><span class="pre">'sum'</span></code>, <code class="docutils literal notranslate"><span class="pre">'mean'</span></code>, <code class="docutils literal notranslate"><span class="pre">'count'</span></code>, <code class="docutils literal notranslate"><span class="pre">'min'</span></code>, <code class="docutils literal notranslate"><span class="pre">'max'</span></code>, etc.) or a function that implements an aggregation (e.g., <code class="docutils literal notranslate"><span class="pre">np.sum()</span></code>, <code class="docutils literal notranslate"><span class="pre">min()</span></code>, <code class="docutils literal notranslate"><span class="pre">sum()</span></code>, etc.).
+Additionally, it can be specified as a dictionary mapping a column to any of the desired options:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span>
+                    <span class="n">aggfunc</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;survived&#39;</span><span class="p">:</span><span class="nb">sum</span><span class="p">,</span> <span class="s1">&#39;fare&#39;</span><span class="p">:</span><span class="s1">&#39;mean&#39;</span><span class="p">})</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="3" halign="left">fare</th>
+      <th colspan="3" halign="left">survived</th>
+    </tr>
+    <tr>
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>106.125798</td>
+      <td>21.970121</td>
+      <td>16.118810</td>
+      <td>91</td>
+      <td>70</td>
+      <td>72</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>67.226127</td>
+      <td>19.741782</td>
+      <td>12.661633</td>
+      <td>45</td>
+      <td>17</td>
+      <td>47</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Notice also here that we’ve omitted the <code class="docutils literal notranslate"><span class="pre">values</span></code> keyword; when specifying a mapping for <code class="docutils literal notranslate"><span class="pre">aggfunc</span></code>, this is determined automatically.</p>
+<p>At times it’s useful to compute totals along each grouping.
+This can be done via the <code class="docutils literal notranslate"><span class="pre">margins</span></code> keyword:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">titanic</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;survived&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;sex&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;class&#39;</span><span class="p">,</span> <span class="n">margins</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>class</th>
+      <th>First</th>
+      <th>Second</th>
+      <th>Third</th>
+      <th>All</th>
+    </tr>
+    <tr>
+      <th>sex</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>female</th>
+      <td>0.968085</td>
+      <td>0.921053</td>
+      <td>0.500000</td>
+      <td>0.742038</td>
+    </tr>
+    <tr>
+      <th>male</th>
+      <td>0.368852</td>
+      <td>0.157407</td>
+      <td>0.135447</td>
+      <td>0.188908</td>
+    </tr>
+    <tr>
+      <th>All</th>
+      <td>0.629630</td>
+      <td>0.472826</td>
+      <td>0.242363</td>
+      <td>0.383838</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Here, this automatically gives us information about the class-agnostic survival rate by sex, the sex-agnostic survival rate by class, and the overall survival rate of 38%.
+The margin label can be specified with the <code class="docutils literal notranslate"><span class="pre">margins_name</span></code> keyword; it defaults to <code class="docutils literal notranslate"><span class="pre">&quot;All&quot;</span></code>.</p>
+</section>
+</section>
+<section id="example-birthrate-data">
+<h2>Example: Birthrate Data<a class="headerlink" href="#example-birthrate-data" title="Link to this heading">#</a></h2>
+<p>As another example, let’s take a look at the freely available data on births in the United States, provided by the Centers for Disease Control (CDC).
+This data can be found at <a class="reference external" href="https://raw.githubusercontent.com/jakevdp/data-CDCbirths/master/births.csv">https://raw.githubusercontent.com/jakevdp/data-CDCbirths/master/births.csv</a>
+(this dataset has been analyzed rather extensively by Andrew Gelman and his group; see, for example, the <a class="reference external" href="http://andrewgelman.com/2012/06/14/cool-ass-signal-processing-using-gaussian-processes/">blog post on signal processing using Gaussian processes</a>):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># shell command to download the data:</span>
+<span class="c1"># !cd data &amp;&amp; curl -O \</span>
+<span class="c1"># https://raw.githubusercontent.com/jakevdp/data-CDCbirths/master/births.csv</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">births</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data/births.csv&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Taking a look at the data, we see that it’s relatively simple—it contains the number of births grouped by date and gender:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">births</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>year</th>
+      <th>month</th>
+      <th>day</th>
+      <th>gender</th>
+      <th>births</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1969</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>F</td>
+      <td>4046</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1969</td>
+      <td>1</td>
+      <td>1.0</td>
+      <td>M</td>
+      <td>4440</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1969</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>F</td>
+      <td>4454</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1969</td>
+      <td>1</td>
+      <td>2.0</td>
+      <td>M</td>
+      <td>4548</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1969</td>
+      <td>1</td>
+      <td>3.0</td>
+      <td>F</td>
+      <td>4548</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We can start to understand this data a bit more by using a pivot table.
+Let’s add a <code class="docutils literal notranslate"><span class="pre">decade</span></code> column, and take a look at male and female births as a function of decade:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">births</span><span class="p">[</span><span class="s1">&#39;decade&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span> <span class="o">*</span> <span class="p">(</span><span class="n">births</span><span class="p">[</span><span class="s1">&#39;year&#39;</span><span class="p">]</span> <span class="o">//</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">births</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;births&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;decade&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th>gender</th>
+      <th>F</th>
+      <th>M</th>
+    </tr>
+    <tr>
+      <th>decade</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1960</th>
+      <td>1753634</td>
+      <td>1846572</td>
+    </tr>
+    <tr>
+      <th>1970</th>
+      <td>16263075</td>
+      <td>17121550</td>
+    </tr>
+    <tr>
+      <th>1980</th>
+      <td>18310351</td>
+      <td>19243452</td>
+    </tr>
+    <tr>
+      <th>1990</th>
+      <td>19479454</td>
+      <td>20420553</td>
+    </tr>
+    <tr>
+      <th>2000</th>
+      <td>18229309</td>
+      <td>19106428</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>We see that male births outnumber female births in every decade.
+To see this trend a bit more clearly, we can use the built-in plotting tools in Pandas to visualize the total number of births by year, as shown in the following figure (see <a class="reference internal" href="04.00-Introduction-To-Matplotlib.html"><span class="std std-doc">Introduction to Matplotlib</span></a> for a discussion of plotting with Matplotlib):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s1">&#39;seaborn-whitegrid&#39;</span><span class="p">)</span>
+<span class="n">births</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span>
+    <span class="s1">&#39;births&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;year&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;gender&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;sum&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;total births per year&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/6192256f0ae39edbbfff1c2fbb0aaf56010452f6d5ba69760eeb463df46b9543.png" src="_images/6192256f0ae39edbbfff1c2fbb0aaf56010452f6d5ba69760eeb463df46b9543.png" />
+</div>
+</div>
+<p>With a simple pivot table and the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method, we can immediately see the annual trend in births by gender. By eye, it appears that over the past 50 years male births have outnumbered female births by around 5%.</p>
+<p>Though this doesn’t necessarily relate to the pivot table, there are a few more interesting features we can pull out of this dataset using the Pandas tools covered up to this point.
+We must start by cleaning the data a bit, removing outliers caused by mistyped dates (e.g., June 31st) or missing values (e.g., June 99th).
+One easy way to remove these all at once is to cut outliers; we’ll do this via a robust sigma-clipping operation:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">quartiles</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">percentile</span><span class="p">(</span><span class="n">births</span><span class="p">[</span><span class="s1">&#39;births&#39;</span><span class="p">],</span> <span class="p">[</span><span class="mi">25</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">75</span><span class="p">])</span>
+<span class="n">mu</span> <span class="o">=</span> <span class="n">quartiles</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="mf">0.74</span> <span class="o">*</span> <span class="p">(</span><span class="n">quartiles</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">quartiles</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>This final line is a robust estimate of the sample standard deviation, where the 0.74 comes from the interquartile range of a Gaussian distribution (you can learn more about sigma-clipping operations in a book I coauthored with Željko Ivezić, Andrew J. Connolly, and Alexander Gray: <a class="reference external" href="https://press.princeton.edu/books/hardcover/9780691198309/statistics-data-mining-and-machine-learning-in-astronomy"><em>Statistics, Data Mining, and Machine Learning in Astronomy</em></a> (Princeton University Press)).</p>
+<p>With this, we can use the <code class="docutils literal notranslate"><span class="pre">query</span></code> method (discussed further in <a class="reference internal" href="03.12-Performance-Eval-and-Query.html"><span class="std std-doc">High-Performance Pandas: <code class="docutils literal notranslate"><span class="pre">eval()</span></code> and <code class="docutils literal notranslate"><span class="pre">query()</span></code></span></a>) to filter out rows with births outside these values:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">births</span> <span class="o">=</span> <span class="n">births</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;(births &gt; @mu - 5 * @sig) &amp; (births &lt; @mu + 5 * @sig)&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Next we set the <code class="docutils literal notranslate"><span class="pre">day</span></code> column to integers; previously it had been a string column because some columns in the dataset contained the value <code class="docutils literal notranslate"><span class="pre">'null'</span></code>:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># set &#39;day&#39; column to integer; it originally was a string due to nulls</span>
+<span class="n">births</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">births</span><span class="p">[</span><span class="s1">&#39;day&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Finally, we can combine the day, month, and year to create a date index (see <a class="reference internal" href="03.11-Working-with-Time-Series.html"><span class="std std-doc">Working with Time Series</span></a>).
+This allows us to quickly compute the weekday corresponding to each row:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># create a datetime index from the year, month, day</span>
+<span class="n">births</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">to_datetime</span><span class="p">(</span><span class="mi">10000</span> <span class="o">*</span> <span class="n">births</span><span class="o">.</span><span class="n">year</span> <span class="o">+</span>
+                              <span class="mi">100</span> <span class="o">*</span> <span class="n">births</span><span class="o">.</span><span class="n">month</span> <span class="o">+</span>
+                              <span class="n">births</span><span class="o">.</span><span class="n">day</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;%Y%m</span><span class="si">%d</span><span class="s1">&#39;</span><span class="p">)</span>
+
+<span class="n">births</span><span class="p">[</span><span class="s1">&#39;dayofweek&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">births</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">dayofweek</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Using this, we can plot births by weekday for several decades (see the following figure):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">matplotlib</span> <span class="k">as</span> <span class="nn">mpl</span>
+
+<span class="n">births</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;births&#39;</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="s1">&#39;dayofweek&#39;</span><span class="p">,</span>
+                    <span class="n">columns</span><span class="o">=</span><span class="s1">&#39;decade&#39;</span><span class="p">,</span> <span class="n">aggfunc</span><span class="o">=</span><span class="s1">&#39;mean&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">gca</span><span class="p">()</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xticks</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span>
+              <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Mon&#39;</span><span class="p">,</span> <span class="s1">&#39;Tues&#39;</span><span class="p">,</span> <span class="s1">&#39;Wed&#39;</span><span class="p">,</span> <span class="s1">&#39;Thurs&#39;</span><span class="p">,</span> <span class="s1">&#39;Fri&#39;</span><span class="p">,</span> <span class="s1">&#39;Sat&#39;</span><span class="p">,</span> <span class="s1">&#39;Sun&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;mean births by day&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/857411707cee00576e9395634d3f872f7d0b5a979f6938530db87a606e697921.png" src="_images/857411707cee00576e9395634d3f872f7d0b5a979f6938530db87a606e697921.png" />
+</div>
+</div>
+<p>Apparently births are slightly less common on weekends than on weekdays! Note that the 1990s and 2000s are missing because starting in 1989, the CDC data contains only the month of birth.</p>
+<p>Another interesting view is to plot the mean number of births by the day of the year.
+Let’s first group the data by month and day separately:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">births_by_date</span> <span class="o">=</span> <span class="n">births</span><span class="o">.</span><span class="n">pivot_table</span><span class="p">(</span><span class="s1">&#39;births&#39;</span><span class="p">,</span> 
+                                    <span class="p">[</span><span class="n">births</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">month</span><span class="p">,</span> <span class="n">births</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">day</span><span class="p">])</span>
+<span class="n">births_by_date</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>births</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th rowspan="5" valign="top">1</th>
+      <th>1</th>
+      <td>4009.225</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>4247.400</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>4500.900</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4571.350</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>4603.625</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>The result is a multi-index over months and days.
+To make this visualizable, let’s turn these months and days into dates by associating them with a dummy year variable (making sure to choose a leap year so February 29th is correctly handled!):</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+<span class="n">births_by_date</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="p">[</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span>
+                        <span class="k">for</span> <span class="p">(</span><span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span> <span class="ow">in</span> <span class="n">births_by_date</span><span class="o">.</span><span class="n">index</span><span class="p">]</span>
+<span class="n">births_by_date</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>births</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2012-01-01</th>
+      <td>4009.225</td>
+    </tr>
+    <tr>
+      <th>2012-01-02</th>
+      <td>4247.400</td>
+    </tr>
+    <tr>
+      <th>2012-01-03</th>
+      <td>4500.900</td>
+    </tr>
+    <tr>
+      <th>2012-01-04</th>
+      <td>4571.350</td>
+    </tr>
+    <tr>
+      <th>2012-01-05</th>
+      <td>4603.625</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<p>Focusing on the month and day only, we now have a time series reflecting the average number of births by date of the year.
+From this, we can use the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method to plot the data. It reveals some interesting trends, as you can see in the following figure:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot the results</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">births_by_date</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/eda57750db5f37c66351bed4b5126cbca46d3d03ad710caa42b8a16a7bb93750.png" src="_images/eda57750db5f37c66351bed4b5126cbca46d3d03ad710caa42b8a16a7bb93750.png" />
+</div>
+</div>
+<p>In particular, the striking feature of this graph is the dip in birthrate on US holidays (e.g., Independence Day, Labor Day, Thanksgiving, Christmas, New Year’s Day), although this likely reflects trends in scheduled/induced births rather than some deep psychosomatic effect on natural births.
+For more discussion of this trend, see the analysis and links in <a class="reference external" href="http://andrewgelman.com/2012/06/14/cool-ass-signal-processing-using-gaussian-processes/">Andrew Gelman’s blog post</a> on the subject.
+We’ll return to this figure in <a class="reference internal" href="04.09-Text-and-Annotation.html"><span class="std std-doc">Example:-Effect-of-Holidays-on-US-Births</span></a>, where we will use Matplotlib’s tools to annotate this plot.</p>
+<p>Looking at this short example, you can see that many of the Python and Pandas tools we’ve seen to this point can be combined and used to gain insight from a variety of datasets.
+We will see some more sophisticated applications of these data manipulations in future chapters!</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="03.08-Aggregation-and-Grouping.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Aggregation and Grouping</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="03.10-Working-With-Strings.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Vectorized String Operations</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#motivating-pivot-tables">Motivating Pivot Tables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-tables-by-hand">Pivot Tables by Hand</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pivot-table-syntax">Pivot Table Syntax</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#multilevel-pivot-tables">Multilevel Pivot Tables</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#additional-pivot-table-options">Additional Pivot Table Options</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-birthrate-data">Example: Birthrate Data</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
