@@ -17,5 +17,6 @@ I should mention that the original material was from [Jake VanderPlas's DS book 
 In notebooks folder:
 - jupyter-book build ./
 - copy ../require.js ./_build
+- copy *.jpg _build\html\_images\
 - ghp-import -n -p -f ./_build/html
 - jupyter-book build --builder pdflatex ./
