@@ -20,7 +20,7 @@ Book documentation.
 
 # Course Resources for Data Mining
 
-- [Python Data Science Handbook by Jake VanderPlas](https://jakevdp.github.io/PythonDataScienceHandbook/): This website contains the full text of the Python Data Science Handbook by Jake VanderPlas; the content is available on GitHub in the form of Jupyter notebooks, whis is the main source of this course materials.
+- [Python Data Science Handbook by Jake VanderPlas](https://jakevdp.github.io/PythonDataScienceHandbook/): This website contains the full text of the Python Data Science Handbook by Jake VanderPlas; the content is available on GitHub in the form of Jupyter notebooks, which is the main source of this course materials.
 
 - [Pattern Classification by Richard O. Duda, Peter E. Hart, David G. Stork](http://www.wiley.com/WileyCDA/WileyTitle/productCd-0471056693.html)
 
