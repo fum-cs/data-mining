@@ -178,7 +178,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Data Mining Course
                 </a>
             </li>
         </ul>
@@ -484,12 +484,19 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categories-of-machine-learning">Categories of Machine Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-examples-of-machine-learning-applications">Qualitative Examples of Machine Learning Applications</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-predicting-discrete-labels">Classification: Predicting Discrete Labels</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-predicting-continuous-labels">Regression: Predicting Continuous Labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-predicting-continuous-labels">Regression: Predicting Continuous Labels</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-supervised-learning">Some of my previous papers about supervised learning:</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-inferring-labels-on-unlabeled-data">Clustering: Inferring Labels on Unlabeled Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-inferring-structure-of-unlabeled-data">Dimensionality Reduction: Inferring Structure of Unlabeled Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-inferring-structure-of-unlabeled-data">Dimensionality Reduction: Inferring Structure of Unlabeled Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-un-supervised-learning">Some of my previous papers about un-supervised learning:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -510,6 +517,16 @@ The study of machine learning certainly arose from research in this context, but
 Once these models have been fit to previously seen data, they can be used to predict and understand aspects of newly observed data.
 I’ll leave to the reader the more philosophical digression regarding the extent to which this type of mathematical, model-based “learning” is similar to the “learning” exhibited by the human brain.</p>
 <p>Understanding the problem setting in machine learning is essential to using these tools effectively, and so we will start with some broad categorizations of the types of approaches we’ll discuss here.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>Note for Advanced Learners</strong>: The foundational concepts covered in this Data Mining course are essential for understanding more advanced topics in data science and machine learning. If you are interested in diving deeper, many of these advanced topics are discussed in detail in the MSc courses at <strong>FUM University</strong>.</p></li>
+</ul>
+</div></blockquote>
+<blockquote>
+<div><ul class="simple">
+<li><p>Current students of <strong>MDS</strong> at <strong>FUM University</strong> are familiar with the concepts covered in the <a class="reference external" href="https://fum-cs.github.io/fds/"><strong>FDS</strong></a> and <a class="reference external" href="https://fum-cs.github.io/mfds/"><strong>MFDS</strong></a> courses. These courses build on the fundamentals taught here and explore advanced techniques, algorithms, and applications in data science and machine learning.</p></li>
+</ul>
+</div></blockquote>
 <section id="categories-of-machine-learning">
 <h2>Categories of Machine Learning<a class="headerlink" href="#categories-of-machine-learning" title="Link to this heading">#</a></h2>
 <p>Machine learning can be categorized into two main types: supervised learning and unsupervised learning.</p>
@@ -527,8 +544,7 @@ Semi-supervised learning methods are often useful when only incomplete labels ar
 <h2>Qualitative Examples of Machine Learning Applications<a class="headerlink" href="#qualitative-examples-of-machine-learning-applications" title="Link to this heading">#</a></h2>
 <p>To make these ideas more concrete, let’s take a look at a few very simple examples of a machine learning task.
 These examples are meant to give an intuitive, non-quantitative overview of the types of machine learning tasks we will be looking at in this part of the book.
-In later chapters, we will go into more depth regarding the particular models and how they are used.
-For a preview of these more technical aspects, you can find the Python source that generates the following figures in the online <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb">appendix</a>.</p>
+In later chapters, we will go into more depth regarding the particular models and how they are used.</p>
 <section id="classification-predicting-discrete-labels">
 <h3>Classification: Predicting Discrete Labels<a class="headerlink" href="#classification-predicting-discrete-labels" title="Link to this heading">#</a></h3>
 <p>We will first take a look at a simple classification task, in which we are given a set of labeled points and want to use these to classify some unlabeled points.</p>
@@ -589,6 +605,45 @@ But the power of these methods is that they can be straightforwardly applied and
 Distances to remaining galaxies could then be estimated using a suitable regression model, without the need to employ the more expensive observation across the entire set.
 In astronomy circles, this is known as the “photometric redshift” problem.</p>
 <p>Some important regression algorithms that we will discuss are linear regression (see <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">In Depth: Linear Regression</span></a>), support vector machines (see <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc">In-Depth: Support Vector Machines</span></a>), and random forest regression (see <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc">In-Depth: Decision Trees and Random Forests</span></a>).</p>
+<section id="some-of-my-previous-papers-about-supervised-learning">
+<h4>Some of my previous papers about supervised learning:<a class="headerlink" href="#some-of-my-previous-papers-about-supervised-learning" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Classification:</p>
+<ul>
+<li><p>Click Rate Prediction <span id="id1">[<a class="reference internal" href="#id36" title="Mohammadreza Fatehinia, Mahmood Amintoosi, and Seyed Masih Sajadi. Click rate prediction in online advertising industry with real data and its challenges. In 3rd Specialized Seminar on Data Science and Its Applications, 26. Ferdowsi University of Mashhad, 2024. پیش‌بینی نرخ کلیک در صنعت تبلیغات آنلاین با داده‌های واقعی و چالش‌های آن.">FAS24</a>]</span></p></li>
+<li><p>Anti-Cancer Plant Recommendation <span id="id2">[<a class="reference internal" href="#id42" title="Mahmood Amintoosi and Eisa Kohan-Baghkheirati. Graph feature selection for anti-cancer plant recommendation. Control and Optimization in Applied Mathematics, 8(2):1-15, 2023.">AKB23</a>]</span></p></li>
+<li><p>Fully Connected to Fully Convolutional <span id="id3">[<a class="reference internal" href="#id45" title="Mahmood Amintoosi. Fully connected to fully convolutional: road to yesterday. Soft Computing and Information Technology, 11(1):60-72, 2022. تمام متصل به تمام پیچشی: پلی به گذشته.">Ami22a</a>]</span></p></li>
+<li><p>Eigenbackground <span id="id4">[<a class="reference internal" href="#id46" title="Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? Journal of Mathematical Imaging and Vision, 64(5):463-477, 2022.">AF22</a>]</span></p></li>
+<li><p>Facial Recognition <span id="id5">[<a class="reference internal" href="#id113" title="H. Sadoghi Yazdi, M. Amintoosi, and M. Fathy. Facial expression recognition in video using QIM and ITMI. In 4th Conference on Machine Vision and Image Processing. Mashhad, Iran, February 2006. Ferdowsi University of Mashhad. شناسایی حالت چهره با استفاده از پایگاه دادهٔ مكانی- زمانی QIM و ITMI.">YAF06</a>]</span></p></li>
+<li><p>COVID 19 <span id="id6">[<a class="reference internal" href="#id50" title="Mahmood Amintoosi. Combining regularization and optimal brain damage methods for reducing a deep learning model size. Machine Vision and Image Processing, 9(1):31–45, 2021. ترکیب روش منظم‌سازی تُنُک و آسیب مغزی بهینه‌ در کوچک‌سازی یک مدل یادگیری عمیق.">Ami21a</a>]</span></p></li>
+<li><p>Social Networks <span id="id7">[<a class="reference internal" href="#id51" title="Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. Journal of Algorithms and Computation, 53(2):33–45, 2021.">Ami21b</a>]</span></p></li>
+<li><p>Classification of Paintings <span id="id8">[<a class="reference internal" href="#id52" title="Mahmood Amintoosi. The application of taylor expansion in reducing the size of convolutional neural networks for classifying impressionism and miniature style paintings. Mathematics and Society, 5(1):1–16, 2020. کاربرد بسط تیلور در کاهش حجم شبکه های عصبی پیچشی برای طبقه بندی نقاشی های سبک امپرسیونیسم و مینیاتور.">Ami20</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Regression:</p>
+<ul>
+<li><p>Modeling dust particles <span id="id9">[<a class="reference internal" href="#id33" title="Ghasem Zolfaghari, Sara Nezamparvar, and Mahmood Amintoosi. Modeling dust particles from stack with artificial neural network and studying electrofilter performance: a case study of zaveh cement factory. Journal of Natural Environment, ():-, 2025. doi:10.22059/jne.2025.380898.2713.">ZNA25</a>]</span></p></li>
+<li><p>Housing Price Prediction <span id="id10">[<a class="reference internal" href="#id34" title="Mahmood Amintoosi. Improving housing price prediction with spatial information representation based on random walk. In 3rd Specialized Seminar on Data Science and Its Applications, 20. Ferdowsi University of Mashhad, 2024. بهبود پیش‌بینی قیمت مسکن با بازنمایی اطلاعات مکانی مبتنی بر قدم‌زنی تصادفی.">Ami24a</a>]</span></p></li>
+<li><p>Traffic prediction <span id="id11">[<a class="reference internal" href="#id40" title="Mahmood Amintoosi. Traffic prediction using graph convolutional networks based on learning. In 55th Annual Iranian Mathematics Conference, 145-148. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک با شبکه‌های پیچشی گراف مبتنی بر یادگیری.">Ami24b</a>, <a class="reference internal" href="#id37" title="Hoda Mehrabagherpour, Mahmood Amintoosi, and Mohammad Arashi. Urban traffic prediction using graph convolutional networks. In 3rd Specialized Seminar on Data Science and Its Applications, 25. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک شهری با بهره‌گیری از شبکه‌های پیچشی گراف.">MAA24</a>]</span></p></li>
+<li><p>Sparse Super Resolution <span id="id12">[<a class="reference internal" href="#id47" title="Mina Mortazavi, Morteza Gachpazan, Mahmood Amintoosi, and Soheil Salashour. Fractional derivative approach to sparse super resolution. The Visual Computer, 39(7):3011-3028, Jul 2023.">MGAS23</a>]</span></p></li>
+<li><p>Prediction of CO and PM10 <span id="id13">[<a class="reference internal" href="#id49" title="R. Farhadi, M. Hadavifar, M. Moeinaddini, and M. Amintoosi. Prediction of co and pm10 in cold and warm seasons and survey of the effect of instability indices on contaminants using artificial neural network: a case study in tehran city. Iranian (Iranica) Journal of Energy &amp; Environment, 13(1):71-78, 2022. doi:10.5829/ijee.2022.13.01.08.">FHMA22</a>]</span></p></li>
+<li><p>Prediction of the Air Quality <span id="id14">[<a class="reference internal" href="#id55" title="Razieh Farhadi, Mojtaba Hadavifar, Mazaher Moeinaddini, and Mahmood Amintoosi. Prediction of the air quality by artificial neural network using instability indices in the city of tehran-iran. AUT Journal of Civil Engineering, 4(4):-, 2020. doi:10.22060/ajce.2019.17018.5609.">FHMA20</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Classification &amp; Regression:</p>
+<ul>
+<li><p>Fire detection <span id="id15">[<a class="reference internal" href="#id48" title="Mahmood Amintoosi. Style transfer for data augmentation in convolutional neural networks applied to fire detection. Computational Intelligence in Electrical Engineering, 13(4):97-114, 2022. انتقال سبک برای افزایش داده‌های آموزشی شبکه‌های کانولوشنی در شناسایی شعلۀ آتش. doi:10.22108/isee.2021.124044.1490.">Ami22b</a>]</span></p></li>
+<li><p>Predicting Molecular Properties <span id="id16">[<a class="reference internal" href="#id38" title="Amir Jologir Baghestan, Mahmood Amintoosi, and Mohammad Arashi. Graph neural networks for predicting molecular properties. In 3rd Specialized Seminar on Data Science and Its Applications, 37. Ferdowsi University of Mashhad, 2024. شبکه‌های عصبی گراف در پیش‌گویی خواص مولکولی.">BAA24</a>]</span></p></li>
+</ul>
+</li>
+<li><p>Semi-supervised learning:</p>
+<ul>
+<li><p>Text extraction <span id="id17">[<a class="reference internal" href="#id35" title="Mehdi Nemati and Mahmood Amintoosi. Enhancing text extraction from scanned medical documents using large language models. In Third Seminar on Data Science and its Applications, 58. Ferdowsi University of Mashhad, 2024.">NA24</a>]</span></p></li>
+<li><p>Vessel Segmentation <span id="id18">[<a class="reference internal" href="#id76" title="Mahmood Amintoosi and Farzaneh Rashidabadi. Enhancement of heart coronary vessel segmentation using semi-supervised learning. In 8th International Conference of the Iranian Operations Research Society. Ferdowsi University of Mashhad, 2015. آشکارسازی بهتر شریان‌های کرونری قلب با یاد‌گیری نیمه‌نظارتی‌خودکار.">AR15</a>]</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 <section id="clustering-inferring-labels-on-unlabeled-data">
 <h3>Clustering: Inferring Labels on Unlabeled Data<a class="headerlink" href="#clustering-inferring-labels-on-unlabeled-data" title="Link to this heading">#</a></h3>
@@ -623,6 +678,23 @@ As with the previous examples, the power of dimensionality reduction algorithms 
 For example, we might wish to visualize important relationships within a dataset that has 100 or 1,000 features.
 Visualizing 1,000-dimensional data is a challenge, and one way we can make this more manageable is to use a dimensionality reduction technique to reduce the data to 2 or 3 dimensions.</p>
 <p>Some important dimensionality reduction algorithms that we will discuss are principal component analysis (see <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">In Depth: Principal Component Analysis</span></a>) and various manifold learning algorithms, including Isomap and locally linear embedding (see <a class="reference internal" href="05.10-Manifold-Learning.html"><span class="std std-doc">In-Depth: Manifold Learning</span></a>).</p>
+<section id="some-of-my-previous-papers-about-un-supervised-learning">
+<h4>Some of my previous papers about un-supervised learning:<a class="headerlink" href="#some-of-my-previous-papers-about-un-supervised-learning" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>DeepWalk for Student Sectioning <span id="id19">[<a class="reference internal" href="#id32" title="Mahmood Amintoosi. Deepwalk for student sectioning. Data &amp; Knowledge Engineering, xx(yy):-, 202x.">Ami2x</a>]</span></p></li>
+<li><p>Overlapping Clusters <span id="id20">[<a class="reference internal" href="#id51" title="Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. Journal of Algorithms and Computation, 53(2):33–45, 2021.">Ami21b</a>]</span></p></li>
+<li><p>Min-Cut of Weighted Graphs <span id="id21">[<a class="reference internal" href="#id58" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Inefficiency of the karger's algorithm in min-cut of weighted graphs. In 3rd Seminar on Control and Optimization, 21-24. Hakim Sabzevari University, 2019. بررسی نا کارآمدی الگوریتم کارگر در برش کمینه گرافهای وزن دار.">HA19</a>]</span></p></li>
+<li><p>Spectral Clustering <span id="id22">[<a class="reference internal" href="#id66" title="Mehdi Nemati, Mahmood Amintoosi, and Mehdi Zaferanieh. Conjugate gradient initialization using genetic algorithm in spectral clustering. In 6th Seminar on Harmonic Analysis and Applications. Hakim Sabzevari University, 2018. مقدار دهی اولیه گرادیان مزدوج در خوشه بندی طیفی با الگوریتم ژنتیک.">NAZ18</a>]</span></p></li>
+<li><p>Retina Vessel Segmentation <span id="id23">[<a class="reference internal" href="#id71" title="Mahmood Amintoosi. Retina vessel segmentation using knn matting. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. آشکارسازی بهتر شریان‌های کرونری قلب با یاد‌گیری نیمه‌نظارتی‌خودکار.">Ami17</a>]</span></p></li>
+<li><p>Extreme Learning Machine <span id="id24">[<a class="reference internal" href="#id73" title="Mahmood Amintoosi, Sakineh Khorsandi, and Mehdi Zaferanieh. Elm evaluation for image segmentation. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. ارزیابی عملکرد ماشین یادگیر نهایی در قطعه‌بندی تصاویر.">AKZ17</a>]</span></p></li>
+<li><p>MRI Images Segmentation <span id="id25">[<a class="reference internal" href="#id74" title="Mahmood Amintoosi and Tayyebe Fayyaz. Genetic algorithms for spectral clustering parameter estimation in mri images. In 8th International Conference of the Iranian Operations Research Society. Ferdowsi University of Mashhad, 2015. محاسبه پارامترهای خوشه‌بندی طیفی در تصاویر MRI با الگوریتم ژنتیک.">AF15</a>]</span></p></li>
+<li><p>Graph Minimum Cut Using SA &amp; TS <span id="id26">[<a class="reference internal" href="#id78" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using simulated annealing. In 7th International Conference of the Iranian Operations Research Society. Semnan, 2014. برش کمینه‌ی گراف با شبیه‌سازی تبریدی.">HA14a</a>, <a class="reference internal" href="#id79" title="Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using tabu search. In 7th International Conference of the Iranian Operations Research Society. Semnan, 2014. برش کمینه‌ی گراف باجستجوی ممنوعه.">HA14b</a>]</span></p></li>
+<li><p>Pulse-Coupled Neural Networks <span id="id27">[<a class="reference internal" href="#id81" title="Mehdi Moghimi and Mahmood Amintoosi. Mri image segmentation using pulse-coupled neural networks. In 5th National Conference on Electrical and Electronics Engineering. Gonabad, 2013. تشخیص ناحیه چربی در تصاویر MRI با استفاده از شبكه عصبی با كوپلاژ پالسی.">MA13</a>]</span></p></li>
+<li><p>Segmentation of Medical Images <span id="id28">[<a class="reference internal" href="#id85" title="Mehdi Sheida, Hessam Ekhtiyar, and Mahmood Amintoosi. A unified algorithm for segmentation of various medical images. In 2nd National Conference on Soft Computing and Information Technology. Mahshahr, 2012. الگوریتمی واحد برای ناحیه بندی انواع تصاویر پزشکی.">SEA12</a>]</span></p></li>
+<li><p>Fish School Clustering <span id="id29">[<a class="reference internal" href="#id100" title="M. Amintoosi, M. Fathy, N. Mozayani, and A.T. Rahmani. A fish school clustering algorithm: applied to student sectioning problem. Dynamics of Continuous Discrete &amp; Impulse Systems, series B: Applications and Algorithms, 2:696-699, December 2007. Post Proceeding of LSMS2007, Life System Modeling and Simulation 2007, China.">AFMR07</a>]</span></p></li>
+<li><p>Fuzzy Student Sectioning <span id="id30">[<a class="reference internal" href="#id105" title="M. Amintoosi and J. Haddadnnia. Feature selection in a fuzzy student sectioning algorithm. Lecture Notes in Computer Science, 3616:147–160, 2005. Indexed by DBLP.">AH05</a>, <a class="reference internal" href="#id107" title="M. Amintoosi, H. Sadoghi Yazdi, and J. Haddadnnia. Fuzzy student sectioning. In PATAT04: Practice and Theory of Automated Timetabling, 421-424. USA, Aug 2004.">AYH04</a>]</span></p></li>
+</ul>
+</section>
 </section>
 </section>
 <section id="summary">
@@ -645,7 +717,142 @@ Needless to say, there are a number of important practical details that we have 
 </li>
 </ul>
 <p>In the following sections we will go into much greater depth within these categories, and see some more interesting examples of where these concepts can be useful.</p>
-<p>All of the figures in the preceding discussion are generated based on actual machine learning computations; the code behind them can be found in <a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb">Appendix: Figure Code</a>.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<div class="docutils container" id="id31">
+<div role="list" class="citation-list">
+<div class="citation" id="id100" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id29">AFMR07</a><span class="fn-bracket">]</span></span>
+<p>M. Amintoosi, M. Fathy, N. Mozayani, and A.T. Rahmani. A fish school clustering algorithm: applied to student sectioning problem. <em>Dynamics of Continuous Discrete &amp; Impulse Systems, series B: Applications and Algorithms</em>, 2:696–699, December 2007. Post Proceeding of LSMS2007, Life System Modeling and Simulation 2007, China.</p>
+</div>
+<div class="citation" id="id105" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id30">AH05</a><span class="fn-bracket">]</span></span>
+<p>M. Amintoosi and J. Haddadnnia. Feature selection in a fuzzy student sectioning algorithm. <em>Lecture Notes in Computer Science</em>, 3616:147–160, 2005. Indexed by DBLP.</p>
+</div>
+<div class="citation" id="id107" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id30">AYH04</a><span class="fn-bracket">]</span></span>
+<p>M. Amintoosi, H. Sadoghi Yazdi, and J. Haddadnnia. Fuzzy student sectioning. In <em>PATAT04: Practice and Theory of Automated Timetabling</em>, 421–424. USA, Aug 2004.</p>
+</div>
+<div class="citation" id="id71" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id23">Ami17</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Retina vessel segmentation using knn matting. In <em>3rd International Conference on Pattern Recognition and Image Analysis of Iran</em>. Shahrekord University, 2017. آشکارسازی بهتر شریان‌های کرونری قلب با یاد‌گیری نیمه‌نظارتی‌خودکار.</p>
+</div>
+<div class="citation" id="id52" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id8">Ami20</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. The application of taylor expansion in reducing the size of convolutional neural networks for classifying impressionism and miniature style paintings. <em>Mathematics and Society</em>, 5(1):1–16, 2020. کاربرد بسط تیلور در کاهش حجم شبکه های عصبی پیچشی برای طبقه بندی نقاشی های سبک امپرسیونیسم و مینیاتور.</p>
+</div>
+<div class="citation" id="id50" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id6">Ami21a</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Combining regularization and optimal brain damage methods for reducing a deep learning model size. <em>Machine Vision and Image Processing</em>, 9(1):31–45, 2021. ترکیب روش منظم‌سازی تُنُک و آسیب مغزی بهینه‌ در کوچک‌سازی یک مدل یادگیری عمیق.</p>
+</div>
+<div class="citation" id="id51" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami21b<span class="fn-bracket">]</span></span>
+<span class="backrefs">(<a role="doc-backlink" href="#id7">1</a>,<a role="doc-backlink" href="#id20">2</a>)</span>
+<p>Mahmood Amintoosi. Overlapping clusters in cluster graph convolutional networks. <em>Journal of Algorithms and Computation</em>, 53(2):33–45, 2021.</p>
+</div>
+<div class="citation" id="id45" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id3">Ami22a</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Fully connected to fully convolutional: road to yesterday. <em>Soft Computing and Information Technology</em>, 11(1):60–72, 2022. تمام متصل به تمام پیچشی: پلی به گذشته.</p>
+</div>
+<div class="citation" id="id48" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id15">Ami22b</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Style transfer for data augmentation in convolutional neural networks applied to fire detection. <em>Computational Intelligence in Electrical Engineering</em>, 13(4):97–114, 2022. انتقال سبک برای افزایش داده‌های آموزشی شبکه‌های کانولوشنی در شناسایی شعلۀ آتش. <a class="reference external" href="https://doi.org/10.22108/isee.2021.124044.1490">doi:10.22108/isee.2021.124044.1490</a>.</p>
+</div>
+<div class="citation" id="id34" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id10">Ami24a</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Improving housing price prediction with spatial information representation based on random walk. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 20. Ferdowsi University of Mashhad, 2024. بهبود پیش‌بینی قیمت مسکن با بازنمایی اطلاعات مکانی مبتنی بر قدم‌زنی تصادفی.</p>
+</div>
+<div class="citation" id="id40" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">Ami24b</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Traffic prediction using graph convolutional networks based on learning. In <em>55th Annual Iranian Mathematics Conference</em>, 145–148. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک با شبکه‌های پیچشی گراف مبتنی بر یادگیری.</p>
+</div>
+<div class="citation" id="id32" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id19">Ami2x</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Deepwalk for student sectioning. <em>Data &amp; Knowledge Engineering</em>, xx(yy):–, 202x.</p>
+</div>
+<div class="citation" id="id46" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id4">AF22</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? <em>Journal of Mathematical Imaging and Vision</em>, 64(5):463–477, 2022.</p>
+</div>
+<div class="citation" id="id74" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id25">AF15</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Tayyebe Fayyaz. Genetic algorithms for spectral clustering parameter estimation in mri images. In <em>8th International Conference of the Iranian Operations Research Society</em>. Ferdowsi University of Mashhad, 2015. محاسبه پارامترهای خوشه‌بندی طیفی در تصاویر MRI با الگوریتم ژنتیک.</p>
+</div>
+<div class="citation" id="id73" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id24">AKZ17</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi, Sakineh Khorsandi, and Mehdi Zaferanieh. Elm evaluation for image segmentation. In <em>3rd International Conference on Pattern Recognition and Image Analysis of Iran</em>. Shahrekord University, 2017. ارزیابی عملکرد ماشین یادگیر نهایی در قطعه‌بندی تصاویر.</p>
+</div>
+<div class="citation" id="id42" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id2">AKB23</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Eisa Kohan-Baghkheirati. Graph feature selection for anti-cancer plant recommendation. <em>Control and Optimization in Applied Mathematics</em>, 8(2):1–15, 2023.</p>
+</div>
+<div class="citation" id="id76" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id18">AR15</a><span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi and Farzaneh Rashidabadi. Enhancement of heart coronary vessel segmentation using semi-supervised learning. In <em>8th International Conference of the Iranian Operations Research Society</em>. Ferdowsi University of Mashhad, 2015. آشکارسازی بهتر شریان‌های کرونری قلب با یاد‌گیری نیمه‌نظارتی‌خودکار.</p>
+</div>
+<div class="citation" id="id38" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id16">BAA24</a><span class="fn-bracket">]</span></span>
+<p>Amir Jologir Baghestan, Mahmood Amintoosi, and Mohammad Arashi. Graph neural networks for predicting molecular properties. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 37. Ferdowsi University of Mashhad, 2024. شبکه‌های عصبی گراف در پیش‌گویی خواص مولکولی.</p>
+</div>
+<div class="citation" id="id49" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">FHMA22</a><span class="fn-bracket">]</span></span>
+<p>R. Farhadi, M. Hadavifar, M. Moeinaddini, and M. Amintoosi. Prediction of co and pm10 in cold and warm seasons and survey of the effect of instability indices on contaminants using artificial neural network: a case study in tehran city. <em>Iranian (Iranica) Journal of Energy &amp; Environment</em>, 13(1):71–78, 2022. <a class="reference external" href="https://doi.org/10.5829/ijee.2022.13.01.08">doi:10.5829/ijee.2022.13.01.08</a>.</p>
+</div>
+<div class="citation" id="id55" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id14">FHMA20</a><span class="fn-bracket">]</span></span>
+<p>Razieh Farhadi, Mojtaba Hadavifar, Mazaher Moeinaddini, and Mahmood Amintoosi. Prediction of the air quality by artificial neural network using instability indices in the city of tehran-iran. <em>AUT Journal of Civil Engineering</em>, 4(4):–, 2020. <a class="reference external" href="https://doi.org/10.22060/ajce.2019.17018.5609">doi:10.22060/ajce.2019.17018.5609</a>.</p>
+</div>
+<div class="citation" id="id36" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">FAS24</a><span class="fn-bracket">]</span></span>
+<p>Mohammadreza Fatehinia, Mahmood Amintoosi, and Seyed Masih Sajadi. Click rate prediction in online advertising industry with real data and its challenges. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 26. Ferdowsi University of Mashhad, 2024. پیش‌بینی نرخ کلیک در صنعت تبلیغات آنلاین با داده‌های واقعی و چالش‌های آن.</p>
+</div>
+<div class="citation" id="id78" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id26">HA14a</a><span class="fn-bracket">]</span></span>
+<p>Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using simulated annealing. In <em>7th International Conference of the Iranian Operations Research Society</em>. Semnan, 2014. برش کمینه‌ی گراف با شبیه‌سازی تبریدی.</p>
+</div>
+<div class="citation" id="id79" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id26">HA14b</a><span class="fn-bracket">]</span></span>
+<p>Fatemeh Sadat Hosseini and Mahmood Amintoosi. Graph minimum cut using tabu search. In <em>7th International Conference of the Iranian Operations Research Society</em>. Semnan, 2014. برش کمینه‌ی گراف باجستجوی ممنوعه.</p>
+</div>
+<div class="citation" id="id58" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id21">HA19</a><span class="fn-bracket">]</span></span>
+<p>Fatemeh Sadat Hosseini and Mahmood Amintoosi. Inefficiency of the karger's algorithm in min-cut of weighted graphs. In <em>3rd Seminar on Control and Optimization</em>, 21–24. Hakim Sabzevari University, 2019. بررسی نا کارآمدی الگوریتم کارگر در برش کمینه گرافهای وزن دار.</p>
+</div>
+<div class="citation" id="id37" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id11">MAA24</a><span class="fn-bracket">]</span></span>
+<p>Hoda Mehrabagherpour, Mahmood Amintoosi, and Mohammad Arashi. Urban traffic prediction using graph convolutional networks. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 25. Ferdowsi University of Mashhad, 2024. پیش‌بینی ترافیک شهری با بهره‌گیری از شبکه‌های پیچشی گراف.</p>
+</div>
+<div class="citation" id="id81" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id27">MA13</a><span class="fn-bracket">]</span></span>
+<p>Mehdi Moghimi and Mahmood Amintoosi. Mri image segmentation using pulse-coupled neural networks. In <em>5th National Conference on Electrical and Electronics Engineering</em>. Gonabad, 2013. تشخیص ناحیه چربی در تصاویر MRI با استفاده از شبكه عصبی با كوپلاژ پالسی.</p>
+</div>
+<div class="citation" id="id47" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">MGAS23</a><span class="fn-bracket">]</span></span>
+<p>Mina Mortazavi, Morteza Gachpazan, Mahmood Amintoosi, and Soheil Salashour. Fractional derivative approach to sparse super resolution. <em>The Visual Computer</em>, 39(7):3011–3028, Jul 2023.</p>
+</div>
+<div class="citation" id="id35" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id17">NA24</a><span class="fn-bracket">]</span></span>
+<p>Mehdi Nemati and Mahmood Amintoosi. Enhancing text extraction from scanned medical documents using large language models. In <em>Third Seminar on Data Science and its Applications</em>, 58. Ferdowsi University of Mashhad, 2024.</p>
+</div>
+<div class="citation" id="id66" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id22">NAZ18</a><span class="fn-bracket">]</span></span>
+<p>Mehdi Nemati, Mahmood Amintoosi, and Mehdi Zaferanieh. Conjugate gradient initialization using genetic algorithm in spectral clustering. In <em>6th Seminar on Harmonic Analysis and Applications</em>. Hakim Sabzevari University, 2018. مقدار دهی اولیه گرادیان مزدوج در خوشه بندی طیفی با الگوریتم ژنتیک.</p>
+</div>
+<div class="citation" id="id85" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id28">SEA12</a><span class="fn-bracket">]</span></span>
+<p>Mehdi Sheida, Hessam Ekhtiyar, and Mahmood Amintoosi. A unified algorithm for segmentation of various medical images. In <em>2nd National Conference on Soft Computing and Information Technology</em>. Mahshahr, 2012. الگوریتمی واحد برای ناحیه بندی انواع تصاویر پزشکی.</p>
+</div>
+<div class="citation" id="id113" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id5">YAF06</a><span class="fn-bracket">]</span></span>
+<p>H. Sadoghi Yazdi, M. Amintoosi, and M. Fathy. Facial expression recognition in video using QIM and ITMI. In <em>4th Conference on Machine Vision and Image Processing</em>. Mashhad, Iran, February 2006. Ferdowsi University of Mashhad. شناسایی حالت چهره با استفاده از پایگاه دادهٔ مكانی- زمانی QIM و ITMI.</p>
+</div>
+<div class="citation" id="id33" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">ZNA25</a><span class="fn-bracket">]</span></span>
+<p>Ghasem Zolfaghari, Sara Nezamparvar, and Mahmood Amintoosi. Modeling dust particles from stack with artificial neural network and studying electrofilter performance: a case study of zaveh cement factory. <em>Journal of Natural Environment</em>, ():–, 2025. <a class="reference external" href="https://doi.org/10.22059/jne.2025.380898.2713">doi:10.22059/jne.2025.380898.2713</a>.</p>
+</div>
+</div>
+</div>
 </section>
 </section>
 
@@ -716,12 +923,19 @@ Needless to say, there are a number of important practical details that we have 
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#categories-of-machine-learning">Categories of Machine Learning</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#qualitative-examples-of-machine-learning-applications">Qualitative Examples of Machine Learning Applications</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classification-predicting-discrete-labels">Classification: Predicting Discrete Labels</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-predicting-continuous-labels">Regression: Predicting Continuous Labels</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#regression-predicting-continuous-labels">Regression: Predicting Continuous Labels</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-supervised-learning">Some of my previous papers about supervised learning:</a></li>
+</ul>
+</li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-inferring-labels-on-unlabeled-data">Clustering: Inferring Labels on Unlabeled Data</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-inferring-structure-of-unlabeled-data">Dimensionality Reduction: Inferring Structure of Unlabeled Data</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction-inferring-structure-of-unlabeled-data">Dimensionality Reduction: Inferring Structure of Unlabeled Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#some-of-my-previous-papers-about-un-supervised-learning">Some of my previous papers about un-supervised learning:</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 

@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -176,7 +176,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Data Mining Course
                 </a>
             </li>
         </ul>
@@ -188,6 +188,7 @@
 <li class="toctree-l2"><a class="reference internal" href="02.03-Computation-on-arrays-ufuncs.html">Computation on NumPy Arrays: Universal Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.04-Computation-on-arrays-aggregates.html">Aggregations: min, max, and Everything in Between</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.05-Computation-on-arrays-broadcasting.html">Computation on Arrays: Broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.06-Boolean-Arrays-and-Masks.html">Comparisons, Masks, and Boolean Logic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.07-Fancy-Indexing.html">Fancy Indexing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.08-Sorting.html">Sorting Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.09-Structured-Data-NumPy.html">Structured Data: NumPy’s Structured Arrays</a></li>
@@ -198,6 +199,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="03.00-Introduction-to-Pandas.html">Data Manipulation with Pandas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="03.01-Introducing-Pandas-Objects.html">Introducing Pandas Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.02-Data-Indexing-and-Selection.html">Data Indexing and Selection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.03-Operations-in-Pandas.html">Operating on Data in Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.04-Missing-Values.html">Handling Missing Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.05-Hierarchical-Indexing.html">Hierarchical Indexing</a></li>
@@ -214,8 +216,23 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization with Matplotlib</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a></li>
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="04.01-Simple-Line-Plots.html">Simple Line Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.02-Simple-Scatter-Plots.html">Simple Scatter Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.03-Errorbars.html">Visualizing Uncertainties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.04-Density-and-Contour-Plots.html">Density and Contour Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.05-Histograms-and-Binnings.html">Histograms, Binnings, and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.06-Customizing-Legends.html">Customizing Plot Legends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.07-Customizing-Colorbars.html">Customizing Colorbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.08-Multiple-Subplots.html">Multiple Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.09-Text-and-Annotation.html">Text and Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.10-Customizing-Ticks.html">Customizing Ticks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.11-Settings-and-Stylesheets.html">Customizing Matplotlib: Configurations and Stylesheets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.12-Three-Dimensional-Plotting.html">Three-Dimensional Plotting in Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.14-Visualization-With-Seaborn.html">Visualization with Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.15-Further-Resources.html">Further Resources</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="nav bd-sidenav">
@@ -480,7 +497,7 @@ that is being called.</p>
 <h2>Citations<a class="headerlink" href="#citations" title="Link to this heading">#</a></h2>
 <p>You can also cite references that are stored in a <code class="docutils literal notranslate"><span class="pre">bibtex</span></code> file. For example,
 the following syntax: <code class="docutils literal notranslate"><span class="pre">{cite}`holdgraf_evidence_2014`</span></code> will render like
-this: <span id="id1">[<a class="reference internal" href="#id3" title="Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In International Conference on Cognitive Neuroscience. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.">HdHPK14</a>]</span>.</p>
+this: <span id="id1">[]</span>.</p>
 <p>Moreover, you can insert a bibliography into your page with this syntax:
 The <code class="docutils literal notranslate"><span class="pre">{bibliography}</span></code> directive must be used for all the <code class="docutils literal notranslate"><span class="pre">{cite}</span></code> roles to
 render properly.
@@ -488,9 +505,17 @@ For example, if the references for your book are stored in <code class="docutils
 then the bibliography is inserted with:</p>
 <div class="docutils container" id="id2">
 <div role="list" class="citation-list">
+<div class="citation" id="id4" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>Ami24<span class="fn-bracket">]</span></span>
+<p>Mahmood Amintoosi. Improving housing price prediction with spatial information representation based on random walk. In <em>3rd Specialized Seminar on Data Science and Its Applications</em>, 20. Ferdowsi University of Mashhad, 2024. بهبود پیش‌بینی قیمت مسکن با بازنمایی اطلاعات مکانی مبتنی بر قدم‌زنی تصادفی.</p>
+</div>
+<div class="citation" id="id83" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span>YAF06<span class="fn-bracket">]</span></span>
+<p>H. Sadoghi Yazdi, M. Amintoosi, and M. Fathy. Facial expression recognition in video using qim and itmi. In <em>4th Conference on Machine Vision and Image Processing</em>. Mashhad, Iran, February 2006. Ferdowsi University of Mashhad. شناسایی حالت چهره با استفاده از پایگاه دادهٔ مكانی- زمانی QIM و ITMI.</p>
+</div>
 <div class="citation" id="id3" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id1">HdHPK14</a><span class="fn-bracket">]</span></span>
-<p>Christopher Ramsay Holdgraf, Wendy de Heer, Brian N. Pasley, and Robert T. Knight. Evidence for Predictive Coding in Human Auditory Cortex. In <em>International Conference on Cognitive Neuroscience</em>. Brisbane, Australia, Australia, 2014. Frontiers in Neuroscience.</p>
+<span class="label"><span class="fn-bracket">[</span>ZNA25<span class="fn-bracket">]</span></span>
+<p>Ghasem Zolfaghari, Sara Nezamparvar, and Mahmood Amintoosi. Modeling dust particles from stack with artificial neural network and studying electrofilter performance: a case study of zaveh cement factory. <em>Journal of Natural Environment</em>, ():–, 2025. <a class="reference external" href="https://doi.org/10.22059/jne.2025.380898.2713">doi:10.22059/jne.2025.380898.2713</a>.</p>
 </div>
 </div>
 </div>

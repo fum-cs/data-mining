@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -178,7 +178,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Data Mining Course
                 </a>
             </li>
         </ul>
@@ -190,6 +190,7 @@
 <li class="toctree-l2"><a class="reference internal" href="02.03-Computation-on-arrays-ufuncs.html">Computation on NumPy Arrays: Universal Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.04-Computation-on-arrays-aggregates.html">Aggregations: min, max, and Everything in Between</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.05-Computation-on-arrays-broadcasting.html">Computation on Arrays: Broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.06-Boolean-Arrays-and-Masks.html">Comparisons, Masks, and Boolean Logic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.07-Fancy-Indexing.html">Fancy Indexing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.08-Sorting.html">Sorting Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.09-Structured-Data-NumPy.html">Structured Data: NumPy’s Structured Arrays</a></li>
@@ -200,6 +201,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="03.00-Introduction-to-Pandas.html">Data Manipulation with Pandas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="03.01-Introducing-Pandas-Objects.html">Introducing Pandas Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.02-Data-Indexing-and-Selection.html">Data Indexing and Selection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.03-Operations-in-Pandas.html">Operating on Data in Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.04-Missing-Values.html">Handling Missing Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.05-Hierarchical-Indexing.html">Hierarchical Indexing</a></li>
@@ -216,8 +218,23 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization with Matplotlib</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a></li>
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="04.01-Simple-Line-Plots.html">Simple Line Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.02-Simple-Scatter-Plots.html">Simple Scatter Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.03-Errorbars.html">Visualizing Uncertainties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.04-Density-and-Contour-Plots.html">Density and Contour Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.05-Histograms-and-Binnings.html">Histograms, Binnings, and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.06-Customizing-Legends.html">Customizing Plot Legends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.07-Customizing-Colorbars.html">Customizing Colorbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.08-Multiple-Subplots.html">Multiple Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.09-Text-and-Annotation.html">Text and Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.10-Customizing-Ticks.html">Customizing Ticks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.11-Settings-and-Stylesheets.html">Customizing Matplotlib: Configurations and Stylesheets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.12-Three-Dimensional-Plotting.html">Three-Dimensional Plotting in Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.14-Visualization-With-Seaborn.html">Visualization with Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.15-Further-Resources.html">Further Resources</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="nav bd-sidenav">
@@ -556,7 +573,7 @@ In a one-dimensional array, the <span class="math notranslate nohighlight">\(i^{
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9, 4, 0, 3, 8, 6])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([9, 4, 0, 3, 8, 6], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -620,7 +637,7 @@ In a one-dimensional array, the <span class="math notranslate nohighlight">\(i^{
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[3, 1, 3, 7],
        [4, 0, 2, 3],
-       [0, 0, 6, 9]])
+       [0, 0, 6, 9]], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -672,7 +689,7 @@ In a one-dimensional array, the <span class="math notranslate nohighlight">\(i^{
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[12,  1,  3,  7],
        [ 4,  0,  2,  3],
-       [ 0,  0,  6,  9]])
+       [ 0,  0,  6,  9]], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -687,7 +704,7 @@ This means, for example, that if you attempt to insert a floating-point value in
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 0, 3, 8, 6])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 0, 3, 8, 6], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -712,7 +729,7 @@ Let’s look at some examples of accessing subarrays in one dimension and in mul
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 0, 3, 8, 6])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 0, 3, 8, 6], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -724,7 +741,7 @@ Let’s look at some examples of accessing subarrays in one dimension and in mul
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 4, 0], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -736,7 +753,7 @@ Let’s look at some examples of accessing subarrays in one dimension and in mul
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 8, 6])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 8, 6], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -748,7 +765,7 @@ Let’s look at some examples of accessing subarrays in one dimension and in mul
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 0, 3])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 0, 3], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -760,7 +777,7 @@ Let’s look at some examples of accessing subarrays in one dimension and in mul
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 0, 8])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([3, 0, 8], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -772,7 +789,7 @@ Let’s look at some examples of accessing subarrays in one dimension and in mul
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 3, 6])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([4, 3, 6], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -787,7 +804,7 @@ This becomes a convenient way to reverse an array:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6, 8, 3, 0, 4, 3])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([6, 8, 3, 0, 4, 3], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -799,7 +816,7 @@ This becomes a convenient way to reverse an array:</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([8, 0, 3])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([8, 0, 3], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -818,7 +835,7 @@ For example:</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[12,  1,  3,  7],
        [ 4,  0,  2,  3],
-       [ 0,  0,  6,  9]])
+       [ 0,  0,  6,  9]], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -831,7 +848,7 @@ For example:</p>
 </div>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[12,  1,  3],
-       [ 4,  0,  2]])
+       [ 4,  0,  2]], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -845,7 +862,7 @@ For example:</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[12,  3],
        [ 4,  2],
-       [ 0,  6]])
+       [ 0,  6]], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -859,7 +876,7 @@ For example:</p>
 <div class="cell_output docutils container">
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([[ 9,  6,  0,  0],
        [ 3,  2,  0,  4],
-       [ 7,  3,  1, 12]])
+       [ 7,  3,  1, 12]], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -875,7 +892,7 @@ This can be done by combining indexing and slicing, using an empty slice marked 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12,  4,  0])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12,  4,  0], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -887,7 +904,7 @@ This can be done by combining indexing and slicing, using an empty slice marked 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12,  1,  3,  7])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12,  1,  3,  7], dtype=int64)
 </pre></div>
 </div>
 </div>
@@ -900,7 +917,7 @@ This can be done by combining indexing and slicing, using an empty slice marked 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12,  1,  3,  7])
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>array([12,  1,  3,  7], dtype=int64)
 </pre></div>
 </div>
 </div>
