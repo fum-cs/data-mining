@@ -178,7 +178,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Data Mining Course
                 </a>
             </li>
         </ul>
@@ -497,7 +497,10 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-in-practice-grid-search">Validation in Practice: Grid Search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -551,7 +554,7 @@ This is a very simple and intuitive model that says “the label of an unknown p
 </div>
 </div>
 </div>
-<p>Then we train the model, and use it to predict labels for data whose labels we already know:</p>
+<p>Then we ~~train~~ fit the model, and use it to predict labels for data whose labels we already know:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
@@ -579,6 +582,13 @@ But is this truly measuring the expected accuracy? Have we really come upon a mo
 <p>As you may have gathered, the answer is no.
 In fact, this approach contains a fundamental flaw: <em>it trains and evaluates the model on the same data</em>.
 Furthermore, this nearest neighbor model is an <em>instance-based</em> estimator that simply stores the training data, and predicts labels by comparing new data to these stored points: except in contrived cases, it will get 100% accuracy every time!</p>
+<p>Is there an example with kNN (k=1) and accuracy not equal 100% on training data?</p>
+<blockquote>
+<div><p>A note on kNN from section 2.3.2 (Nearest-Neighbor Methods) of ESL <span id="id1">[<a class="reference internal" href="intro.html#id4" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span></p>
+</div></blockquote>
+<div class="math notranslate nohighlight">
+\[\hat{Y}(x) = \frac{1}{k} \sum_{x_i \in N_k(x)} y_i\]</div>
+<p><img alt="" src="_images/fig2-2-ESL.png" /></p>
 </section>
 <section id="model-validation-the-right-way-holdout-sets">
 <h3>Model Validation the Right Way: Holdout Sets<a class="headerlink" href="#model-validation-the-right-way-holdout-sets" title="Link to this heading">#</a></h3>
@@ -617,8 +627,7 @@ In the preceding case, half the dataset does not contribute to the training of t
 This is not optimal, especially if the initial set of training data is small.</p>
 <p>One way to address this is to use <em>cross-validation</em>; that is, to do a sequence of fits where each subset of the data is used both as a training set and as a validation set.
 Visually, it might look something like the following figure:</p>
-<p><img alt="" src="_images/05.03-2-fold-CV.png" />
-<a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#2-Fold-Cross-Validation">figure source in Appendix</a></p>
+<p><img alt="" src="_images/05.03-2-fold-CV.png" /></p>
 <p>Here we do two validation trials, alternately using each half of the data as a holdout set.
 Using the split data from earlier, we could implement it like this:</p>
 <div class="cell docutils container">
@@ -638,8 +647,7 @@ Using the split data from earlier, we could implement it like this:</p>
 <p>What comes out are two accuracy scores, which we could combine (by, say, taking the mean) to get a better measure of the global model performance.
 This particular form of cross-validation is a <em>two-fold cross-validation</em>—that is, one in which we have split the data into two sets and used each in turn as a validation set.</p>
 <p>We could expand on this idea to use even more trials, and more folds in the data—for example, the following figure shows a visual depiction of five-fold cross-validation.</p>
-<p><img alt="" src="_images/05.03-5-fold-CV.png" />
-<a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#5-Fold-Cross-Validation">figure source in Appendix</a></p>
+<p><img alt="" src="_images/05.03-5-fold-CV.png" /></p>
 <p>Here we split the data into five groups, and use each of them in turn to evaluate the model fit on the other four-fifths of the data.
 This would be rather tedious to do by hand, but we can use Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">cross_val_score</span></code> convenience routine to do it succinctly:</p>
 <div class="cell docutils container">
@@ -718,8 +726,7 @@ The ability to determine what steps will improve your model is what separates th
 <h3>The Bias-Variance Trade-off<a class="headerlink" href="#the-bias-variance-trade-off" title="Link to this heading">#</a></h3>
 <p>Fundamentally, finding “the best model” is about finding a sweet spot in the trade-off between <em>bias</em> and <em>variance</em>.
 Consider the following figure, which presents two regression fits to the same dataset.</p>
-<p><img alt="" src="_images/05.03-bias-variance.png" />
-<a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#Bias-Variance-Tradeoff">figure source in Appendix</a></p>
+<p><img alt="" src="_images/05.03-bias-variance.png" /></p>
 <p>It is clear that neither of these models is a particularly good fit to the data, but they fail in different ways.</p>
 <p>The model on the left attempts to find a straight-line fit through the data.
 Because in this case a straight line cannot accurately split the data, the straight-line model will never be able to describe this dataset well.
@@ -729,17 +736,10 @@ Here the model fit has enough flexibility to nearly perfectly account for the fi
 Such a model is said to <em>overfit</em> the data: that is, it has so much flexibility that the model ends up accounting for random errors as well as the underlying data distribution. Another way of saying this is that the model has high variance.</p>
 <p>To look at this in another light, consider what happens if we use these two models to predict the <em>y</em>-values for some new data.
 In the plots in the following figure, the red/lighter points indicate data that is omitted from the training set.</p>
-<p><img alt="" src="_images/05.03-bias-variance-2.png" />
-<a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#Bias-Variance-Tradeoff-Metrics">figure source in Appendix</a></p>
-<p>The score here is the <span class="math notranslate nohighlight">\(R^2\)</span> score, or <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">coefficient of determination</a>, which measures how well a model performs relative to a simple mean of the target values. <span class="math notranslate nohighlight">\(R^2=1\)</span> indicates a perfect match, <span class="math notranslate nohighlight">\(R^2=0\)</span> indicates the model does no better than simply taking the mean of the data, and negative values mean even worse models.
-From the scores associated with these two models, we can make an observation that holds more generally:</p>
-<ul class="simple">
-<li><p>For high-bias models, the performance of the model on the validation set is similar to the performance on the training set.</p></li>
-<li><p>For high-variance models, the performance of the model on the validation set is far worse than the performance on the training set.</p></li>
-</ul>
+<p><img alt="" src="_images/05.03-bias-variance-2.png" /></p>
+<p>The score here is the <span class="math notranslate nohighlight">\(R^2\)</span> score, or <a class="reference external" href="https://en.wikipedia.org/wiki/Coefficient_of_determination">coefficient of determination</a>, which measures how well a model performs relative to a simple mean of the target values. <span class="math notranslate nohighlight">\(R^2=1\)</span> indicates a perfect match, <span class="math notranslate nohighlight">\(R^2=0\)</span> indicates the model does no better than simply taking the mean of the data, and negative values mean even worse models.</p>
 <p>If we imagine that we have some ability to tune the model complexity, we would expect the training score and validation score to behave as illustrated in the following figure:</p>
-<p><img alt="" src="_images/05.03-validation-curve.png" />
-<a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#Validation-Curve">figure source in Appendix</a></p>
+<p><img alt="" src="_images/05.03-validation-curve.png" /></p>
 <p>The diagram shown here is often called a <em>validation curve</em>, and we see the following features:</p>
 <ul class="simple">
 <li><p>The training score is everywhere higher than the validation score. This is generally the case: the model will be a better fit to data it has seen than to data it has not seen.</p></li>
@@ -748,6 +748,9 @@ From the scores associated with these two models, we can make an observation tha
 <li><p>For some intermediate value, the validation curve has a maximum. This level of complexity indicates a suitable trade-off between bias and variance.</p></li>
 </ul>
 <p>The means of tuning the model complexity varies from model to model; when we discuss individual models in depth in later chapters, we will see how each model allows for such tuning.</p>
+<blockquote>
+<div><p>For further information about Bias-Variance Tradeoff, see <a class="reference external" href="https://fum-cs.github.io/mfds/high-dimensional-spaces/Bias-Variance-Tradeoff.html">this section of Mathematical Foundations of Data Science Course at FUM-CS</a>.</p>
+</div></blockquote>
 </section>
 <section id="validation-curves-in-scikit-learn">
 <h3>Validation Curves in Scikit-Learn<a class="headerlink" href="#validation-curves-in-scikit-learn" title="Link to this heading">#</a></h3>
@@ -857,8 +860,8 @@ Given a model, data, parameter name, and a range to explore, this function will 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">lim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">PolynomialRegression</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_test</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -871,12 +874,12 @@ Given a model, data, parameter name, and a range to explore, this function will 
 </section>
 <section id="learning-curves">
 <h2>Learning Curves<a class="headerlink" href="#learning-curves" title="Link to this heading">#</a></h2>
-<p>One important aspect of model complexity is that the optimal model will generally depend on the size of your training data.
+<p>One important aspect of model complexity is that <strong>the optimal model will generally depend on the size of your training data</strong>.
 For example, let’s generate a new dataset with five times as many points (see the following figure):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">X2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">make_data</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y2</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y2</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -904,7 +907,7 @@ For example, let’s generate a new dataset with five times as many points (see 
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s1">&#39;lower center&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;degree&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;score&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -924,8 +927,7 @@ A plot of the training/validation score with respect to the size of the training
 <li><p>A model will never, except by chance, give a better score to the validation set than the training set: this means the curves should keep getting closer together but never cross.</p></li>
 </ul>
 <p>With these features in mind, we would expect a learning curve to look qualitatively like that shown in the following figure:</p>
-<p><img alt="" src="_images/05.03-learning-curve.png" />
-<a class="reference external" href="https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/06.00-Figure-Code.ipynb#Learning-Curve">figure source in Appendix</a></p>
+<p><img alt="" src="_images/05.03-learning-curve.png" /></p>
 <p>The notable feature of the learning curve is the convergence to a particular score as the number of training samples grows.
 In particular, once you have enough points that a particular model has converged, <em>adding more training data will not help you!</em>
 The only way to increase model performance in this case is to use another (often more complex) model.</p>
@@ -997,7 +999,7 @@ This can be set up using Scikit-Learn’s <code class="docutils literal notransl
 Calling the <code class="docutils literal notranslate"><span class="pre">fit</span></code> method will fit the model at each grid point, keeping track of the scores along the way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1023,8 +1025,8 @@ Calling the <code class="docutils literal notranslate"><span class="pre">fit</sp
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">lim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
 <span class="n">y_test</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_test</span><span class="p">);</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X_test</span><span class="o">.</span><span class="n">ravel</span><span class="p">(),</span> <span class="n">y_test</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -1041,6 +1043,26 @@ For more information, see the examples in <a class="reference internal" href="05
 In particular, we found that the use of a validation set or cross-validation approach is vital when tuning parameters in order to avoid overfitting for more complex/flexible models.</p>
 <p>In later chapters, we will discuss the details of particularly useful models, what tuning is available for these models, and how these free parameters affect model complexity.
 Keep the lessons of this chapter in mind as you read on and learn about these machine learning approaches!</p>
+<section id="further-reading">
+<h3>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Bias-Variance Tradeoff section of <a class="reference external" href="https://fum-cs.github.io/mfds/high-dimensional-spaces/Bias-Variance-Tradeoff.html">Mathematical Foundations of Data Science Course at FUM-CS</a></p></li>
+<li><p>KNN in image matting: MSc. Thesis of Farzad Zandi <span id="id2">[<a class="reference internal" href="intro.html#id2" title="Farzad Zandi. Designing effective inter-pixel information flow for natural image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, July 2018. درهم‌تنیدگی تصویر مبتنی بر جریان اطلاعات بین پیکسلی. URL: http://hcloud.hsu.ac.ir/index.php/s/7n0SdzOAGHAKH31.">Zan18</a>]</span></p>
+<ul>
+<li><p><a class="reference external" href="https://www.alphamatting.com/">Alpha Matting Evaluation Website</a></p></li>
+<li><p>Image Matting, MSc. Thesis of Farzane Rashidabadi <span id="id3">[<a class="reference internal" href="intro.html#id3" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>]</span></p></li>
+<li><p>Retina Vessel Segmentation Using kNN Matting<span id="id4">[<a class="reference internal" href="intro.html#id44" title="Mahmood Amintoosi. Retina vessel segmentation using knn matting. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. دقیق‌تر کردن استخراج رگ‌های خونی شبکیه چشم با روش درهم‌تنیدگی تصویر‌ مبتنی بر نزدیک‌ترین همسایگی. URL: https://www.dropbox.com/s/klkoagz3m3dc98t/1396-IPRIA2017-Matting.pdf?dl=0.">Ami17</a>]</span></p></li>
+<li><p>Data Classification Using Image Matting <span id="id5">[<a class="reference internal" href="intro.html#id38" title="Mahmood Amintoosi and Parvin Bakhti. Data classification using image matting. In 2nd Seminar on Control and Optimization. Shahroud University of Technology, 2018. طبقه‌بندی داده‌ها با درهم‌تنیدگی تصویر.">AB18</a>]</span></p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Georgy_Voronoy">Voronoi</a> diagram</p>
+<ul>
+<li><p>Voronoi diagram: different metrics, see <a class="reference external" href="https://en.wikipedia.org/wiki/Voronoi_diagram">its Wiki page</a></p></li>
+<li><p><a class="reference external" href="https://builtin.com/data-science/voronoi-diagram#:~:text=A%20Voronoi%20diagram%20is%20a,architecture%2C%20art%20and%20computer%20science.">Voronoi Diagrams</a>, by Francesco Bellelli: Delaunay Triangulation and k-means clustering</p></li>
+</ul>
+</li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -1124,7 +1146,10 @@ Keep the lessons of this chapter in mind as you read on and learn about these ma
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#validation-in-practice-grid-search">Validation in Practice: Grid Search</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

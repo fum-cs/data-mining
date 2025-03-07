@@ -74,3 +74,10 @@ Book documentation.
 ---
 
 I should mention that the original material was from [Jake VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/). I used his notebooks and modified it to suit my own needs and preferences. I would like to thank him for his great work and generosity.
+
+---
+
+## References
+
+```{bibliography}
+```
