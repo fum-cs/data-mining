@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -178,7 +178,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Data Mining Course
                 </a>
             </li>
         </ul>
@@ -244,6 +244,8 @@
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Naive Bayes Classification</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
@@ -481,6 +483,50 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">In Depth: Naive Bayes Classification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grasshoppers-vs-katydids">Grasshoppers vs. Katydids</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antenna-length-vs-abdomen-length">Antenna Length vs. Abdomen Length</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-an-insect">Classifying an Insect</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-antennae-length-is-3">Example: Antennae Length is 3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers">Bayesian Classifiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#officer-drew-example">Officer Drew Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew">Calculating Probabilities for Officer Drew</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-with-multiple-features">Naive Bayes with Multiple Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-officer-drew-with-multiple-features">Example: Officer Drew with Multiple Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew-with-multiple-features">Calculating Probabilities for Officer Drew with Multiple Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classification-with-multiple-features-fruit-example">Naive Bayes Classification with multiple features: Fruit Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-data">Training Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-calculate-prior-probabilities">Step 1: Calculate Prior Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-calculate-evidence-probabilities">Step 2: Calculate Evidence Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-calculate-likelihoods">Step 3: Calculate Likelihoods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-banana">For <strong>Banana</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-orange">For <strong>Orange</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-other-fruit">For <strong>Other Fruit</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-classify-a-new-fruit">Step 4: Classify a New Fruit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-posterior-probabilities">Calculate Posterior Probabilities</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">For <strong>Banana</strong>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">For <strong>Orange</strong>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">For <strong>Other Fruit</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-make-a-prediction">Step 5: Make a Prediction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classification">Bayesian Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-naive-bayes">Multinomial Naive Bayes</a><ul class="nav section-nav flex-column">
@@ -489,6 +535,9 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
 </ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -509,6 +558,507 @@ We start here with our first supervised method, naive Bayes classification.</p>
 <p>Naive Bayes models are a group of extremely fast and simple classification algorithms that are often suitable for very high-dimensional datasets.
 Because they are so fast and have so few tunable parameters, they end up being useful as a quick-and-dirty baseline for a classification problem.
 This chapter will provide an intuitive explanation of how naive Bayes classifiers work, followed by a few examples of them in action on some datasets.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="naive-bayes-classifier">
+<h1>Naive Bayes Classifier<a class="headerlink" href="#naive-bayes-classifier" title="Link to this heading">#</a></h1>
+<p><strong>Eamonn Keogh UCR</strong></p>
+<p><img alt="" src="_images/BCW_page_01.png" /></p>
+<p><strong>Thomas Bayes 1702 - 1761</strong></p>
+<p>We will start off with a visual intuition before looking at the math…</p>
+<hr class="docutils" />
+<section id="grasshoppers-vs-katydids">
+<h2>Grasshoppers vs. Katydids<a class="headerlink" href="#grasshoppers-vs-katydids" title="Link to this heading">#</a></h2>
+<p><img alt="" src="_images/BCW_page_02.png" /></p>
+<section id="antenna-length-vs-abdomen-length">
+<h3>Antenna Length vs. Abdomen Length<a class="headerlink" href="#antenna-length-vs-abdomen-length" title="Link to this heading">#</a></h3>
+<p>With a lot of data, we can build a histogram. Let us just build one for “Antenna Length” for now…</p>
+<p><img alt="" src="_images/BCW_page_03.png" /></p>
+<p><img alt="" src="_images/BCW_page_04.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="classifying-an-insect">
+<h3>Classifying an Insect<a class="headerlink" href="#classifying-an-insect" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>We want to classify an insect we have found. Its antennae are 3 units long. How can we classify it?</p></li>
+</ul>
+<p><img alt="" src="_images/BCW_page_05.png" /></p>
+<ul class="simple">
+<li><p>We can just ask ourselves, given the distributions of antennae lengths we have seen, is it more probable that our insect is a <strong>Grasshopper</strong> or a <strong>Katydid</strong>.</p></li>
+<li><p>There is a formal way to discuss the most probable classification:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[
+p(c_j | d) = \text{probability of class } c_j, \text{ given that we have observed } d
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="example-antennae-length-is-3">
+<h3>Example: Antennae Length is 3<a class="headerlink" href="#example-antennae-length-is-3" title="Link to this heading">#</a></h3>
+<p><img alt="" src="_images/BCW_page_06.png" /></p>
+<div class="math notranslate nohighlight">
+\[ \begin{align}\begin{aligned}\begin{split}
+P(\text{Grasshopper} | 3) = \frac{10}{10 + 2} = 0.833\\\end{split}\\P(\text{Katydid} | 3) = \frac{2}{10 + 2} = 0.166
+\end{aligned}\end{align} \]</div>
+<!-- ---
+
+### Example: Antennae Length is 7
+
+$$
+P(\text{Grasshopper} | 7) = \frac{3}{3 + 9} = 0.250
+$$
+
+$$
+P(\text{Katydid} | 7) = \frac{9}{3 + 9} = 0.750
+$$
+
+---
+
+### Example: Antennae Length is 5
+
+$$
+P(\text{Grasshopper} | 5) = \frac{6}{6 + 6} = 0.500
+$$
+
+$$
+P(\text{Katydid} | 5) = \frac{6}{6 + 6} = 0.500
+$$ -->
+<p><img alt="" src="_images/BCW_page_07.png" /></p>
+<p><img alt="" src="_images/BCW_page_08.png" /></p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="bayes-classifiers">
+<h2>Bayes Classifiers<a class="headerlink" href="#bayes-classifiers" title="Link to this heading">#</a></h2>
+<p>That was a visual intuition for a simple case of the Bayes classifier, also called:</p>
+<ul class="simple">
+<li><p>Idiot Bayes</p></li>
+<li><p>Naïve Bayes</p></li>
+<li><p>Simple Bayes</p></li>
+</ul>
+<p>We are about to see some of the mathematical formalisms, and more examples, but keep in mind the basic idea.</p>
+<p><em>Find out the probability of the previously unseen instance belonging to each class, then simply pick the most probable class.</em></p>
+<hr class="docutils" />
+<section id="bayesian-classifiers">
+<h3>Bayesian Classifiers<a class="headerlink" href="#bayesian-classifiers" title="Link to this heading">#</a></h3>
+<p>Bayesian classifiers use Bayes theorem, which says:</p>
+<div class="math notranslate nohighlight">
+\[
+p(c_j | d) = \frac{p(d | c_j) p(c_j)}{p(d)}
+\]</div>
+<p>Where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( p(c_j | d) \)</span>: Probability of class <span class="math notranslate nohighlight">\( c_j \)</span> given instance <span class="math notranslate nohighlight">\( d \)</span> (what we are trying to compute).</p></li>
+<li><p><span class="math notranslate nohighlight">\( p(d | c_j) \)</span>: Probability of generating instance <span class="math notranslate nohighlight">\( d \)</span> given class <span class="math notranslate nohighlight">\( c_j \)</span>.</p></li>
+<li><p><span class="math notranslate nohighlight">\( p(c_j) \)</span>: Probability of occurrence of class <span class="math notranslate nohighlight">\( c_j \)</span> (how frequent the class is in our database).</p></li>
+<li><p><span class="math notranslate nohighlight">\( p(d) \)</span>: Probability of instance <span class="math notranslate nohighlight">\( d \)</span> occurring (can be ignored since it is the same for all classes).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="example-classifying-by-name">
+<h3>Example: Classifying by Name<a class="headerlink" href="#example-classifying-by-name" title="Link to this heading">#</a></h3>
+<p>Assume that we have two classes:<br />
+<span class="math notranslate nohighlight">\( c_1 = \text{male}, \, \text{and} \, c_2 = \text{female}. \)</span></p>
+<p>We have a person whose sex we do not know, say “Drew” or <span class="math notranslate nohighlight">\( d \)</span>.<br />
+Classifying Drew as male or female is equivalent to asking which is greater:<br />
+<span class="math notranslate nohighlight">\( p(\text{male} \, | \, \text{Drew}) \)</span> or <span class="math notranslate nohighlight">\( p(\text{female} \, | \, \text{Drew}) \)</span>.</p>
+<div class="math notranslate nohighlight">
+\[
+p(\text{male} \, | \, \text{Drew}) = \frac{p(\text{Drew} \, | \, \text{male}) \, p(\text{male})}{p(\text{Drew})}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+p(\text{female} \, | \, \text{Drew}) = \frac{p(\text{Drew} \, | \, \text{female}) \, p(\text{female})}{p(\text{Drew})}
+\]</div>
+</section>
+</section>
+<section id="id1">
+<h2><img alt="" src="_images/BCW_page_11.png" /><a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="officer-drew-example">
+<h3>Officer Drew Example<a class="headerlink" href="#officer-drew-example" title="Link to this heading">#</a></h3>
+<p><img alt="" src="_images/BCW_page_12.png" /></p>
+<p>We have a small database with names and sex:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Sex</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Drew</p></td>
+<td><p>Male</p></td>
+</tr>
+<tr class="row-odd"><td><p>Claudia</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-even"><td><p>Drew</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-odd"><td><p>Drew</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-even"><td><p>Alberto</p></td>
+<td><p>Male</p></td>
+</tr>
+<tr class="row-odd"><td><p>Karin</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-even"><td><p>Nina</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sergio</p></td>
+<td><p>Male</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="calculating-probabilities-for-officer-drew">
+<h3>Calculating Probabilities for Officer Drew<a class="headerlink" href="#calculating-probabilities-for-officer-drew" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+p(c_j | d) = \frac{p(d | c_j) p(c_j)}{p(d)}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+p(\text{male} | \text{Drew}) = \frac{1/3 \times 3/8}{3/8} = \frac{0.125}{3/8}
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+p(\text{female} | \text{Drew}) = \frac{2/5 \times 5/8}{3/8} = \frac{0.250}{3/8}
+\]</div>
+<p>Officer Drew is more likely to be a Female!</p>
+<p><img alt="" src="_images/BCW_page_14.png" /></p>
+</section>
+<hr class="docutils" />
+<section id="naive-bayes-with-multiple-features">
+<h3>Naive Bayes with Multiple Features<a class="headerlink" href="#naive-bayes-with-multiple-features" title="Link to this heading">#</a></h3>
+<p>So far, we have only considered Bayes Classification when we have one attribute (e.g., “antennae length” or “name”). But we may have many features. How do we use all the features?</p>
+<div class="math notranslate nohighlight">
+\[
+p(c_j | d) = \frac{p(d | c_j) p(c_j)}{p(d)}
+\]</div>
+<p>To simplify the task, <strong>naive Bayesian classifiers</strong> assume attributes have independent distributions, and thereby estimate:</p>
+<div class="math notranslate nohighlight">
+\[
+p(d | c_j) = p(d_1 | c_j) \times p(d_2 | c_j) \times \ldots \times p(d_n | c_j)
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="example-officer-drew-with-multiple-features">
+<h3>Example: Officer Drew with Multiple Features<a class="headerlink" href="#example-officer-drew-with-multiple-features" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Over 170cm</p></th>
+<th class="head"><p>Eye</p></th>
+<th class="head"><p>Hair length</p></th>
+<th class="head"><p>Sex</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Drew</p></td>
+<td><p>No</p></td>
+<td><p>Blue</p></td>
+<td><p>Short</p></td>
+<td><p>Male</p></td>
+</tr>
+<tr class="row-odd"><td><p>Claudia</p></td>
+<td><p>Yes</p></td>
+<td><p>Brown</p></td>
+<td><p>Long</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-even"><td><p>Drew</p></td>
+<td><p>No</p></td>
+<td><p>Blue</p></td>
+<td><p>Long</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-odd"><td><p>Drew</p></td>
+<td><p>No</p></td>
+<td><p>Blue</p></td>
+<td><p>Long</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-even"><td><p>Alberto</p></td>
+<td><p>Yes</p></td>
+<td><p>Brown</p></td>
+<td><p>Short</p></td>
+<td><p>Male</p></td>
+</tr>
+<tr class="row-odd"><td><p>Karin</p></td>
+<td><p>No</p></td>
+<td><p>Blue</p></td>
+<td><p>Long</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-even"><td><p>Nina</p></td>
+<td><p>Yes</p></td>
+<td><p>Brown</p></td>
+<td><p>Short</p></td>
+<td><p>Female</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sergio</p></td>
+<td><p>Yes</p></td>
+<td><p>Blue</p></td>
+<td><p>Long</p></td>
+<td><p>Male</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="calculating-probabilities-for-officer-drew-with-multiple-features">
+<h3>Calculating Probabilities for Officer Drew with Multiple Features<a class="headerlink" href="#calculating-probabilities-for-officer-drew-with-multiple-features" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+p(\text{Officer Drew} | \text{Female}) = p(\text{Over 170cm} = \text{Yes} | \text{Female}) \times p(\text{Eye} = \text{Blue} | \text{Female}) \times \ldots
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+p(\text{Officer Drew} | \text{Male}) = p(\text{Over 170cm} = \text{Yes} | \text{Male}) \times p(\text{Eye} = \text{Blue} | \text{Male}) \times \ldots
+\]</div>
+<hr class="docutils" />
+<p>Both k-NN and NaiveBayes are classification algorithms. Conceptually, k-NN uses the idea of “nearness” to classify new entities. In k-NN ‘nearness’ is modeled with ideas such as Euclidean Distance or Cosine Distance. By contrast, in NaiveBayes, the concept of ‘probability’ is used to classify new entities.</p>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="naive-bayes-classification-with-multiple-features-fruit-example">
+<h1>Naive Bayes Classification with multiple features: Fruit Example<a class="headerlink" href="#naive-bayes-classification-with-multiple-features-fruit-example" title="Link to this heading">#</a></h1>
+<p>In <a class="reference external" href="https://stackoverflow.com/a/20556654/1013114">this example</a>, we will use Naive Bayes to classify fruits based on their characteristics. We have a dataset of 1000 fruits, which are either <strong>Banana</strong>, <strong>Orange</strong>, or <strong>Other Fruit</strong>. Each fruit has three features:</p>
+<ol class="arabic simple">
+<li><p><strong>Long</strong>: Whether the fruit is long.</p></li>
+<li><p><strong>Sweet</strong>: Whether the fruit is sweet.</p></li>
+<li><p><strong>Yellow</strong>: Whether the fruit is yellow.</p></li>
+</ol>
+<hr class="docutils" />
+<section id="training-data">
+<h2>Training Data<a class="headerlink" href="#training-data" title="Link to this heading">#</a></h2>
+<p>Here is the training data:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Type</p></th>
+<th class="head"><p>Long</p></th>
+<th class="head"><p>Not Long</p></th>
+<th class="head"><p>Sweet</p></th>
+<th class="head"><p>Not Sweet</p></th>
+<th class="head"><p>Yellow</p></th>
+<th class="head"><p>Not Yellow</p></th>
+<th class="head"><p>Total</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Banana</p></td>
+<td><p>400</p></td>
+<td><p>100</p></td>
+<td><p>350</p></td>
+<td><p>150</p></td>
+<td><p>450</p></td>
+<td><p>50</p></td>
+<td><p>500</p></td>
+</tr>
+<tr class="row-odd"><td><p>Orange</p></td>
+<td><p>0</p></td>
+<td><p>300</p></td>
+<td><p>150</p></td>
+<td><p>150</p></td>
+<td><p>300</p></td>
+<td><p>0</p></td>
+<td><p>300</p></td>
+</tr>
+<tr class="row-even"><td><p>Other Fruit</p></td>
+<td><p>100</p></td>
+<td><p>100</p></td>
+<td><p>150</p></td>
+<td><p>50</p></td>
+<td><p>50</p></td>
+<td><p>150</p></td>
+<td><p>200</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total</strong></p></td>
+<td><p>500</p></td>
+<td><p>500</p></td>
+<td><p>650</p></td>
+<td><p>350</p></td>
+<td><p>800</p></td>
+<td><p>200</p></td>
+<td><p>1000</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<hr class="docutils" />
+<section id="step-1-calculate-prior-probabilities">
+<h2>Step 1: Calculate Prior Probabilities<a class="headerlink" href="#step-1-calculate-prior-probabilities" title="Link to this heading">#</a></h2>
+<p>The prior probabilities (base rates) are calculated based on the total number of fruits in each class:</p>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Banana}) = \frac{500}{1000} = 0.5
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Orange}) = \frac{300}{1000} = 0.3
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Other Fruit}) = \frac{200}{1000} = 0.2
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="step-2-calculate-evidence-probabilities">
+<h2>Step 2: Calculate Evidence Probabilities<a class="headerlink" href="#step-2-calculate-evidence-probabilities" title="Link to this heading">#</a></h2>
+<p>The probabilities of each feature (evidence) in the entire dataset are:</p>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Long}) = \frac{500}{1000} = 0.5
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Sweet}) = \frac{650}{1000} = 0.65
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Yellow}) = \frac{800}{1000} = 0.8
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="step-3-calculate-likelihoods">
+<h2>Step 3: Calculate Likelihoods<a class="headerlink" href="#step-3-calculate-likelihoods" title="Link to this heading">#</a></h2>
+<p>Next, we calculate the likelihood of each feature given the class.</p>
+<section id="for-banana">
+<h3>For <strong>Banana</strong>:<a class="headerlink" href="#for-banana" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Long} | \text{Banana}) = \frac{400}{500} = 0.8
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Sweet} | \text{Banana}) = \frac{350}{500} = 0.7
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Yellow} | \text{Banana}) = \frac{450}{500} = 0.9
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="for-orange">
+<h3>For <strong>Orange</strong>:<a class="headerlink" href="#for-orange" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Long} | \text{Orange}) = \frac{0}{300} = 0
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Sweet} | \text{Orange}) = \frac{150}{300} = 0.5
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Yellow} | \text{Orange}) = \frac{300}{300} = 1
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="for-other-fruit">
+<h3>For <strong>Other Fruit</strong>:<a class="headerlink" href="#for-other-fruit" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Long} | \text{Other Fruit}) = \frac{100}{200} = 0.5
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Sweet} | \text{Other Fruit}) = \frac{150}{200} = 0.75
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Yellow} | \text{Other Fruit}) = \frac{50}{200} = 0.25
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-4-classify-a-new-fruit">
+<h2>Step 4: Classify a New Fruit<a class="headerlink" href="#step-4-classify-a-new-fruit" title="Link to this heading">#</a></h2>
+<p>Suppose we have a new fruit with the following features:</p>
+<ul class="simple">
+<li><p><strong>Long</strong>: Yes</p></li>
+<li><p><strong>Sweet</strong>: Yes</p></li>
+<li><p><strong>Yellow</strong>: Yes</p></li>
+</ul>
+<p>We want to classify this fruit as either a <strong>Banana</strong>, <strong>Orange</strong>, or <strong>Other Fruit</strong>.</p>
+<hr class="docutils" />
+<section id="calculate-posterior-probabilities">
+<h3>Calculate Posterior Probabilities<a class="headerlink" href="#calculate-posterior-probabilities" title="Link to this heading">#</a></h3>
+<p>We use Bayes’ Theorem to calculate the posterior probability for each class:</p>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Class} | \text{Evidence}) = \frac{P(\text{Evidence} | \text{Class}) \times P(\text{Class})}{P(\text{Evidence})}
+\]</div>
+<p>Since Naive Bayes assumes independence between features, we can simplify this to:</p>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Class} | \text{Evidence}) = P(\text{Long} | \text{Class}) \times P(\text{Sweet} | \text{Class}) \times P(\text{Yellow} | \text{Class}) \times P(\text{Class})
+\]</div>
+<hr class="docutils" />
+<section id="id2">
+<h4>For <strong>Banana</strong>:<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Banana} | \text{Long, Sweet, Yellow}) = P(\text{Long} | \text{Banana}) \times P(\text{Sweet} | \text{Banana}) \times P(\text{Yellow} | \text{Banana}) \times P(\text{Banana})
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Banana} | \text{Long, Sweet, Yellow}) = 0.8 \times 0.7 \times 0.9 \times 0.5 = 0.252
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="id3">
+<h4>For <strong>Orange</strong>:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Orange} | \text{Long, Sweet, Yellow}) = P(\text{Long} | \text{Orange}) \times P(\text{Sweet} | \text{Orange}) \times P(\text{Yellow} | \text{Orange}) \times P(\text{Orange})
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Orange} | \text{Long, Sweet, Yellow}) = 0 \times 0.5 \times 1 \times 0.3 = 0
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h4>For <strong>Other Fruit</strong>:<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Other Fruit} | \text{Long, Sweet, Yellow}) = P(\text{Long} | \text{Other Fruit}) \times P(\text{Sweet} | \text{Other Fruit}) \times P(\text{Yellow} | \text{Other Fruit}) \times P(\text{Other Fruit})
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+P(\text{Other Fruit} | \text{Long, Sweet, Yellow}) = 0.5 \times 0.75 \times 0.25 \times 0.2 = 0.01875
+\]</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="step-5-make-a-prediction">
+<h3>Step 5: Make a Prediction<a class="headerlink" href="#step-5-make-a-prediction" title="Link to this heading">#</a></h3>
+<p>The posterior probabilities are:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\( P(\text{Banana} | \text{Long, Sweet, Yellow}) = 0.252 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( P(\text{Orange} | \text{Long, Sweet, Yellow}) = 0 \)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\( P(\text{Other Fruit} | \text{Long, Sweet, Yellow}) = 0.01875 \)</span></p></li>
+</ul>
+<p>Since <span class="math notranslate nohighlight">\( P(\text{Banana} | \text{Long, Sweet, Yellow}) \)</span> is the highest, we classify the new fruit as a <strong>Banana</strong>.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Naive Bayes is a simple and efficient classification algorithm.</p></li>
+<li><p>It assumes that features are independent of each other.</p></li>
+<li><p>The algorithm works by calculating the posterior probability for each class and selecting the class with the highest probability.</p></li>
+<li><p>Despite its simplicity, Naive Bayes performs well in many real-world applications, such as text classification.</p></li>
+</ul>
+<hr class="docutils" />
+<p>This example demonstrates how Naive Bayes can be used to classify fruits based on multiple features. The same approach can be applied to other classification problems.</p>
+</section>
 <section id="bayesian-classification">
 <h2>Bayesian Classification<a class="headerlink" href="#bayesian-classification" title="Link to this heading">#</a></h2>
 <p>Naive Bayes classifiers are built on Bayesian classification methods.
@@ -552,7 +1102,7 @@ Imagine that we have the following data, shown in Figure 41-1:</p>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_blobs</span>
 <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_blobs</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">centers</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">cluster_std</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -572,7 +1122,7 @@ With this generative model in place for each class, we have a simple recipe to c
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span>
+<span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -593,7 +1143,7 @@ With this generative model in place for each class, we have a simple recipe to c
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">)</span>
 <span class="n">lim</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Xnew</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Xnew</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">ynew</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;RdBu&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">(</span><span class="n">lim</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -895,6 +1445,50 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">In Depth: Naive Bayes Classification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grasshoppers-vs-katydids">Grasshoppers vs. Katydids</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antenna-length-vs-abdomen-length">Antenna Length vs. Abdomen Length</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classifying-an-insect">Classifying an Insect</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-antennae-length-is-3">Example: Antennae Length is 3</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers">Bayesian Classifiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1"></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#officer-drew-example">Officer Drew Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew">Calculating Probabilities for Officer Drew</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-with-multiple-features">Naive Bayes with Multiple Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-officer-drew-with-multiple-features">Example: Officer Drew with Multiple Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculating-probabilities-for-officer-drew-with-multiple-features">Calculating Probabilities for Officer Drew with Multiple Features</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classification-with-multiple-features-fruit-example">Naive Bayes Classification with multiple features: Fruit Example</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#training-data">Training Data</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-calculate-prior-probabilities">Step 1: Calculate Prior Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-calculate-evidence-probabilities">Step 2: Calculate Evidence Probabilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-calculate-likelihoods">Step 3: Calculate Likelihoods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-banana">For <strong>Banana</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-orange">For <strong>Orange</strong>:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#for-other-fruit">For <strong>Other Fruit</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-classify-a-new-fruit">Step 4: Classify a New Fruit</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#calculate-posterior-probabilities">Calculate Posterior Probabilities</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">For <strong>Banana</strong>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">For <strong>Orange</strong>:</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">For <strong>Other Fruit</strong>:</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-5-make-a-prediction">Step 5: Make a Prediction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classification">Bayesian Classification</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-naive-bayes">Multinomial Naive Bayes</a><ul class="nav section-nav flex-column">
@@ -903,6 +1497,9 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
 </ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

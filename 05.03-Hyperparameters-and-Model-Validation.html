@@ -28,8 +28,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
@@ -244,6 +244,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
@@ -584,7 +585,7 @@ In fact, this approach contains a fundamental flaw: <em>it trains and evaluates 
 Furthermore, this nearest neighbor model is an <em>instance-based</em> estimator that simply stores the training data, and predicts labels by comparing new data to these stored points: except in contrived cases, it will get 100% accuracy every time!</p>
 <p>Is there an example with kNN (k=1) and accuracy not equal 100% on training data?</p>
 <blockquote>
-<div><p>A note on kNN from section 2.3.2 (Nearest-Neighbor Methods) of ESL <span id="id1">[<a class="reference internal" href="intro.html#id4" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span></p>
+<div><p>A note on kNN from section 2.3.2 (Nearest-Neighbor Methods) of ESL <span id="id1">[<a class="reference internal" href="intro.html#id8" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span></p>
 </div></blockquote>
 <div class="math notranslate nohighlight">
 \[\hat{Y}(x) = \frac{1}{k} \sum_{x_i \in N_k(x)} y_i\]</div>
@@ -1047,12 +1048,12 @@ Keep the lessons of this chapter in mind as you read on and learn about these ma
 <h3>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Bias-Variance Tradeoff section of <a class="reference external" href="https://fum-cs.github.io/mfds/high-dimensional-spaces/Bias-Variance-Tradeoff.html">Mathematical Foundations of Data Science Course at FUM-CS</a></p></li>
-<li><p>KNN in image matting: MSc. Thesis of Farzad Zandi <span id="id2">[<a class="reference internal" href="intro.html#id2" title="Farzad Zandi. Designing effective inter-pixel information flow for natural image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, July 2018. درهم‌تنیدگی تصویر مبتنی بر جریان اطلاعات بین پیکسلی. URL: http://hcloud.hsu.ac.ir/index.php/s/7n0SdzOAGHAKH31.">Zan18</a>]</span></p>
+<li><p>KNN in image matting: MSc. Thesis of Farzad Zandi <span id="id2">[<a class="reference internal" href="intro.html#id6" title="Farzad Zandi. Designing effective inter-pixel information flow for natural image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, July 2018. درهم‌تنیدگی تصویر مبتنی بر جریان اطلاعات بین پیکسلی. URL: http://hcloud.hsu.ac.ir/index.php/s/7n0SdzOAGHAKH31.">Zan18</a>]</span></p>
 <ul>
 <li><p><a class="reference external" href="https://www.alphamatting.com/">Alpha Matting Evaluation Website</a></p></li>
-<li><p>Image Matting, MSc. Thesis of Farzane Rashidabadi <span id="id3">[<a class="reference internal" href="intro.html#id3" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>]</span></p></li>
-<li><p>Retina Vessel Segmentation Using kNN Matting<span id="id4">[<a class="reference internal" href="intro.html#id44" title="Mahmood Amintoosi. Retina vessel segmentation using knn matting. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. دقیق‌تر کردن استخراج رگ‌های خونی شبکیه چشم با روش درهم‌تنیدگی تصویر‌ مبتنی بر نزدیک‌ترین همسایگی. URL: https://www.dropbox.com/s/klkoagz3m3dc98t/1396-IPRIA2017-Matting.pdf?dl=0.">Ami17</a>]</span></p></li>
-<li><p>Data Classification Using Image Matting <span id="id5">[<a class="reference internal" href="intro.html#id38" title="Mahmood Amintoosi and Parvin Bakhti. Data classification using image matting. In 2nd Seminar on Control and Optimization. Shahroud University of Technology, 2018. طبقه‌بندی داده‌ها با درهم‌تنیدگی تصویر.">AB18</a>]</span></p></li>
+<li><p>Image Matting, MSc. Thesis of Farzane Rashidabadi <span id="id3">[<a class="reference internal" href="intro.html#id7" title="Farzane Rashidabadi. Image matting. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, January 2016. برش هوشمند تصویر. URL: http://hcloud.hsu.ac.ir/index.php/s/OaHkkTSsO8mNrk0.">Ras16</a>]</span></p></li>
+<li><p>Retina Vessel Segmentation Using kNN Matting<span id="id4">[<a class="reference internal" href="intro.html#id48" title="Mahmood Amintoosi. Retina vessel segmentation using knn matting. In 3rd International Conference on Pattern Recognition and Image Analysis of Iran. Shahrekord University, 2017. دقیق‌تر کردن استخراج رگ‌های خونی شبکیه چشم با روش درهم‌تنیدگی تصویر‌ مبتنی بر نزدیک‌ترین همسایگی. URL: https://www.dropbox.com/s/klkoagz3m3dc98t/1396-IPRIA2017-Matting.pdf?dl=0.">Ami17</a>]</span></p></li>
+<li><p>Data Classification Using Image Matting <span id="id5">[<a class="reference internal" href="intro.html#id42" title="Mahmood Amintoosi and Parvin Bakhti. Data classification using image matting. In 2nd Seminar on Control and Optimization. Shahroud University of Technology, 2018. طبقه‌بندی داده‌ها با درهم‌تنیدگی تصویر.">AB18</a>]</span></p></li>
 </ul>
 </li>
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Georgy_Voronoy">Voronoi</a> diagram</p>

@@ -28,11 +28,11 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -178,7 +178,7 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="intro.html">
-                    Welcome to your Jupyter Book
+                    Welcome to Data Mining Course
                 </a>
             </li>
         </ul>
@@ -190,6 +190,7 @@
 <li class="toctree-l2"><a class="reference internal" href="02.03-Computation-on-arrays-ufuncs.html">Computation on NumPy Arrays: Universal Functions</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.04-Computation-on-arrays-aggregates.html">Aggregations: min, max, and Everything in Between</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.05-Computation-on-arrays-broadcasting.html">Computation on Arrays: Broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.06-Boolean-Arrays-and-Masks.html">Comparisons, Masks, and Boolean Logic</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.07-Fancy-Indexing.html">Fancy Indexing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.08-Sorting.html">Sorting Arrays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="02.09-Structured-Data-NumPy.html">Structured Data: NumPy’s Structured Arrays</a></li>
@@ -200,6 +201,7 @@
 <ul class="nav bd-sidenav">
 <li class="toctree-l1 has-children"><a class="reference internal" href="03.00-Introduction-to-Pandas.html">Data Manipulation with Pandas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="03.01-Introducing-Pandas-Objects.html">Introducing Pandas Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.02-Data-Indexing-and-Selection.html">Data Indexing and Selection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.03-Operations-in-Pandas.html">Operating on Data in Pandas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.04-Missing-Values.html">Handling Missing Data</a></li>
 <li class="toctree-l2"><a class="reference internal" href="03.05-Hierarchical-Indexing.html">Hierarchical Indexing</a></li>
@@ -216,8 +218,23 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization with Matplotlib</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a></li>
-
+<li class="toctree-l1 has-children"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="04.01-Simple-Line-Plots.html">Simple Line Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.02-Simple-Scatter-Plots.html">Simple Scatter Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.03-Errorbars.html">Visualizing Uncertainties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.04-Density-and-Contour-Plots.html">Density and Contour Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.05-Histograms-and-Binnings.html">Histograms, Binnings, and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.06-Customizing-Legends.html">Customizing Plot Legends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.07-Customizing-Colorbars.html">Customizing Colorbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.08-Multiple-Subplots.html">Multiple Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.09-Text-and-Annotation.html">Text and Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.10-Customizing-Ticks.html">Customizing Ticks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.11-Settings-and-Stylesheets.html">Customizing Matplotlib: Configurations and Stylesheets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.12-Three-Dimensional-Plotting.html">Three-Dimensional Plotting in Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.14-Visualization-With-Seaborn.html">Visualization with Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.15-Further-Resources.html">Further Resources</a></li>
+</ul>
+</details></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
 <ul class="current nav bd-sidenav">
@@ -227,6 +244,8 @@
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Feature Engineering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+
+
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
@@ -470,6 +489,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-features">Derived Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation-of-missing-data">Imputation of Missing Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-pipelines">Feature Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feaure-engineering">Feaure Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-completion">Image Completion</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -918,6 +945,47 @@ For example, we might want a processing pipeline that looks something like this:
 Notice that for simplicity, in this demonstration we’ve applied the model to the data it was trained on; this is why it was able to perfectly predict the result (refer back to <a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html"><span class="std std-doc">Hyperparameters and Model Validation</span></a> for further discussion of this).</p>
 <p>For some examples of Scikit-Learn pipelines in action, see the following chapter on naive Bayes classification, as well as <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">In Depth: Linear Regression</span></a> and <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc">In-Depth: Support Vector Machines</span></a>.</p>
 </section>
+<section id="further-reading">
+<h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
+<section id="feaure-engineering">
+<h3>Feaure Engineering<a class="headerlink" href="#feaure-engineering" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><span id="id1">[<a class="reference internal" href="intro.html#id3" title="Sergios Theodoridis and Konstantinos Koutroumbas. Pattern Recognition, Fourth Edition. Academic Press, Inc., USA, 4th edition, 2008. ISBN 1597492728. URL: https://uupload.ir/view/bmf1_pattern_recognition-sergio_theodoridis-4th_edition.pdf.">TK08</a>]</span> has 3 chapters about feature selection and feature generation</p>
+<ul>
+<li><p>7.3.1 Fourier Features, 7.3.2 Chain Codes</p></li>
+<li><p>Using Pattern Matching for Tiling and Packing Problems <span id="id2">[<a class="reference internal" href="intro.html#id78" title="M. Amintoosi, H. SadoghiYazdi, M.Fathy, and R. Monsefi. Using pattern matching for tiling and packing problems. European Journal of Operational Research, 183:950-960, 2007. Indexed by DBLP and SCOPUS.">ASMFathyM07</a>]</span></p></li>
+</ul>
+</li>
+<li><p><span id="id3">[<a class="reference internal" href="intro.html#id4" title="Alice Zheng and Amanda Casari. Feature Engineering for Machine Learning: Principles and Techniques for Data Scientists. O'Reilly Media, Inc., 1st edition, 2018. ISBN 1491953241. URL: https://www.repath.in/gallery/feature_engineering_for_machine_learning.pdf.">ZC18</a>]</span> is devoted to feature engineering</p></li>
+<li><p>Natural Language Processing with Python <span id="id4">[<a class="reference internal" href="intro.html#id5" title="Steven Bird, Ewan Klein, and Edward Loper. Natural Language Processing with Python. O'Reilly Media, Inc., 1st edition, 2009. ISBN 0596516495. URL: https://tjzhifei.github.io/resources/NLTK.pdf.">BKL09</a>]</span></p></li>
+<li><p>Some Papers:</p>
+<ul>
+<li><p>Application of the Neural Network-based Machine Learning Method to Classify Scientific Articles <span id="id5">[<a class="reference internal" href="intro.html#id2" title="Masood Ghayoomi and Maryam Mousavian. Application of the neural network-based machine learning method to classify scientific articles. Iranian Journal of Information Processing and Management, 37(4):1244-1217, 2022. URL: https://jipm.irandoc.ac.ir/article_699699.html, arXiv:https://jipm.irandoc.ac.ir/article_699699_499edcec59b5f54fe0ce422abd7e629b.pdf, doi:10.35050/JIPM010.2022.008.">GM22</a>]</span></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="imputation">
+<h3>Imputation<a class="headerlink" href="#imputation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.theanalysisfactor.com/seven-ways-to-make-up-data-common-methods-to-imputing-missing-data/">Seven Ways to Make up Data: Common Methods to Imputing Missing Data</a></p></li>
+<li><p><a class="reference external" href="https://bamos.github.io/2016/08/09/deep-completion/">https://bamos.github.io/2016/08/09/deep-completion/</a>:</p></li>
+</ul>
+<blockquote>
+<div><p>The key relationship between images and statistics is that we can interpret images as samples from a high-dimensional probability distribution.
+<img alt="" src="_images/normal-2d-max.png" /></p>
+</div></blockquote>
+<section id="image-completion">
+<h4>Image Completion<a class="headerlink" href="#image-completion" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>2003: <a class="reference external" href="https://cs.brown.edu/courses/cs129/2011/asgn/proj3/resources/GraphcutTextures.pdf">Graphcut Textures: Image and Video Synthesis Using Graph Cuts</a></p></li>
+<li><p>2004: <a class="reference external" href="https://cs.brown.edu/courses/cs129/2011/asgn/proj3/">Patch-based image completion</a></p></li>
+<li><p>2021: <a class="reference external" href="https://github.com/raywzy/ICT">High-Fidelity Pluralistic Image Completion with Transformers</a></p></li>
+<li><p>2024: <a class="reference external" href="https://arxiv.org/abs/2212.06310">Structure-Guided Image Completion with Image-level and Object-level Semantic Discriminators</a></p></li>
+</ul>
+</section>
+</section>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -990,6 +1058,14 @@ Notice that for simplicity, in this demonstration we’ve applied the model to t
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#derived-features">Derived Features</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation-of-missing-data">Imputation of Missing Data</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#feature-pipelines">Feature Pipelines</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#feaure-engineering">Feaure Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#imputation">Imputation</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-completion">Image Completion</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
