@@ -246,6 +246,7 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Naive Bayes Classification</a></li>
 
 
+
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
@@ -493,6 +494,8 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers">Bayesian Classifiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
 </ul>
 </li>
@@ -527,7 +530,9 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classification">Bayesian Classification</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classification">Bayesian Classification</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-naive-bayes">Multinomial Naive Bayes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-text">Example: Classifying Text</a></li>
@@ -640,17 +645,43 @@ $$ -->
 <hr class="docutils" />
 <section id="bayesian-classifiers">
 <h3>Bayesian Classifiers<a class="headerlink" href="#bayesian-classifiers" title="Link to this heading">#</a></h3>
-<p>Bayesian classifiers use Bayes theorem, which says:</p>
+<p>Here’s the modified version of your text, explicitly specifying <strong>prior probability</strong>, <strong>likelihood</strong>, and <strong>evidence</strong> in the context of Bayes’ Theorem:</p>
+</section>
+<hr class="docutils" />
+<section id="bayesian-classifiers-and-bayes-theorem">
+<h3>Bayesian Classifiers and Bayes’ Theorem<a class="headerlink" href="#bayesian-classifiers-and-bayes-theorem" title="Link to this heading">#</a></h3>
+<p>Bayesian classifiers use <strong>Bayes’ Theorem</strong>, which is stated as:</p>
 <div class="math notranslate nohighlight">
 \[
-p(c_j | d) = \frac{p(d | c_j) p(c_j)}{p(d)}
+p(c_j | d) = \frac{p(d | c_j) \, p(c_j)}{p(d)}
 \]</div>
 <p>Where:</p>
 <ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( p(c_j | d) \)</span>: Probability of class <span class="math notranslate nohighlight">\( c_j \)</span> given instance <span class="math notranslate nohighlight">\( d \)</span> (what we are trying to compute).</p></li>
-<li><p><span class="math notranslate nohighlight">\( p(d | c_j) \)</span>: Probability of generating instance <span class="math notranslate nohighlight">\( d \)</span> given class <span class="math notranslate nohighlight">\( c_j \)</span>.</p></li>
-<li><p><span class="math notranslate nohighlight">\( p(c_j) \)</span>: Probability of occurrence of class <span class="math notranslate nohighlight">\( c_j \)</span> (how frequent the class is in our database).</p></li>
-<li><p><span class="math notranslate nohighlight">\( p(d) \)</span>: Probability of instance <span class="math notranslate nohighlight">\( d \)</span> occurring (can be ignored since it is the same for all classes).</p></li>
+<li><p><strong>Posterior Probability</strong> (<span class="math notranslate nohighlight">\( p(c_j | d) \)</span>):<br />
+The probability of class <span class="math notranslate nohighlight">\( c_j \)</span> given the observed instance <span class="math notranslate nohighlight">\( d \)</span>. This is what we are trying to compute.</p></li>
+<li><p><strong>Likelihood</strong> (<span class="math notranslate nohighlight">\( p(d | c_j) \)</span>):<br />
+The probability of observing instance <span class="math notranslate nohighlight">\( d \)</span> given that it belongs to class <span class="math notranslate nohighlight">\( c_j \)</span>. This represents how likely the evidence (features of <span class="math notranslate nohighlight">\( d \)</span>) is under class <span class="math notranslate nohighlight">\( c_j \)</span>.</p></li>
+<li><p><strong>Prior Probability</strong> (<span class="math notranslate nohighlight">\( p(c_j) \)</span>):<br />
+The probability of class <span class="math notranslate nohighlight">\( c_j \)</span> occurring in the dataset. This is the “base rate” or how frequent the class is in the training data.
+(Represents the initial belief about the probability of each class before observing any evidence.)</p></li>
+<li><p><strong>Evidence</strong> (<span class="math notranslate nohighlight">\( p(d) \)</span>):<br />
+The probability of observing instance <span class="math notranslate nohighlight">\( d \)</span> across all classes. Acts as a scaling factor to ensure the posterior probabilities sum to 1 and can often be ignored in classification tasks because it is the same for all classes.</p></li>
+</ul>
+</section>
+<section id="simplified-formula-for-classification">
+<h3>Simplified Formula for Classification<a class="headerlink" href="#simplified-formula-for-classification" title="Link to this heading">#</a></h3>
+<p>In practice, we often ignore the evidence term (<span class="math notranslate nohighlight">\( p(d) \)</span>) because it is the same for all classes. Thus, the formula simplifies to:</p>
+<div class="math notranslate nohighlight">
+\[
+p(c_j | d) \propto p(d | c_j) \, p(c_j)
+\]</div>
+<p>We calculate this for each class and assign the instance <span class="math notranslate nohighlight">\( d \)</span> to the class with the highest posterior probability.</p>
+<p><strong>Summary</strong></p>
+<ul class="simple">
+<li><p><strong>Prior Probability</strong>: Initial belief about the class distribution.</p></li>
+<li><p><strong>Likelihood</strong>: Probability of the evidence given the class.</p></li>
+<li><p><strong>Evidence</strong>: Normalizing constant (often ignored).</p></li>
+<li><p><strong>Posterior Probability</strong>: Final probability of the class given the evidence.</p></li>
 </ul>
 </section>
 <hr class="docutils" />
@@ -1059,8 +1090,9 @@ P(\text{Other Fruit} | \text{Long, Sweet, Yellow}) = 0.5 \times 0.75 \times 0.25
 <hr class="docutils" />
 <p>This example demonstrates how Naive Bayes can be used to classify fruits based on multiple features. The same approach can be applied to other classification problems.</p>
 </section>
-<section id="bayesian-classification">
-<h2>Bayesian Classification<a class="headerlink" href="#bayesian-classification" title="Link to this heading">#</a></h2>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="bayesian-classification">
+<h1>Bayesian Classification<a class="headerlink" href="#bayesian-classification" title="Link to this heading">#</a></h1>
 <p>Naive Bayes classifiers are built on Bayesian classification methods.
 These rely on Bayes’s theorem, which is an equation describing the relationship of conditional probabilities of statistical quantities.
 In Bayesian classification, we’re interested in finding the probability of a label <span class="math notranslate nohighlight">\(L\)</span> given some observed features, which we can write as <span class="math notranslate nohighlight">\(P(L~|~{\rm features})\)</span>.
@@ -1092,7 +1124,6 @@ Different types of naive Bayes classifiers rest on different naive assumptions a
 </div>
 </div>
 </div>
-</section>
 <section id="gaussian-naive-bayes">
 <h2>Gaussian Naive Bayes<a class="headerlink" href="#gaussian-naive-bayes" title="Link to this heading">#</a></h2>
 <p>Perhaps the easiest naive Bayes classifier to understand is Gaussian naive Bayes.
@@ -1455,6 +1486,8 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayes-classifiers">Bayes Classifiers</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers">Bayesian Classifiers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classifiers-and-bayes-theorem">Bayesian Classifiers and Bayes’ Theorem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#simplified-formula-for-classification">Simplified Formula for Classification</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-by-name">Example: Classifying by Name</a></li>
 </ul>
 </li>
@@ -1489,7 +1522,9 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classification">Bayesian Classification</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-classification">Bayesian Classification</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-naive-bayes">Gaussian Naive Bayes</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#multinomial-naive-bayes">Multinomial Naive Bayes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-text">Example: Classifying Text</a></li>

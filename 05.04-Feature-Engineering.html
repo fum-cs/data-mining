@@ -495,6 +495,7 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-completion">Image Completion</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-representation">Sparse Representation</a></li>
 </ul>
 </li>
 </ul>
@@ -808,7 +809,7 @@ We saw that we could convert a linear regression into a polynomial regression no
 </div>
 </div>
 <p>But it’s clear that we need a more sophisticated model to describe the relationship between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
-<p>One approach to this is to transform the data, adding extra columns of features to drive more flexibility in the model.
+<p>One approach to this is to transform the data, <strong>adding extra columns of features</strong> to drive more flexibility in the model.
 For example, we can add polynomial features to the data this way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -836,7 +837,7 @@ Computing a linear regression on this expanded input gives a much closer fit to 
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="n">yfit</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">X2</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">yfit</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">yfit</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -953,7 +954,7 @@ Notice that for simplicity, in this demonstration we’ve applied the model to t
 <li><p><span id="id1">[<a class="reference internal" href="intro.html#id3" title="Sergios Theodoridis and Konstantinos Koutroumbas. Pattern Recognition, Fourth Edition. Academic Press, Inc., USA, 4th edition, 2008. ISBN 1597492728. URL: https://uupload.ir/view/bmf1_pattern_recognition-sergio_theodoridis-4th_edition.pdf.">TK08</a>]</span> has 3 chapters about feature selection and feature generation</p>
 <ul>
 <li><p>7.3.1 Fourier Features, 7.3.2 Chain Codes</p></li>
-<li><p>Using Pattern Matching for Tiling and Packing Problems <span id="id2">[<a class="reference internal" href="intro.html#id78" title="M. Amintoosi, H. SadoghiYazdi, M.Fathy, and R. Monsefi. Using pattern matching for tiling and packing problems. European Journal of Operational Research, 183:950-960, 2007. Indexed by DBLP and SCOPUS.">ASMFathyM07</a>]</span></p></li>
+<li><p>Using Pattern Matching for Tiling and Packing Problems <span id="id2">[<a class="reference internal" href="intro.html#id82" title="M. Amintoosi, H. SadoghiYazdi, M.Fathy, and R. Monsefi. Using pattern matching for tiling and packing problems. European Journal of Operational Research, 183:950-960, 2007. Indexed by DBLP and SCOPUS.">ASMFathyM07</a>]</span></p></li>
 </ul>
 </li>
 <li><p><span id="id3">[<a class="reference internal" href="intro.html#id4" title="Alice Zheng and Amanda Casari. Feature Engineering for Machine Learning: Principles and Techniques for Data Scientists. O'Reilly Media, Inc., 1st edition, 2018. ISBN 1491953241. URL: https://www.repath.in/gallery/feature_engineering_for_machine_learning.pdf.">ZC18</a>]</span> is devoted to feature engineering</p></li>
@@ -969,7 +970,7 @@ Notice that for simplicity, in this demonstration we’ve applied the model to t
 <h3>Imputation<a class="headerlink" href="#imputation" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://www.theanalysisfactor.com/seven-ways-to-make-up-data-common-methods-to-imputing-missing-data/">Seven Ways to Make up Data: Common Methods to Imputing Missing Data</a></p></li>
-<li><p><a class="reference external" href="https://bamos.github.io/2016/08/09/deep-completion/">https://bamos.github.io/2016/08/09/deep-completion/</a>:</p></li>
+<li><p><a class="reference external" href="https://bamos.github.io/2016/08/09/deep-completion/">Image Completion with Deep Learning in TensorFlow</a>:</p></li>
 </ul>
 <blockquote>
 <div><p>The key relationship between images and statistics is that we can interpret images as samples from a high-dimensional probability distribution.
@@ -978,12 +979,25 @@ Notice that for simplicity, in this demonstration we’ve applied the model to t
 <section id="image-completion">
 <h4>Image Completion<a class="headerlink" href="#image-completion" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>2003: <a class="reference external" href="https://cs.brown.edu/courses/cs129/2011/asgn/proj3/resources/GraphcutTextures.pdf">Graphcut Textures: Image and Video Synthesis Using Graph Cuts</a></p></li>
+<li><p>2003: <a class="reference external" href="https://cs.brown.edu/courses/cs129/2011/asgn/proj3/resources/GraphcutTextures.pdf">Graphcut Textures: Image and Video Synthesis Using Graph Cuts</a></p>
+<ul>
+<li><p>MSc. project <span id="id6">[<a class="reference internal" href="intro.html#id7" title="Fateme sadat Hoseini. Graph minimum cut. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, October 2021. برش کمینه در گراف. URL: http://hcloud.hsu.ac.ir/index.php/s/OtehB4LUQFv8cla.">sH21</a>]</span></p></li>
+</ul>
+</li>
 <li><p>2004: <a class="reference external" href="https://cs.brown.edu/courses/cs129/2011/asgn/proj3/">Patch-based image completion</a></p></li>
 <li><p>2021: <a class="reference external" href="https://github.com/raywzy/ICT">High-Fidelity Pluralistic Image Completion with Transformers</a></p></li>
 <li><p>2024: <a class="reference external" href="https://arxiv.org/abs/2212.06310">Structure-Guided Image Completion with Image-level and Object-level Semantic Discriminators</a></p></li>
 </ul>
 </section>
+</section>
+<section id="sparse-representation">
+<h3>Sparse Representation<a class="headerlink" href="#sparse-representation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Wiki of <a class="reference external" href="https://en.wikipedia.org/wiki/Sparse_approximation">Sparse approximation</a></p></li>
+<li><p><a class="reference external" href="https://scholar.google.com/citations?user=5H-SuMcAAAAJ&amp;amp;hl=en">Massoud Babaie-Zadeh</a></p></li>
+<li><p><a class="reference external" href="https://web.stanford.edu/class/cme324/saad.pdf">Iterative Methods for Sparse Linear Systems</a>, Yousef Saad</p></li>
+<li><p>Some Msc. projects: <span id="id7">[<a class="reference internal" href="intro.html#id8" title="Mahboube Bakhshali. The subspace pursuit method in sparseoptimization. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روش جستجوی زیرفضا در بهینه سازی تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/jacmnZiPfNFpYfk.">Bak18</a>]</span>, <span id="id8">[<a class="reference internal" href="intro.html#id9" title="Zahra Asaadi. Parallel version of the conjugategradient method in distributed andshared environments. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, October 2021. نسخه موازی روش گرادیان مزدوج در محیط های توزیعی و اشتراکی. URL: http://hcloud.hsu.ac.ir/index.php/s/B4oT53TfOknyNEg.">Asa21</a>]</span>, <span id="id9">[<a class="reference internal" href="intro.html#id6" title="Alale Asaran. Super resolution via sparserepresentation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, Winter 2016. فراتفکیک پذیری با نمایش تنک. URL: http://hcloud.hsu.ac.ir/index.php/s/B4oT53TfOknyNEg.">Asa16</a>]</span></p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -1064,6 +1078,7 @@ Notice that for simplicity, in this demonstration we’ve applied the model to t
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#image-completion">Image Completion</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-representation">Sparse Representation</a></li>
 </ul>
 </li>
 </ul>
