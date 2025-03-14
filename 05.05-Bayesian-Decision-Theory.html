@@ -603,17 +603,17 @@ P(\text{error}|x) = \min[P(\omega_1|x), P(\omega_2|x)]
 <li><p><strong>Discriminant Function</strong> (<span class="math notranslate nohighlight">\( g_i(\mathbf{x}) \)</span>): Used to assign a feature vector <span class="math notranslate nohighlight">\( \mathbf{x} \)</span> to class <span class="math notranslate nohighlight">\( \omega_i \)</span>.</p>
 <ul>
 <li><p>For minimum error rate:
-$<span class="math notranslate nohighlight">\(
+<span class="math notranslate nohighlight">\(
 g_i(\mathbf{x}) = P(\omega_i|\mathbf{x})
-\)</span>$</p></li>
+\)</span></p></li>
 <li><p>Can also be expressed as:
-$<span class="math notranslate nohighlight">\(
+<span class="math notranslate nohighlight">\(
 g_i(\mathbf{x}) = p(\mathbf{x}|\omega_i) P(\omega_i)
-\)</span>$</p></li>
+\)</span></p></li>
 <li><p>Or in log form:
-$<span class="math notranslate nohighlight">\(
+<span class="math notranslate nohighlight">\(
 g_i(\mathbf{x}) = \ln p(\mathbf{x}|\omega_i) + \ln P(\omega_i)
-\)</span>$</p></li>
+\)</span></p></li>
 </ul>
 </li>
 </ul>
@@ -799,9 +799,7 @@ In 2D space (<span class="math notranslate nohighlight">\(n = 2\)</span>), the e
 <li><p><span class="math notranslate nohighlight">\(\mathbf{x} = \begin{bmatrix} x \\ y \end{bmatrix}\)</span>: A variable point on the line.</p></li>
 </ol>
 <p>The equation becomes:
-$<span class="math notranslate nohighlight">\(
-w_1 (x - x_0) + w_2 (y - y_0) = 0
-\)</span>$</p>
+<span class="math notranslate nohighlight">\(w_1 (x - x_0) + w_2 (y - y_0) = 0\)</span></p>
 <p>This is the equation of a line in 2D.</p>
 <hr class="docutils" />
 <p><strong>Drawing the Hyperplane (Line in 2D)</strong>
@@ -819,13 +817,9 @@ Let’s use the following values:</p>
 <li><p><span class="math notranslate nohighlight">\(\mathbf{x}_0 = \begin{bmatrix} 1 \\ 1 \end{bmatrix}\)</span> (a point on the line).</p></li>
 </ul>
 <p>The equation becomes:
-$<span class="math notranslate nohighlight">\(
-2(x - 1) + 1(y - 1) = 0
-\)</span><span class="math notranslate nohighlight">\(
+<span class="math notranslate nohighlight">\(2(x - 1) + 1(y - 1) = 0\)</span>
 Simplify:
-\)</span><span class="math notranslate nohighlight">\(
-2x - 2 + y - 1 = 0 \implies 2x + y - 3 = 0
-\)</span>$</p>
+<span class="math notranslate nohighlight">\(2x - 2 + y - 1 = 0 \implies 2x + y - 3 = 0\)</span></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
@@ -867,12 +861,13 @@ Simplify:
 <img alt="_images/cc698d936a75538507b2f88c616465118688f2439d1a9a189d631f083e917d1d.png" src="_images/cc698d936a75538507b2f88c616465118688f2439d1a9a189d631f083e917d1d.png" />
 </div>
 </div>
-<p><strong>Hyperplane and Decision Boundary</strong>
-The equation:
-$<span class="math notranslate nohighlight">\(
+<p><strong>Hyperplane and Decision Boundary</strong></p>
+<p>The equation:</p>
+<div class="math notranslate nohighlight">
+\[
 \mathbf{w}^T (\mathbf{x} - \mathbf{x}_0) = 0
-\)</span><span class="math notranslate nohighlight">\(
-defines a **hyperplane** through the point \)</span>\mathbf{x}_0<span class="math notranslate nohighlight">\( and orthogonal to the vector \)</span>\mathbf{w}<span class="math notranslate nohighlight">\(. Since \)</span>\mathbf{w} = \boldsymbol{\mu}_i - \boldsymbol{\mu}_j<span class="math notranslate nohighlight">\(, the hyperplane separating \)</span>\mathcal{R}_i<span class="math notranslate nohighlight">\( and \)</span>\mathcal{R}_j$ is orthogonal to the line linking the means.</p>
+\]</div>
+<p>defines a <strong>hyperplane</strong> through the point <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> and orthogonal to the vector <span class="math notranslate nohighlight">\(\mathbf{w}\)</span>. Since <span class="math notranslate nohighlight">\(\mathbf{w} = \boldsymbol{\mu}_i - \boldsymbol{\mu}_j\)</span>, the hyperplane separating <span class="math notranslate nohighlight">\(\mathcal{R}_i\)</span> and <span class="math notranslate nohighlight">\(\mathcal{R}_j\)</span> is orthogonal to the line linking the means.</p>
 <ul class="simple">
 <li><p>If <span class="math notranslate nohighlight">\(P(\omega_i) = P(\omega_j)\)</span>, the second term in <strong>Eq. 56</strong> vanishes, and the point <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> is <strong>halfway between the means</strong>. In this case, the hyperplane is the <strong>perpendicular bisector</strong> of the line between the means (see <strong>Figure 2.11</strong>).</p></li>
 <li><p>If the prior probabilities are <strong>unequal</strong>, the point <span class="math notranslate nohighlight">\(\mathbf{x}_0\)</span> shifts away from the more likely mean.</p></li>
