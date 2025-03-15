@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="In Depth: Manifold Learning" href="05.10-Manifold-Learning.html" />
+    <link rel="next" title="Manifold Learning" href="05.10-Manifold-Learning.html" />
     <link rel="prev" title="Decision Trees and Random Forests" href="05.08-Random-Forests.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -249,10 +249,10 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Principal Component Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
@@ -659,7 +659,7 @@ The fraction of variance that is cut out (proportional to the spread of points a
 <section id="pca-for-visualization-handwritten-digits">
 <h3>PCA for Visualization: Handwritten Digits<a class="headerlink" href="#pca-for-visualization-handwritten-digits" title="Link to this heading">#</a></h3>
 <p>The usefulness of dimensionality reduction may not be entirely apparent in only two dimensions, but it becomes clear when looking at high-dimensional data.
-To see this, let’s take a quick look at the application of PCA to the digits dataset we worked with in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc">In-Depth: Decision Trees and Random Forests</span></a>.</p>
+To see this, let’s take a quick look at the application of PCA to the digits dataset we worked with in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc"> Decision Trees and Random Forests</span></a>.</p>
 <p>We’ll start by loading the data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -854,7 +854,7 @@ Now we compute these components, and then use the inverse of the transform to re
 </section>
 <section id="example-eigenfaces">
 <h2>Example: Eigenfaces<a class="headerlink" href="#example-eigenfaces" title="Link to this heading">#</a></h2>
-<p>Earlier we explored an example of using a PCA projection as a feature selector for facial recognition with a support vector machine (see <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc">In-Depth: Support Vector Machines</span></a>).
+<p>Earlier we explored an example of using a PCA projection as a feature selector for facial recognition with a support vector machine (see <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc"> Support Vector Machines</span></a>).
 Here we will take a look back and explore a bit more of what went into that.
 Recall that we were using the Labeled Faces in the Wild (LFW) dataset made available through Scikit-Learn:</p>
 <div class="cell docutils container">
@@ -953,7 +953,7 @@ To make this more concrete, we can compare the input images with the images reco
 </div>
 </div>
 <p>The top row here shows the input images, while the bottom row shows the reconstruction of the images from just 150 of the ~3,000 initial features.
-This visualization makes clear why the PCA feature selection used in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc">In-Depth: Support Vector Machines</span></a> was so successful: although it reduces the dimensionality of the data by nearly a factor of 20, the projected images contain enough information that we might, by eye, recognize the individuals in each image. This means our classification algorithm only needs to be trained on 150-dimensional data rather than 3,000-dimensional data, which, depending on the particular algorithm we choose, can lead to much more efficient classification.</p>
+This visualization makes clear why the PCA feature selection used in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc"> Support Vector Machines</span></a> was so successful: although it reduces the dimensionality of the data by nearly a factor of 20, the projected images contain enough information that we might, by eye, recognize the individuals in each image. This means our classification algorithm only needs to be trained on 150-dimensional data rather than 3,000-dimensional data, which, depending on the particular algorithm we choose, can lead to much more efficient classification.</p>
 </section>
 <section id="summary">
 <h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
@@ -1012,7 +1012,7 @@ Scikit-Learn includes a number of interesting variants on PCA in the <code class
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">In Depth: Manifold Learning</p>
+        <p class="prev-next-title">Manifold Learning</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

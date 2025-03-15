@@ -62,7 +62,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Gaussian Mixture Models" href="05.12-Gaussian-Mixtures.html" />
-    <link rel="prev" title="In Depth: Manifold Learning" href="05.10-Manifold-Learning.html" />
+    <link rel="prev" title="Manifold Learning" href="05.10-Manifold-Learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -247,10 +247,10 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">k-Means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
@@ -703,7 +703,7 @@ Consider the following data, along with the cluster labels found by the typical 
 <img alt="_images/aad56ca6898a5913d48ffbc70226b0add2502748faa66b4b8666255f829c1133.png" src="_images/aad56ca6898a5913d48ffbc70226b0add2502748faa66b4b8666255f829c1133.png" />
 </div>
 </div>
-<p>This situation is reminiscent of the discussion in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc">In-Depth: Support Vector Machines</span></a>, where we used a kernel transformation to project the data into a higher dimension where a linear separation is possible.
+<p>This situation is reminiscent of the discussion in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc"> Support Vector Machines</span></a>, where we used a kernel transformation to project the data into a higher dimension where a linear separation is possible.
 We might imagine using the same trick to allow <em>k</em>-means to discover non-linear boundaries.</p>
 <p>One version of this kernelized <em>k</em>-means is implemented in Scikit-Learn within the <code class="docutils literal notranslate"><span class="pre">SpectralClustering</span></code> estimator.
 It uses the graph of nearest neighbors to compute a higher-dimensional representation of the data, and then assigns labels using a <em>k</em>-means algorithm (see the following figure):</p>
@@ -738,7 +738,7 @@ The interface for this is the same as for standard <code class="docutils literal
 We’ll now take a look at a couple of examples.</p>
 <section id="example-1-k-means-on-digits">
 <h3>Example 1: k-Means on Digits<a class="headerlink" href="#example-1-k-means-on-digits" title="Link to this heading">#</a></h3>
-<p>To start, let’s take a look at applying <em>k</em>-means on the same simple digits data that we saw in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc">In-Depth: Decision Trees and Random Forests</span></a> and <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">Principal Component Analysis</span></a>.
+<p>To start, let’s take a look at applying <em>k</em>-means on the same simple digits data that we saw in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc"> Decision Trees and Random Forests</span></a> and <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">Principal Component Analysis</span></a>.
 Here we will attempt to use <em>k</em>-means to try to identify similar digits <em>without using the original label information</em>; this might be similar to a first step in extracting meaning from a new dataset about which you don’t have any <em>a priori</em> label information.</p>
 <p>We will start by loading the dataset, then find the clusters.
 Recall that the digits dataset consists of 1,797 samples with 64 features, where each of the 64 features is the brightness of one pixel in an 8 × 8 image:</p>
@@ -840,7 +840,7 @@ Let’s check the confusion matrix for this, visualized in the following figure:
 <p>As we might expect from the cluster centers we visualized before, the main point of confusion is between the eights and ones.
 But this still shows that using <em>k</em>-means, we can essentially build a digit classifier <em>without reference to any known labels</em>!</p>
 <p>Just for fun, let’s try to push this even farther.
-We can use the t-distributed stochastic neighbor embedding algorithm (mentioned in <a class="reference internal" href="05.10-Manifold-Learning.html"><span class="std std-doc">In-Depth: Manifold Learning</span></a>) to preprocess the data before performing <em>k</em>-means.
+We can use the t-distributed stochastic neighbor embedding algorithm (mentioned in <a class="reference internal" href="05.10-Manifold-Learning.html"><span class="std std-doc"> Manifold Learning</span></a>) to preprocess the data before performing <em>k</em>-means.
 t-SNE is a nonlinear embedding algorithm that is particularly adept at preserving points within clusters.
 Let’s see how it does:</p>
 <div class="cell docutils container">
@@ -1042,7 +1042,7 @@ Now, this kind of approach is not going to match the fidelity of purpose-built i
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">In Depth: Manifold Learning</p>
+        <p class="prev-next-title">Manifold Learning</p>
       </div>
     </a>
     <a class="right-next"

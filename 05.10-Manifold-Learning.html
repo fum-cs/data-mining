@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>In Depth: Manifold Learning &#8212; Data Mining</title>
+    <title>Manifold Learning &#8212; Data Mining</title>
   
   
   
@@ -63,8 +63,8 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="In Depth: k-Means Clustering" href="05.11-K-Means.html" />
-    <link rel="prev" title="In Depth: Principal Component Analysis" href="05.09-Principal-Component-Analysis.html" />
+    <link rel="next" title="k-Means Clustering" href="05.11-K-Means.html" />
+    <link rel="prev" title="Principal Component Analysis" href="05.09-Principal-Component-Analysis.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -243,16 +243,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Manifold Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -472,7 +475,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>In Depth: Manifold Learning</h1>
+    <h1>Manifold Learning</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -503,8 +506,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="in-depth-manifold-learning">
-<h1>In Depth: Manifold Learning<a class="headerlink" href="#in-depth-manifold-learning" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="manifold-learning">
+<h1>Manifold Learning<a class="headerlink" href="#manifold-learning" title="Link to this heading">#</a></h1>
 <p>In the previous chapter we saw how PCA can be used for dimensionality reduction, reducing the number of features of a dataset while maintaining the essential relationships between the points.
 While PCA is flexible, fast, and easily interpretable, it does not perform so well when there are <em>nonlinear</em> relationships within the data, some examples of which we will see shortly.</p>
 <p>To address this deficiency, we can turn to <em>manifold learning algorithms</em>—a class of unsupervised estimators that seek to describe datasets as low-dimensional manifolds embedded in high-dimensional spaces.
@@ -827,7 +830,7 @@ Based on my own experience, I would give the following recommendations:</p>
 <h2>Example: Isomap on Faces<a class="headerlink" href="#example-isomap-on-faces" title="Link to this heading">#</a></h2>
 <p>One place manifold learning is often used is in understanding the relationship between high-dimensional data points.
 A common case of high-dimensional data is images: for example, a set of images with 1,000 pixels each can be thought of as a collection of points in 1,000 dimensions, with the brightness of each pixel in each image defining the coordinate in that dimension.</p>
-<p>To illustrate, let’s apply Isomap on some data from the Labeled Faces in the Wild dataset, which we previously saw in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc">In-Depth: Support Vector Machines</span></a> and <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">In Depth: Principal Component Analysis</span></a>.
+<p>To illustrate, let’s apply Isomap on some data from the Labeled Faces in the Wild dataset, which we previously saw in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc"> Support Vector Machines</span></a> and <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc"> Principal Component Analysis</span></a>.
 Running this command will download the dataset and cache it in your home directory for later use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -858,7 +861,7 @@ In other words, the images can be thought of as data points in a 2,914-dimension
 <img alt="_images/9ed39f6ca215857e236a4ded5f1db9d0231eabb96926db6002ba5dde8c54c662.png" src="_images/9ed39f6ca215857e236a4ded5f1db9d0231eabb96926db6002ba5dde8c54c662.png" />
 </div>
 </div>
-<p>When we encountered this data in <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">In Depth: Principal Component Analysis</span></a>, our goal was essentially compression: to use the components to reconstruct the inputs from the lower-dimensional representation.</p>
+<p>When we encountered this data in <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc"> Principal Component Analysis</span></a>, our goal was essentially compression: to use the components to reconstruct the inputs from the lower-dimensional representation.</p>
 <p>PCA is versatile enough that we can also use it in this context, where we would like to plot a low-dimensional embedding of the 2,914-dimensional data to learn the fundamental relationships between the images. Let’s again look at the explained variance ratio, which will give us an idea of how many linear features are required to describe the data (see the following figure):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -938,12 +941,12 @@ To get a better idea of what the projection tells us, let’s define a function 
 </div>
 <p>The result is interesting. The first two Isomap dimensions seem to describe global image features: the overall brightness of the image from left to right, and the general orientation of the face from bottom to top.
 This gives us a nice visual indication of some of the fundamental features in our data.</p>
-<p>From here, we could then go on to classify this data (perhaps using manifold features as inputs to the classification algorithm) as we did in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc">In-Depth: Support Vector Machines</span></a>.</p>
+<p>From here, we could then go on to classify this data (perhaps using manifold features as inputs to the classification algorithm) as we did in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc"> Support Vector Machines</span></a>.</p>
 </section>
 <section id="example-visualizing-structure-in-digits">
 <h2>Example: Visualizing Structure in Digits<a class="headerlink" href="#example-visualizing-structure-in-digits" title="Link to this heading">#</a></h2>
 <p>As another example of using manifold learning for visualization, let’s take a look at the MNIST handwritten digits dataset.
-This is similar to the digits dataset we saw in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc">In-Depth: Decision Trees and Random Forests</span></a>, but with many more pixels per image.
+This is similar to the digits dataset we saw in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc"> Decision Trees and Random Forests</span></a>, but with many more pixels per image.
 It can be downloaded from <a class="reference external" href="http://openml.org/">http://openml.org/</a> with the Scikit-Learn utility:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1061,7 +1064,7 @@ The projection lets us identify outliers that have data issues: for example, pie
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">In Depth: Principal Component Analysis</p>
+        <p class="prev-next-title">Principal Component Analysis</p>
       </div>
     </a>
     <a class="right-next"
@@ -1069,7 +1072,7 @@ The projection lets us identify outliers that have data issues: for example, pie
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">In Depth: k-Means Clustering</p>
+        <p class="prev-next-title">k-Means Clustering</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
