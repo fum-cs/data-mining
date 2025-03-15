@@ -63,7 +63,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="In Depth: Support Vector Machines" href="05.07-Support-Vector-Machines.html" />
+    <link rel="next" title="Support Vector Machines" href="05.07-Support-Vector-Machines.html" />
     <link rel="prev" title="Bayesian Decision Theory" href="05.05-Bayesian-Decision-Theory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -249,10 +249,10 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Regression</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
@@ -528,11 +528,12 @@ You are already familiar with the simplest form of linear regression model (i.e.
 <section id="simple-linear-regression">
 <h2>Simple Linear Regression<a class="headerlink" href="#simple-linear-regression" title="Link to this heading">#</a></h2>
 <p>We will start with the most familiar linear regression, a straight-line fit to data.
-A straight-line fit is a model of the form:
-$<span class="math notranslate nohighlight">\(
+A straight-line fit is a model of the form:</p>
+<div class="math notranslate nohighlight">
+\[
 y = ax + b
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>a<span class="math notranslate nohighlight">\( is commonly known as the *slope*, and \)</span>b$ is commonly known as the <em>intercept</em>.</p>
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(a\)</span> is commonly known as the <em>slope</em>, and <span class="math notranslate nohighlight">\(b\)</span> is commonly known as the <em>intercept</em>.</p>
 <p>Consider the following data, which is scattered about a line with a slope of 2 and an intercept of –5 (see the following figure):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -618,18 +619,20 @@ It still appears that this approach would be limited to strictly linear relation
 <h2>Basis Function Regression<a class="headerlink" href="#basis-function-regression" title="Link to this heading">#</a></h2>
 <p>One trick you can use to adapt linear regression to nonlinear relationships between variables is to transform the data according to <em>basis functions</em>.
 We have seen one version of this before, in the <code class="docutils literal notranslate"><span class="pre">PolynomialRegression</span></code> pipeline used in <a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html"><span class="std std-doc">Hyperparameters and Model Validation</span></a> and <a class="reference internal" href="05.04-Feature-Engineering.html"><span class="std std-doc">Feature Engineering</span></a>.
-The idea is to take our multidimensional linear model:
-$<span class="math notranslate nohighlight">\(
+The idea is to take our multidimensional linear model:</p>
+<div class="math notranslate nohighlight">
+\[
 y = a_0 + a_1 x_1 + a_2 x_2 + a_3 x_3 + \cdots
-\)</span><span class="math notranslate nohighlight">\(
-and build the \)</span>x_1, x_2, x_3,<span class="math notranslate nohighlight">\( and so on from our single-dimensional input \)</span>x<span class="math notranslate nohighlight">\(.
-That is, we let \)</span>x_n = f_n(x)<span class="math notranslate nohighlight">\(, where \)</span>f_n()$ is some function that transforms our data.</p>
-<p>For example, if <span class="math notranslate nohighlight">\(f_n(x) = x^n\)</span>, our model becomes a polynomial regression:
-$<span class="math notranslate nohighlight">\(
+\]</div>
+<p>and build the <span class="math notranslate nohighlight">\(x_1, x_2, x_3,\)</span> and so on from our single-dimensional input <span class="math notranslate nohighlight">\(x\)</span>.
+That is, we let <span class="math notranslate nohighlight">\(x_n = f_n(x)\)</span>, where <span class="math notranslate nohighlight">\(f_n()\)</span> is some function that transforms our data.</p>
+<p>For example, if <span class="math notranslate nohighlight">\(f_n(x) = x^n\)</span>, our model becomes a polynomial regression:</p>
+<div class="math notranslate nohighlight">
+\[
 y = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + \cdots
-\)</span><span class="math notranslate nohighlight">\(
-Notice that this is *still a linear model*—the linearity refers to the fact that the coefficients \)</span>a_n<span class="math notranslate nohighlight">\( never multiply or divide each other.
-What we have effectively done is taken our one-dimensional \)</span>x<span class="math notranslate nohighlight">\( values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between \)</span>x<span class="math notranslate nohighlight">\( and \)</span>y$.</p>
+\]</div>
+<p>Notice that this is <em>still a linear model</em>—the linearity refers to the fact that the coefficients <span class="math notranslate nohighlight">\(a_n\)</span> never multiply or divide each other.
+What we have effectively done is taken our one-dimensional <span class="math notranslate nohighlight">\(x\)</span> values and projected them into a higher dimension, so that a linear fit can fit more complicated relationships between <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>.</p>
 <section id="polynomial-basis-functions">
 <h3>Polynomial Basis Functions<a class="headerlink" href="#polynomial-basis-functions" title="Link to this heading">#</a></h3>
 <p>This polynomial projection is useful enough that it is built into Scikit-Learn, using the <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code> transformer:</p>
@@ -675,7 +678,7 @@ For example, here is a sine wave with noise (see the following figure):</p>
 <span class="n">yfit</span> <span class="o">=</span> <span class="n">poly_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">xfit</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">])</span>
 
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">);</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xfit</span><span class="p">,</span> <span class="n">yfit</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -796,11 +799,12 @@ Such a penalty is known as <em>regularization</em>, and comes in several forms.<
 <section id="ridge-regression-l-2-regularization">
 <h3>Ridge Regression (<span class="math notranslate nohighlight">\(L_2\)</span> Regularization)<a class="headerlink" href="#ridge-regression-l-2-regularization" title="Link to this heading">#</a></h3>
 <p>Perhaps the most common form of regularization is known as <em>ridge regression</em> or <span class="math notranslate nohighlight">\(L_2\)</span> <em>regularization</em> (sometimes also called <em>Tikhonov regularization</em>).
-This proceeds by penalizing the sum of squares (2-norms) of the model coefficients <span class="math notranslate nohighlight">\(\theta_n\)</span>. In this case, the penalty on the model fit would be:
-$<span class="math notranslate nohighlight">\(
+This proceeds by penalizing the sum of squares (2-norms) of the model coefficients <span class="math notranslate nohighlight">\(\theta_n\)</span>. In this case, the penalty on the model fit would be:</p>
+<div class="math notranslate nohighlight">
+\[
 P = \alpha\sum_{n=1}^N \theta_n^2
-\)</span><span class="math notranslate nohighlight">\(
-where \)</span>\alpha$ is a free parameter that controls the strength of the penalty.
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\alpha\)</span> is a free parameter that controls the strength of the penalty.
 This type of penalized model is built into Scikit-Learn with the <code class="docutils literal notranslate"><span class="pre">Ridge</span></code> estimator (see the following figure):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1260,7 +1264,7 @@ These are all potentially interesting effects, and you now have the tools to beg
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">In Depth: Support Vector Machines</p>
+        <p class="prev-next-title">Support Vector Machines</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
