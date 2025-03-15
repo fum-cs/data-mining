@@ -243,16 +243,19 @@
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -892,7 +895,7 @@ For the sake of this example, our “new data” will be a grid of <em>x</em> va
 <h3>Supervised Learning Example: Iris Classification<a class="headerlink" href="#supervised-learning-example-iris-classification" title="Link to this heading">#</a></h3>
 <p>Let’s take a look at another example of this process, using the Iris dataset we discussed earlier.
 Our question will be this: given a model trained on a portion of the Iris data, how well can we predict the remaining labels?</p>
-<p>For this task, we will use a simple generative model known as <em>Gaussian naive Bayes</em>, which proceeds by assuming each class is drawn from an axis-aligned Gaussian distribution (see <a class="reference internal" href="05.05-Naive-Bayes.html"><span class="std std-doc">In Depth: Naive Bayes Classification</span></a> for more details).
+<p>For this task, we will use a simple generative model known as <em>Gaussian naive Bayes</em>, which proceeds by assuming each class is drawn from an axis-aligned Gaussian distribution (see <a class="reference internal" href="05.05-Naive-Bayes.html"><span class="std std-doc">Naive Bayes Classification</span></a> for more details).
 Because it is so fast and has no hyperparameters to choose, Gaussian naive Bayes is often a good model to use as a baseline classification, before exploring whether improvements can be found through more sophisticated models.</p>
 <p>We would like to evaluate the model on data it has not seen before, so we will split the data into a <em>training set</em> and a <em>testing set</em>.
 This could be done by hand, but it is more convenient to use the <code class="docutils literal notranslate"><span class="pre">train_test_split</span></code> utility function:</p>
@@ -938,7 +941,7 @@ This could be done by hand, but it is more convenient to use the <code class="do
 Recall that the Iris data is four-dimensional: there are four features recorded for each sample.</p>
 <p>The task of dimensionality reduction centers around determining whether there is a suitable lower-dimensional representation that retains the essential features of the data.
 Often dimensionality reduction is used as an aid to visualizing data: after all, it is much easier to plot data in two dimensions than in four dimensions or more!</p>
-<p>Here we will use <em>principal component analysis</em> (PCA; see <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">In Depth: Principal Component Analysis</span></a>), which is a fast linear dimensionality reduction technique.
+<p>Here we will use <em>principal component analysis</em> (PCA; see <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">Principal Component Analysis</span></a>), which is a fast linear dimensionality reduction technique.
 We will ask the model to return two components—that is, a two-dimensional representation of the data.</p>
 <p>Following the sequence of steps outlined earlier, we have:</p>
 <div class="cell docutils container">
@@ -971,7 +974,7 @@ This suggests to us that a relatively straightforward classification will probab
 <h3>Unsupervised Learning Example: Iris Clustering<a class="headerlink" href="#unsupervised-learning-example-iris-clustering" title="Link to this heading">#</a></h3>
 <p>Let’s next look at applying clustering to the Iris data.
 A clustering algorithm attempts to find distinct groups of data without reference to any labels.
-Here we will use a powerful clustering method called a <em>Gaussian mixture model</em> (GMM), discussed in more detail in <a class="reference internal" href="05.12-Gaussian-Mixtures.html"><span class="std std-doc">In Depth: Gaussian Mixture Models</span></a>.
+Here we will use a powerful clustering method called a <em>Gaussian mixture model</em> (GMM), discussed in more detail in <a class="reference internal" href="05.12-Gaussian-Mixtures.html"><span class="std std-doc">Gaussian Mixture Models</span></a>.
 A GMM attempts to model the data as a collection of Gaussian blobs.</p>
 <p>We can fit the Gaussian mixture model as follows:</p>
 <div class="cell docutils container">
@@ -1209,7 +1212,7 @@ Armed with this information about the Estimator API, you can explore the Scikit-
 <section id="further-reading">
 <h3>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Section 2.3.1 of ESL <span id="id1">[<a class="reference internal" href="intro.html#id8" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span></p></li>
+<li><p>Section 2.3.1 of ESL <span id="id1">[<a class="reference internal" href="intro.html#id13" title="Trevor Hastie, Robert Tibshirani, and Jerome Friedman. The elements of statistical learning: data mining, inference and prediction. Springer, 2 edition, 2009. Edition 2, print 12. URL: https://hastie.su.domains/ElemStatLearn/.">HTF09</a>]</span></p></li>
 <li><p>Regression section of <a class="reference external" href="https://fum-cs.github.io/neural-networks/lecture2_1_regression.html">Neural Networks at FUM-CS</a></p></li>
 </ul>
 </section>

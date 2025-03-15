@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>In Depth: Linear Regression &#8212; Data Mining</title>
+    <title>Linear Regression &#8212; Data Mining</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="In Depth: Support Vector Machines" href="05.07-Support-Vector-Machines.html" />
-    <link rel="prev" title="In Depth: Naive Bayes Classification" href="05.05-Naive-Bayes.html" />
+    <link rel="prev" title="Bayesian Decision Theory" href="05.05-Bayesian-Decision-Theory.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -243,16 +243,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Linear Regression</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -472,7 +475,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>In Depth: Linear Regression</h1>
+    <h1>Linear Regression</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -505,9 +508,9 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="in-depth-linear-regression">
-<h1>In Depth: Linear Regression<a class="headerlink" href="#in-depth-linear-regression" title="Link to this heading">#</a></h1>
-<p>Just as naive Bayes (discussed in <a class="reference internal" href="05.05-Naive-Bayes.html"><span class="std std-doc">In Depth: Naive Bayes Classification</span></a>) is a good starting point for classification tasks, linear regression models are a good starting point for regression tasks.
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression">
+<h1>Linear Regression<a class="headerlink" href="#linear-regression" title="Link to this heading">#</a></h1>
+<p>Just as naive Bayes (discussed in <a class="reference internal" href="05.05-Naive-Bayes.html"><span class="std std-doc">Naive Bayes Classification</span></a>) is a good starting point for classification tasks, linear regression models are a good starting point for regression tasks.
 Such models are popular because they can be fit quickly and are straightforward to interpret.
 You are already familiar with the simplest form of linear regression model (i.e., fitting a straight line to two-dimensional data), but such models can be extended to model more complicated data behavior.</p>
 <p>In this chapter we will start with a quick walkthrough of the mathematics behind this well-known problem, before moving on to see how linear models can be generalized to account for more complicated patterns in data.</p>
@@ -1244,12 +1247,12 @@ These are all potentially interesting effects, and you now have the tools to beg
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="05.05-Naive-Bayes.html"
+       href="05.05-Bayesian-Decision-Theory.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">In Depth: Naive Bayes Classification</p>
+        <p class="prev-next-title">Bayesian Decision Theory</p>
       </div>
     </a>
     <a class="right-next"

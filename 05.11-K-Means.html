@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>In Depth: k-Means Clustering &#8212; Data Mining</title>
+    <title>k-Means Clustering &#8212; Data Mining</title>
   
   
   
@@ -61,7 +61,7 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="In Depth: Gaussian Mixture Models" href="05.12-Gaussian-Mixtures.html" />
+    <link rel="next" title="Gaussian Mixture Models" href="05.12-Gaussian-Mixtures.html" />
     <link rel="prev" title="In Depth: Manifold Learning" href="05.10-Manifold-Learning.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -241,16 +241,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -470,7 +473,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>In Depth: k-Means Clustering</h1>
+    <h1>k-Means Clustering</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -504,8 +507,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="in-depth-k-means-clustering">
-<h1>In Depth: k-Means Clustering<a class="headerlink" href="#in-depth-k-means-clustering" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="k-means-clustering">
+<h1>k-Means Clustering<a class="headerlink" href="#k-means-clustering" title="Link to this heading">#</a></h1>
 <p>In the previous chapters we explored unsupervised machine learning models for dimensionality reduction.
 Now we will move on to another class of unsupervised machine learning models: clustering algorithms.
 Clustering algorithms seek to learn, from the properties of the data, an optimal division or discrete labeling of groups of points.</p>
@@ -673,7 +676,7 @@ For example, if we ask the algorithm to identify six clusters, it will happily p
 </div>
 </div>
 <p>Whether the result is meaningful is a question that is difficult to answer definitively; one approach that is rather intuitive, but that we won’t discuss further here, is called <a class="reference external" href="http://scikit-learn.org/stable/auto_examples/cluster/plot_kmeans_silhouette_analysis.html">silhouette analysis</a>.</p>
-<p>Alternatively, you might use a more complicated clustering algorithm that has a better quantitative measure of the fitness per number of clusters (e.g., Gaussian mixture models; see <a class="reference internal" href="05.12-Gaussian-Mixtures.html"><span class="std std-doc">In Depth: Gaussian Mixture Models</span></a>) or which <em>can</em> choose a suitable number of clusters (e.g., DBSCAN, mean-shift, or affinity propagation, all available in the <code class="docutils literal notranslate"><span class="pre">sklearn.cluster</span></code> submodule).</p>
+<p>Alternatively, you might use a more complicated clustering algorithm that has a better quantitative measure of the fitness per number of clusters (e.g., Gaussian mixture models; see <a class="reference internal" href="05.12-Gaussian-Mixtures.html"><span class="std std-doc">Gaussian Mixture Models</span></a>) or which <em>can</em> choose a suitable number of clusters (e.g., DBSCAN, mean-shift, or affinity propagation, all available in the <code class="docutils literal notranslate"><span class="pre">sklearn.cluster</span></code> submodule).</p>
 </section>
 <section id="k-means-is-limited-to-linear-cluster-boundaries">
 <h3>k-means is limited to linear cluster boundaries<a class="headerlink" href="#k-means-is-limited-to-linear-cluster-boundaries" title="Link to this heading">#</a></h3>
@@ -735,7 +738,7 @@ The interface for this is the same as for standard <code class="docutils literal
 We’ll now take a look at a couple of examples.</p>
 <section id="example-1-k-means-on-digits">
 <h3>Example 1: k-Means on Digits<a class="headerlink" href="#example-1-k-means-on-digits" title="Link to this heading">#</a></h3>
-<p>To start, let’s take a look at applying <em>k</em>-means on the same simple digits data that we saw in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc">In-Depth: Decision Trees and Random Forests</span></a> and <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">In Depth: Principal Component Analysis</span></a>.
+<p>To start, let’s take a look at applying <em>k</em>-means on the same simple digits data that we saw in <a class="reference internal" href="05.08-Random-Forests.html"><span class="std std-doc">In-Depth: Decision Trees and Random Forests</span></a> and <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">Principal Component Analysis</span></a>.
 Here we will attempt to use <em>k</em>-means to try to identify similar digits <em>without using the original label information</em>; this might be similar to a first step in extracting meaning from a new dataset about which you don’t have any <em>a priori</em> label information.</p>
 <p>We will start by loading the dataset, then find the clusters.
 Recall that the digits dataset consists of 1,797 samples with 64 features, where each of the 64 features is the brightness of one pixel in an 8 × 8 image:</p>
@@ -1047,7 +1050,7 @@ Now, this kind of approach is not going to match the fidelity of purpose-built i
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">In Depth: Gaussian Mixture Models</p>
+        <p class="prev-next-title">Gaussian Mixture Models</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>In Depth: Gaussian Mixture Models &#8212; Data Mining</title>
+    <title>Gaussian Mixture Models &#8212; Data Mining</title>
   
   
   
@@ -61,8 +61,8 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="In Depth: Kernel Density Estimation" href="05.13-Kernel-Density-Estimation.html" />
-    <link rel="prev" title="In Depth: k-Means Clustering" href="05.11-K-Means.html" />
+    <link rel="next" title="Kernel Density Estimation" href="05.13-Kernel-Density-Estimation.html" />
+    <link rel="prev" title="k-Means Clustering" href="05.11-K-Means.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -241,16 +241,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -470,7 +473,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>In Depth: Gaussian Mixture Models</h1>
+    <h1>Gaussian Mixture Models</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -499,8 +502,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="in-depth-gaussian-mixture-models">
-<h1>In Depth: Gaussian Mixture Models<a class="headerlink" href="#in-depth-gaussian-mixture-models" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="gaussian-mixture-models">
+<h1>Gaussian Mixture Models<a class="headerlink" href="#gaussian-mixture-models" title="Link to this heading">#</a></h1>
 <p>The <em>k</em>-means clustering model explored in the previous chapter is simple and relatively easy to understand, but its simplicity leads to practical challenges in its application.
 In particular, the nonprobabilistic nature of <em>k</em>-means and its use of simple distance from cluster center to assign cluster membership leads to poor performance for many real-world situations.
 In this chapter we will take a look at Gaussian mixture models, which can be viewed as an extension of the ideas behind <em>k</em>-means, but can also be a powerful tool for estimation beyond simple clustering.</p>
@@ -605,7 +608,7 @@ So, for example, if we take the same data and transform it, the cluster assignme
 <p>By eye, we recognize that these transformed clusters are noncircular, and thus circular clusters would be a poor fit.
 Nevertheless, <em>k</em>-means is not flexible enough to account for this, and tries to force-fit the data into four circular clusters.
 This results in a mixing of cluster assignments where the resulting circles overlap: see especially the bottom-right of this plot.
-One might imagine addressing this particular situation by preprocessing the data with PCA (see <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">In Depth: Principal Component Analysis</span></a>), but in practice there is no guarantee that such a global operation will circularize the individual groups.</p>
+One might imagine addressing this particular situation by preprocessing the data with PCA (see <a class="reference internal" href="05.09-Principal-Component-Analysis.html"><span class="std std-doc">Principal Component Analysis</span></a>), but in practice there is no guarantee that such a global operation will circularize the individual groups.</p>
 <p>These two disadvantages of <em>k</em>-means—its lack of flexibility in cluster shape and lack of probabilistic cluster assignment—mean that for many datasets (especially low-dimensional datasets) it may not perform as well as you might hope.</p>
 <p>You might imagine addressing these weaknesses by generalizing the <em>k</em>-means model: for example, you could measure uncertainty in cluster assignment by comparing the distances of each point to <em>all</em> cluster centers, rather than focusing on just the closest.
 You might also imagine allowing the cluster boundaries to be ellipses rather than circles, so as to account for noncircular clusters.
@@ -751,7 +754,7 @@ A more complicated and computationally expensive model (especially as the number
 <h2>Gaussian Mixture Models as Density Estimation<a class="headerlink" href="#gaussian-mixture-models-as-density-estimation" title="Link to this heading">#</a></h2>
 <p>Though the GMM is often categorized as a clustering algorithm, fundamentally it is an algorithm for <em>density estimation</em>.
 That is to say, the result of a GMM fit to some data is technically not a clustering model, but a generative probabilistic model describing the distribution of the data.</p>
-<p>As an example, consider some data generated from Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">make_moons</span></code> function, introduced in <a class="reference internal" href="05.11-K-Means.html"><span class="std std-doc">In Depth: K-Means Clustering</span></a> (see the following figure):</p>
+<p>As an example, consider some data generated from Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">make_moons</span></code> function, introduced in <a class="reference internal" href="05.11-K-Means.html"><span class="std std-doc">K-Means Clustering</span></a> (see the following figure):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_moons</span>
@@ -988,7 +991,7 @@ Such a generative model of digits can prove very useful as a component of a Baye
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">In Depth: k-Means Clustering</p>
+        <p class="prev-next-title">k-Means Clustering</p>
       </div>
     </a>
     <a class="right-next"
@@ -996,7 +999,7 @@ Such a generative model of digits can prove very useful as a component of a Baye
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">In Depth: Kernel Density Estimation</p>
+        <p class="prev-next-title">Kernel Density Estimation</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

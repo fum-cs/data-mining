@@ -63,8 +63,8 @@
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="In Depth: Linear Regression" href="05.06-Linear-Regression.html" />
-    <link rel="prev" title="In Depth: Naive Bayes Classification" href="05.05-Naive-Bayes.html" />
+    <link rel="next" title="Linear Regression" href="05.06-Linear-Regression.html" />
+    <link rel="prev" title="Naive Bayes Classification" href="05.05-Naive-Bayes.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -243,19 +243,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
 
 
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Bayesian Decision Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -514,7 +514,7 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="bayesian-decision-theory">
+  <section class="tex2jax_ignore mathjax_ignore" id="bayesian-decision-theory">
 <h1>Bayesian Decision Theory<a class="headerlink" href="#bayesian-decision-theory" title="Link to this heading">#</a></h1>
 <p>Chapter 2 of Pattern Classification <span id="id1">[<a class="reference internal" href="intro.html#id2" title="Richard O. Duda, Peter E. Hart, and David G. Stork. Pattern Classification (2nd Edition). Wiley-Interscience, 2 edition, November 2000. ISBN 0471056693. URL: https://file.fouladi.ir/courses/pr/books/%5BDuda%5D_PatternClassification.pdf.">DHS00</a>]</span></p>
 <p><img alt="" src="_images/Duda-front.png" /></p>
@@ -540,19 +540,22 @@ document.write(`
 <hr class="docutils" />
 <section id="bayes-formula">
 <h2><strong>3. Bayes’ Formula</strong><a class="headerlink" href="#bayes-formula" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p>Bayes’ Theorem:
-$<span class="math notranslate nohighlight">\(
-P(\omega_j|x) = \frac{p(x|\omega_j) P(\omega_j)}{p(x)}
-\)</span>$</p>
 <ul>
+<li><p>Bayes’ Theorem:</p>
+<div class="math notranslate nohighlight">
+\[
+  P(\omega_j|x) = \frac{p(x|\omega_j) P(\omega_j)}{p(x)}
+  \]</div>
+<ul class="simple">
 <li><p><strong>Posterior</strong> = (Likelihood × Prior) / Evidence</p></li>
 </ul>
 </li>
-<li><p><strong>Evidence</strong> (<span class="math notranslate nohighlight">\( p(x) \)</span>): Normalizing constant, often ignored in classification.
-$<span class="math notranslate nohighlight">\(
-p(x) = \sum_{j=1}^c p(x|\omega_j) P(\omega_j)
-\)</span>$</p></li>
+<li><p><strong>Evidence</strong> (<span class="math notranslate nohighlight">\( p(x) \)</span>): Normalizing constant, often ignored in classification.</p>
+<div class="math notranslate nohighlight">
+\[
+  p(x) = \sum_{j=1}^c p(x|\omega_j) P(\omega_j)
+  \]</div>
+</li>
 </ul>
 <hr class="docutils" />
 <p>The probability <span class="math notranslate nohighlight">\( P(\omega_j) \)</span> is converted to the <strong>a posteriori probability</strong> (or <strong>posterior probability</strong>) <span class="math notranslate nohighlight">\( P(\omega_j|x) \)</span> — the probability of the state of nature being <span class="math notranslate nohighlight">\( \omega_j \)</span> given that feature value <span class="math notranslate nohighlight">\( x \)</span> has been measured. We call <span class="math notranslate nohighlight">\( p(x|\omega_j) \)</span> the <strong>likelihood</strong> of <span class="math notranslate nohighlight">\( \omega_j \)</span> with respect to <span class="math notranslate nohighlight">\( x \)</span> (a term chosen to indicate that, other things being equal, the category <span class="math notranslate nohighlight">\( \omega_j \)</span> for which <span class="math notranslate nohighlight">\( p(x|\omega_j) \)</span> is large is more “likely” to be the true category).</p>
@@ -567,13 +570,13 @@ p(x) = \sum_{j=1}^c p(x|\omega_j) P(\omega_j)
 <ul>
 <li><p>Decide <span class="math notranslate nohighlight">\( \omega_1 \)</span> if <span class="math notranslate nohighlight">\( P(\omega_1|x) &gt; P(\omega_2|x) \)</span>, otherwise decide <span class="math notranslate nohighlight">\( \omega_2 \)</span>.</p></li>
 <li><p>Equivalent to:
-$<span class="math notranslate nohighlight">\(
+<span class="math notranslate nohighlight">\(
 \text{Decide } \omega_1 \text{ if } p(x|\omega_1) P(\omega_1) &gt; p(x|\omega_2) P(\omega_2)
-\)</span>$</p></li>
+\)</span></p></li>
 <li><p>Probability of error:
-$<span class="math notranslate nohighlight">\(
+<span class="math notranslate nohighlight">\(
 P(\text{error}|x) = \min[P(\omega_1|x), P(\omega_2|x)]
-\)</span>$</p></li>
+\)</span></p></li>
 </ul>
 </li>
 </ul>
@@ -627,9 +630,9 @@ Figure 2.5: The functional structure of a general statistical pattern classifier
 <h2><strong>7. Normal Density</strong><a class="headerlink" href="#normal-density" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>Univariate Normal Density</strong>:
-$<span class="math notranslate nohighlight">\(
+<span class="math notranslate nohighlight">\(
 p(x) = \frac{1}{\sqrt{2\pi}\sigma} \exp\left[-\frac{1}{2}\left(\frac{x-\mu}{\sigma}\right)^2\right]
-\)</span>$</p></li>
+\)</span></p></li>
 </ul>
 <p>For which the <strong>expected value</strong> of <span class="math notranslate nohighlight">\(x\)</span> (an average, here taken over the feature space) is:</p>
 <div class="math notranslate nohighlight">
@@ -1017,7 +1020,7 @@ g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x}-\boldsymbol{\mu}_i)^T \boldsymbol{\Si
 </ul>
 <hr class="docutils" />
 <!-- 
-### **12. Example: Two-Category Classification**
+## **12. Example: Two-Category Classification**
 - Given two classes $ \omega_1 $ and $ \omega_2 $ with:
   - Mean vectors:
     $$
@@ -1074,7 +1077,7 @@ g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x}-\boldsymbol{\mu}_i)^T \boldsymbol{\Si
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">In Depth: Naive Bayes Classification</p>
+        <p class="prev-next-title">Naive Bayes Classification</p>
       </div>
     </a>
     <a class="right-next"
@@ -1082,7 +1085,7 @@ g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x}-\boldsymbol{\mu}_i)^T \boldsymbol{\Si
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">In Depth: Linear Regression</p>
+        <p class="prev-next-title">Linear Regression</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

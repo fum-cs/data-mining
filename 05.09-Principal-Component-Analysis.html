@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>In Depth: Principal Component Analysis &#8212; Data Mining</title>
+    <title>Principal Component Analysis &#8212; Data Mining</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="In Depth: Manifold Learning" href="05.10-Manifold-Learning.html" />
-    <link rel="prev" title="In Depth: Decision Trees and Random Forests" href="05.08-Random-Forests.html" />
+    <link rel="prev" title="Decision Trees and Random Forests" href="05.08-Random-Forests.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -243,16 +243,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -472,7 +475,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>In Depth: Principal Component Analysis</h1>
+    <h1>Principal Component Analysis</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -503,8 +506,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="in-depth-principal-component-analysis">
-<h1>In Depth: Principal Component Analysis<a class="headerlink" href="#in-depth-principal-component-analysis" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="principal-component-analysis">
+<h1>Principal Component Analysis<a class="headerlink" href="#principal-component-analysis" title="Link to this heading">#</a></h1>
 <p>Up until now, we have been looking in depth at supervised learning estimators: those estimators that predict labels based on labeled training data.
 Here we begin looking at several unsupervised estimators, which can highlight interesting aspects of the data without reference to any known labels.</p>
 <p>In this chapter we will explore what is perhaps one of the most broadly used unsupervised algorithms, principal component analysis (PCA).
@@ -540,7 +543,7 @@ Consider these 200 points (see the following figure):</p>
 </div>
 </div>
 <p>By eye, it is clear that there is a nearly linear relationship between the <em>x</em> and <em>y</em> variables.
-This is reminiscent of the linear regression data we explored in <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">In Depth: Linear Regression</span></a>, but the problem setting here is slightly different: rather than attempting to <em>predict</em> the <em>y</em> values from the <em>x</em> values, the unsupervised learning problem attempts to learn about the <em>relationship</em> between the <em>x</em> and <em>y</em> values.</p>
+This is reminiscent of the linear regression data we explored in <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">Linear Regression</span></a>, but the problem setting here is slightly different: rather than attempting to <em>predict</em> the <em>y</em> values from the <em>x</em> values, the unsupervised learning problem attempts to learn about the <em>relationship</em> between the <em>x</em> and <em>y</em> values.</p>
 <p>In principal component analysis, this relationship is quantified by finding a list of the <em>principal axes</em> in the data, and using those axes to describe the dataset.
 Using Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">PCA</span></code> estimator, we can compute this as follows:</p>
 <div class="cell docutils container">
@@ -960,7 +963,7 @@ Given any high-dimensional dataset, I tend to start with PCA in order to visuali
 Certainly PCA is not useful for every high-dimensional dataset, but it offers a straightforward and efficient path to gaining insight into high-dimensional data.</p>
 <p>PCA’s main weakness is that it tends to be highly affected by outliers in the data.
 For this reason, several robust variants of PCA have been developed, many of which act to iteratively discard data points that are poorly described by the initial components.
-Scikit-Learn includes a number of interesting variants on PCA in the <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code> submodule; one example is <code class="docutils literal notranslate"><span class="pre">SparsePCA</span></code>, which introduces a regularization term (see <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">In Depth: Linear Regression</span></a>) that serves to enforce sparsity of the components.</p>
+Scikit-Learn includes a number of interesting variants on PCA in the <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code> submodule; one example is <code class="docutils literal notranslate"><span class="pre">SparsePCA</span></code>, which introduces a regularization term (see <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">Linear Regression</span></a>) that serves to enforce sparsity of the components.</p>
 <p>In the following chapters, we will look at other unsupervised learning methods that build on some of the ideas of PCA.</p>
 </section>
 </section>
@@ -1001,7 +1004,7 @@ Scikit-Learn includes a number of interesting variants on PCA in the <code class
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">In Depth: Decision Trees and Random Forests</p>
+        <p class="prev-next-title">Decision Trees and Random Forests</p>
       </div>
     </a>
     <a class="right-next"

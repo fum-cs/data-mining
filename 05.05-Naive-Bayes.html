@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>In Depth: Naive Bayes Classification &#8212; Data Mining</title>
+    <title>Naive Bayes Classification &#8212; Data Mining</title>
   
   
   
@@ -243,19 +243,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Naive Bayes Classification</a></li>
 
 
 
 <li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -475,7 +475,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>In Depth: Naive Bayes Classification</h1>
+    <h1>Naive Bayes Classification</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -485,7 +485,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">In Depth: Naive Bayes Classification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Naive Bayes Classification</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grasshoppers-vs-katydids">Grasshoppers vs. Katydids</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antenna-length-vs-abdomen-length">Antenna Length vs. Abdomen Length</a></li>
@@ -539,7 +539,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-text">Example: Classifying Text</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-readning">Further Readning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -554,8 +557,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="in-depth-naive-bayes-classification">
-<h1>In Depth: Naive Bayes Classification<a class="headerlink" href="#in-depth-naive-bayes-classification" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="naive-bayes-classification">
+<h1>Naive Bayes Classification<a class="headerlink" href="#naive-bayes-classification" title="Link to this heading">#</a></h1>
 <p>The previous four chapters have given a general overview of the concepts of machine learning.
 In this chapter and the ones that follow, we will be taking a
 closer look first at four algorithms for  supervised learning,
@@ -567,8 +570,9 @@ This chapter will provide an intuitive explanation of how naive Bayes classifier
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="naive-bayes-classifier">
 <h1>Naive Bayes Classifier<a class="headerlink" href="#naive-bayes-classifier" title="Link to this heading">#</a></h1>
-<p><strong>Eamonn Keogh UCR</strong></p>
-<p><img alt="" src="img/BCW_page_01.png" /></p>
+<p>by: <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/">Eamonn Keogh</a>,
+<a class="reference external" href="https://www1.cs.ucr.edu/">CS, UCR</a>. <a class="reference external" href="https://www.cs.ucr.edu/~eamonn/CE/Bayesian%20Classification%20withInsect_examples.pdf">PDF</a></p>
+<p><img alt="" src="_images/BCW_page_01.jpg" /></p>
 <p><strong>Thomas Bayes 1702 - 1761</strong></p>
 <p>We will start off with a visual intuition before looking at the math…</p>
 <hr class="docutils" />
@@ -1388,8 +1392,10 @@ Here’s a utility function that will return the prediction for a single string:
 Even a very naive algorithm, when used carefully and trained on a large set of high-dimensional data, can be surprisingly effective.</p>
 </section>
 </section>
+<section id="further-readning">
+<h2>Further Readning<a class="headerlink" href="#further-readning" title="Link to this heading">#</a></h2>
 <section id="when-to-use-naive-bayes">
-<h2>When to Use Naive Bayes<a class="headerlink" href="#when-to-use-naive-bayes" title="Link to this heading">#</a></h2>
+<h3>When to Use Naive Bayes<a class="headerlink" href="#when-to-use-naive-bayes" title="Link to this heading">#</a></h3>
 <p>Because naive Bayes classifiers make such stringent assumptions about data, they will generally not perform as well as more complicated models.
 That said, they have several advantages:</p>
 <ul class="simple">
@@ -1410,6 +1416,7 @@ If it does not perform well, then you can begin exploring more sophisticated mod
 <p>The last two points seem distinct, but they actually are related: as the dimensionality of a dataset grows, it is much less likely for any two points to be found close together (after all, they must be close in <em>every single dimension</em> to be close overall).
 This means that clusters in high dimensions tend to be more separated, on average, than clusters in low dimensions, assuming the new dimensions actually add information.
 For this reason, simplistic classifiers like the ones discussed here tend to work as well or better than more complicated classifiers as the dimensionality grows: once you have enough data, even a simple model can be very powerful.</p>
+</section>
 </section>
 </section>
 
@@ -1477,7 +1484,7 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">In Depth: Naive Bayes Classification</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Naive Bayes Classification</a></li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#naive-bayes-classifier">Naive Bayes Classifier</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grasshoppers-vs-katydids">Grasshoppers vs. Katydids</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#antenna-length-vs-abdomen-length">Antenna Length vs. Abdomen Length</a></li>
@@ -1531,7 +1538,10 @@ For this reason, simplistic classifiers like the ones discussed here tend to wor
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-classifying-text">Example: Classifying Text</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-readning">Further Readning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-naive-bayes">When to Use Naive Bayes</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>In Depth: Kernel Density Estimation &#8212; Data Mining</title>
+    <title>Kernel Density Estimation &#8212; Data Mining</title>
   
   
   
@@ -64,7 +64,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Application: A Face Detection Pipeline" href="05.14-Image-Features.html" />
-    <link rel="prev" title="In Depth: Gaussian Mixture Models" href="05.12-Gaussian-Mixtures.html" />
+    <link rel="prev" title="Gaussian Mixture Models" href="05.12-Gaussian-Mixtures.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -243,16 +243,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -472,7 +475,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>In Depth: Kernel Density Estimation</h1>
+    <h1>Kernel Density Estimation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -501,8 +504,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="in-depth-kernel-density-estimation">
-<h1>In Depth: Kernel Density Estimation<a class="headerlink" href="#in-depth-kernel-density-estimation" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="kernel-density-estimation">
+<h1>Kernel Density Estimation<a class="headerlink" href="#kernel-density-estimation" title="Link to this heading">#</a></h1>
 <p>In the previous chapter we covered Gaussian mixture models, which are a kind of hybrid between a clustering estimator and a density estimator.
 Recall that a density estimator is an algorithm that takes a <span class="math notranslate nohighlight">\(D\)</span>-dimensional dataset and produces an estimate of the <span class="math notranslate nohighlight">\(D\)</span>-dimensional probability distribution that data is drawn from.
 The GMM algorithm accomplishes this by representing the density as a weighted sum of Gaussian distributions.
@@ -742,7 +745,7 @@ Because we are looking at such a small dataset, we will use leave-one-out cross-
 <section id="example-not-so-naive-bayes">
 <h2>Example: Not-so-Naive Bayes<a class="headerlink" href="#example-not-so-naive-bayes" title="Link to this heading">#</a></h2>
 <p>This example looks at Bayesian generative classification with KDE, and demonstrates how to use the Scikit-Learn architecture to create a custom estimator.</p>
-<p>In <a class="reference internal" href="05.05-Naive-Bayes.html"><span class="std std-doc">In Depth: Naive Bayes Classification</span></a> we explored naive Bayesian classification, in which we create a simple generative model for each class, and use these models to build a fast classifier.
+<p>In <a class="reference internal" href="05.05-Naive-Bayes.html"><span class="std std-doc">Naive Bayes Classification</span></a> we explored naive Bayesian classification, in which we create a simple generative model for each class, and use these models to build a fast classifier.
 For Gaussian naive Bayes, the generative model is a simple axis-aligned Gaussian.
 With a density estimation algorithm like KDE, we can remove the “naive” element and perform the same classification with a more sophisticated generative model for each class.
 It’s still Bayesian classification, but it’s no longer naive.</p>
@@ -964,7 +967,7 @@ If desired, this offers an intuitive window into the reasons for a particular cl
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">In Depth: Gaussian Mixture Models</p>
+        <p class="prev-next-title">Gaussian Mixture Models</p>
       </div>
     </a>
     <a class="right-next"

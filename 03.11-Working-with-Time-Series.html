@@ -243,16 +243,19 @@
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">In Depth: Naive Bayes Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
 
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">In Depth: Linear Regression</a></li>
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">In Depth: Support Vector Machines</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">In Depth: Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">In Depth: Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">In Depth: Manifold Learning</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">In Depth: k-Means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">In Depth: Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">In Depth: Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-K-Means.html">k-Means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
 </ul>
 </details></li>
@@ -1576,7 +1579,7 @@ Let’s resample by week (see the following figure):</p>
 <img alt="_images/070015680a98a64c833bd672e30fed3f2e141e885117b4c3c0d83b6b90cb8a5c.png" src="_images/070015680a98a64c833bd672e30fed3f2e141e885117b4c3c0d83b6b90cb8a5c.png" />
 </div>
 </div>
-<p>This reveals some trends: as you might expect, people bicycle more in the summer than in the winter, and even within a particular season the bicycle use varies from week to week (likely dependent on weather; see <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">In Depth: Linear Regression</span></a>, where we explore this further). Further, the effect of the COVID-19 pandemic on commuting patterns is quite clear, starting in early 2020.</p>
+<p>This reveals some trends: as you might expect, people bicycle more in the summer than in the winter, and even within a particular season the bicycle use varies from week to week (likely dependent on weather; see <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">Linear Regression</span></a>, where we explore this further). Further, the effect of the COVID-19 pandemic on commuting patterns is quite clear, starting in early 2020.</p>
 <p>Another option that comes in handy for aggregating the data is to use a rolling mean, utilizing the <code class="docutils literal notranslate"><span class="pre">pd.rolling_mean</span></code> function.
 Here we’ll examine the 30-day rolling mean of our data, making sure to center the window (see the following figure):</p>
 <div class="cell docutils container">
@@ -1668,7 +1671,7 @@ We’ll start by grouping by flags marking the weekend and the time of day:</p>
 </div>
 <p>The result shows a bimodal commuting pattern during the work week, and a unimodal recreational pattern during the weekends.
 It might be interesting to dig through this data in more detail and examine the effects of weather, temperature, time of year, and other factors on people’s commuting patterns; for further discussion, see my blog post <a class="reference external" href="https://jakevdp.github.io/blog/2014/06/10/is-seattle-really-seeing-an-uptick-in-cycling/">“Is Seattle Really Seeing an Uptick in Cycling?”</a>, which uses a subset of this data.
-We will also revisit this dataset in the context of modeling in <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">In Depth: Linear Regression</span></a>.</p>
+We will also revisit this dataset in the context of modeling in <a class="reference internal" href="05.06-Linear-Regression.html"><span class="std std-doc">Linear Regression</span></a>.</p>
 </section>
 </section>
 </section>
