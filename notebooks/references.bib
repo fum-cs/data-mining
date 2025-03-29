@@ -1,37 +1,49 @@
 ---
 ---
-
-@book{Duda2000,
-  author = {Duda, Richard O. and Hart, Peter E. and Stork, David G.},
-  edition = 2,
-  isbn = {0471056693},
-  month = {November},
-  publisher = {Wiley-Interscience},
-  title = {Pattern Classification (2nd Edition)},
-  year = 2000,
-  url = {https://file.fouladi.ir/courses/pr/books/%5BDuda%5D_PatternClassification.pdf}
+@inproceedings{Achanta2017Superpixels,
+  author    = {Achanta, Radhakrishna and Süsstrunk, Sabine},
+  booktitle = {2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
+  title     = {Superpixels and Polygons Using Simple Non-iterative Clustering},
+  year      = {2017},
+  volume    = {},
+  number    = {},
+  pages     = {4895-4904},
+  keywords  = {Image segmentation;Clustering algorithms;Partitioning algorithms;Image color analysis;Memory management;Iterative algorithms;Estimation},
+  doi       = {10.1109/CVPR.2017.520}
 }
 
 
-@article {Ghayoomi2022Application,
-author = {Ghayoomi, Masood and Mousavian, Maryam},
-title = {Application of the Neural Network-based Machine Learning Method to Classify Scientific Articles},
-journal = {Iranian Journal of Information Processing and Management},
-volume = {37},
-number = {4},
-pages = {1244-1217},
-year  = {2022},
-publisher = { Iranian Research Institute for Information Science and Technology (IranDoc)},
-issn = {2251-8223}, 
-eissn = {2251-8231}, 
-doi = {10.35050/JIPM010.2022.008},
-abstract = {Since 2000s (1380s according to the Iran’s solar calendar), the increasing rate of writing and publishing scientific articles in Iran has become very intense. In addition to the governmental organizations, such as Irandoc &amp; the National Library and Archives of the Islamic Republic of Iran, this caused numerous other online systems, such as the General Portal of Humanities, Noormags, Magiran, Elmnet, Civilica, etc, to manage knowledge and to provide structured archives of the scientific documents. Each of these archives provides facilities to the user. One of these facilities is searching on the documents. An accurate search can greatly improve the usage of these online systems. To increase the accuracy of the search result, it is necessary to determine the scientific field of articles. Classifying large volumes of scientific resources in different fields is very time-consuming. Using machinery methods can be a solution to reduce the severity of the task.The main contribution of this paper is to provide a classification model to classify Persian scientific articles. Although in previous studies, the classification task has been mainly used for simple texts, in this study, the neural network-based classification models, such as convolutional and perceptron neural networks, are used with the contextualized semantic representation, such as ParsBERT; and the results are compared with the other common method utilized for vectorization, namely Word2Vec. To this end, we use the data from the General Portal of Humanities, which includes various articles in the Humanities and each article contains the label of the field. One of the neural network characteristics is that a set of hidden features from the data in the vector space is created and used to train the model. According to the experimental results, the Perceptron classifier that utilized ParsBERT representation obtained the highest performance which is 74.71% based on the Micro F-score, and 72.55% based on the Macro F-score.},
-keywords = {Scientific publications,Humanities,Classification,Neural network,Vector Space,BERT},
-title_fa = {کاربرد یادگیری ماشینی مبتنی‌بر شبکه عصبی برای دسته‌بندی مستندات علمی},
-abstract_fa = {از دهه 1380 شمسی، نگارش و انتشار مقالات علمی در ایران سرعت بسیار زیادی یافته‎ و سبب شده افزون ‌‌بر سازمان‎های دولتی مانند «ایرانداک» و «سازمان اسناد و کتابخانه ملی جمهوری اسلامی ایران»، سامانه‌های برخط متعدد دیگری چون «پرتال جامع علوم انسانی»، «نورمگز»، «مگ‌ایران»، «علم‌نت»، «سیویلیکا» و غیره اقدام به مدیریت دانش و تهیه بایگانی‌های ساختارمند مستندات علمی کنند. هر کدام از این بایگانی‌ها امکاناتی را در اختیار کاربر قرار می‌دهد. یکی ‌از این امکانات، قابلیت جست‌وجوست و جست‌وجوی دقیق می‌تواند بر کاربریِ این سامانه‌ها تأثیر به‌سزایی بگذارد. برای افزایش دقت جست‌وجو نیاز است حوزه علمی مقالات مشخص شود. دسته‌بندی حجم زیاد منابع علمی در حوزه‌های مختلف بسیار زمان‌بر است و استفاده از روش‌های ماشینی به‌عنوان یک راه‌حل می‎تواند از این کار طاقت‌فرسا بکاهد.هدف اصلی این مقاله ارائه یک مدل دسته‌بندی برای تعیین حوزه مقالات علمی است. اگرچه در پژوهش‌های پیشینِ دسته‌بندی، به‌طور عمده، الگوریتم‌های دسته‌بندیِ متداول برای متن ساده به‌کار رفته‌اند، در این پژوهش تلاش می‌شود افزون ‌بر استفاده از این دسته‌بندی‌ها، از دسته‌بندهای مبتنی‌ بر شبکه عصبی، مانند شبکه عصبی «پیچشی» و «پرسپترون»، به ‌همراه بازنمایی معنایی مبتنی ‌بر بافت، مانند «پارس‌برت» استفاده شود و نتایج آن با سایر روش‌های متداول در ساخت بردار مستندات، مانند «ورد2وک» مقایسه شود. برای این هدف، از داده‌های «پرتال علوم انسانی» که دربرگیرنده مقالات متنوع علوم انسانی است، استفاده می‌کنیم. ویژگی این داده مشخص ‌بودن حوزه تخصصی هر مقاله است. یکی ‌از ویژگی‌های شبکه عصبی این است که برایندی از ویژگی‌های نهفته از داده در فضای برداریِ ساخته‌شده شکل می‌گیرد و برای آموزش مدل استفاده می‌شود. بر اساس نتایج عملی، دسته‌بند «پرسپترون» مبتنی ‌بر «پارس‌برت» بالاترین کاراییِ 71/74 درصدی بر اساس امتیاز F میکرو و کارایی 55/72 درصدی بر اساس امتیاز F ماکرو را به‌‌دست آورده ‌است},
-keywords_fa = {Scientific publications,Humanities,Classification,Neural network,Vector Space,BERT},	
-url = {https://jipm.irandoc.ac.ir/article_699699.html},
-eprint = {https://jipm.irandoc.ac.ir/article_699699_499edcec59b5f54fe0ce422abd7e629b.pdf}
+@book{Duda2000,
+  author    = {Duda, Richard O. and Hart, Peter E. and Stork, David G.},
+  edition   = 2,
+  isbn      = {0471056693},
+  month     = {November},
+  publisher = {Wiley-Interscience},
+  title     = {Pattern Classification (2nd Edition)},
+  year      = 2000,
+  url       = {https://file.fouladi.ir/courses/pr/books/%5BDuda%5D_PatternClassification.pdf}
+}
+
+
+@article{Ghayoomi2022Application,
+  author      = {Ghayoomi, Masood and Mousavian, Maryam},
+  title       = {Application of the Neural Network-based Machine Learning Method to Classify Scientific Articles},
+  journal     = {Iranian Journal of Information Processing and Management},
+  volume      = {37},
+  number      = {4},
+  pages       = {1244-1217},
+  year        = {2022},
+  publisher   = { Iranian Research Institute for Information Science and Technology (IranDoc)},
+  issn        = {2251-8223},
+  eissn       = {2251-8231},
+  doi         = {10.35050/JIPM010.2022.008},
+  abstract    = {Since 2000s (1380s according to the Iran’s solar calendar), the increasing rate of writing and publishing scientific articles in Iran has become very intense. In addition to the governmental organizations, such as Irandoc &amp; the National Library and Archives of the Islamic Republic of Iran, this caused numerous other online systems, such as the General Portal of Humanities, Noormags, Magiran, Elmnet, Civilica, etc, to manage knowledge and to provide structured archives of the scientific documents. Each of these archives provides facilities to the user. One of these facilities is searching on the documents. An accurate search can greatly improve the usage of these online systems. To increase the accuracy of the search result, it is necessary to determine the scientific field of articles. Classifying large volumes of scientific resources in different fields is very time-consuming. Using machinery methods can be a solution to reduce the severity of the task.The main contribution of this paper is to provide a classification model to classify Persian scientific articles. Although in previous studies, the classification task has been mainly used for simple texts, in this study, the neural network-based classification models, such as convolutional and perceptron neural networks, are used with the contextualized semantic representation, such as ParsBERT; and the results are compared with the other common method utilized for vectorization, namely Word2Vec. To this end, we use the data from the General Portal of Humanities, which includes various articles in the Humanities and each article contains the label of the field. One of the neural network characteristics is that a set of hidden features from the data in the vector space is created and used to train the model. According to the experimental results, the Perceptron classifier that utilized ParsBERT representation obtained the highest performance which is 74.71% based on the Micro F-score, and 72.55% based on the Macro F-score.},
+  keywords    = {Scientific publications,Humanities,Classification,Neural network,Vector Space,BERT},
+  title_fa    = {کاربرد یادگیری ماشینی مبتنی‌بر شبکه عصبی برای دسته‌بندی مستندات علمی},
+  abstract_fa = {از دهه 1380 شمسی، نگارش و انتشار مقالات علمی در ایران سرعت بسیار زیادی یافته‎ و سبب شده افزون ‌‌بر سازمان‎های دولتی مانند «ایرانداک» و «سازمان اسناد و کتابخانه ملی جمهوری اسلامی ایران»، سامانه‌های برخط متعدد دیگری چون «پرتال جامع علوم انسانی»، «نورمگز»، «مگ‌ایران»، «علم‌نت»، «سیویلیکا» و غیره اقدام به مدیریت دانش و تهیه بایگانی‌های ساختارمند مستندات علمی کنند. هر کدام از این بایگانی‌ها امکاناتی را در اختیار کاربر قرار می‌دهد. یکی ‌از این امکانات، قابلیت جست‌وجوست و جست‌وجوی دقیق می‌تواند بر کاربریِ این سامانه‌ها تأثیر به‌سزایی بگذارد. برای افزایش دقت جست‌وجو نیاز است حوزه علمی مقالات مشخص شود. دسته‌بندی حجم زیاد منابع علمی در حوزه‌های مختلف بسیار زمان‌بر است و استفاده از روش‌های ماشینی به‌عنوان یک راه‌حل می‎تواند از این کار طاقت‌فرسا بکاهد.هدف اصلی این مقاله ارائه یک مدل دسته‌بندی برای تعیین حوزه مقالات علمی است. اگرچه در پژوهش‌های پیشینِ دسته‌بندی، به‌طور عمده، الگوریتم‌های دسته‌بندیِ متداول برای متن ساده به‌کار رفته‌اند، در این پژوهش تلاش می‌شود افزون ‌بر استفاده از این دسته‌بندی‌ها، از دسته‌بندهای مبتنی‌ بر شبکه عصبی، مانند شبکه عصبی «پیچشی» و «پرسپترون»، به ‌همراه بازنمایی معنایی مبتنی ‌بر بافت، مانند «پارس‌برت» استفاده شود و نتایج آن با سایر روش‌های متداول در ساخت بردار مستندات، مانند «ورد2وک» مقایسه شود. برای این هدف، از داده‌های «پرتال علوم انسانی» که دربرگیرنده مقالات متنوع علوم انسانی است، استفاده می‌کنیم. ویژگی این داده مشخص ‌بودن حوزه تخصصی هر مقاله است. یکی ‌از ویژگی‌های شبکه عصبی این است که برایندی از ویژگی‌های نهفته از داده در فضای برداریِ ساخته‌شده شکل می‌گیرد و برای آموزش مدل استفاده می‌شود. بر اساس نتایج عملی، دسته‌بند «پرسپترون» مبتنی ‌بر «پارس‌برت» بالاترین کاراییِ 71/74 درصدی بر اساس امتیاز F میکرو و کارایی 55/72 درصدی بر اساس امتیاز F ماکرو را به‌‌دست آورده ‌است},
+  keywords_fa = {Scientific publications,Humanities,Classification,Neural network,Vector Space,BERT},
+  url         = {https://jipm.irandoc.ac.ir/article_699699.html},
+  eprint      = {https://jipm.irandoc.ac.ir/article_699699_499edcec59b5f54fe0ce422abd7e629b.pdf}
 }
 
 @book{Theodoridis2008pattern,
