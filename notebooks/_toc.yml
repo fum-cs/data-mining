@@ -65,6 +65,8 @@ parts:
       - file: 05.05-Naive-Bayes
       - file: 05.05-Bayesian-Decision-Theory
       - file: Mahalanobis-Distance
+      - file: kNN-Classification-Evaluation
+      - file: Voronoi-Diagrams-and-Classification2Clustering
       - file: 05.06-Linear-Regression
       - file: 05.07-Support-Vector-Machines
       - file: 05.08-Random-Forests
