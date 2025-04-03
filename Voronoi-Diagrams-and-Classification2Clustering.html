@@ -1,0 +1,875 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Voronoi Diagrams and Their Connections to Classification &#8212; Data Mining</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Voronoi-Diagrams-and-Classification2Clustering';</script>
+    <link rel="icon" href="_static/fum-logo.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Clustering" href="05.11-Clustering.html" />
+    <link rel="prev" title="k-Nearest Neighbors and Classification Evaluation Metrics" href="kNN-Classification-Evaluation.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/fum-cs-logo.png" class="logo__image only-light" alt="Data Mining - Home"/>
+    <script>document.write(`<img src="_static/fum-cs-logo.png" class="logo__image only-dark" alt="Data Mining - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to Data Mining Course
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Introduction to NumPy</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="02.00-Introduction-to-NumPy.html">Introduction to NumPy</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="02.01-Understanding-Data-Types.html">Understanding Data Types in Python</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.02-The-Basics-Of-NumPy-Arrays.html">The Basics of NumPy Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.03-Computation-on-arrays-ufuncs.html">Computation on NumPy Arrays: Universal Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.04-Computation-on-arrays-aggregates.html">Aggregations: min, max, and Everything in Between</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.05-Computation-on-arrays-broadcasting.html">Computation on Arrays: Broadcasting</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.06-Boolean-Arrays-and-Masks.html">Comparisons, Masks, and Boolean Logic</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.07-Fancy-Indexing.html">Fancy Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.08-Sorting.html">Sorting Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02.09-Structured-Data-NumPy.html">Structured Data: NumPy’s Structured Arrays</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Data Manipulation with Pandas</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="03.00-Introduction-to-Pandas.html">Data Manipulation with Pandas</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="03.01-Introducing-Pandas-Objects.html">Introducing Pandas Objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.02-Data-Indexing-and-Selection.html">Data Indexing and Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.03-Operations-in-Pandas.html">Operating on Data in Pandas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.04-Missing-Values.html">Handling Missing Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.05-Hierarchical-Indexing.html">Hierarchical Indexing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.06-Concat-And-Append.html">Combining Datasets: concat and append</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.07-Merge-and-Join.html">Combining Datasets: merge and join</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.08-Aggregation-and-Grouping.html">Aggregation and Grouping</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.09-Pivot-Tables.html">Pivot Tables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.10-Working-With-Strings.html">Vectorized String Operations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.11-Working-with-Time-Series.html">Working with Time Series</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.12-Performance-Eval-and-Query.html">High-Performance Pandas: eval and query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="03.13-Further-Resources.html">Further Resources</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Visualization with Matplotlib</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="04.00-Introduction-To-Matplotlib.html">Visualization with Matplotlib</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="04.01-Simple-Line-Plots.html">Simple Line Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.02-Simple-Scatter-Plots.html">Simple Scatter Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.03-Errorbars.html">Visualizing Uncertainties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.04-Density-and-Contour-Plots.html">Density and Contour Plots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.05-Histograms-and-Binnings.html">Histograms, Binnings, and Density</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.06-Customizing-Legends.html">Customizing Plot Legends</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.07-Customizing-Colorbars.html">Customizing Colorbars</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.08-Multiple-Subplots.html">Multiple Subplots</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.09-Text-and-Annotation.html">Text and Annotation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.10-Customizing-Ticks.html">Customizing Ticks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.11-Settings-and-Stylesheets.html">Customizing Matplotlib: Configurations and Stylesheets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.12-Three-Dimensional-Plotting.html">Three-Dimensional Plotting in Matplotlib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.14-Visualization-With-Seaborn.html">Visualization with Seaborn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="04.15-Further-Resources.html">Further Resources</a></li>
+</ul>
+</details></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="05.00-Machine-Learning.html">Machine Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.04-Feature-Engineering.html">Feature Engineering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.05-Naive-Bayes.html">Naive Bayes Classification</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Voronoi Diagrams and Their Connections to Classification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="K-Means-Clustering.html">k-means Clustering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
+</ul>
+</details></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-launch-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Launch interactive content">
+    <i class="fas fa-rocket"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://colab.research.google.com/github/fum-cs/data-mining/blob/main/docs/Voronoi-Diagrams-and-Classification2Clustering.ipynb" target="_blank"
+   class="btn btn-sm dropdown-item"
+   title="Launch on Colab"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  
+    <img alt="Colab logo" src="_static/images/logo_colab.png">
+  </span>
+<span class="btn__text-container">Colab</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/data-mining" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fum-cs/data-mining/issues/new?title=Issue%20on%20page%20%2FVoronoi-Diagrams-and-Classification2Clustering.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/Voronoi-Diagrams-and-Classification2Clustering.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Voronoi Diagrams and Their Connections to Classification</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-voronoi-diagrams">1. Introduction to Voronoi Diagrams</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-voronoi-diagrams">Properties of Voronoi Diagrams</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-voronoi-diagrams">Applications of Voronoi Diagrams</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voronoi-diagrams-and-delaunay-triangulation">2. Voronoi Diagrams and Delaunay Triangulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-voronoi-diagrams-and-delaunay-triangulation">Relationship between Voronoi Diagrams and Delaunay Triangulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-knn-classification">3. Connection to kNN Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-and-voronoi-diagrams">1-NN and Voronoi Diagrams</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-decision-theory">4. Connection to Bayesian Decision Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-decision-boundaries">Bayesian Decision Boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-equal-covariance-matrices">Case 1: Equal Covariance Matrices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lloyd-s-relaxation-algorithm">5. Lloyd’s Relaxation Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-steps">Algorithm Steps:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-lloyd-s-relaxation-algorithm">Exercise: Lloyd’s Relaxation Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">6. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="voronoi-diagrams-and-their-connections-to-classification">
+<h1>Voronoi Diagrams and Their Connections to Classification<a class="headerlink" href="#voronoi-diagrams-and-their-connections-to-classification" title="Link to this heading">#</a></h1>
+<p>This notebook covers:</p>
+<ol class="arabic simple">
+<li><p>Introduction to Voronoi diagrams</p></li>
+<li><p>Voronoi diagrams and Delaunay triangulation</p></li>
+<li><p>Connection to kNN classification</p></li>
+<li><p>Connection to Bayesian decision theory</p></li>
+<li><p>Lloyd’s relaxation algorithm</p></li>
+</ol>
+<section id="introduction-to-voronoi-diagrams">
+<h2>1. Introduction to Voronoi Diagrams<a class="headerlink" href="#introduction-to-voronoi-diagrams" title="Link to this heading">#</a></h2>
+<p>A Voronoi diagram is a partitioning of a plane into regions based on the distance to a specified set of points (called seeds, sites, or generators). For each seed, there is a corresponding region consisting of all points closer to that seed than to any other.</p>
+<section id="definition">
+<h3>Definition<a class="headerlink" href="#definition" title="Link to this heading">#</a></h3>
+<p>Given a set of points <span class="math notranslate nohighlight">\(P = \{p_1, p_2, ..., p_n\}\)</span> in a plane, the Voronoi diagram divides the plane into <span class="math notranslate nohighlight">\(n\)</span> regions, where each region <span class="math notranslate nohighlight">\(V(p_i)\)</span> contains all points that are closer to <span class="math notranslate nohighlight">\(p_i\)</span> than to any other point in <span class="math notranslate nohighlight">\(P\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[V(p_i) = \{x \in \mathbb{R}^2 : d(x, p_i) &lt; d(x, p_j) \text{ for all } j \neq i\}\]</div>
+<p>where <span class="math notranslate nohighlight">\(d(x, y)\)</span> is the distance between points <span class="math notranslate nohighlight">\(x\)</span> and <span class="math notranslate nohighlight">\(y\)</span>, typically the Euclidean distance.</p>
+</section>
+<section id="properties-of-voronoi-diagrams">
+<h3>Properties of Voronoi Diagrams<a class="headerlink" href="#properties-of-voronoi-diagrams" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Each Voronoi region is a convex polygon (or unbounded polyhedron).</p></li>
+<li><p>The edges of Voronoi regions are equidistant from the two nearest seed points.</p></li>
+<li><p>The vertices of Voronoi regions (Voronoi vertices) are equidistant from three or more seed points.</p></li>
+</ol>
+<p><img alt="Voronoi Diagram" src="_images/voronoi-diagram.jpeg" />
+Voronoi diagram. | Image: Francesco Bellelli</p>
+<p><img alt="" src="_images/5_voronoi-diagram.gif" /></p>
+</section>
+<section id="applications-of-voronoi-diagrams">
+<h3>Applications of Voronoi Diagrams<a class="headerlink" href="#applications-of-voronoi-diagrams" title="Link to this heading">#</a></h3>
+<p>Voronoi diagrams have applications in various fields:</p>
+<ul class="simple">
+<li><p><strong>Computer Science</strong>: Nearest neighbor search, motion planning, computer graphics</p></li>
+<li><p><strong>Soap Bubbles</strong>: <a class="reference external" href="https://www.researchgate.net/publication/2436165_The_Geometry_Of_Bubbles_And_Foams">The Geometry Of Bubbles And Foams</a>, <a class="reference external" href="https://brilliant.org/wiki/math-of-soap-bubbles-and-honeycombs/">Math of Soap Bubbles and Honeycombs</a></p></li>
+<li><p><strong>Computational Geometry</strong>: Delaunay triangulation, mesh generation</p></li>
+<li><p><strong>Machine Learning</strong>: k-nearest neighbors, clustering algorithms</p></li>
+<li><p><strong>Geography</strong>: Trade area analysis, facility location</p></li>
+<li><p><strong>Biology</strong>: Modeling cell growth, ecological studies</p></li>
+<li><p><strong>Astronomy</strong>: Analyzing galaxy distributions</p></li>
+<li><p><strong>Architecture and Urban Planning</strong>: Space partitioning, city planning</p></li>
+<li><p><strong>Image Processing</strong>: Image segmentation, Superpixels <span id="id1">[<a class="reference internal" href="intro.html#id3" title="Radhakrishna Achanta and Sabine Süsstrunk. Superpixels and polygons using simple non-iterative clustering. In 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), volume, 4895-4904. 2017. doi:10.1109/CVPR.2017.520.">AS17</a>]</span></p></li>
+</ul>
+<p><img alt="" src="_images/super-pixels.jpg" /></p>
+</section>
+</section>
+<section id="voronoi-diagrams-and-delaunay-triangulation">
+<h2>2. Voronoi Diagrams and Delaunay Triangulation<a class="headerlink" href="#voronoi-diagrams-and-delaunay-triangulation" title="Link to this heading">#</a></h2>
+<p>The Delaunay triangulation is the dual graph of the Voronoi diagram. For a set of points in a plane, the Delaunay triangulation creates a triangulation such that no point is inside the circumcircle of any triangle.</p>
+<p><img alt="" src="_images/Delaunay_circumcircles_vectorial.png" /></p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Delaunay_triangulation#Applications">Source: Wiki</a></p>
+<p><img alt="" src="_images/delaunay-triangulation-face.webp" /></p>
+<p><a class="reference external" href="https://web.colby.edu/thegeometricviewpoint/page/2/">Source: Algorithms for Working with Triangulated Surfaces</a></p>
+<p><img alt="" src="_images/Ferdowsi-tri.jpg" /></p>
+<p><a class="reference external" href="https://saraaj.org/portfolios/sardis-ferdowsi/">Source</a></p>
+<blockquote>
+<div><p>Further Reading: Properties of Delaunay Triangulation</p>
+<ol class="arabic simple">
+<li><p>It maximizes the minimum angle of all triangles, avoiding skinny triangles.</p></li>
+<li><p>The circumcircle of any Delaunay triangle contains no other point in its interior.</p></li>
+<li><p>The Delaunay triangulation is the dual graph of the Voronoi diagram.</p></li>
+</ol>
+</div></blockquote>
+<!-- ![Delaunay Triangulation](img/delaunay_triangulation.png) -->
+<section id="relationship-between-voronoi-diagrams-and-delaunay-triangulation">
+<h3>Relationship between Voronoi Diagrams and Delaunay Triangulation<a class="headerlink" href="#relationship-between-voronoi-diagrams-and-delaunay-triangulation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Two points are connected in the Delaunay triangulation if and only if their Voronoi regions share an edge.</p></li>
+<li><p>The circumcenter of each Delaunay triangle is a vertex in the Voronoi diagram.</p></li>
+<li><p>The Delaunay triangulation can be constructed from the Voronoi diagram and vice versa.</p></li>
+</ul>
+<p><img alt="Voronoi and Delaunay" src="_images/voronoi_delaunay.jpeg" /></p>
+</section>
+</section>
+<section id="connection-to-knn-classification">
+<h2>3. Connection to kNN Classification<a class="headerlink" href="#connection-to-knn-classification" title="Link to this heading">#</a></h2>
+<p>The k-Nearest Neighbors (kNN) algorithm is closely related to Voronoi diagrams. In fact, for k=1, the decision boundaries of 1-NN are exactly the Voronoi diagram of the training points.</p>
+<section id="nn-and-voronoi-diagrams">
+<h3>1-NN and Voronoi Diagrams<a class="headerlink" href="#nn-and-voronoi-diagrams" title="Link to this heading">#</a></h3>
+<p>In 1-NN classification:</p>
+<ul class="simple">
+<li><p>Each point is classified according to the class of its nearest neighbor in the training set.</p></li>
+<li><p>The decision boundary between two classes is the perpendicular bisector of the line connecting two points of different classes.</p></li>
+<li><p>These perpendicular bisectors form the edges of the Voronoi diagram.</p></li>
+</ul>
+<!-- ![1-NN and Voronoi](img/1nn_voronoi.png)
+
+### k-NN for k > 1
+
+For k > 1, the decision boundaries become more complex and no longer correspond directly to the Voronoi diagram. Instead, they represent regions where the majority of the k nearest neighbors belong to a particular class.
+
+![k-NN Decision Boundaries](img/knn_boundaries.png) --></section>
+</section>
+<section id="connection-to-bayesian-decision-theory">
+<h2>4. Connection to Bayesian Decision Theory<a class="headerlink" href="#connection-to-bayesian-decision-theory" title="Link to this heading">#</a></h2>
+<p>Voronoi diagrams also have connections to Bayesian decision theory, particularly in the case of equal covariance matrices. In Bayesian decision theory, we classify a point based on the posterior probability of each class given the observation.</p>
+<section id="bayesian-decision-boundaries">
+<h3>Bayesian Decision Boundaries<a class="headerlink" href="#bayesian-decision-boundaries" title="Link to this heading">#</a></h3>
+<p>In <a class="reference internal" href="05.05-Bayesian-Decision-Theory.html"><span class="std std-doc">Bayesian Decision Theory</span></a> we saw:</p>
+<p>Decide <span class="math notranslate nohighlight">\( \omega_1 \)</span> if <span class="math notranslate nohighlight">\( P(\omega_1|x) &gt; P(\omega_2|x) \)</span>, otherwise decide <span class="math notranslate nohighlight">\( \omega_2 \)</span>.</p>
+<p>For two classes with multivariate normal distributions, the decision boundary is determined by <span class="math notranslate nohighlight">\(P(\omega_1|x) = P(\omega_2|x)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln\frac{P(\omega_1|x)}{P(\omega_2|x)} = \ln\frac{p(x|\omega_1)P(\omega_1)}{p(x|\omega_2)P(\omega_2)} \gtrless 0\]</div>
+<p>where <span class="math notranslate nohighlight">\(p(x|\omega_i)\)</span> is the class-conditional density and <span class="math notranslate nohighlight">\(P(\omega_i)\)</span> is the prior probability of class <span class="math notranslate nohighlight">\(i\)</span>.</p>
+</section>
+<section id="case-1-equal-covariance-matrices">
+<h3>Case 1: Equal Covariance Matrices<a class="headerlink" href="#case-1-equal-covariance-matrices" title="Link to this heading">#</a></h3>
+<p>We saw that when the covariance matrices are equal (<span class="math notranslate nohighlight">\(\Sigma_1 = \Sigma_2 = \Sigma\)</span>), the decision boundary simplifies to a linear boundary. If the priors are also equal, the decision boundary becomes the perpendicular bisector of the line connecting the means of the two classes.</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{w}^T (\mathbf{x} - \mathbf{x}_0) = 0 
+\]</div>
+<p>where:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{w} = \boldsymbol{\mu}_1 - \boldsymbol{\mu}_2 
+\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{x}_0 = \frac{1}{2} (\boldsymbol{\mu}_1 + \boldsymbol{\mu}_2) 
+\]</div>
+<p>This is exactly the same as the Voronoi edge between two points in a Voronoi diagram, where the points are the means of the two classes.</p>
+<!-- 
+![Equal Covariance Bayesian Decision](img/equal_covariance.png)
+
+### Case 2: Unequal Covariance Matrices
+
+When the covariance matrices are different, the decision boundary becomes a quadratic curve rather than a straight line. This no longer corresponds to a Voronoi diagram with Euclidean distance.
+
+![Unequal Covariance Bayesian Decision](img/unequal_covariance.png) --></section>
+</section>
+<section id="lloyd-s-relaxation-algorithm">
+<h2>5. Lloyd’s Relaxation Algorithm<a class="headerlink" href="#lloyd-s-relaxation-algorithm" title="Link to this heading">#</a></h2>
+<p>Lloyd’s algorithm (also known as Voronoi iteration or relaxation) is an iterative method for finding evenly spaced sets of points in a region. It’s commonly used for centroidal Voronoi tessellation, where each generator point is also the centroid (center of mass) of its Voronoi region.</p>
+<p><img alt="Lloyd's Algorithm" src="_images/lloyds_algorithm.jpeg" /></p>
+<section id="algorithm-steps">
+<h3>Algorithm Steps:<a class="headerlink" href="#algorithm-steps" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Start with an initial set of generator points.</p></li>
+<li><p>Compute the Voronoi diagram for these points.</p></li>
+<li><p>Compute the centroid of each Voronoi region.</p></li>
+<li><p>Move each generator point to the centroid of its Voronoi region.</p></li>
+<li><p>Repeat steps 2-4 until convergence or a maximum number of iterations is reached.</p></li>
+</ol>
+<p>This algorithm is closely related to the k-means clustering algorithm, which can be viewed as a discrete version of Lloyd’s algorithm.</p>
+<p><img alt="Lloyd's Algorithm Iterations" src="_images/lloyds_algorithm-iterations.gif" /></p>
+</section>
+<section id="exercise-lloyd-s-relaxation-algorithm">
+<h3>Exercise: Lloyd’s Relaxation Algorithm<a class="headerlink" href="#exercise-lloyd-s-relaxation-algorithm" title="Link to this heading">#</a></h3>
+<p>Implement Lloyd’s relaxation algorithm for Voronoi diagrams and create a visualization showing the evolution of the diagram over 30 iterations, similar to the figure “30 iterations of the Lloyd’s algorithm. Source: Francesco Bellelli”.</p>
+<p>Steps:</p>
+<ol class="arabic simple">
+<li><p>Generate a set of random initial points</p></li>
+<li><p>For each iteration:
+a. Compute the Voronoi diagram
+b. For each Voronoi cell, compute its centroid
+c. Move each generator point to the centroid of its cell</p></li>
+<li><p>Visualize the evolution of the Voronoi diagram</p></li>
+</ol>
+</section>
+</section>
+<section id="summary">
+<h2>6. Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>In this notebook, we’ve explored Voronoi diagrams and their connections to various aspects of machine learning and computational geometry:</p>
+<ol class="arabic simple">
+<li><p><strong>Voronoi Diagrams</strong>: A partitioning of space based on the distance to a set of points.</p></li>
+<li><p><strong>Delaunay Triangulation</strong>: The dual graph of the Voronoi diagram, with properties useful for mesh generation and computational geometry.</p></li>
+<li><p><strong>Connection to kNN Classification</strong>: For k=1, the decision boundaries of the 1-NN classifier are exactly the Voronoi diagram of the training points.</p></li>
+<li><p><strong>Connection to Bayesian Decision Theory</strong>: With equal covariance matrices and equal priors, the Bayesian decision boundary between two Gaussian distributions is a straight line that corresponds to a Voronoi edge.</p></li>
+<li><p><strong>Lloyd’s Relaxation Algorithm</strong>: An iterative method for creating centroidal Voronoi tessellations, closely related to k-means clustering.</p></li>
+</ol>
+<p>These connections highlight the fundamental importance of Voronoi diagrams in understanding spatial relationships and classification boundaries. In the next chapter, we’ll explore clustering algorithms, which build upon many of these concepts.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Voronoi_diagram">Voronoi Diagram - Wikipedia</a></p></li>
+<li><p><a class="reference external" href="https://builtin.com/data-science/voronoi-diagram">Voronoi Diagram - Built In</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Delaunay_triangulation">Delaunay Triangulation - Wikipedia</a></p></li>
+<li><p>Duda, R. O., Hart, P. E., &amp; Stork, D. G. (2001). Pattern Classification (2nd ed.). Wiley-Interscience.</p></li>
+<li><p>Lloyd, S. P. (1982). Least squares quantization in PCM. IEEE Transactions on Information Theory, 28(2), 129-137.</p></li>
+<li><p>Aurenhammer, F. (1991). Voronoi diagrams—a survey of a fundamental geometric data structure. ACM Computing Surveys, 23(3), 345-405.</p></li>
+<li><p>Manoj Kumar Mukundan, Safeer Babu Thayyil, Ramanathan Muthuganapathy,
+A parallel algorithm for computing Voronoi diagram of a set of spheres using restricted lower envelope approach and topology matching,
+Computers &amp; Graphics,
+Volume 106,
+2022
+Pages 210-221,</p></li>
+<li><p>Daniel Reem,
+The projector algorithm: A simple parallel algorithm for computing Voronoi diagrams and Delaunay graphs,
+Theoretical Computer Science,
+Volume 970,
+2023</p></li>
+<li><p><a class="reference external" href="https://davidstutz.de/projects/superpixel-benchmark-2014/">Superpixel Benchmark</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="kNN-Classification-Evaluation.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">k-Nearest Neighbors and Classification Evaluation Metrics</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="05.11-Clustering.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Clustering</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-voronoi-diagrams">1. Introduction to Voronoi Diagrams</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition">Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#properties-of-voronoi-diagrams">Properties of Voronoi Diagrams</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#applications-of-voronoi-diagrams">Applications of Voronoi Diagrams</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#voronoi-diagrams-and-delaunay-triangulation">2. Voronoi Diagrams and Delaunay Triangulation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#relationship-between-voronoi-diagrams-and-delaunay-triangulation">Relationship between Voronoi Diagrams and Delaunay Triangulation</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-knn-classification">3. Connection to kNN Classification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nn-and-voronoi-diagrams">1-NN and Voronoi Diagrams</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-bayesian-decision-theory">4. Connection to Bayesian Decision Theory</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bayesian-decision-boundaries">Bayesian Decision Boundaries</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-equal-covariance-matrices">Case 1: Equal Covariance Matrices</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lloyd-s-relaxation-algorithm">5. Lloyd’s Relaxation Algorithm</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithm-steps">Algorithm Steps:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-lloyd-s-relaxation-algorithm">Exercise: Lloyd’s Relaxation Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">6. Summary</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Mahmood Amintoosi
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
