@@ -6,6 +6,10 @@ author: Mahmood Amintoosi
 logo: img/fum-cs-logo.png
 copyright: "2025. CC0 Licensed - Computer Science Dept., Ferdowsi University of Mashhad"  # Copyright year to be placed in the footer
 
+# Patterns to skip when building the book. Can be glob-style (e.g. "*skip.ipynb")
+exclude_patterns            : [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints"]
+# Auto-exclude files not in the toc
+only_build_toc_files        : true
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html

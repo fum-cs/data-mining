@@ -6,54 +6,9 @@ root: intro
 options:  # The options key will be applied to all chapters, but not sub-sections
   numbered: True
 parts:
-  - caption: Introduction to NumPy
+  - caption: Foundation from the Python Data Science Handbook 
     chapters:
-    - file: 02.00-Introduction-to-NumPy
-      sections:
-      - file: 02.01-Understanding-Data-Types
-      - file: 02.02-The-Basics-Of-NumPy-Arrays
-      - file: 02.03-Computation-on-arrays-ufuncs
-      - file: 02.04-Computation-on-arrays-aggregates
-      - file: 02.05-Computation-on-arrays-broadcasting
-      - file: 02.06-Boolean-Arrays-and-Masks
-      - file: 02.07-Fancy-Indexing
-      - file: 02.08-Sorting
-      - file: 02.09-Structured-Data-NumPy
-  - caption: Data Manipulation with Pandas
-    chapters:
-    - file: 03.00-Introduction-to-Pandas
-      sections:
-      - file: 03.01-Introducing-Pandas-Objects
-      - file: 03.02-Data-Indexing-and-Selection
-      - file: 03.03-Operations-in-Pandas
-      - file: 03.04-Missing-Values
-      - file: 03.05-Hierarchical-Indexing
-      - file: 03.06-Concat-And-Append
-      - file: 03.07-Merge-and-Join
-      - file: 03.08-Aggregation-and-Grouping
-      - file: 03.09-Pivot-Tables
-      - file: 03.10-Working-With-Strings
-      - file: 03.11-Working-with-Time-Series
-      - file: 03.12-Performance-Eval-and-Query
-      - file: 03.13-Further-Resources
-  - caption: Visualization with Matplotlib
-    chapters:
-    - file: 04.00-Introduction-To-Matplotlib
-      sections:
-      - file: 04.01-Simple-Line-Plots
-      - file: 04.02-Simple-Scatter-Plots
-      - file: 04.03-Errorbars
-      - file: 04.04-Density-and-Contour-Plots
-      - file: 04.05-Histograms-and-Binnings
-      - file: 04.06-Customizing-Legends
-      - file: 04.07-Customizing-Colorbars
-      - file: 04.08-Multiple-Subplots
-      - file: 04.09-Text-and-Annotation
-      - file: 04.10-Customizing-Ticks
-      - file: 04.11-Settings-and-Stylesheets
-      - file: 04.12-Three-Dimensional-Plotting
-      - file: 04.14-Visualization-With-Seaborn
-      - file: 04.15-Further-Resources
+    - file: 01-Foundation-PDSH
   - caption:  Machine Learning
     chapters:
     - file: 05.00-Machine-Learning
