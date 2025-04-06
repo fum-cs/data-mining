@@ -64,6 +64,7 @@ parts:
       - file: 05.04-Feature-Engineering
       - file: 05.05-Naive-Bayes
       - file: 05.05-Bayesian-Decision-Theory
+      - file: Covariance-Matrix
       - file: Mahalanobis-Distance
       - file: kNN-Classification-Evaluation
       - file: Voronoi-Diagrams-and-Classification2Clustering
