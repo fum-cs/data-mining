@@ -452,7 +452,8 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-principal-component-analysis-pca">7. Connection to Principal Component Analysis (PCA)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">9. Correlation Matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">10. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-filtering-data-based-on-pearson-correlation">10. Example: Filtering Data Based on Pearson Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
             </nav>
         </div>
@@ -1061,8 +1062,222 @@ Manual calculation of Corr(X1, X2): 0.6353
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">R[1,</span> <span class="pre">0]</span></code>) shows the sample correlation coefficient between X <code class="docutils literal notranslate"><span class="pre">R[1,</span> <span class="pre">0]</span></code>) shows the sample correlation coefficient between X1 and X2. A value close to the 0.8 used in the covariance matrix (though not exactly 0.8, as correlation depends on variances too) indicates a strong positive linear relationship, as expected from our data generation and scatter plot.</p>
 </section>
+<section id="example-filtering-data-based-on-pearson-correlation">
+<h2>10. Example: Filtering Data Based on Pearson Correlation<a class="headerlink" href="#example-filtering-data-based-on-pearson-correlation" title="Link to this heading">#</a></h2>
+<p>As illustrated in chapter 2 of <a class="reference external" href="http://guidetodatamining.com/chapter2/">Guide2DataMining</a> (<a class="reference external" href="https://dl3.takbook.com/pdf3/ebook9446%5Bwww.takbook.com%5D.pdf">Persian Translated</a>) the <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient</a> (derived from the covariance matrix) can be used to filter data based on relationships between variables.</p>
+<p><strong>Scenario:</strong></p>
+<p>Suppose we have a dataset of movie ratings.  Each column represents a movie, and each row represents a user’s rating (or a missing value if the user hasn’t rated the movie). We want to identify users that have a high degree of similarity in their ratings (i.e., high correlation).</p>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+
+<span class="n">users</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s2">&quot;Angelica&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+    <span class="s2">&quot;Bill&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">1.5</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">},</span>
+    <span class="s2">&quot;Chan&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="s2">&quot;Dan&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+    <span class="s2">&quot;Hailey&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">},</span>
+    <span class="s2">&quot;Jordyn&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Broken Bells&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Deadmau5&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Vampire Weekend&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">},</span>
+    <span class="c1"># &quot;Sam&quot;: {&quot;Blues Traveler&quot;: 5.0, &quot;Broken Bells&quot;: 2.0, &quot;Norah Jones&quot;: 3.0, &quot;Phoenix&quot;: 5.0, &quot;Slightly Stoopid&quot;: 4.0, &quot;The Strokes&quot;: 5.0},</span>
+    <span class="s2">&quot;Veronica&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">},</span>
+    <span class="s2">&quot;Robert&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">3.0</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">1.0</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">2.0</span><span class="p">},</span>
+    <span class="s2">&quot;Clara&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;Blues Traveler&quot;</span><span class="p">:</span> <span class="mf">4.75</span><span class="p">,</span> <span class="s2">&quot;Norah Jones&quot;</span><span class="p">:</span> <span class="mf">4.5</span><span class="p">,</span> <span class="s2">&quot;Phoenix&quot;</span><span class="p">:</span> <span class="mf">5.0</span><span class="p">,</span> <span class="s2">&quot;Slightly Stoopid&quot;</span><span class="p">:</span> <span class="mf">4.0</span><span class="p">,</span> <span class="s2">&quot;The Strokes&quot;</span><span class="p">:</span> <span class="mf">4.25</span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Convert the nested dictionary to a DataFrame</span>
+<span class="n">df_users</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">users</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># Transpose to make users as rows and items as columns</span>
+
+<span class="c1"># Display the DataFrame</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">df_users</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>          Blues Traveler  Broken Bells  Norah Jones  Phoenix  \
+Angelica            3.50           2.0          4.5      5.0   
+Bill                1.50           3.5          NaN      2.0   
+Chan                5.00           1.0          3.0      5.0   
+Dan                 3.00           4.0          NaN      3.0   
+Hailey               NaN           4.0          4.0      NaN   
+Jordyn               NaN           4.5          5.0      5.0   
+Veronica            3.00           NaN          5.0      4.0   
+Robert              4.00           NaN          3.0      5.0   
+Clara               4.75           NaN          4.5      5.0   
+
+          Slightly Stoopid  The Strokes  Vampire Weekend  Deadmau5  
+Angelica               1.5         2.50              2.0       NaN  
+Bill                   3.5          NaN              3.0       4.0  
+Chan                   1.0          NaN              NaN       1.0  
+Dan                    4.5         4.00              2.0       4.5  
+Hailey                 NaN         4.00              1.0       1.0  
+Jordyn                 4.5         4.00              4.0       4.0  
+Veronica               2.5         3.00              NaN       NaN  
+Robert                 1.0         2.00              NaN       NaN  
+Clara                  4.0         4.25              NaN       NaN  
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Function to calculate Pearson correlation</span>
+<span class="k">def</span> <span class="nf">pearson_correlation</span><span class="p">(</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">):</span>
+    <span class="n">common_items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">user1</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">user2</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">common_items</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># No common items</span>
+    <span class="c1"># print(&#39;common_items:&#39;, common_items)</span>
+    <span class="n">ratings1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">user1</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">])</span>
+    <span class="n">ratings2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">user2</span><span class="p">[</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">])</span>
+    <span class="c1"># print(ratings1, ratings2)</span>
+
+    <span class="c1"># Check for zero variance</span>
+    <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ratings1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">ratings2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">0</span>  <span class="c1"># Correlation is undefined if variance is zero</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">corrcoef</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">)[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Find users with the highest and lowest similarity</span>
+<span class="n">max_corr</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="n">min_corr</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">most_similar</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="n">least_similar</span> <span class="o">=</span> <span class="kc">None</span>
+
+<span class="n">user_names</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">users</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">user_names</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">user_names</span><span class="p">)):</span>
+        <span class="n">user1</span> <span class="o">=</span> <span class="n">user_names</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">user2</span> <span class="o">=</span> <span class="n">user_names</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+        <span class="n">corr</span> <span class="o">=</span> <span class="n">pearson_correlation</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">],</span> <span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">])</span>
+        <span class="k">if</span> <span class="n">corr</span> <span class="o">&gt;</span> <span class="n">max_corr</span><span class="p">:</span>
+            <span class="n">max_corr</span> <span class="o">=</span> <span class="n">corr</span>
+            <span class="n">most_similar</span> <span class="o">=</span> <span class="p">(</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">corr</span> <span class="o">&lt;</span> <span class="n">min_corr</span><span class="p">:</span>
+            <span class="n">min_corr</span> <span class="o">=</span> <span class="n">corr</span>
+            <span class="n">least_similar</span> <span class="o">=</span> <span class="p">(</span><span class="n">user1</span><span class="p">,</span> <span class="n">user2</span><span class="p">)</span>
+
+<span class="c1"># Display results</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Most similar users: </span><span class="si">{</span><span class="n">most_similar</span><span class="si">}</span><span class="s2"> with correlation </span><span class="si">{</span><span class="n">max_corr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Display rows for most similar users</span>
+<span class="c1"># print(&quot;\nRatings of Most Similar Users:&quot;)</span>
+<span class="c1"># print(df_users.loc[list(most_similar)])</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Least similar users: </span><span class="si">{</span><span class="n">least_similar</span><span class="si">}</span><span class="s2"> with correlation </span><span class="si">{</span><span class="n">min_corr</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Display rows for least similar users</span>
+<span class="c1"># print(&quot;\nRatings of Least Similar Users:&quot;)</span>
+<span class="c1"># print(df_users.loc[list(least_similar)])</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Most similar users: (&#39;Robert&#39;, &#39;Clara&#39;) with correlation 1.00
+Least similar users: (&#39;Dan&#39;, &#39;Robert&#39;) with correlation -0.97
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot ratings of the most similar users with movie names</span>
+<span class="n">user1</span><span class="p">,</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">most_similar</span>
+<span class="n">common_items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">ratings1</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+<span class="n">ratings2</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Annotate each point with the movie name</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">common_items</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="n">ratings1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ratings2</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Perfect Agreement Line&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ratings Comparison: </span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">common_items</span> <span class="p">,</span> <span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/6be8d91f602ab3398a4e424284200838e2015063d143f614a8f7b9bf615c02b9.png" src="_images/6be8d91f602ab3398a4e424284200838e2015063d143f614a8f7b9bf615c02b9.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Blues Traveler&#39;,
+  &#39;Norah Jones&#39;,
+  &#39;Phoenix&#39;,
+  &#39;Slightly Stoopid&#39;,
+  &#39;The Strokes&#39;},
+ [3.0, 5.0, 1.0, 4.0, 2.0],
+ [4.5, 5.0, 4.0, 4.75, 4.25])
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Plot ratings of the least similar users</span>
+<span class="n">user1</span><span class="p">,</span> <span class="n">user2</span> <span class="o">=</span> <span class="n">least_similar</span>
+<span class="n">common_items</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">]</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">ratings1</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user1</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+<span class="n">ratings2</span> <span class="o">=</span> <span class="p">[</span><span class="n">users</span><span class="p">[</span><span class="n">user2</span><span class="p">][</span><span class="n">item</span><span class="p">]</span> <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">common_items</span><span class="p">]</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="c1"># Annotate each point with the movie name</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">item</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">common_items</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">annotate</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="n">ratings1</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">ratings2</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span> <span class="n">textcoords</span><span class="o">=</span><span class="s2">&quot;offset points&quot;</span><span class="p">,</span> <span class="n">xytext</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="n">ha</span><span class="o">=</span><span class="s1">&#39;center&#39;</span><span class="p">)</span>
+
+<span class="c1"># plt.plot(ratings1, ratings1, color=&#39;red&#39;, linestyle=&#39;--&#39;, label=&quot;Perfect Agreement Line&quot;)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ratings Comparison: </span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2"> vs </span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user1</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">user2</span><span class="si">}</span><span class="s2">&#39;s Ratings&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">common_items</span> <span class="p">,</span> <span class="n">ratings1</span><span class="p">,</span> <span class="n">ratings2</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/f1fe6a5af27b1a42c1e9bc5cb83286d9641d7bc1439fc5441fd63527cd01fc17.png" src="_images/f1fe6a5af27b1a42c1e9bc5cb83286d9641d7bc1439fc5441fd63527cd01fc17.png" />
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>({&#39;Blues Traveler&#39;, &#39;Phoenix&#39;, &#39;Slightly Stoopid&#39;, &#39;The Strokes&#39;},
+ [4.5, 3.0, 3.0, 4.0],
+ [1.0, 5.0, 4.0, 2.0])
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="conclusion">
-<h2>10. Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Link to this heading">#</a></h2>
 <p>The covariance matrix is a fundamental tool in multivariate statistics. It summarizes the variance within each variable and the linear relationship between pairs of variables.</p>
 <ul class="simple">
 <li><p>It’s a square, symmetric matrix.</p></li>
@@ -1151,7 +1366,8 @@ Manual calculation of Corr(X1, X2): 0.6353
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-principal-component-analysis-pca">7. Connection to Principal Component Analysis (PCA)</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">9. Correlation Matrix</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">10. Conclusion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-filtering-data-based-on-pearson-correlation">10. Example: Filtering Data Based on Pearson Correlation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
 </ul>
   </nav></div>
 
