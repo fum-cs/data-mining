@@ -26,10 +26,10 @@ parts:
       - file: 05.11-Clustering
       - file: K-Means-Clustering
       - file: 05.12-Gaussian-Mixtures
+      - file: 05.09-Principal-Component-Analysis
       - file: 05.06-Linear-Regression
       - file: 05.07-Support-Vector-Machines
       - file: 05.08-Random-Forests
-      - file: 05.09-Principal-Component-Analysis
       - file: 05.10-Manifold-Learning
       - file: 05.13-Kernel-Density-Estimation
       - file: 05.14-Image-Features
