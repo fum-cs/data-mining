@@ -454,10 +454,10 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminant-functions-for-normal-density">Discriminant Functions for Normal Density</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-equal-covariance-matrices-boldsymbol-sigma-i-sigma-2-mathbf-i">Case 1: Equal Covariance Matrices (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span>):</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#given"><strong>Given:</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf"><strong>Step 1: Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-bayes-rule-for-posterior-probability"><strong>Step 2: Apply Bayes’ Rule for Posterior Probability</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-take-the-logarithm-of-the-pdf"><strong>Step 3: Take the Logarithm of the PDF</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-combine-with-prior-and-ignore-constants"><strong>Step 4: Combine with Prior and Ignore Constants</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf">Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-bayes-rule-for-posterior-probability">Apply Bayes’ Rule for Posterior Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#take-the-logarithm-of-the-pdf">Take the Logarithm of the PDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-with-prior-and-ignore-constants">Combine with Prior and Ignore Constants</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
@@ -722,8 +722,8 @@ p(\mathbf{x} \mid \omega_i) = \frac{1}{(2\pi)^{d/2}|\boldsymbol{\Sigma}_i|^{1/2}
 </ul>
 </section>
 <hr class="docutils" />
-<section id="step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf">
-<h3><strong>Step 1: Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</strong><a class="headerlink" href="#step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf" title="Link to this heading">#</a></h3>
+<section id="substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf">
+<h3>Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF<a class="headerlink" href="#substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf" title="Link to this heading">#</a></h3>
 <div class="math notranslate nohighlight">
 \[
 p(\mathbf{x} \mid \omega_i) = \frac{1}{(2\pi)^{d/2} (\sigma^2)^{d/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_i)^T \left(\frac{1}{\sigma^2} \mathbf{I}\right) (\mathbf{x}-\boldsymbol{\mu}_i)\right].
@@ -741,8 +741,8 @@ p(\mathbf{x} \mid \omega_i) = \frac{1}{(2\pi\sigma^2)^{d/2}} \exp\left[-\frac{\|
 \]</div>
 </section>
 <hr class="docutils" />
-<section id="step-2-apply-bayes-rule-for-posterior-probability">
-<h3><strong>Step 2: Apply Bayes’ Rule for Posterior Probability</strong><a class="headerlink" href="#step-2-apply-bayes-rule-for-posterior-probability" title="Link to this heading">#</a></h3>
+<section id="apply-bayes-rule-for-posterior-probability">
+<h3>Apply Bayes’ Rule for Posterior Probability<a class="headerlink" href="#apply-bayes-rule-for-posterior-probability" title="Link to this heading">#</a></h3>
 <p>The posterior probability <span class="math notranslate nohighlight">\( P(\omega_i \mid \mathbf{x}) \)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -756,8 +756,8 @@ g_i(\mathbf{x}) = \ln p(\mathbf{x} \mid \omega_i) + \ln P(\omega_i).
 \]</div>
 </section>
 <hr class="docutils" />
-<section id="step-3-take-the-logarithm-of-the-pdf">
-<h3><strong>Step 3: Take the Logarithm of the PDF</strong><a class="headerlink" href="#step-3-take-the-logarithm-of-the-pdf" title="Link to this heading">#</a></h3>
+<section id="take-the-logarithm-of-the-pdf">
+<h3>Take the Logarithm of the PDF<a class="headerlink" href="#take-the-logarithm-of-the-pdf" title="Link to this heading">#</a></h3>
 <p>Compute <span class="math notranslate nohighlight">\(\ln p(\mathbf{x} \mid \omega_i)\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -775,8 +775,8 @@ g_i(\mathbf{x}) = \ln p(\mathbf{x} \mid \omega_i) + \ln P(\omega_i).
 \]</div>
 </section>
 <hr class="docutils" />
-<section id="step-4-combine-with-prior-and-ignore-constants">
-<h3><strong>Step 4: Combine with Prior and Ignore Constants</strong><a class="headerlink" href="#step-4-combine-with-prior-and-ignore-constants" title="Link to this heading">#</a></h3>
+<section id="combine-with-prior-and-ignore-constants">
+<h3>Combine with Prior and Ignore Constants<a class="headerlink" href="#combine-with-prior-and-ignore-constants" title="Link to this heading">#</a></h3>
 <p>The discriminant function becomes:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -1183,10 +1183,10 @@ g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu}_i)^T \boldsymbol{\
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminant-functions-for-normal-density">Discriminant Functions for Normal Density</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-equal-covariance-matrices-boldsymbol-sigma-i-sigma-2-mathbf-i">Case 1: Equal Covariance Matrices (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span>):</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#given"><strong>Given:</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf"><strong>Step 1: Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-bayes-rule-for-posterior-probability"><strong>Step 2: Apply Bayes’ Rule for Posterior Probability</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-take-the-logarithm-of-the-pdf"><strong>Step 3: Take the Logarithm of the PDF</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-combine-with-prior-and-ignore-constants"><strong>Step 4: Combine with Prior and Ignore Constants</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf">Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#apply-bayes-rule-for-posterior-probability">Apply Bayes’ Rule for Posterior Probability</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#take-the-logarithm-of-the-pdf">Take the Logarithm of the PDF</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#combine-with-prior-and-ignore-constants">Combine with Prior and Ignore Constants</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
