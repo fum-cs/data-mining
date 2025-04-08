@@ -959,11 +959,13 @@ Simplify:
 <h2>Further Reading<a class="headerlink" href="#further-reading" title="Link to this heading">#</a></h2>
 <section id="case-2-equal-but-arbitrary-covariance-matrices-boldsymbol-sigma-i-boldsymbol-sigma">
 <h3>Case 2: Equal but Arbitrary Covariance Matrices (<span class="math notranslate nohighlight">\( \boldsymbol{\Sigma}_i = \boldsymbol{\Sigma} \)</span>):<a class="headerlink" href="#case-2-equal-but-arbitrary-covariance-matrices-boldsymbol-sigma-i-boldsymbol-sigma" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Discriminant function is still linear:
-$<span class="math notranslate nohighlight">\(
-g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x}-\boldsymbol{\mu}_i)^T \boldsymbol{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu}_i) + \ln P(\omega_i)
-\)</span>$</p></li>
+<ul>
+<li><p>Discriminant function is still linear:</p>
+<div class="math notranslate nohighlight">
+\[
+    g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x}-\boldsymbol{\mu}_i)^T \boldsymbol{\Sigma}^{-1} (\mathbf{x}-\boldsymbol{\mu}_i) + \ln P(\omega_i)
+    \]</div>
+</li>
 <li><p>Decision boundaries are hyperplanes, but not necessarily orthogonal to the line between means.</p></li>
 </ul>
 <p><strong>Exercise: Validating the Decision Boundary in Case 2 and Comparing with GaussianNB</strong></p>

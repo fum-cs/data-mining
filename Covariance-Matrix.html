@@ -997,12 +997,16 @@ Eigenvectors (each column is an eigenvector):
 <section id="matrix-based-calculation-of-the-covariance-matrix">
 <h3>Matrix-Based Calculation of the Covariance Matrix<a class="headerlink" href="#matrix-based-calculation-of-the-covariance-matrix" title="Link to this heading">#</a></h3>
 <p>To calculate the covariance matrix using matrix operations, the following steps are performed:</p>
-<ol class="arabic simple">
-<li><p><strong>Center the Data:</strong> Subtract the mean of each column (variable) from the corresponding column values. This produces the centered data matrix <span class="math notranslate nohighlight">\(X_{\text{centered}}\)</span>:
-$<span class="math notranslate nohighlight">\( X_{\text{centered}} = X - \mu \)</span><span class="math notranslate nohighlight">\(
-Where \)</span>X<span class="math notranslate nohighlight">\( is the data matrix, and \)</span>\mu$ is the vector of column means.</p></li>
-<li><p><strong>Compute the Covariance Matrix:</strong> Using matrix multiplication, the covariance matrix can be calculated as:
-$<span class="math notranslate nohighlight">\( S = \frac{1}{n-1} X_{\text{centered}}^T X_{\text{centered}} \)</span>$</p></li>
+<ol class="arabic">
+<li><p><strong>Center the Data:</strong> Subtract the mean of each column (variable) from the corresponding column values. This produces the centered data matrix <span class="math notranslate nohighlight">\(X_{\text{centered}}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ X_{\text{centered}} = X - \mu \]</div>
+<p>Where <span class="math notranslate nohighlight">\(X\)</span> is the data matrix, and <span class="math notranslate nohighlight">\(\mu\)</span> is the vector of column means.</p>
+</li>
+<li><p><strong>Compute the Covariance Matrix:</strong> Using matrix multiplication, the covariance matrix can be calculated as:</p>
+<div class="math notranslate nohighlight">
+\[ S = \frac{1}{n-1} X_{\text{centered}}^T X_{\text{centered}} \]</div>
+</li>
 </ol>
 <p>Here:</p>
 <ul class="simple">
