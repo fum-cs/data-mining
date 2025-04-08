@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -205,10 +205,10 @@
 <li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="K-Means-Clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
@@ -453,6 +453,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Multivariate Normal Density</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminant-functions-for-normal-density">Discriminant Functions for Normal Density</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-equal-covariance-matrices-boldsymbol-sigma-i-sigma-2-mathbf-i">Case 1: Equal Covariance Matrices (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span>):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#given"><strong>Given:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf"><strong>Step 1: Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-bayes-rule-for-posterior-probability"><strong>Step 2: Apply Bayes’ Rule for Posterior Probability</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-take-the-logarithm-of-the-pdf"><strong>Step 3: Take the Logarithm of the PDF</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-combine-with-prior-and-ignore-constants"><strong>Step 4: Combine with Prior and Ignore Constants</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">
@@ -691,13 +696,108 @@ is called the <strong>squared <a class="reference internal" href="Mahalanobis-Di
 <h2>Discriminant Functions for Normal Density<a class="headerlink" href="#discriminant-functions-for-normal-density" title="Link to this heading">#</a></h2>
 <section id="case-1-equal-covariance-matrices-boldsymbol-sigma-i-sigma-2-mathbf-i">
 <h3>Case 1: Equal Covariance Matrices (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span>):<a class="headerlink" href="#case-1-equal-covariance-matrices-boldsymbol-sigma-i-sigma-2-mathbf-i" title="Link to this heading">#</a></h3>
-<ul>
-<li><p>The discriminant function is linear:</p>
+<ul class="simple">
+<li><p>The discriminant function is linear:</p></li>
+</ul>
 <div class="math notranslate nohighlight">
 \[
-    g_i(\mathbf{x}) = -\frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{2\sigma^2} + \ln P(\omega_i)
-    \]</div>
-</li>
+g_i(\mathbf{x}) = \mathbf{w}_i^T \mathbf{x} + b,
+\]</div>
+<p><strong>How?</strong></p>
+<p>Let’s derive the simplified form of the log-likelihood <span class="math notranslate nohighlight">\( g_i(\mathbf{x}) \)</span> for the case where the covariance matrices are equal and isotropic (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span>). We’ll start with the given multivariate normal density and show how it reduces to the stated form.</p>
+</section>
+<hr class="docutils" />
+<section id="given">
+<h3><strong>Given:</strong><a class="headerlink" href="#given" title="Link to this heading">#</a></h3>
+<p>The probability density function (PDF) for class <span class="math notranslate nohighlight">\(\omega_i\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{x} \mid \omega_i) = \frac{1}{(2\pi)^{d/2}|\boldsymbol{\Sigma}_i|^{1/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_i)^T \boldsymbol{\Sigma}_i^{-1} (\mathbf{x}-\boldsymbol{\mu}_i)\right],
+\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> (isotropic covariance, equal across classes).</p></li>
+<li><p><span class="math notranslate nohighlight">\(|\boldsymbol{\Sigma}_i| = (\sigma^2)^d\)</span> (determinant of <span class="math notranslate nohighlight">\(\sigma^2 \mathbf{I}\)</span>).</p></li>
+<li><p><span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i^{-1} = \frac{1}{\sigma^2} \mathbf{I}\)</span> (inverse of diagonal matrix).</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf">
+<h3><strong>Step 1: Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</strong><a class="headerlink" href="#step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf" title="Link to this heading">#</a></h3>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{x} \mid \omega_i) = \frac{1}{(2\pi)^{d/2} (\sigma^2)^{d/2}} \exp\left[-\frac{1}{2}(\mathbf{x}-\boldsymbol{\mu}_i)^T \left(\frac{1}{\sigma^2} \mathbf{I}\right) (\mathbf{x}-\boldsymbol{\mu}_i)\right].
+\]</div>
+<p>Simplify the exponent:</p>
+<div class="math notranslate nohighlight">
+\[
+(\mathbf{x}-\boldsymbol{\mu}_i)^T \left(\frac{1}{\sigma^2} \mathbf{I}\right) (\mathbf{x}-\boldsymbol{\mu}_i) = \frac{1}{\sigma^2} (\mathbf{x}-\boldsymbol{\mu}_i)^T (\mathbf{x}-\boldsymbol{\mu}_i) = \frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{\sigma^2},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(\|\mathbf{x}-\boldsymbol{\mu}_i\|^2\)</span> is the squared Euclidean distance.</p>
+<p>Thus, the PDF becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+p(\mathbf{x} \mid \omega_i) = \frac{1}{(2\pi\sigma^2)^{d/2}} \exp\left[-\frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{2\sigma^2}\right].
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="step-2-apply-bayes-rule-for-posterior-probability">
+<h3><strong>Step 2: Apply Bayes’ Rule for Posterior Probability</strong><a class="headerlink" href="#step-2-apply-bayes-rule-for-posterior-probability" title="Link to this heading">#</a></h3>
+<p>The posterior probability <span class="math notranslate nohighlight">\( P(\omega_i \mid \mathbf{x}) \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+P(\omega_i \mid \mathbf{x}) = \frac{p(\mathbf{x} \mid \omega_i) P(\omega_i)}{p(\mathbf{x})},
+\]</div>
+<p>where <span class="math notranslate nohighlight">\( p(\mathbf{x}) = \sum_j p(\mathbf{x} \mid \omega_j) P(\omega_j) \)</span> is the evidence (ignored in discriminant functions).</p>
+<p>The <strong>log-posterior</strong> (discriminant function <span class="math notranslate nohighlight">\( g_i(\mathbf{x}) \)</span>) is:</p>
+<div class="math notranslate nohighlight">
+\[
+g_i(\mathbf{x}) = \ln p(\mathbf{x} \mid \omega_i) + \ln P(\omega_i).
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="step-3-take-the-logarithm-of-the-pdf">
+<h3><strong>Step 3: Take the Logarithm of the PDF</strong><a class="headerlink" href="#step-3-take-the-logarithm-of-the-pdf" title="Link to this heading">#</a></h3>
+<p>Compute <span class="math notranslate nohighlight">\(\ln p(\mathbf{x} \mid \omega_i)\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln p(\mathbf{x} \mid \omega_i) = \ln\left(\frac{1}{(2\pi\sigma^2)^{d/2}}\right) - \frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{2\sigma^2}.
+\]</div>
+<p>Simplify the first term:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln\left((2\pi\sigma^2)^{-d/2}\right) = -\frac{d}{2} \ln(2\pi\sigma^2).
+\]</div>
+<p>Thus:</p>
+<div class="math notranslate nohighlight">
+\[
+\ln p(\mathbf{x} \mid \omega_i) = -\frac{d}{2} \ln(2\pi\sigma^2) - \frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{2\sigma^2}.
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="step-4-combine-with-prior-and-ignore-constants">
+<h3><strong>Step 4: Combine with Prior and Ignore Constants</strong><a class="headerlink" href="#step-4-combine-with-prior-and-ignore-constants" title="Link to this heading">#</a></h3>
+<p>The discriminant function becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+g_i(\mathbf{x}) = \ln p(\mathbf{x} \mid \omega_i) + \ln P(\omega_i) = -\frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{2\sigma^2} - \frac{d}{2} \ln(2\pi\sigma^2) + \ln P(\omega_i).
+\]</div>
+<p>Since <span class="math notranslate nohighlight">\( \frac{d}{2} \ln(2\pi\sigma^2) \)</span> is <strong>constant across all classes</strong> <span class="math notranslate nohighlight">\( \omega_i \)</span>, it does not affect the classification decision (we compare <span class="math notranslate nohighlight">\( g_i(\mathbf{x}) \)</span> across <span class="math notranslate nohighlight">\( i \)</span>, and the constant cancels out). Therefore, we drop it and write:</p>
+<!-- $$
+g_i(\mathbf{x}) = -\frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{2\sigma^2} + \ln P(\omega_i).
+$$
+
+---
+
+### **Key Points:**
+1. **Isotropic Covariance**: The simplification relies on $\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}$, which makes the Mahalanobis distance reduce to the scaled Euclidean distance.
+2. **Ignored Constant**: The term $-\frac{d}{2} \ln(2\pi\sigma^2)$ is class-independent and does not influence $\arg\max_i g_i(\mathbf{x})$.
+3. **Decision Boundary**: Classification reduces to comparing the **squared distances** $\|\mathbf{x}-\boldsymbol{\mu}_i\|^2$ (weighted by the prior $P(\omega_i)$). -->
+<div class="math notranslate nohighlight">
+\[
+\boxed{g_i(\mathbf{x}) = -\frac{\|\mathbf{x}-\boldsymbol{\mu}_i\|^2}{2\sigma^2} + \ln P(\omega_i)}
+\]</div>
+<ul>
 <li><p>Decision boundaries are <strong>hyperplanes</strong>.</p></li>
 <li><p>If the <strong>prior probabilities</strong> are not equal, the squared distance <span class="math notranslate nohighlight">\(\|\mathbf{x}-\boldsymbol{\mu}_i\|^2\)</span> is normalized by the variance <span class="math notranslate nohighlight">\(\sigma^2\)</span> and offset by adding <span class="math notranslate nohighlight">\(\ln P(\omega_i)\)</span>. This means that if <span class="math notranslate nohighlight">\(\mathbf{x}\)</span> is equally near two different mean vectors, the optimal decision will favor the <strong>a priori more likely category</strong>.</p></li>
 <li><p>It is not necessary to compute distances explicitly. Expanding the quadratic form <span class="math notranslate nohighlight">\((\mathbf{x} - \boldsymbol{\mu}_i)^T (\mathbf{x} - \boldsymbol{\mu}_i)\)</span> yields:</p>
@@ -708,7 +808,9 @@ is called the <strong>squared <a class="reference internal" href="Mahalanobis-Di
 <p>The quadratic term <span class="math notranslate nohighlight">\(\mathbf{x}^T \mathbf{x}\)</span> is the same for all <span class="math notranslate nohighlight">\(i\)</span>, so it can be ignored as an additive constant. This simplifies the discriminant function to:</p>
 <div class="math notranslate nohighlight">
 \[
-    g_i(\mathbf{x}) = \mathbf{w}_i^T \mathbf{x} + w_{i0},
+    \boxed{
+    g_i(\mathbf{x}) = \mathbf{w}_i^T \mathbf{x} + w_{i0}
+    }
     \]</div>
 <p>where:</p>
 <div class="math notranslate nohighlight">
@@ -1080,6 +1182,11 @@ g_i(\mathbf{x}) = -\frac{1}{2} (\mathbf{x} - \boldsymbol{\mu}_i)^T \boldsymbol{\
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Multivariate Normal Density</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#discriminant-functions-for-normal-density">Discriminant Functions for Normal Density</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#case-1-equal-covariance-matrices-boldsymbol-sigma-i-sigma-2-mathbf-i">Case 1: Equal Covariance Matrices (<span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span>):</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#given"><strong>Given:</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-substitute-boldsymbol-sigma-i-sigma-2-mathbf-i-into-the-pdf"><strong>Step 1: Substitute <span class="math notranslate nohighlight">\(\boldsymbol{\Sigma}_i = \sigma^2 \mathbf{I}\)</span> into the PDF</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-apply-bayes-rule-for-posterior-probability"><strong>Step 2: Apply Bayes’ Rule for Posterior Probability</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-take-the-logarithm-of-the-pdf"><strong>Step 3: Take the Logarithm of the PDF</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-4-combine-with-prior-and-ignore-constants"><strong>Step 4: Combine with Prior and Ignore Constants</strong></a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-reading">Further Reading</a><ul class="nav section-nav flex-column">

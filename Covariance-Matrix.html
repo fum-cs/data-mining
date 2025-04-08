@@ -205,10 +205,10 @@
 <li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="K-Means-Clustering.html">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
@@ -450,7 +450,11 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors-of-the-covariance-matrix">5. Eigenvalues and Eigenvectors of the Covariance Matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-eigenvectors">6. Visualizing Eigenvectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-principal-component-analysis-pca">7. Connection to Principal Component Analysis (PCA)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-based-calculation-of-the-covariance-matrix">Matrix-Based Calculation of the Covariance Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-pca">Connection to PCA</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">9. Correlation Matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-filtering-data-based-on-pearson-correlation">10. Example: Filtering Data Based on Pearson Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
@@ -978,7 +982,7 @@ Eigenvectors (each column is an eigenvector):
 </section>
 <section id="manual-calculation-of-the-sample-covariance-matrix">
 <h2>8. Manual Calculation of the Sample Covariance Matrix<a class="headerlink" href="#manual-calculation-of-the-sample-covariance-matrix" title="Link to this heading">#</a></h2>
-<p>While <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code> is convenient, understanding the underlying formula is helpful. The formula for the unbiased sample covariance between two variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> is:</p>
+<p>While using the <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code> function is convenient for calculating the covariance matrix, understanding the underlying formula can provide deeper insights into the concept. The formula for the unbiased sample covariance between two variables <span class="math notranslate nohighlight">\(X_i\)</span> and <span class="math notranslate nohighlight">\(X_j\)</span> is:</p>
 <div class="math notranslate nohighlight">
 \[ S_{ij} = \frac{1}{n-1} \sum_{k=1}^{n} (x_{ki} - \bar{x}_i)(x_{kj} - \bar{x}_j) \]</div>
 <p>Where:</p>
@@ -990,7 +994,26 @@ Eigenvectors (each column is an eigenvector):
 <p>For the variance (diagonal elements where <span class="math notranslate nohighlight">\(i=j\)</span>):</p>
 <div class="math notranslate nohighlight">
 \[ S_{ii} = \text{Var}(X_i) = \frac{1}{n-1} \sum_{k=1}^{n} (x_{ki} - \bar{x}_i)^2 \]</div>
-<p>We can calculate this using matrix operations. First, center the data by subtracting the mean of each variable (column).</p>
+<section id="matrix-based-calculation-of-the-covariance-matrix">
+<h3>Matrix-Based Calculation of the Covariance Matrix<a class="headerlink" href="#matrix-based-calculation-of-the-covariance-matrix" title="Link to this heading">#</a></h3>
+<p>To calculate the covariance matrix using matrix operations, the following steps are performed:</p>
+<ol class="arabic simple">
+<li><p><strong>Center the Data:</strong> Subtract the mean of each column (variable) from the corresponding column values. This produces the centered data matrix <span class="math notranslate nohighlight">\(X_{\text{centered}}\)</span>:
+$<span class="math notranslate nohighlight">\( X_{\text{centered}} = X - \mu \)</span><span class="math notranslate nohighlight">\(
+Where \)</span>X<span class="math notranslate nohighlight">\( is the data matrix, and \)</span>\mu$ is the vector of column means.</p></li>
+<li><p><strong>Compute the Covariance Matrix:</strong> Using matrix multiplication, the covariance matrix can be calculated as:
+$<span class="math notranslate nohighlight">\( S = \frac{1}{n-1} X_{\text{centered}}^T X_{\text{centered}} \)</span>$</p></li>
+</ol>
+<p>Here:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(X_{\text{centered}}^T\)</span> is the transpose of the centered data matrix.</p></li>
+<li><p><span class="math notranslate nohighlight">\(n-1\)</span> is the denominator used to ensure an unbiased estimate of the sample covariance.</p></li>
+</ul>
+<p>This matrix-based approach is computationally efficient and is preferred for large datasets.</p>
+</section>
+<section id="connection-to-pca">
+<h3>Connection to PCA<a class="headerlink" href="#connection-to-pca" title="Link to this heading">#</a></h3>
+<p>The covariance matrix plays a critical role in Principal Component Analysis (PCA), where it is used to identify the directions of maximum variance in the data. The eigenvalues and eigenvectors of the covariance matrix form the foundation of PCA. This topic will be explored in detail in the PCA section.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Calculate the mean of each variable (column means)</span>
@@ -1025,6 +1048,7 @@ Manually Calculated Sample Covariance Matrix:
 </div>
 </div>
 <p>Comparing this <code class="docutils literal notranslate"><span class="pre">S_manual</span></code> matrix with the <code class="docutils literal notranslate"><span class="pre">S</span></code> matrix calculated using <code class="docutils literal notranslate"><span class="pre">np.cov()</span></code>, we should see they are identical.</p>
+</section>
 </section>
 <section id="correlation-matrix">
 <h2>9. Correlation Matrix<a class="headerlink" href="#correlation-matrix" title="Link to this heading">#</a></h2>
@@ -1064,7 +1088,7 @@ Manual calculation of Corr(X1, X2): 0.6353
 </section>
 <section id="example-filtering-data-based-on-pearson-correlation">
 <h2>10. Example: Filtering Data Based on Pearson Correlation<a class="headerlink" href="#example-filtering-data-based-on-pearson-correlation" title="Link to this heading">#</a></h2>
-<p>As illustrated in chapter 2 of <a class="reference external" href="http://guidetodatamining.com/chapter2/">Guide2DataMining</a> (<a class="reference external" href="https://dl3.takbook.com/pdf3/ebook9446%5Bwww.takbook.com%5D.pdf">Persian Translated</a>) the <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient</a> (derived from the covariance matrix) can be used to filter data based on relationships between variables.</p>
+<p>As illustrated in chapter 2 of <a class="reference external" href="http://guidetodatamining.com/chapter2/">Guide2DataMining</a> (<a class="reference external" href="https://dl3.takbook.com/pdf3/ebook9446%5Bwww.takbook.com%5D.pdf">Persian Translated</a>) the <a class="reference external" href="https://en.wikipedia.org/wiki/Pearson_correlation_coefficient">Pearson correlation coefficient</a> (derived from the covariance matrix) can be used to filter data based on relationships between variables.  This example shows how to identify and potentially remove redundant or weakly correlated features.</p>
 <p><strong>Scenario:</strong></p>
 <p>Suppose we have a dataset of movie ratings.  Each column represents a movie, and each row represents a user’s rating (or a missing value if the user hasn’t rated the movie). We want to identify users that have a high degree of similarity in their ratings (i.e., high correlation).</p>
 <div class="cell tag_hide-input docutils container">
@@ -1364,7 +1388,11 @@ Least similar users: (&#39;Dan&#39;, &#39;Robert&#39;) with correlation -0.97
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#eigenvalues-and-eigenvectors-of-the-covariance-matrix">5. Eigenvalues and Eigenvectors of the Covariance Matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-eigenvectors">6. Visualizing Eigenvectors</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-principal-component-analysis-pca">7. Connection to Principal Component Analysis (PCA)</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#manual-calculation-of-the-sample-covariance-matrix">8. Manual Calculation of the Sample Covariance Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#matrix-based-calculation-of-the-covariance-matrix">Matrix-Based Calculation of the Covariance Matrix</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-pca">Connection to PCA</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#correlation-matrix">9. Correlation Matrix</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-filtering-data-based-on-pearson-correlation">10. Example: Filtering Data Based on Pearson Correlation</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion">Conclusion</a></li>
