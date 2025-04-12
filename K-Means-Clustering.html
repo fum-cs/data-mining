@@ -32,7 +32,7 @@
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
     <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
   
@@ -199,16 +199,17 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="MLE-intro.html">Maximum Likelihood Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Voronoi-Diagrams-and-Classification2Clustering.html">Voronoi Diagrams and Their Connections to Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">k-means Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
@@ -441,7 +442,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-based-clustering">Representative-based Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-oop-for-implememntation-of-k-means">Using OOP for implememntation of k-means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implememntation-of-k-means">Implememntation of k-means</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-materials-related-to-k-means">Optional materials related to k-means</a></li>
 </ul>
             </nav>
@@ -559,9 +560,9 @@ the cluster, that is,</p>
 </div>
 </div>
 </section>
-<section id="using-oop-for-implememntation-of-k-means">
-<h2>Using OOP for implememntation of k-means<a class="headerlink" href="#using-oop-for-implememntation-of-k-means" title="Link to this heading">#</a></h2>
-<p>This notebook first generates some sample data and defines a KMeansClustering class that implements the K-Means algorithm. The fit method initializes the centroids randomly and then iteratively updates them until convergence.</p>
+<section id="implememntation-of-k-means">
+<h2>Implememntation of k-means<a class="headerlink" href="#implememntation-of-k-means" title="Link to this heading">#</a></h2>
+<p>This code first generates some sample data and defines a KMeansClustering class that implements the K-Means algorithm. The fit method initializes the centroids randomly and then iteratively updates them until convergence.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -740,7 +741,7 @@ the cluster, that is,</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#representative-based-clustering">Representative-based Clustering</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-oop-for-implememntation-of-k-means">Using OOP for implememntation of k-means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implememntation-of-k-means">Implememntation of k-means</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-materials-related-to-k-means">Optional materials related to k-means</a></li>
 </ul>
   </nav></div>

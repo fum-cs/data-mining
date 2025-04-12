@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Part 1: Foundation from the Python Data Science Handbook &#8212; Data Mining</title>
+    <title>Maximum Likelihood Estimation &#8212; Data Mining</title>
   
   
   
@@ -57,12 +57,14 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '01-Foundation-PDSH';</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'MLE-intro';</script>
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Machine Learning" href="05.00-Machine-Learning.html" />
-    <link rel="prev" title="Welcome to Data Mining Course" href="intro.html" />
+    <link rel="next" title="Mahalanobis Distance" href="Mahalanobis-Distance.html" />
+    <link rel="prev" title="Understanding the Covariance Matrix" href="Covariance-Matrix.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -181,12 +183,12 @@
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Foundation from the Python Data Science Handbook</span></p>
-<ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Part 1: Foundation from the Python Data Science Handbook</a></li>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="01-Foundation-PDSH.html">Part 1: Foundation from the Python Data Science Handbook</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Machine Learning</span></p>
-<ul class="nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="05.00-Machine-Learning.html">Machine Learning</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="05.00-Machine-Learning.html">Machine Learning</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="05.01-What-Is-Machine-Learning.html">What Is Machine Learning?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.02-Introducing-Scikit-Learn.html">Introducing Scikit-Learn</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html">Hyperparameters and Model Validation</a></li>
@@ -197,6 +199,7 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.05-Bayesian-Decision-Theory.html">Bayesian Decision Theory</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Covariance-Matrix.html">Understanding the Covariance Matrix</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Maximum Likelihood Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Mahalanobis-Distance.html">Mahalanobis Distance</a></li>
 <li class="toctree-l2"><a class="reference internal" href="kNN-Classification-Evaluation.html">k-Nearest Neighbors and Classification Evaluation Metrics</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Voronoi-Diagrams-and-Classification2Clustering.html">Voronoi Diagrams and Their Connections to Classification</a></li>
@@ -283,7 +286,7 @@
       
       
       
-      <li><a href="https://github.com/fum-cs/data-mining/issues/new?title=Issue%20on%20page%20%2F01-Foundation-PDSH.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/fum-cs/data-mining/issues/new?title=Issue%20on%20page%20%2FMLE-intro.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -313,7 +316,7 @@
       
       
       
-      <li><a href="_sources/01-Foundation-PDSH.md" target="_blank"
+      <li><a href="_sources/MLE-intro.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -384,7 +387,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -395,11 +400,26 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Part 1: Foundation from the Python Data Science Handbook</h1>
+    <h1>Maximum Likelihood Estimation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-function">Likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood-function">Log-Likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-mu-and-sigma-2">Estimating <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-mu">1. Estimating <span class="math notranslate nohighlight">\(\mu\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-sigma-2">2. Estimating <span class="math notranslate nohighlight">\(\sigma^2\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -409,22 +429,67 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="part-1-foundation-from-the-python-data-science-handbook">
-<h1>Part 1: Foundation from the Python Data Science Handbook<a class="headerlink" href="#part-1-foundation-from-the-python-data-science-handbook" title="Link to this heading">#</a></h1>
-<p>This initial part of the course covers the fundamental tools required for data science in Python. The content directly corresponds to the first four chapters of Jake VanderPlas’s excellent book, the <strong>Python Data Science Handbook (PDSH)</strong>.</p>
-<p>Instead of reproducing the material here, we strongly encourage you to study these chapters directly from the source. They are considered essential prerequisites for the subsequent sections of this course.</p>
-<p>The relevant chapters -excluding chapter one - cover:</p>
-<ol class="arabic simple">
-<li><p><strong>Introduction to NumPy:</strong> Understanding numerical computing with Python arrays (PDSH Chapter 2).</p></li>
-<li><p><strong>Data Manipulation with Pandas:</strong> Working with labeled data structures like Series and DataFrames (PDSH Chapter 3).</p></li>
-<li><p><strong>Visualization with Matplotlib:</strong> Creating static, animated, and interactive visualizations (PDSH Chapter 4).</p></li>
-</ol>
-<p>You can access the full book online for free:
-<a class="reference external" href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook (Online Version)</a></p>
-<p>These chapters provide the necessary background for the core focus of our course, which begins in the next section.</p>
-<hr class="docutils" />
-<p><strong>Part 2: Focus on Machine Learning</strong></p>
-<p>The second part of this course, which constitutes our main focus, delves into Machine Learning. While we will build upon concepts introduced in Chapter 5 of the Python Data Science Handbook, the material presented here will be significantly expanded and supplemented with additional resources and more in-depth explanations to provide a comprehensive understanding of machine learning techniques and their implementation.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="maximum-likelihood-estimation">
+<h1>Maximum Likelihood Estimation<a class="headerlink" href="#maximum-likelihood-estimation" title="Link to this heading">#</a></h1>
+<p>In this simplified explanation, we focus on estimating the parameters of a univariate Gaussian distribution using Maximum Likelihood Estimation (MLE). The univariate Gaussian distribution is defined as:</p>
+<div class="math notranslate nohighlight">
+\[P(x | \mu, \sigma^2) = \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x - \mu)^2}{2\sigma^2}\right)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mu\)</span> is the mean,</p></li>
+<li><p><span class="math notranslate nohighlight">\(\sigma^2\)</span> is the variance.</p></li>
+</ul>
+<p>Given a dataset <span class="math notranslate nohighlight">\(\mathcal{D} = \{x_1, x_2, \dots, x_n\}\)</span> of <span class="math notranslate nohighlight">\(n\)</span> i.i.d. samples, the goal is to estimate <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span> by maximizing the likelihood function.</p>
+<section id="likelihood-function">
+<h2>Likelihood Function<a class="headerlink" href="#likelihood-function" title="Link to this heading">#</a></h2>
+<p>The likelihood function is the probability of observing the dataset <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> given the parameters <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[L(\mu, \sigma^2) = \prod_{k=1}^n P(x_k | \mu, \sigma^2) = \prod_{k=1}^n \frac{1}{\sqrt{2\pi\sigma^2}} \exp\left(-\frac{(x_k - \mu)^2}{2\sigma^2}\right)\]</div>
+</section>
+<section id="log-likelihood-function">
+<h2>Log-Likelihood Function<a class="headerlink" href="#log-likelihood-function" title="Link to this heading">#</a></h2>
+<p>To simplify the computation, we take the logarithm of the likelihood function (log-likelihood):</p>
+<div class="math notranslate nohighlight">
+\[\ell(\mu, \sigma^2) = \log L(\mu, \sigma^2) = \sum_{k=1}^n \left[ -\frac{1}{2} \log(2\pi\sigma^2) - \frac{(x_k - \mu)^2}{2\sigma^2} \right]\]</div>
+<p>Simplifying further:</p>
+<div class="math notranslate nohighlight">
+\[\ell(\mu, \sigma^2) = -\frac{n}{2} \log(2\pi) - \frac{n}{2} \log(\sigma^2) - \frac{1}{2\sigma^2} \sum_{k=1}^n (x_k - \mu)^2\]</div>
+</section>
+<section id="estimating-mu-and-sigma-2">
+<h2>Estimating <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span><a class="headerlink" href="#estimating-mu-and-sigma-2" title="Link to this heading">#</a></h2>
+<section id="estimating-mu">
+<h3>1. Estimating <span class="math notranslate nohighlight">\(\mu\)</span><a class="headerlink" href="#estimating-mu" title="Link to this heading">#</a></h3>
+<p>To find the MLE for <span class="math notranslate nohighlight">\(\mu\)</span>, we take the derivative of <span class="math notranslate nohighlight">\(\ell(\mu, \sigma^2)\)</span> with respect to <span class="math notranslate nohighlight">\(\mu\)</span> and set it to zero:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial \ell}{\partial \mu} = \frac{1}{\sigma^2} \sum_{k=1}^n (x_k - \mu) = 0\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(\mu\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\sum_{k=1}^n (x_k - \hat{\mu}) = 0 \implies \hat{\mu} = \frac{1}{n} \sum_{k=1}^n x_k\]</div>
+<p>The MLE for <span class="math notranslate nohighlight">\(\mu\)</span> is the <strong>sample mean</strong>.</p>
+</section>
+<section id="estimating-sigma-2">
+<h3>2. Estimating <span class="math notranslate nohighlight">\(\sigma^2\)</span><a class="headerlink" href="#estimating-sigma-2" title="Link to this heading">#</a></h3>
+<p>To find the MLE for <span class="math notranslate nohighlight">\(\sigma^2\)</span>, we take the derivative of <span class="math notranslate nohighlight">\(\ell(\mu, \sigma^2)\)</span> with respect to <span class="math notranslate nohighlight">\(\sigma^2\)</span> and set it to zero:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial \ell}{\partial \sigma^2} = -\frac{n}{2\sigma^2} + \frac{1}{2\sigma^4} \sum_{k=1}^n (x_k - \mu)^2 = 0\]</div>
+<p>Multiplying through by <span class="math notranslate nohighlight">\(2\sigma^4\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[-n\sigma^2 + \sum_{k=1}^n (x_k - \mu)^2 = 0\]</div>
+<p>Solving for <span class="math notranslate nohighlight">\(\sigma^2\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\hat{\sigma}^2 = \frac{1}{n} \sum_{k=1}^n (x_k - \hat{\mu})^2\]</div>
+<p>The MLE for <span class="math notranslate nohighlight">\(\sigma^2\)</span> is the <strong>sample variance</strong> (with denominator <span class="math notranslate nohighlight">\(n\)</span> instead of <span class="math notranslate nohighlight">\(n-1\)</span>).</p>
+</section>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<p>The MLE estimates for the parameters of a univariate Gaussian distribution are:</p>
+<ul class="simple">
+<li><p>Mean: <span class="math notranslate nohighlight">\(\hat{\mu} = \frac{1}{n} \sum_{k=1}^n x_k\)</span></p></li>
+<li><p>Variance: <span class="math notranslate nohighlight">\(\hat{\sigma}^2 = \frac{1}{n} \sum_{k=1}^n (x_k - \hat{\mu})^2\)</span></p></li>
+</ul>
+<p>These estimates maximize the likelihood of observing the given dataset under the assumed Gaussian model.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
@@ -458,20 +523,20 @@ document.write(`
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="intro.html"
+       href="Covariance-Matrix.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Welcome to Data Mining Course</p>
+        <p class="prev-next-title">Understanding the Covariance Matrix</p>
       </div>
     </a>
     <a class="right-next"
-       href="05.00-Machine-Learning.html"
+       href="Mahalanobis-Distance.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Machine Learning</p>
+        <p class="prev-next-title">Mahalanobis Distance</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -481,6 +546,28 @@ document.write(`
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#likelihood-function">Likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#log-likelihood-function">Log-Likelihood Function</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-mu-and-sigma-2">Estimating <span class="math notranslate nohighlight">\(\mu\)</span> and <span class="math notranslate nohighlight">\(\sigma^2\)</span></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-mu">1. Estimating <span class="math notranslate nohighlight">\(\mu\)</span></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-sigma-2">2. Estimating <span class="math notranslate nohighlight">\(\sigma^2\)</span></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
