@@ -418,7 +418,9 @@ document.write(`
   </button>
 `);
 </script>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -434,6 +436,35 @@ document.write(`
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-list-of-machine-learning-methods">A list of machine learning methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">1. Supervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-metrics">Evaluation Metrics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">2. Unsupervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction">Dimensionality Reduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#association-rules">Association Rules</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Evaluation Metrics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-supervised-learning">3. Semi-Supervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Evaluation Metrics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-supervised-learning-emerging">4. Self-Supervised Learning (Emerging)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-notes">Key Notes:</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -457,6 +488,105 @@ Rather, the goals here are:</p>
 </ul>
 <p>Much of this material is drawn from the Scikit-Learn tutorials and workshops I have given on several occasions at PyCon, SciPy, PyData, and other conferences.
 Any clarity in the following pages is likely due to the many workshop participants and co-instructors who have given me valuable feedback on this material over the years!</p>
+<section id="a-list-of-machine-learning-methods">
+<h2>A list of machine learning methods<a class="headerlink" href="#a-list-of-machine-learning-methods" title="Link to this heading">#</a></h2>
+<section id="supervised-learning">
+<h3>1. Supervised Learning<a class="headerlink" href="#supervised-learning" title="Link to this heading">#</a></h3>
+<section id="classification">
+<h4>Classification<a class="headerlink" href="#classification" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Linear Models: Logistic Regression, Perceptron</p></li>
+<li><p>Tree-Based: Decision Tree (CART, ID3, C4.5), Random Forest, Gradient Boosting (XGBoost, LightGBM, CatBoost)</p></li>
+<li><p>Kernel-Based: SVM (Linear/RBF/Poly Kernels), Kernel Logistic Regression</p></li>
+<li><p>Probabilistic: Naïve Bayes (Gaussian, Multinomial), Bayesian Networks</p></li>
+<li><p>Neural Networks: MLP, CNN (for structured data), Transformers (e.g., BERT for text)</p></li>
+</ul>
+</section>
+<section id="regression">
+<h4>Regression<a class="headerlink" href="#regression" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Linear: Linear Regression, Ridge (L2), Lasso (L1), Elastic Net (L1+L2)</p></li>
+<li><p>Nonlinear: Polynomial Regression, SVR (Support Vector Regression), Gaussian Processes</p></li>
+<li><p>Tree-Based: Regression Trees, Random Forest Regressor, XGBoost Regressor</p></li>
+</ul>
+</section>
+<section id="evaluation-metrics">
+<h4>Evaluation Metrics<a class="headerlink" href="#evaluation-metrics" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Classification: Accuracy, Precision/Recall, F1-Score, ROC-AUC, Log-Loss</p></li>
+<li><p>Regression: MSE, RMSE, MAE, R², Adjusted R²</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="unsupervised-learning">
+<h3>2. Unsupervised Learning<a class="headerlink" href="#unsupervised-learning" title="Link to this heading">#</a></h3>
+<section id="clustering">
+<h4>Clustering<a class="headerlink" href="#clustering" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Centroid-Based: K-Means (K-Means++), K-Medoids (PAM), Fuzzy C-Means</p></li>
+<li><p>Hierarchical: Agglomerative (Single/Linkage), Divisive</p></li>
+<li><p>Density-Based: DBSCAN (OPTICS, HDBSCAN)</p></li>
+<li><p>Distribution-Based: Gaussian Mixture Models (GMM)</p></li>
+<li><p>Spectral Clustering: Graph-cut methods (e.g., Normalized Cuts)</p></li>
+</ul>
+</section>
+<section id="dimensionality-reduction">
+<h4>Dimensionality Reduction<a class="headerlink" href="#dimensionality-reduction" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Linear: PCA, Factor Analysis</p></li>
+<li><p>Nonlinear: t-SNE, UMAP, Autoencoders (Variational, Denoising)</p></li>
+</ul>
+</section>
+<section id="association-rules">
+<h4>Association Rules<a class="headerlink" href="#association-rules" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Apriori, FP-Growth, Eclat</p></li>
+</ul>
+</section>
+<section id="id1">
+<h4>Evaluation Metrics<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Clustering: Silhouette Score, Davies-Bouldin Index, Calinski-Harabasz Index</p></li>
+<li><p>Dimensionality Reduction: Reconstruction Error (for autoencoders), Explained Variance (PCA)</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="semi-supervised-learning">
+<h3>3. Semi-Supervised Learning<a class="headerlink" href="#semi-supervised-learning" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Self-Training: Iterative labeling (e.g., Yarowsky Algorithm)</p></li>
+<li><p>Graph-Based: Label Propagation, Laplacian SVM</p></li>
+<li><p>Deep Learning: Semi-Supervised GANs (e.g., SGAN), Pseudo-Labeling</p></li>
+<li><p>Co-Training: Multi-view learning</p></li>
+</ul>
+<section id="id2">
+<h4>Evaluation Metrics<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p>Adjusted Rand Index (if ground truth is partially known), Purity</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="self-supervised-learning-emerging">
+<h3>4. Self-Supervised Learning (Emerging)<a class="headerlink" href="#self-supervised-learning-emerging" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Pretext Tasks: RotNet, Masked Autoencoders (e.g., BERT, MAE)</p></li>
+<li><p>Contrastive Learning: SimCLR, MoCo, BYOL</p></li>
+<li><p>Applications: Pretraining for NLP/CV (e.g., GPT, Vision Transformers)</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="key-notes">
+<h3>Key Notes:<a class="headerlink" href="#key-notes" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p>Scope: This is a <em>subset</em> of ML methods; real-world projects often combine techniques (e.g., PCA + K-Means).</p></li>
+<li><p>Choice Depends On: Data type (tabular, image, text), problem goals, and computational resources.</p></li>
+<li><p>Evaluation: Always match metrics to the task (e.g., Silhouette for clustering, F1 for imbalanced classification).</p></li>
+</ol>
+</section>
+</section>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -515,6 +645,42 @@ Any clarity in the following pages is likely due to the many workshop participan
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#a-list-of-machine-learning-methods">A list of machine learning methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#supervised-learning">1. Supervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#classification">Classification</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#regression">Regression</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-metrics">Evaluation Metrics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unsupervised-learning">2. Unsupervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering">Clustering</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#dimensionality-reduction">Dimensionality Reduction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#association-rules">Association Rules</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Evaluation Metrics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semi-supervised-learning">3. Semi-Supervised Learning</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Evaluation Metrics</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-supervised-learning-emerging">4. Self-Supervised Learning (Emerging)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-notes">Key Notes:</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>

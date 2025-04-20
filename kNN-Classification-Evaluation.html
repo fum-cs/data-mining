@@ -577,7 +577,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a541b7c9cba00bc12dc5c62dfc7a5863c5bdcc10da18685ba5a0d9551ef61cf3.png" src="_images/a541b7c9cba00bc12dc5c62dfc7a5863c5bdcc10da18685ba5a0d9551ef61cf3.png" />
+<img alt="_images/7fc094e323759f77e52448584f8df2dd29073159aeb2976ac73ef12e54cb72c2.png" src="_images/7fc094e323759f77e52448584f8df2dd29073159aeb2976ac73ef12e54cb72c2.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -628,7 +628,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/d02234c9ee2aab04e9e05eec77105216e8b18eeb734ee79f3673c99729ddbca0.png" src="_images/d02234c9ee2aab04e9e05eec77105216e8b18eeb734ee79f3673c99729ddbca0.png" />
+<img alt="_images/0a5d4d5874b0996a04cf5ec42fe403d80e6ea90a16712e54499d61a3abddac96.png" src="_images/0a5d4d5874b0996a04cf5ec42fe403d80e6ea90a16712e54499d61a3abddac96.png" />
 </div>
 </div>
 </section>
@@ -703,7 +703,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/8310c548c0a7e7197f83679541aae469e58b5702181e4b88b34f16a0e36fd793.png" src="_images/8310c548c0a7e7197f83679541aae469e58b5702181e4b88b34f16a0e36fd793.png" />
+<img alt="_images/de1ebafab7bcf1f9b7e9b38e4f0faaae9f3945353cd7e882e5f4c7df20f2801b.png" src="_images/de1ebafab7bcf1f9b7e9b38e4f0faaae9f3945353cd7e882e5f4c7df20f2801b.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -738,7 +738,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/0d48d574634349d87f5d856542fb3dfd19c2d1b5935294ce1ff033fea0198758.png" src="_images/0d48d574634349d87f5d856542fb3dfd19c2d1b5935294ce1ff033fea0198758.png" />
+<img alt="_images/b0df882f63f3c9584424ab0f19208d26bdf8cefb092d9ad3bf636466174504c4.png" src="_images/b0df882f63f3c9584424ab0f19208d26bdf8cefb092d9ad3bf636466174504c4.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True Negatives (TN): 141
 False Positives (FP): 6
 False Negatives (FN): 13
@@ -944,7 +944,7 @@ Manually calculated F1-Score: 0.9365
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/76c94025076d48e45fa789544e4d54a50e5a18ccd61438a5f5e719a9736eb417.png" src="_images/76c94025076d48e45fa789544e4d54a50e5a18ccd61438a5f5e719a9736eb417.png" />
+<img alt="_images/a31dadce595178fe7af75ecd8735e04a3d03264a94b51ac30329478763f14fed.png" src="_images/a31dadce595178fe7af75ecd8735e04a3d03264a94b51ac30329478763f14fed.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -977,7 +977,7 @@ Manually calculated F1-Score: 0.9365
 <span class="n">axes</span> <span class="o">=</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
 
 <span class="c1"># Calculate precision and recall for different thresholds</span>
-<span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="n">thresholds</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
 <span class="n">precisions</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">recalls</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="n">f1_scores</span> <span class="o">=</span> <span class="p">[]</span>
@@ -987,13 +987,10 @@ Manually calculated F1-Score: 0.9365
     <span class="n">precisions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">precision_score</span><span class="p">(</span><span class="n">y_test_new</span><span class="p">,</span> <span class="n">y_pred_threshold</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">1</span><span class="p">))</span>
     <span class="n">recalls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">recall_score</span><span class="p">(</span><span class="n">y_test_new</span><span class="p">,</span> <span class="n">y_pred_threshold</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
     <span class="n">f1_scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f1_score</span><span class="p">(</span><span class="n">y_test_new</span><span class="p">,</span> <span class="n">y_pred_threshold</span><span class="p">,</span> <span class="n">zero_division</span><span class="o">=</span><span class="mi">0</span><span class="p">))</span>
-
-    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">thresholds</span><span class="p">[</span><span class="mi">50</span><span class="p">],</span><span class="mf">1.0</span><span class="p">]:</span>
-        <span class="c1"># Plot decision boundaries</span>
-        <span class="c1"># axes[i].contourf(xx, yy, Z, alpha=0.3, cmap=&#39;viridis&#39;)</span>
-        <span class="c1"># axes[i].scatter(X_train_new[:, 0], X_train_new[:, 1], c=y_train_new, cmap=&#39;viridis&#39;, s=50, edgecolors=&#39;k&#39;)</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test_new</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test_new</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_threshold</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
-        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;kNN with threshold=</span><span class="si">{</span><span class="n">threshold</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">threshold</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">thresholds</span><span class="p">[</span><span class="nb">len</span><span class="p">(</span><span class="n">thresholds</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span><span class="p">],</span><span class="mf">1.0</span><span class="p">]:</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">X_test_new</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">X_test_new</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">y_pred_threshold</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> 
+                <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">marker</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+        <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;kNN with threshold=</span><span class="si">{</span><span class="n">threshold</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
         <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;Feature 1&#39;</span><span class="p">)</span>
         <span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Feature 2&#39;</span><span class="p">)</span>
         <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -1005,7 +1002,7 @@ Manually calculated F1-Score: 0.9365
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/5344419327c7bc71be27388c720ab239459148ce36f52fb2a8844c31c5d92c09.png" src="_images/5344419327c7bc71be27388c720ab239459148ce36f52fb2a8844c31c5d92c09.png" />
+<img alt="_images/2573e0929ca1f0f8051a42b11f1cfc15a7d0af1a623b17540055e2af2f794341.png" src="_images/2573e0929ca1f0f8051a42b11f1cfc15a7d0af1a623b17540055e2af2f794341.png" />
 </div>
 </div>
 <div class="cell tag_hide-input docutils container">
@@ -1042,7 +1039,7 @@ Manually calculated F1-Score: 0.9365
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/1db632ac4f2470665ff10fabe870da8a60c5edcb74d33827dc3ad04099af62b3.png" src="_images/1db632ac4f2470665ff10fabe870da8a60c5edcb74d33827dc3ad04099af62b3.png" />
+<img alt="_images/a6d492921992f716b12ae8f0911ff7cf2f2bd6010d36d49ce32237ead9bb135a.png" src="_images/a6d492921992f716b12ae8f0911ff7cf2f2bd6010d36d49ce32237ead9bb135a.png" />
 </div>
 </div>
 </section>
