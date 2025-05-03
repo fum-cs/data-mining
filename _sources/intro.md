@@ -59,18 +59,31 @@ Book documentation.
 
 ## Teaching Assistants
 
-<table style="width:100%;">  
-  <tr>  
-    <td style="width:20%;">  
-      <img src="_images/A-Ahmadi.jpg" alt="Adel Ahmadi" style="width:100px;height:auto;">  
-    </td>  
-    <td>  
-      <strong><a href="https://github.com/">Adel Ahmadi</a></strong> (TA Head)<br>  
-      Email:   
-    </td>  
-  </tr>  
+<table style="width:50%;">
+  <tr>
+    <td style="width:120px; text-align:center; vertical-align:middle;">
+      <img src="_images/A-Ahmadi.jpg" alt="Adel Ahmadi" style="width:100px;height:auto;">
+      <br>
+      <strong><a href="https://github.com/">Adel Ahmadi</a></strong>
+    </td>
+    <td style="width:120px; text-align:center; vertical-align:middle;">
+      (TA Head)
+    </td>
+  </tr>
+  <tr>
+  <td> <br> </td>
+  </tr>
+  <tr>
+      <td style="width:120px; text-align:center; vertical-align:middle;">
+      <img src="_images/Mr-Dashtban.jpg" alt="Mr. Dashtban" style="width:100px;height:auto;"> <br>
+      Mr. Dashtban
+    </td>
+    <td style="width:120px; text-align:center; vertical-align:middle;">
+      <img src="_images/Miss-Kiani.jpg" alt="Miss. Kiani" style="width:100px;height:auto;"> <br>
+      Miss. Kiani
+    </td>
+  </tr>
 </table>
-
 ---
 
 I should mention that the original material was from [Jake VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/). I used his notebooks and modified it to suit my own needs and preferences. I would like to thank him for his great work and generosity.
