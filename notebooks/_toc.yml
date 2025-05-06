@@ -29,6 +29,7 @@ parts:
       - file: 05.12-Gaussian-Mixtures
       - file: 05.06-Linear-Regression
       - file: 05.06-Regression
+      - file: Clustering-Validation-Metrics
       - file: 05.09-Principal-Component-Analysis
       - file: 05.07-Support-Vector-Machines
       - file: 05.08-Random-Forests
