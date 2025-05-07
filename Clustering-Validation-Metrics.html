@@ -212,7 +212,6 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.06-Regression.html">Linear Regression, continue …</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Clustering Validation Metrics</a></li>
-
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
@@ -447,35 +446,29 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clustering Validation Metrics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-clustering-validation">Introduction to Clustering Validation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-validation-measures">External Validation Measures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table-basics">Contingency Table Basics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-weight-matching"><strong>Maximum Weight Matching</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision"><strong>Precision</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall"><strong>Recall</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-measure"><strong>F-Measure</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-measures">External Measures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-and-recall">Precision and Recall</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">Recall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-measure">F-Measure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purity">1. Purity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching">2. Maximum Matching</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching-example-bipartite-graph-interpretation">Maximum Matching Example (Bipartite Graph Interpretation)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-recall-and-f-measure">3. Precision, Recall and F-measure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-17-1-good-vs-bad-clustering-on-iris-data">Example 17.1: Good vs Bad Clustering on Iris Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#good-clustering-results">Good Clustering Results:</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-clustering-results">Bad Clustering Results:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-validation-metrics-tutorial">Clustering Validation Metrics Tutorial</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-17-1-good-vs-bad-clustering-on-iris-data">Example 17.1: Good vs Bad Clustering on Iris Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-clustering-results">Good Clustering Results:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contingency Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pairwise-measures">4. Pairwise Measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jaccard-coefficient">Jaccard Coefficient</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rand-index">Rand Index</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-clustering-results">Bad Clustering Results:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contingency Table</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pairwise-measures">4. Pairwise Measures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jaccard-coefficient">Jaccard Coefficient</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rand-index">Rand Index</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-validation-measures">Internal Validation Measures</a><ul class="nav section-nav flex-column">
@@ -495,9 +488,6 @@ document.write(`
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
             </nav>
         </div>
     </div>
@@ -534,30 +524,44 @@ document.write(`
 <li><p><strong>Internal measures</strong>: Use only the data and clustering results</p></li>
 <li><p><strong>Relative measures</strong>: Compare different clusterings</p></li>
 </ol>
-<p>We’ll focus on several popular external and internal measures.</p>
 </section>
-<section id="external-validation-measures">
-<h2>External Validation Measures<a class="headerlink" href="#external-validation-measures" title="Link to this heading">#</a></h2>
-<section id="contingency-table-basics">
-<h3>Contingency Table Basics<a class="headerlink" href="#contingency-table-basics" title="Link to this heading">#</a></h3>
-<p>First, let’s define some key quantities used in external measures:</p>
-<ul class="simple">
-<li><p><strong>TP (True Positives)</strong>: Pairs in same cluster and same true partition</p></li>
-<li><p><strong>FP (False Positives)</strong>: Pairs in same cluster but different partitions</p></li>
-<li><p><strong>TN (True Negatives)</strong>: Pairs in different clusters and different partitions</p></li>
-<li><p><strong>FN (False Negatives)</strong>: Pairs in different clusters but same partition</p></li>
-</ul>
-<p>These can be computed from the contingency table:</p>
+<section id="external-measures">
+<h2>External Measures<a class="headerlink" href="#external-measures" title="Link to this heading">#</a></h2>
+<p>External measures assume that the correct or  ground-truth clustering is known <em>a priori</em>, which  is used to evaluate a given clustering.</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{D} = \{\mathbf{x}_i\}_{i=1}^n\)</span> be a dataset consisting of <span class="math notranslate nohighlight">\(n\)</span> points in a  <span class="math notranslate nohighlight">\(d\)</span>-dimensional space, partitioned into <span class="math notranslate nohighlight">\(k\)</span> clusters. Let <span class="math notranslate nohighlight">\(y_i \in  
+\left\{ 1, 2,\ldots , k \right\}\)</span> denote the ground-truth cluster  membership or label information for each point.</p>
+<p>The ground-truth clustering is given as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{T} = \left\{ T_1, T_2, \ldots, T_k \right\}
+\]</div>
+<p>where the cluster <span class="math notranslate nohighlight">\(T_{j}\)</span> consists of all the points with label <span class="math notranslate nohighlight">\(j\)</span>, i.e.,</p>
+<div class="math notranslate nohighlight">
+\[
+T_{j} = \left\{ \mathbf{x}_i \in \mathbf{D} \mid y_i = j \right\}
+\]</div>
+<p>We refer to <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> as the ground-truth <em>partitioning</em>, and to each <span class="math notranslate nohighlight">\(T_i\)</span> as a <em>partition</em> (class).</p>
+<p>Let <span class="math notranslate nohighlight">\(\mathbf{C} = \{C_1, \ldots, C_r\}\)</span> denote a clustering of the same dataset into <span class="math notranslate nohighlight">\(r\)</span>  clusters, obtained via some clustering algorithm, and let <span class="math notranslate nohighlight">\(\hat{y}_i \in  
+\left\{ 1, 2, \ldots, r \right\}\)</span> denote the cluster label for <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>.</p>
+<p>External evaluation measures try to capture the extent to which points from the same partition appear in the  same cluster, and the extent to which points from different partitions  are grouped in different clusters.</p>
+<p>All of the external measures rely on the <span class="math notranslate nohighlight">\(r \times k\)</span>  <strong>contingency table</strong> <span class="math notranslate nohighlight">\(\mathbf{N}\)</span> that is induced by a clustering <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> and the ground-truth partitioning <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, defined as follows:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{N}(i,j) = n_{ij}  = \left| C_i \cap T_{j} \right|
+\]</div>
+<p>The count <span class="math notranslate nohighlight">\(n_{ij}\)</span> denotes the number of points that are common to cluster <span class="math notranslate nohighlight">\(C_i\)</span> and ground-truth partition <span class="math notranslate nohighlight">\(T_{j}\)</span>.</p>
+<p>Let <span class="math notranslate nohighlight">\(n_{i} = |C_i|\)</span> denote the number of points in cluster <span class="math notranslate nohighlight">\(C_i\)</span>, and let <span class="math notranslate nohighlight">\(m_{j} = |T_{j}|\)</span> denote the number of points in partition  <span class="math notranslate nohighlight">\(T_{j}\)</span>.  The contingency table can be computed from <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> in <span class="math notranslate nohighlight">\(O(n)\)</span> time by examining the partition and cluster labels, <span class="math notranslate nohighlight">\(y_i\)</span> and  <span class="math notranslate nohighlight">\(\hat{y}_i\)</span>, for each point <span class="math notranslate nohighlight">\(\mathbf{x}_i \in \mathbf{D}\)</span> and incrementing the corresponding count <span class="math notranslate nohighlight">\(n_{y_i\hat{y}_i}\)</span>.</p>
+<p>Contingency Table can be computed as follows:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">compute_contingency_table</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute contingency table: n_ij = number of items in cluster i and class j&quot;&quot;&quot;</span>
-    <span class="n">unique_clusters</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)</span>
-    <span class="n">unique_classes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">true_labels</span><span class="p">)</span>
-    <span class="n">n_ij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">unique_clusters</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">)))</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">)</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">true_labels</span><span class="p">)</span>
+    <span class="n">n_ij</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="nb">len</span><span class="p">(</span><span class="n">k</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)))</span>
     
-    <span class="k">for</span> <span class="n">cluster_idx</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_clusters</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">class_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">cluster_idx</span><span class="p">,</span> <span class="n">cluster</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">k</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">class_idx</span><span class="p">,</span> <span class="n">class_</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">r</span><span class="p">):</span>
             <span class="n">n_ij</span><span class="p">[</span><span class="n">cluster_idx</span><span class="p">,</span> <span class="n">class_idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">cluster_labels</span> <span class="o">==</span> <span class="n">cluster</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">true_labels</span> <span class="o">==</span> <span class="n">class_</span><span class="p">))</span>
     
     <span class="k">return</span> <span class="n">n_ij</span>
@@ -565,30 +569,17 @@ document.write(`
 </div>
 </div>
 </div>
-<p>All of the external measures rely on the <span class="math notranslate nohighlight">\(r \times k\)</span>  <strong>contingency table</strong> <span class="math notranslate nohighlight">\(\mathbf{N}\)</span> that is induced by a clustering <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> and the ground-truth partitioning <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, defined as follows:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathbf{N}(i,j) = n_{ij}  = \left| C_i \cap T_{j} \right|
-\]</div>
-<p>The count <span class="math notranslate nohighlight">\(n_{ij}\)</span> denotes the number of points that are common to cluster <span class="math notranslate nohighlight">\(C_i\)</span> and ground-truth partition <span class="math notranslate nohighlight">\(T_{j}\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(n_{i} = |C_i|\)</span> denote the number of points in cluster <span class="math notranslate nohighlight">\(C_i\)</span>, and let <span class="math notranslate nohighlight">\(m_{j} = |T_{j}|\)</span> denote the number of points in partition<br />
-<span class="math notranslate nohighlight">\(T_{j}\)</span>.<br />
-The contingency table can be computed from <span class="math notranslate nohighlight">\(\mathbf{T}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> in <span class="math notranslate nohighlight">\(O(n)\)</span> time by examining the partition and cluster labels, <span class="math notranslate nohighlight">\(y_i\)</span> and  <span class="math notranslate nohighlight">\(\hat{y}_i\)</span>, for each point <span class="math notranslate nohighlight">\(\mathbf{x}_i \in \mathbf{D}\)</span> and incrementing the corresponding count <span class="math notranslate nohighlight">\(n_{y_i\hat{y}_i}\)</span>.</p>
-<p>Let <span class="math notranslate nohighlight">\(G\)</span> be a bipartite graph over the vertex set <span class="math notranslate nohighlight">\(V = \mathbf{C} \cup \mathbf{T}\)</span>, and let the edge set be <span class="math notranslate nohighlight">\(E = \{ (C_i, T_{j}) \}\)</span> with<br />
-edge weights <span class="math notranslate nohighlight">\(w(C_i,T_{j}) = n_{ij}\)</span>.<br />
-A <strong>matching</strong> <span class="math notranslate nohighlight">\(M\)</span> in <span class="math notranslate nohighlight">\(G\)</span> is a subset of <span class="math notranslate nohighlight">\(E\)</span>, such that the edges in <span class="math notranslate nohighlight">\(M\)</span> are pairwise nonadjacent, meaning they do not have a common vertex.</p>
 </section>
-<section id="maximum-weight-matching">
-<h3><strong>Maximum Weight Matching</strong><a class="headerlink" href="#maximum-weight-matching" title="Link to this heading">#</a></h3>
-<p>The maximum weight matching in <span class="math notranslate nohighlight">\(G\)</span> is given as:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathit{match} = \arg \max_M \left\{ \frac{w(M)}{n} \right\}
-\]</div>
-<p>where <span class="math notranslate nohighlight">\(w(M)\)</span> is the sum of all edge weights in matching <span class="math notranslate nohighlight">\(M\)</span>,  given as <span class="math notranslate nohighlight">\(w(M) = \sum_{e \in M} w(e)\)</span>.</p>
-</section>
+<section id="precision-and-recall">
+<h2>Precision and Recall<a class="headerlink" href="#precision-and-recall" title="Link to this heading">#</a></h2>
+<p>For each cluster <span class="math notranslate nohighlight">\( C_i \)</span>:</p>
+<ul class="simple">
+<li><p><strong>Precision</strong>: Fraction of points in cluster from majority class</p></li>
+<li><p><strong>Recall</strong>: Fraction of points from class found in cluster</p></li>
+</ul>
+<p><img alt="" src="_images/Precisionrecall.png" /></p>
 <section id="precision">
-<h3><strong>Precision</strong><a class="headerlink" href="#precision" title="Link to this heading">#</a></h3>
+<h3>Precision<a class="headerlink" href="#precision" title="Link to this heading">#</a></h3>
 <p>Given cluster <span class="math notranslate nohighlight">\(C_i\)</span>, let <span class="math notranslate nohighlight">\(j_i\)</span> denote the partition that contains the maximum number of points from <span class="math notranslate nohighlight">\(C_i\)</span>,
 that is, <span class="math notranslate nohighlight">\(j_i = \max_{j=1}^k \{ n_{ij} \}\)</span>.
 The precision of a cluster <span class="math notranslate nohighlight">\(C_i\)</span> is the same as its purity:</p>
@@ -599,7 +590,7 @@ The precision of a cluster <span class="math notranslate nohighlight">\(C_i\)</s
 \]</div>
 </section>
 <section id="recall">
-<h3><strong>Recall</strong><a class="headerlink" href="#recall" title="Link to this heading">#</a></h3>
+<h3>Recall<a class="headerlink" href="#recall" title="Link to this heading">#</a></h3>
 <p>The recall of cluster <span class="math notranslate nohighlight">\(C_i\)</span> is defined as:</p>
 <div class="math notranslate nohighlight">
 \[
@@ -608,17 +599,15 @@ The precision of a cluster <span class="math notranslate nohighlight">\(C_i\)</s
 <p>where <span class="math notranslate nohighlight">\(m_{j_i} = |\mathbf{T}_{j_i}|\)</span>.</p>
 </section>
 <section id="f-measure">
-<h3><strong>F-Measure</strong><a class="headerlink" href="#f-measure" title="Link to this heading">#</a></h3>
-<p>The F-measure is the harmonic mean of the precision and recall values for<br />
-each <span class="math notranslate nohighlight">\(C_i\)</span>:</p>
+<h3>F-Measure<a class="headerlink" href="#f-measure" title="Link to this heading">#</a></h3>
+<p>The F-measure is the harmonic mean of the precision and recall values for each <span class="math notranslate nohighlight">\(C_i\)</span>:</p>
 <div class="math notranslate nohighlight">
 \[
 F_i = \frac{2}{\frac{1}{\mathit{prec}_i} + \frac{1}{\mathit{recall}_i}} =
 \frac{2 \cdot \mathit{prec}_i \cdot \mathit{recall}_i}{\mathit{prec}_i + \mathit{recall}_i} =
 \frac{2 \; n_{ij_i}}{n_{i} + m_{j_i}}
 \]</div>
-<p>The <strong>F-measure</strong> for the clustering <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is the mean of clusterwise<br />
-F-measure values:</p>
+<p>The <strong>F-measure</strong> for the clustering <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is the mean of clusterwise F-measure values:</p>
 <div class="math notranslate nohighlight">
 \[
 F = \frac{1}{r} \sum_{i=1}^r F_i
@@ -656,6 +645,14 @@ F = \frac{1}{r} \sum_{i=1}^r F_i
 \text{match} = \frac{1}{n}\max_M \sum_{(i,j)\in M} n_{ij}
 \]</div>
 <p>Where <span class="math notranslate nohighlight">\( M \)</span> is a matching between clusters and classes.</p>
+<p><strong>Maximum Weight Matching based on <code class="docutils literal notranslate"><span class="pre">{cite}</span></code>{zaki2020data}</strong></p>
+<p>Let <span class="math notranslate nohighlight">\(G\)</span> be a bipartite graph over the vertex set <span class="math notranslate nohighlight">\(V = \mathbf{C} \cup \mathbf{T}\)</span>, and let the edge set be <span class="math notranslate nohighlight">\(E = \{ (C_i, T_{j}) \}\)</span> with  edge weights <span class="math notranslate nohighlight">\(w(C_i,T_{j}) = n_{ij}\)</span>.  A <strong>matching</strong> <span class="math notranslate nohighlight">\(M\)</span> in <span class="math notranslate nohighlight">\(G\)</span> is a subset of <span class="math notranslate nohighlight">\(E\)</span>, such that the edges in <span class="math notranslate nohighlight">\(M\)</span> are pairwise nonadjacent, meaning they do not have a common vertex.</p>
+<p>The maximum weight matching in <span class="math notranslate nohighlight">\(G\)</span> is given as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathit{match} = \arg \max_M \left\{ \frac{w(M)}{n} \right\}
+\]</div>
+<p>where <span class="math notranslate nohighlight">\(w(M)\)</span> is the sum of all edge weights in matching <span class="math notranslate nohighlight">\(M\)</span>,  given as <span class="math notranslate nohighlight">\(w(M) = \sum_{e \in M} w(e)\)</span>.</p>
 </section>
 <section id="maximum-matching-example-bipartite-graph-interpretation">
 <h3>Maximum Matching Example (Bipartite Graph Interpretation)<a class="headerlink" href="#maximum-matching-example-bipartite-graph-interpretation" title="Link to this heading">#</a></h3>
@@ -737,39 +734,16 @@ Max weight: 6
 </ol>
 <p><strong>Real-world analogy</strong>: Imagine this as assigning each project team (cluster) to exactly one department (category) where you want to maximize the number of correctly assigned team members.</p>
 </section>
-<section id="precision-recall-and-f-measure">
-<h3>3. Precision, Recall and F-measure<a class="headerlink" href="#precision-recall-and-f-measure" title="Link to this heading">#</a></h3>
-<p>For each cluster <span class="math notranslate nohighlight">\( C_i \)</span>:</p>
-<ul class="simple">
-<li><p><strong>Precision</strong>: Fraction of points in cluster from majority class
-$<span class="math notranslate nohighlight">\(
-\text{prec}_i = \frac{n_{ij_i}}{n_i}
-\)</span>$</p></li>
-<li><p><strong>Recall</strong>: Fraction of points from class found in cluster
-$<span class="math notranslate nohighlight">\(
-\text{recall}_i = \frac{n_{ij_i}}{m_{j_i}}
-\)</span>$</p></li>
-<li><p><strong>F-measure</strong>: Harmonic mean of precision and recall
-$<span class="math notranslate nohighlight">\(
-F_i = \frac{2 \cdot \text{prec}_i \cdot \text{recall}_i}{\text{prec}_i + \text{recall}_i} = \frac{2n_{ij_i}}{n_i + m_{j_i}}
-\)</span>$</p></li>
-</ul>
-<p>Overall F-measure is the average of cluster F-measures.</p>
-</section>
-</section>
-</section>
-<section class="tex2jax_ignore mathjax_ignore" id="clustering-validation-metrics-tutorial">
-<h1>Clustering Validation Metrics Tutorial<a class="headerlink" href="#clustering-validation-metrics-tutorial" title="Link to this heading">#</a></h1>
 <section id="example-17-1-good-vs-bad-clustering-on-iris-data">
-<h2>Example 17.1: Good vs Bad Clustering on Iris Data<a class="headerlink" href="#example-17-1-good-vs-bad-clustering-on-iris-data" title="Link to this heading">#</a></h2>
+<h3>Example 17.1: Good vs Bad Clustering on Iris Data<a class="headerlink" href="#example-17-1-good-vs-bad-clustering-on-iris-data" title="Link to this heading">#</a></h3>
 <p>Let’s examine two different clusterings of the Iris dataset using principal components:</p>
 <section id="good-clustering-results">
-<h3>Good Clustering Results:<a class="headerlink" href="#good-clustering-results" title="Link to this heading">#</a></h3>
+<h4>Good Clustering Results:<a class="headerlink" href="#good-clustering-results" title="Link to this heading">#</a></h4>
 <p><img alt="" src="_images/Zaki-Chap17-Good-Clustering.png" /></p>
 </section>
 </section>
 <section id="contingency-table">
-<h2>Contingency Table<a class="headerlink" href="#contingency-table" title="Link to this heading">#</a></h2>
+<h3>Contingency Table<a class="headerlink" href="#contingency-table" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -811,12 +785,12 @@ F_i = \frac{2 \cdot \text{prec}_i \cdot \text{recall}_i}{\text{prec}_i + \text{r
 <strong>Match:</strong> 0.887<br />
 <strong>F:</strong> 0.885</p>
 <section id="bad-clustering-results">
-<h3>Bad Clustering Results:<a class="headerlink" href="#bad-clustering-results" title="Link to this heading">#</a></h3>
+<h4>Bad Clustering Results:<a class="headerlink" href="#bad-clustering-results" title="Link to this heading">#</a></h4>
 <p><img alt="" src="_images/Zaki-Chap17-Bad-Clustering.png" /></p>
 </section>
 </section>
 <section id="id1">
-<h2>Contingency Table<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<h3>Contingency Table<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -859,20 +833,59 @@ F_i = \frac{2 \cdot \text{prec}_i \cdot \text{recall}_i}{\text{prec}_i + \text{r
 <strong>F:</strong> 0.658</p>
 </section>
 <section id="pairwise-measures">
-<h2>4. Pairwise Measures<a class="headerlink" href="#pairwise-measures" title="Link to this heading">#</a></h2>
+<h3>4. Pairwise Measures<a class="headerlink" href="#pairwise-measures" title="Link to this heading">#</a></h3>
+<p>First, let’s define some key quantities used in external measures:</p>
+<ul class="simple">
+<li><p><strong>TP (True Positives)</strong>: Pairs in same cluster and same true partition</p></li>
+<li><p><strong>FP (False Positives)</strong>: Pairs in same cluster but different partitions</p></li>
+<li><p><strong>TN (True Negatives)</strong>: Pairs in different clusters and different partitions</p></li>
+<li><p><strong>FN (False Negatives)</strong>: Pairs in different clusters but same partition</p></li>
+</ul>
+<p>Given clustering <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> and ground-truth partitioning <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, let  <span class="math notranslate nohighlight">\(\mathbf{x}_i, \mathbf{x}_{j} \in \mathbf{D}\)</span> be any two points, with <span class="math notranslate nohighlight">\(i \ne j\)</span>.  Let <span class="math notranslate nohighlight">\(y_i\)</span> denote the true partition label and let <span class="math notranslate nohighlight">\(\hat{y}_i\)</span> denote the cluster label for  point <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span>.</p>
+<p>If both <span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}_{j}\)</span> belong to the same cluster, that is, <span class="math notranslate nohighlight">\(\hat{y}_i =  
+\hat{y}_{j}\)</span>, we call it a <em>positive</em> event, and if they do not belong to the same cluster, that is, <span class="math notranslate nohighlight">\(\hat{y}_i \ne \hat{y}_{j}\)</span>, we call that a <em>negative</em> event.  Depending on whether there is agreement between the cluster labels and  partition labels, there are four possibilities to consider:</p>
+<p><strong>True Positives (TP)</strong><br />
+<span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}_{j}\)</span> belong to the same  partition in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, and they are also in the same cluster in <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>. The number of true positive pairs is given as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathit{TP} = \bigl|\{(\mathbf{x}_i, \mathbf{x}_{j}):\; y_i = y_{j}
+\text{ and } \hat{y}_i = \hat{y}_{j} \}\bigr|
+\]</div>
+<p><strong>False Negatives (FN)</strong><br />
+<span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}_{j}\)</span> belong to the same partition in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, but they do not belong to the same cluster in <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>.  The number of false negative pairs is given as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathit{FN} = \bigl|\{(\mathbf{x}_i, \mathbf{x}_{j}):\; y_i = y_{j}
+\text{ and } \hat{y}_i \ne \hat{y}_{j} \}\bigr|
+\]</div>
+<p><strong>False Positives (FP)</strong><br />
+<span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}_{j}\)</span> do not belong to the  same partition in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, but they do belong to the same cluster in <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>. The number of false positive pairs is given as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathit{FP} = \bigl|\{(\mathbf{x}_i, \mathbf{x}_{j}):\; y_i \ne y_{j}
+\text{ and } \hat{y}_i = \hat{y}_{j} \}\bigr|
+\]</div>
+<p><strong>True Negatives (TN)</strong><br />
+<span class="math notranslate nohighlight">\(\mathbf{x}_i\)</span> and <span class="math notranslate nohighlight">\(\mathbf{x}_{j}\)</span> neither belong to  the same partition in <span class="math notranslate nohighlight">\(\mathbf{T}\)</span>, nor do they belong to the same cluster in <span class="math notranslate nohighlight">\(\mathbf{C}\)</span>. The number of such true negative pairs is given as:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathit{TN} = \bigl|\{(\mathbf{x}_i, \mathbf{x}_{j}):\; y_i \ne y_{j}
+\text{ and } \hat{y}_i \ne \hat{y}_{j} \}\bigr|
+\]</div>
 <section id="jaccard-coefficient">
-<h3>Jaccard Coefficient<a class="headerlink" href="#jaccard-coefficient" title="Link to this heading">#</a></h3>
+<h4>Jaccard Coefficient<a class="headerlink" href="#jaccard-coefficient" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 \text{Jaccard} = \frac{TP}{TP + FN + FP}
 \]</div>
 </section>
 <section id="rand-index">
-<h3>Rand Index<a class="headerlink" href="#rand-index" title="Link to this heading">#</a></h3>
+<h4>Rand Index<a class="headerlink" href="#rand-index" title="Link to this heading">#</a></h4>
 <div class="math notranslate nohighlight">
 \[
 \text{Rand} = \frac{TP + TN}{TP + FN + FP + TN} = \frac{TP + TN}{\binom{n}{2}}
 \]</div>
+</section>
 </section>
 </section>
 <section id="internal-validation-measures">
@@ -1174,35 +1187,29 @@ Rand Index: 0.874
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clustering Validation Metrics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-clustering-validation">Introduction to Clustering Validation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-validation-measures">External Validation Measures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table-basics">Contingency Table Basics</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-weight-matching"><strong>Maximum Weight Matching</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision"><strong>Precision</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall"><strong>Recall</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-measure"><strong>F-Measure</strong></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-measures">External Measures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-and-recall">Precision and Recall</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision">Precision</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recall">Recall</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-measure">F-Measure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purity">1. Purity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching">2. Maximum Matching</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching-example-bipartite-graph-interpretation">Maximum Matching Example (Bipartite Graph Interpretation)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#precision-recall-and-f-measure">3. Precision, Recall and F-measure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-17-1-good-vs-bad-clustering-on-iris-data">Example 17.1: Good vs Bad Clustering on Iris Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#good-clustering-results">Good Clustering Results:</a></li>
 </ul>
 </li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-clustering-results">Bad Clustering Results:</a></li>
 </ul>
 </li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#clustering-validation-metrics-tutorial">Clustering Validation Metrics Tutorial</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#example-17-1-good-vs-bad-clustering-on-iris-data">Example 17.1: Good vs Bad Clustering on Iris Data</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#good-clustering-results">Good Clustering Results:</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contingency Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pairwise-measures">4. Pairwise Measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jaccard-coefficient">Jaccard Coefficient</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rand-index">Rand Index</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-clustering-results">Bad Clustering Results:</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Contingency Table</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pairwise-measures">4. Pairwise Measures</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jaccard-coefficient">Jaccard Coefficient</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rand-index">Rand Index</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-validation-measures">Internal Validation Measures</a><ul class="nav section-nav flex-column">
@@ -1222,9 +1229,6 @@ Rand Index: 0.874
 </ul>
 </li>
 </ul>
-</li>
-</ul>
-
   </nav></div>
 
 </div></div>
