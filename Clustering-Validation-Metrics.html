@@ -212,6 +212,7 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.06-Regression.html">Linear Regression, continue …</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Clustering Validation Metrics</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
@@ -446,8 +447,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clustering Validation Metrics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-clustering-validation">Introduction to Clustering Validation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-measures">External Measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-measures">External Measures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-contingency-table-computation-with-np-add-at">Efficient Contingency Table Computation with <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-np-add-at">Why <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-difference-between-direct-indexing-and-np-add-at">Example: Difference Between Direct Indexing and <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purity">1. Purity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-data"><strong>Example Data</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-contingency-table"><strong>Compute Contingency Table</strong></a></li>
@@ -460,15 +465,16 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-measure">F-Measure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching">2. Maximum Matching</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching-example-bipartite-graph-interpretation">Maximum Matching Example (Bipartite Graph Interpretation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-17-1-good-vs-bad-clustering-on-iris-data">Example 17.1: Good vs Bad Clustering on Iris Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#good-clustering-results">Good Clustering Results:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contingency Table</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-clustering-results">Bad Clustering Results:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contingency Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Contingency Table</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pairwise-measures">4. Pairwise Measures</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jaccard-coefficient">Jaccard Coefficient</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rand-index">Rand Index</a></li>
@@ -493,6 +499,17 @@ document.write(`
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-cardinality-matching-in-bipartite-graphs">Maximum Cardinality Matching in Bipartite Graphs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components">Key Components:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementation">Code Implementation</a></li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -589,6 +606,76 @@ T_{j} = \left\{ \mathbf{x}_i \in \mathbf{D} \mid y_i = j \right\}
 </div>
 </div>
 </div>
+</section>
+<section id="efficient-contingency-table-computation-with-np-add-at">
+<h2>Efficient Contingency Table Computation with <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code><a class="headerlink" href="#efficient-contingency-table-computation-with-np-add-at" title="Link to this heading">#</a></h2>
+<p>When implementing clustering validation metrics, constructing a <strong>contingency table</strong> is a key step. One efficient way to do this in <strong>NumPy</strong> is using <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code>. This method ensures <strong>correct accumulation of counts</strong> when duplicate indices are present.</p>
+<section id="why-np-add-at">
+<h3>Why <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code>?<a class="headerlink" href="#why-np-add-at" title="Link to this heading">#</a></h3>
+<p>Unlike simple <strong>indexed incrementation</strong>, such as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">contingency_table</span><span class="p">[</span><span class="n">cluster_map</span><span class="p">,</span> <span class="n">class_map</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+<p>NumPy’s <strong>fancy indexing</strong> creates a temporary copy, meaning updates to repeated indices may not accumulate correctly. Instead, <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code> ensures in-place modifications:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="o">.</span><span class="n">at</span><span class="p">(</span><span class="n">contingency_table</span><span class="p">,</span> <span class="p">(</span><span class="n">cluster_map</span><span class="p">,</span> <span class="n">class_map</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-difference-between-direct-indexing-and-np-add-at">
+<h3>Example: Difference Between Direct Indexing and <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code><a class="headerlink" href="#example-difference-between-direct-indexing-and-np-add-at" title="Link to this heading">#</a></h3>
+<p>Here’s an example illustrating how <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code> correctly handles duplicate indices while direct indexing may fail:</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">compute_contingency_table_direct</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute contingency table using direct indexing (incorrect for duplicates).&quot;&quot;&quot;</span>
+    <span class="n">unique_classes</span><span class="p">,</span> <span class="n">class_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    
+    <span class="n">unique_clusters</span><span class="p">,</span> <span class="n">cluster_map</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">,</span> <span class="n">return_inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="n">r</span><span class="p">,</span> <span class="n">k</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_clusters</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">unique_classes</span><span class="p">)</span>
+    
+    <span class="n">contingency_table</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">r</span><span class="p">,</span> <span class="n">k</span><span class="p">),</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+    <span class="n">contingency_table</span><span class="p">[</span><span class="n">cluster_map</span><span class="p">,</span> <span class="n">class_map</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>  <span class="c1"># Direct indexing</span>
+    
+    <span class="k">return</span> <span class="n">contingency_table</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="n">true_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+
+<span class="n">contingency_table_at</span> <span class="o">=</span> <span class="n">compute_contingency_table</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">)</span>
+<span class="n">contingency_table_direct</span> <span class="o">=</span> <span class="n">compute_contingency_table_direct</span><span class="p">(</span><span class="n">true_labels</span><span class="p">,</span> <span class="n">cluster_labels</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Using direct indexing:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contingency_table_direct</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Using np.add.at:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">contingency_table_at</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Using direct indexing:
+[[1 0 0]
+ [1 1 0]
+ [0 0 1]]
+
+Using np.add.at:
+[[1 0 0]
+ [1 3 0]
+ [0 0 4]]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="purity">
 <h3>1. Purity<a class="headerlink" href="#purity" title="Link to this heading">#</a></h3>
 <p>Purity measures how “pure” each cluster is by the fraction of points from the majority class:</p>
@@ -617,7 +704,7 @@ T_{j} = \left\{ \mathbf{x}_i \in \mathbf{D} \mid y_i = j \right\}
 <section id="example-data">
 <h3><strong>Example Data</strong><a class="headerlink" href="#example-data" title="Link to this heading">#</a></h3>
 <p>Suppose we have the following clustering and ground-truth labels:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">true_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">true_labels</span>    <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 <span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -684,19 +771,16 @@ T_{j} = \left\{ \mathbf{x}_i \in \mathbf{D} \mid y_i = j \right\}
 </div>
 </div>
 </div>
-<p>You’re absolutely right—<strong>purity is invariant to cluster labels</strong>, meaning that relabeling clusters doesn’t change the score as long as the assignment itself remains consistent.</p>
+<p><strong>purity is invariant to cluster labels</strong>, meaning that relabeling clusters doesn’t change the score as long as the assignment itself remains consistent.</p>
 <p>Let’s take the previous clustering but <strong>shift the cluster labels</strong> (e.g., renaming clusters <strong>C₀ → C₂</strong>, <strong>C₁ → C₀</strong>, <strong>C₂ → C₁</strong>):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="c1"># Original clustering labels</span>
-<span class="n">true_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-<span class="n">cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
-
-
-<span class="c1"># Shifted cluster labels (mapping: 0 → 2, 1 → 0, 2 → 1)</span>
-<span class="n">shifted_cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span>
+<span class="n">true_labels</span>            <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">cluster_labels</span>         <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="n">shifted_cluster_labels</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">])</span> <span class="c1"># Shifted cluster labels (mapping: 0 → 2, 1 → 0, 2 → 1)</span>
 
 <span class="c1"># Compute purity scores for both cases</span>
 <span class="n">original_purity</span> <span class="o">=</span> <span class="n">purity_score</span><span class="p">(</span><span class="n">cluster_labels</span><span class="p">,</span> <span class="n">true_labels</span><span class="p">)</span>
@@ -784,16 +868,57 @@ F = \frac{1}{r} \sum_{i=1}^r F_i
 <section id="maximum-matching-example-bipartite-graph-interpretation">
 <h3>Maximum Matching Example (Bipartite Graph Interpretation)<a class="headerlink" href="#maximum-matching-example-bipartite-graph-interpretation" title="Link to this heading">#</a></h3>
 <p><strong>Scenario</strong>: Imagine we have clustered 10 fruits into 3 clusters, and we know their true categories (ground truth):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Cluster Assignments (C₁, C₂, C₃):
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>True Categories (T₁=apples, T₂=oranges, T₃=bananas):
+T₁: apple1, apple2, apple3, apple4
+T₂: orange1, orange2, orange3
+T₃: banana1, banana2, banana3
+
+Cluster Assignments (C₁, C₂, C₃):
 C₁: [apple1, apple2, banana1]
 C₂: [orange1, orange2, apple3] 
 C₃: [banana2, banana3, orange3, apple4]
 
-True Categories (T₁=apples, T₂=oranges, T₃=bananas):
-T₁: apple1, apple2, apple3, apple4
-T₂: orange1, orange2, orange3
-T₃: banana1, banana2, banana3
 </pre></div>
+</div>
+</section>
+<section id="contingency-table">
+<h3>Contingency Table<a class="headerlink" href="#contingency-table" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>Apples (T₁)</p></th>
+<th class="head"><p>Oranges (T₂)</p></th>
+<th class="head"><p>Bananas (T₃)</p></th>
+<th class="head"><p>Total (nᵢ)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>C₁ (apple1, apple2, banana1)</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>1</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-odd"><td><p>C₂ (orange1, orange2, apple3)</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>0</p></td>
+<td><p>3</p></td>
+</tr>
+<tr class="row-even"><td><p>C₃ (banana2, banana3, orange3, apple4)</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total (mⱼ)</strong></p></td>
+<td><p>4</p></td>
+<td><p>3</p></td>
+<td><p>3</p></td>
+<td><p><strong>n = 10</strong></p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <p><strong>Step 1: Build the Bipartite Graph</strong></p>
 <p>We create edges between clusters and categories with weights equal to their overlap:</p>
@@ -802,9 +927,9 @@ T₃: banana1, banana2, banana3
       \------------ T₃ (weight=1: banana1)
    C₂ ------------- T₁ (weight=1: apple3)
       \------------ T₂ (weight=2: orange1,orange2)
-   C₃ ------------- T₂ (weight=1: orange3)
+   C₃ ------------- T₁ (weight=1: apple4)
+      \------------ T₂ (weight=1: orange3)
       \------------ T₃ (weight=2: banana2,banana3)
-      \------------ T₁ (weight=1: apple4)
 </pre></div>
 </div>
 <p><strong>Step 2: Find Maximum Weight Matching</strong></p>
@@ -852,15 +977,13 @@ Max weight: 6
 </div>
 </div>
 </div>
-<p><strong>Key Insights</strong>:</p>
-<ol class="arabic simple">
-<li><p>This ensures one cluster maps to only one true category</p></li>
-<li><p>Unlike purity, we don’t double-count categories</p></li>
-<li><p>The score ranges from 0 (worst) to 1 (perfect matching)</p></li>
-<li><p>In our fruit example, 0.6 indicates moderate alignment between clusters and true categories</p></li>
-</ol>
-<p><strong>Real-world analogy</strong>: Imagine this as assigning each project team (cluster) to exactly one department (category) where you want to maximize the number of correctly assigned team members.</p>
-</section>
+<!-- **Key Insights**:
+1. This ensures one cluster maps to only one true category
+2. Unlike purity, we don't double-count categories
+3. The score ranges from 0 (worst) to 1 (perfect matching)
+4. In our fruit example, 0.6 indicates moderate alignment between clusters and true categories
+
+**Real-world analogy**: Imagine this as assigning each project team (cluster) to exactly one department (category) where you want to maximize the number of correctly assigned team members. --></section>
 <section id="example-17-1-good-vs-bad-clustering-on-iris-data">
 <h3>Example 17.1: Good vs Bad Clustering on Iris Data<a class="headerlink" href="#example-17-1-good-vs-bad-clustering-on-iris-data" title="Link to this heading">#</a></h3>
 <p>Let’s examine two different clusterings of the Iris dataset using principal components:</p>
@@ -869,8 +992,8 @@ Max weight: 6
 <p><img alt="" src="_images/Zaki-Chap17-Good-Clustering.png" /></p>
 </section>
 </section>
-<section id="contingency-table">
-<h3>Contingency Table<a class="headerlink" href="#contingency-table" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h3>Contingency Table<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -916,8 +1039,8 @@ Max weight: 6
 <p><img alt="" src="_images/Zaki-Chap17-Bad-Clustering.png" /></p>
 </section>
 </section>
-<section id="id3">
-<h3>Contingency Table<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<section id="id4">
+<h3>Contingency Table<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -1109,6 +1232,76 @@ Rand Index: 0.874
 <li><p><strong>Silhouette</strong>: Ranges from -1 to 1, higher is better</p></li>
 <li><p><strong>Jaccard</strong>: Higher is better (max 1.0)</p></li>
 </ul>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Silhouette_(clustering)">Wiki of Silhouette</a></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn</span> <span class="kn">import</span> <span class="n">datasets</span>
+<span class="kn">from</span> <span class="nn">sklearn.cluster</span> <span class="kn">import</span> <span class="n">KMeans</span>
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">silhouette_score</span>
+<span class="c1">## Load IRIS dataset</span>
+<span class="n">iris</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_iris</span><span class="p">()</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">data</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">iris</span><span class="o">.</span><span class="n">target</span>
+<span class="c1">## Instantiate the KMeans models</span>
+<span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># Fit the KMeans model</span>
+<span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="c1"># Calculate Silhoutte Score</span>
+<span class="n">score</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+<span class="c1"># Print the score</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Silhouetter Score: </span><span class="si">%.3f</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">score</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Silhouetter Score: 0.551
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># !pip install yellowbrick</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">yellowbrick.cluster</span> <span class="kn">import</span> <span class="n">SilhouetteVisualizer</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="n">scores</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create KMeans instance for different number of clusters</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">km</span> <span class="o">=</span> <span class="n">KMeans</span><span class="p">(</span><span class="n">n_clusters</span><span class="o">=</span><span class="n">i</span><span class="p">,</span> <span class="n">init</span><span class="o">=</span><span class="s1">&#39;k-means++&#39;</span><span class="p">,</span> <span class="n">n_init</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+    <span class="c1"># Fit the KMeans model</span>
+    <span class="n">km</span><span class="o">.</span><span class="n">fit_predict</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="c1"># Calculate Silhoutte Score</span>
+    <span class="n">score</span> <span class="o">=</span> <span class="n">silhouette_score</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">km</span><span class="o">.</span><span class="n">labels_</span><span class="p">,</span> <span class="n">metric</span><span class="o">=</span><span class="s1">&#39;euclidean&#39;</span><span class="p">)</span>
+    <span class="n">scores</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">score</span><span class="p">)</span>
+    <span class="n">q</span><span class="p">,</span> <span class="n">mod</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">    Create SilhouetteVisualizer instance with KMeans instance</span>
+<span class="sd">    Fit the visualizer</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">visualizer</span> <span class="o">=</span> <span class="n">SilhouetteVisualizer</span><span class="p">(</span><span class="n">km</span><span class="p">,</span> <span class="n">colors</span><span class="o">=</span><span class="s1">&#39;yellowbrick&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">[</span><span class="n">q</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="n">mod</span><span class="p">])</span>
+    <span class="n">visualizer</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">scores</span><span class="p">),</span> <span class="n">scores</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">scores</span><span class="p">)))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>0.6810461692117462 0
+</pre></div>
+</div>
+<img alt="_images/b0cdd28da0c5d22d7b73f452f69735e668ada18fe5c49ea53006741bf953fb9d.png" src="_images/b0cdd28da0c5d22d7b73f452f69735e668ada18fe5c49ea53006741bf953fb9d.png" />
+</div>
+</div>
 </section>
 <section id="choosing-the-right-metric">
 <h2>Choosing the Right Metric<a class="headerlink" href="#choosing-the-right-metric" title="Link to this heading">#</a></h2>
@@ -1249,6 +1442,267 @@ Rand Index: 0.874
 </section>
 </section>
 </section>
+<section class="tex2jax_ignore mathjax_ignore" id="maximum-cardinality-matching-in-bipartite-graphs">
+<h1>Maximum Cardinality Matching in Bipartite Graphs<a class="headerlink" href="#maximum-cardinality-matching-in-bipartite-graphs" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>This implementation finds the <strong>maximum cardinality matching</strong> in a <strong>bipartite graph</strong> using NetworkX. A bipartite graph is a graph whose nodes can be split into two disjoint sets such that <strong>no two nodes within the same set</strong> are adjacent.</p>
+<section id="key-components">
+<h3>Key Components:<a class="headerlink" href="#key-components" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">bipartite.sets(G)</span></code></strong>: Extracts the two partitions (left and right nodes).</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">max_weight_matching(G)</span></code></strong>: Finds the optimal matching where each node is paired with at most one other node.</p></li>
+</ul>
+</section>
+</section>
+<section id="code-implementation">
+<h2>Code Implementation<a class="headerlink" href="#code-implementation" title="Link to this heading">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">networkx.algorithms</span> <span class="kn">import</span> <span class="n">bipartite</span>
+
+<span class="k">def</span> <span class="nf">maximum_matching_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the maximum cardinality matching of a bipartite graph G.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        G (networkx.Graph): Bipartite Graph</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (dictionary): Maximum cardinality matching</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">left_nodes</span><span class="p">,</span> <span class="n">right_nodes</span> <span class="o">=</span> <span class="n">bipartite</span><span class="o">.</span><span class="n">sets</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>  <span class="c1"># Extract partitions</span>
+    <span class="n">matching</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">matching</span><span class="o">.</span><span class="n">max_weight_matching</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>  <span class="c1"># Compute matching</span>
+    <span class="k">return</span> <span class="n">matching</span>
+
+<span class="c1"># Example Usage</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">],</span> <span class="n">bipartite</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Left partition</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="s1">&#39;x&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">bipartite</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># Right partition</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_edges_from</span><span class="p">([(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;x&#39;</span><span class="p">)])</span>
+
+<span class="n">matching</span> <span class="o">=</span> <span class="n">maximum_matching_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum Matching:&quot;</span><span class="p">,</span> <span class="n">matching</span><span class="p">)</span>
+
+<span class="c1"># Visualization of Bipartite Graph and Matching</span>
+<span class="k">def</span> <span class="nf">draw_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">matching</span><span class="p">):</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">left_nodes</span><span class="p">,</span> <span class="n">right_nodes</span> <span class="o">=</span> <span class="n">bipartite</span><span class="o">.</span><span class="n">sets</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">left_nodes</span><span class="p">):</span>
+        <span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">right_nodes</span><span class="p">):</span>
+        <span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    
+    <span class="c1"># Convert set to list of edges</span>
+    <span class="n">matching_edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">matching</span><span class="p">)</span>  <span class="c1"># Fix: Convert set to list</span>
+    
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">matching_edges</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Bipartite Graph &amp; Maximum Matching&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">draw_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">matching</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum Matching: {(&#39;y&#39;, &#39;a&#39;), (&#39;x&#39;, &#39;c&#39;)}
+</pre></div>
+</div>
+<img alt="_images/efe236e8228cd2d3acf2cd0d13b0946920171c5cfb36ef5caa285c432d6ce11a.png" src="_images/efe236e8228cd2d3acf2cd0d13b0946920171c5cfb36ef5caa285c432d6ce11a.png" />
+</div>
+</div>
+<p>Contingency Table</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p>iris-setosa</p></th>
+<th class="head"><p>iris-versicolor</p></th>
+<th class="head"><p>iris-virginica</p></th>
+<th class="head"><p>Total (n_i)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>C₁ (squares)</p></td>
+<td><p>30</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>30</p></td>
+</tr>
+<tr class="row-odd"><td><p>C₂ (circles)</p></td>
+<td><p>20</p></td>
+<td><p>4</p></td>
+<td><p>0</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-even"><td><p>C₃ (triangles)</p></td>
+<td><p>0</p></td>
+<td><p>46</p></td>
+<td><p>50</p></td>
+<td><p>96</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Total (m_j)</strong></p></td>
+<td><p>50</p></td>
+<td><p>50</p></td>
+<td><p>50</p></td>
+<td><p><strong>n = 150</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Purity:</strong> 0.667<br />
+<strong>Match:</strong> 0.560</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">networkx.algorithms</span> <span class="kn">import</span> <span class="n">bipartite</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">maximum_matching_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the maximum cardinality matching of a bipartite graph G.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        G (networkx.Graph): Bipartite Graph</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (set): Maximum cardinality matching</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">matching</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">matching</span><span class="o">.</span><span class="n">max_weight_matching</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>  <span class="c1"># Compute matching</span>
+    <span class="k">return</span> <span class="n">matching</span>
+
+<span class="c1"># Construct bipartite graph from contingency table</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+
+<span class="c1"># Define clusters and true classes</span>
+<span class="n">clusters</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;C₁&quot;</span><span class="p">,</span> <span class="s2">&quot;C₂&quot;</span><span class="p">,</span> <span class="s2">&quot;C₃&quot;</span><span class="p">]</span>
+<span class="n">true_classes</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;iris-setosa&quot;</span><span class="p">,</span> <span class="s2">&quot;iris-versicolor&quot;</span><span class="p">,</span> <span class="s2">&quot;iris-virginica&quot;</span><span class="p">]</span>
+
+<span class="c1"># Add nodes with bipartite attributes</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">clusters</span><span class="p">,</span> <span class="n">bipartite</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># Cluster labels</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">(</span><span class="n">true_classes</span><span class="p">,</span> <span class="n">bipartite</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># True classes</span>
+
+<span class="c1"># Add edges with weights from contingency table</span>
+<span class="n">edges</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s2">&quot;C₁&quot;</span><span class="p">,</span> <span class="s2">&quot;iris-setosa&quot;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;C₂&quot;</span><span class="p">,</span> <span class="s2">&quot;iris-setosa&quot;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;C₂&quot;</span><span class="p">,</span> <span class="s2">&quot;iris-versicolor&quot;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;C₃&quot;</span><span class="p">,</span> <span class="s2">&quot;iris-versicolor&quot;</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span>
+    <span class="p">(</span><span class="s2">&quot;C₃&quot;</span><span class="p">,</span> <span class="s2">&quot;iris-virginica&quot;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)</span>
+<span class="p">]</span>
+
+<span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">weight</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>  <span class="c1"># Only add edges with non-zero weight</span>
+        <span class="n">G</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="n">weight</span><span class="p">)</span>
+
+<span class="c1"># Compute maximum matching</span>
+<span class="n">matching</span> <span class="o">=</span> <span class="n">maximum_matching_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Print matching with weights</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum Matching with Edge Weights:&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">matching</span><span class="p">:</span>
+    <span class="n">weight</span> <span class="o">=</span> <span class="n">G</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">][</span><span class="s1">&#39;weight&#39;</span><span class="p">]</span>  <span class="c1"># Extract weight from graph</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;(</span><span class="si">{</span><span class="n">u</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">v</span><span class="si">}</span><span class="s2">) -&gt; Weight: </span><span class="si">{</span><span class="n">weight</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Visualization of Bipartite Graph and Matching</span>
+<span class="k">def</span> <span class="nf">draw_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">matching</span><span class="p">):</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="n">left_nodes</span><span class="p">,</span> <span class="n">right_nodes</span> <span class="o">=</span> <span class="n">bipartite</span><span class="o">.</span><span class="n">sets</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">left_nodes</span><span class="p">):</span>
+        <span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">node</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">right_nodes</span><span class="p">):</span>
+        <span class="n">pos</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    
+    <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">node_color</span><span class="o">=</span><span class="s2">&quot;lightblue&quot;</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="mi">2000</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+
+    <span class="c1"># Convert matching to a list of edges</span>
+    <span class="n">matching_edges</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">matching</span><span class="p">)</span>  
+    
+    <span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">matching_edges</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">2.5</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Bipartite Graph &amp; Maximum Matching&quot;</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">draw_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">matching</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Maximum Matching with Edge Weights:
+(C₁, iris-setosa) -&gt; Weight: 30
+(iris-virginica, C₃) -&gt; Weight: 50
+(C₂, iris-versicolor) -&gt; Weight: 4
+</pre></div>
+</div>
+<img alt="_images/1f575e7813ecd0978ccfa5a68b1be39030c281ef8521d4db9ef7d1f23110abe8.png" src="_images/1f575e7813ecd0978ccfa5a68b1be39030c281ef8521d4db9ef7d1f23110abe8.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
+<span class="kn">from</span> <span class="nn">networkx.algorithms</span> <span class="kn">import</span> <span class="n">bipartite</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">maximum_matching_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return the maximum cardinality matching of a bipartite graph G.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        G (networkx.Graph): Bipartite Graph</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        (dictionary): Maximum cardinality matching</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">left_nodes</span><span class="p">,</span> <span class="n">right_nodes</span> <span class="o">=</span> <span class="n">bipartite</span><span class="o">.</span><span class="n">sets</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+    <span class="n">matching_edges</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">algorithms</span><span class="o">.</span><span class="n">matching</span><span class="o">.</span><span class="n">max_weight_matching</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="s1">&#39;weight&#39;</span><span class="p">)</span>
+    <span class="c1"># Convert matching from list of edges to dictionary format</span>
+    <span class="n">matching_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">matching_edges</span><span class="p">:</span>
+        <span class="n">matching_dict</span><span class="p">[</span><span class="n">u</span><span class="p">]</span> <span class="o">=</span> <span class="n">v</span>
+    <span class="k">return</span> <span class="n">matching_dict</span>
+
+<span class="c1"># Example Usage</span>
+<span class="n">G</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;C3&#39;</span><span class="p">],</span> <span class="n">bipartite</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Set the node attribute &quot;bipartite&quot; to 0 for nodes in one partition</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_nodes_from</span><span class="p">([</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;T3&#39;</span><span class="p">],</span> <span class="n">bipartite</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># Set the node attribute &quot;bipartite&quot; to 1 for nodes in the other partition</span>
+<span class="n">G</span><span class="o">.</span><span class="n">add_weighted_edges_from</span><span class="p">([(</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>\
+                           <span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>\
+                           <span class="p">(</span><span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="mi">46</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;C3&#39;</span><span class="p">,</span> <span class="s1">&#39;T3&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">)])</span>
+
+<span class="c1"># Compute maximum matching</span>
+<span class="n">maximum_matching</span> <span class="o">=</span> <span class="n">maximum_matching_bipartite_graph</span><span class="p">(</span><span class="n">G</span><span class="p">)</span>
+
+<span class="c1"># Draw bipartite graph</span>
+<span class="n">pos</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+<span class="n">pos</span><span class="o">.</span><span class="n">update</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="o">-</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;C1&#39;</span><span class="p">,</span> <span class="s1">&#39;C2&#39;</span><span class="p">,</span> <span class="s1">&#39;C3&#39;</span><span class="p">])</span> <span class="p">)</span> <span class="c1"># positions for left nodes</span>
+<span class="n">pos</span><span class="o">.</span><span class="n">update</span><span class="p">(</span> <span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="o">-</span><span class="n">i</span><span class="p">))</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">([</span><span class="s1">&#39;T1&#39;</span><span class="p">,</span> <span class="s1">&#39;T2&#39;</span><span class="p">,</span> <span class="s1">&#39;T3&#39;</span><span class="p">])</span> <span class="p">)</span> <span class="c1"># positions for right nodes</span>
+
+<span class="c1"># Get edge labels</span>
+<span class="n">edge_labels</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">([((</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">d</span><span class="p">[</span><span class="s1">&#39;weight&#39;</span><span class="p">])</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">G</span><span class="o">.</span><span class="n">edges</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="kc">True</span><span class="p">)])</span>
+
+<span class="n">nx</span><span class="o">.</span><span class="n">draw</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">with_labels</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edge_labels</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="n">pos</span><span class="p">,</span> <span class="n">edge_labels</span><span class="o">=</span><span class="n">edge_labels</span><span class="p">,</span> <span class="n">font_size</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># Highlight matched edges</span>
+<span class="n">matched_edges</span> <span class="o">=</span> <span class="p">[(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">maximum_matching</span><span class="o">.</span><span class="n">items</span><span class="p">()]</span>
+<span class="n">nx</span><span class="o">.</span><span class="n">draw_networkx_edges</span><span class="p">(</span><span class="n">G</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">edgelist</span><span class="o">=</span><span class="n">matched_edges</span><span class="p">,</span> <span class="n">edge_color</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="_images/e9b0ed8eb669cef3fa3435790b7021ff94221c01410b9356a7aea8baa836f649.png" src="_images/e9b0ed8eb669cef3fa3435790b7021ff94221c01410b9356a7aea8baa836f649.png" />
+</div>
+</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -1314,8 +1768,12 @@ Rand Index: 0.874
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Clustering Validation Metrics</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-clustering-validation">Introduction to Clustering Validation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-measures">External Measures</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#external-measures">External Measures</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#efficient-contingency-table-computation-with-np-add-at">Efficient Contingency Table Computation with <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-np-add-at">Why <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code>?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-difference-between-direct-indexing-and-np-add-at">Example: Difference Between Direct Indexing and <code class="docutils literal notranslate"><span class="pre">np.add.at</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#purity">1. Purity</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-data"><strong>Example Data</strong></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#compute-contingency-table"><strong>Compute Contingency Table</strong></a></li>
@@ -1328,15 +1786,16 @@ Rand Index: 0.874
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#f-measure">F-Measure</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching">2. Maximum Matching</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-matching-example-bipartite-graph-interpretation">Maximum Matching Example (Bipartite Graph Interpretation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-17-1-good-vs-bad-clustering-on-iris-data">Example 17.1: Good vs Bad Clustering on Iris Data</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#good-clustering-results">Good Clustering Results:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#contingency-table">Contingency Table</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contingency Table</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#bad-clustering-results">Bad Clustering Results:</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Contingency Table</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Contingency Table</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pairwise-measures">4. Pairwise Measures</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#jaccard-coefficient">Jaccard Coefficient</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rand-index">Rand Index</a></li>
@@ -1361,6 +1820,17 @@ Rand Index: 0.874
 </ul>
 </li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#maximum-cardinality-matching-in-bipartite-graphs">Maximum Cardinality Matching in Bipartite Graphs</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-components">Key Components:</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-implementation">Code Implementation</a></li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>
