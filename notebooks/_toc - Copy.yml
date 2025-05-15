@@ -73,7 +73,7 @@ parts:
       - file: Voronoi-Diagrams-and-Classification2Clustering
       - file: 05.11-Clustering
       - file: K-Means-Clustering
-      - file: 05.12-Gaussian-Mixtures
+      - file: 05.12-Gaussian-Mixtures-part1
       - file: 05.06-Linear-Regression
       - file: 05.07-Support-Vector-Machines
       - file: 05.08-Random-Forests
