@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Linear Regression, continue … &#8212; Data Mining</title>
+    <title>Linear Regression, Part 2 &#8212; Data Mining</title>
   
   
   
@@ -59,12 +59,12 @@
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '05.06-Regression';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '05.06-Linear-Regression-part2';</script>
     <link rel="icon" href="_static/fum-logo.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Clustering Validation Metrics" href="Clustering-Validation-Metrics.html" />
-    <link rel="prev" title="Linear Regression" href="05.06-Linear-Regression.html" />
+    <link rel="prev" title="Linear Regression, Part 1" href="05.06-Linear-Regression-part1.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -205,12 +205,13 @@
 <li class="toctree-l2"><a class="reference internal" href="Voronoi-Diagrams-and-Classification2Clustering.html">Voronoi Diagrams and Their Connections to Classification</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.11-Clustering.html">Clustering</a></li>
 <li class="toctree-l2"><a class="reference internal" href="K-Means-Clustering.html">k-means Clustering</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures.html">Gaussian Mixture Models</a></li>
-<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression.html">Linear Regression</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures-part1.html">Gaussian Mixture Models, Part 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.12-Gaussian-Mixtures-part2.html">Gaussian Mixture Model, Part 2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression-part1.html">Linear Regression, Part 1</a></li>
 
 
 
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Regression, continue …</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Linear Regression, Part 2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Clustering-Validation-Metrics.html">Clustering Validation Metrics</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
@@ -275,7 +276,7 @@
       
       
       
-      <li><a href="https://colab.research.google.com/github/fum-cs/data-mining/blob/main/docs/05.06-Regression.ipynb" target="_blank"
+      <li><a href="https://colab.research.google.com/github/fum-cs/data-mining/blob/main/docs/05.06-Linear-Regression-part2.ipynb" target="_blank"
    class="btn btn-sm dropdown-item"
    title="Launch on Colab"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -323,7 +324,7 @@
       
       
       
-      <li><a href="https://github.com/fum-cs/data-mining/issues/new?title=Issue%20on%20page%20%2F05.06-Regression.html&body=Your%20issue%20content%20here." target="_blank"
+      <li><a href="https://github.com/fum-cs/data-mining/issues/new?title=Issue%20on%20page%20%2F05.06-Linear-Regression-part2.html&body=Your%20issue%20content%20here." target="_blank"
    class="btn btn-sm btn-source-issues-button dropdown-item"
    title="Open an issue"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -353,7 +354,7 @@
       
       
       
-      <li><a href="_sources/05.06-Regression.ipynb" target="_blank"
+      <li><a href="_sources/05.06-Linear-Regression-part2.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -437,7 +438,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Linear Regression, continue …</h1>
+    <h1>Linear Regression, Part 2</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -448,6 +449,10 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">Simple Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptron">Perceptron</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-function-regression">Basis Function Regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-basis-functions">Polynomial Basis Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-basis-functions">Gaussian Basis Functions</a></li>
@@ -470,8 +475,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression-continue">
-<h1>Linear Regression, continue …<a class="headerlink" href="#linear-regression-continue" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="linear-regression-part-2">
+<h1>Linear Regression, Part 2<a class="headerlink" href="#linear-regression-part-2" title="Link to this heading">#</a></h1>
 <p>In this chapter we will start with a quick walkthrough of the mathematics behind this well-known problem, before moving on to see how linear models can be generalized to account for more complicated patterns in data.</p>
 <p>We begin with the standard imports:</p>
 <div class="cell docutils container">
@@ -573,6 +578,39 @@ Geometrically, this is akin to fitting a plane to points in three dimensions, or
 <p>Here the <span class="math notranslate nohighlight">\(y\)</span> data is constructed from a linear combination of three random <span class="math notranslate nohighlight">\(x\)</span> values, and the linear regression recovers the coefficients used to construct the data.</p>
 <p>In this way, we can use the single <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> estimator to fit lines, planes, or hyperplanes to our data.
 It still appears that this approach would be limited to strictly linear relationships between variables, but it turns out we can relax this as well.</p>
+</section>
+<section id="perceptron">
+<h2>Perceptron<a class="headerlink" href="#perceptron" title="Link to this heading">#</a></h2>
+<ul>
+<li><p>Represents a single neuron (node) with inputs <span class="math notranslate nohighlight">\(x_i\)</span>, a bias <span class="math notranslate nohighlight">\(w_0\)</span>, and output <span class="math notranslate nohighlight">\(y\)</span></p></li>
+<li><p>Each connection has a (synaptic) weight <span class="math notranslate nohighlight">\(w_i\)</span>. The node outputs <span class="math notranslate nohighlight">\(\hat{y} = \sum_{i}^n x_{i}w_i + w_0\)</span></p></li>
+<li><p>The <em>activation function</em> predicts 1 if <span class="math notranslate nohighlight">\(\mathbf{xw} + w_0 &gt; 0\)</span>, -1 otherwise</p></li>
+<li><p>Weights can be learned with (stochastic) gradient descent and Hinge(0) loss</p>
+<ul class="simple">
+<li><p>Updated <em>only</em> on misclassification, corrects output by <span class="math notranslate nohighlight">\(\pm1\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\mathcal{L}_{Perceptron} = max(0,-y_i (\mathbf{w}\mathbf{x_i} + w_0))\]</div>
+<div class="math notranslate nohighlight">
+\[\begin{split}\frac{\partial \mathcal{L_{Perceptron}}}{\partial w_i} =  \begin{cases}-y_i x_i &amp; y_i (\mathbf{w}\mathbf{x_i} + w_0) &lt; 0\\ 0 &amp; \text{otherwise} \\ \end{cases}\end{split}\]</div>
+</li>
+</ul>
+<p><img alt="" src="_images/perceptron.png" /></p>
+<section id="logistic-regression">
+<h3>Logistic regression<a class="headerlink" href="#logistic-regression" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Aims to predict the <em>probability</em> that a point belongs to the positive class</p></li>
+<li><p>Converts target values {negative (blue), positive (red)} to {0,1}</p></li>
+<li><p>Fits a <em>logistic</em> (or <em>sigmoid</em> or <em>S</em> curve) function through these points</p>
+<ul class="simple">
+<li><p>Maps (-Inf,Inf) to a probability [0,1]</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ \hat{y} = \textrm{logistic}(f_{\theta}(\mathbf{x})) = \frac{1}{1+e^{-f_{\theta}(\mathbf{x})}} \]</div>
+</li>
+<li><p>E.g. in 1D: <span class="math notranslate nohighlight">\( \textrm{logistic}(x_1w_1+w_0) = \frac{1}{1+e^{-x_1w_1-w_0}} \)</span></p></li>
+</ul>
+</section>
 </section>
 <section id="basis-function-regression">
 <h2>Basis Function Regression<a class="headerlink" href="#basis-function-regression" title="Link to this heading">#</a></h2>
@@ -1210,12 +1248,12 @@ These are all potentially interesting effects, and you now have the tools to beg
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="05.06-Linear-Regression.html"
+       href="05.06-Linear-Regression-part1.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Linear Regression</p>
+        <p class="prev-next-title">Linear Regression, Part 1</p>
       </div>
     </a>
     <a class="right-next"
@@ -1244,6 +1282,10 @@ These are all potentially interesting effects, and you now have the tools to beg
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-linear-regression">Simple Linear Regression</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#perceptron">Perceptron</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#logistic-regression">Logistic regression</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basis-function-regression">Basis Function Regression</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#polynomial-basis-functions">Polynomial Basis Functions</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gaussian-basis-functions">Gaussian Basis Functions</a></li>
