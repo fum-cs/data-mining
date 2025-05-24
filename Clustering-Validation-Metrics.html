@@ -212,6 +212,10 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression-part2.html">Linear Regression, Part 2</a></li>
+
+
+
+
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Clustering Validation Metrics</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
@@ -536,7 +540,7 @@ document.write(`
 </div>
 </details>
 </div>
-<p>Chapter 17 of <span id="id1">[<a class="reference internal" href="intro.html#id2" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span>: <a class="reference external" href="https://www.cs.rpi.edu/~zaki/DMML/slides/pdf/ychap17.pdf">Clustering Validation</a></p>
+<p>Chapter 17 of <span id="id1">[<a class="reference internal" href="intro.html#id7" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span>: <a class="reference external" href="https://www.cs.rpi.edu/~zaki/DMML/slides/pdf/ychap17.pdf">Clustering Validation</a></p>
 <section class="tex2jax_ignore mathjax_ignore" id="clustering-validation-metrics">
 <h1>Clustering Validation Metrics<a class="headerlink" href="#clustering-validation-metrics" title="Link to this heading">#</a></h1>
 <section id="introduction-to-clustering-validation">
@@ -857,7 +861,7 @@ F = \frac{1}{r} \sum_{i=1}^r F_i
 \text{match} = \frac{1}{n}\max_M \sum_{(i,j)\in M} n_{ij}
 \]</div>
 <p>Where <span class="math notranslate nohighlight">\( M \)</span> is a matching between clusters and classes.</p>
-<p><strong>Maximum Weight Matching based on <span id="id2">[<a class="reference internal" href="intro.html#id2" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span></strong></p>
+<p><strong>Maximum Weight Matching based on <span id="id2">[<a class="reference internal" href="intro.html#id7" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span></strong></p>
 <p>Let <span class="math notranslate nohighlight">\(G\)</span> be a bipartite graph over the vertex set <span class="math notranslate nohighlight">\(V = \mathbf{C} \cup \mathbf{T}\)</span>, and let the edge set be <span class="math notranslate nohighlight">\(E = \{ (C_i, T_{j}) \}\)</span> with  edge weights <span class="math notranslate nohighlight">\(w(C_i,T_{j}) = n_{ij}\)</span>.  A <strong>matching</strong> <span class="math notranslate nohighlight">\(M\)</span> in <span class="math notranslate nohighlight">\(G\)</span> is a subset of <span class="math notranslate nohighlight">\(E\)</span>, such that the edges in <span class="math notranslate nohighlight">\(M\)</span> are pairwise nonadjacent, meaning they do not have a common vertex.</p>
 <p>The maximum weight matching in <span class="math notranslate nohighlight">\(G\)</span> is given as:</p>
 <div class="math notranslate nohighlight">

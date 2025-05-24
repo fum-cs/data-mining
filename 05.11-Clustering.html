@@ -212,6 +212,10 @@
 
 
 <li class="toctree-l2"><a class="reference internal" href="05.06-Linear-Regression-part2.html">Linear Regression, Part 2</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="Clustering-Validation-Metrics.html">Clustering Validation Metrics</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
@@ -481,7 +485,7 @@ Clustering algorithms seek to learn, from the properties of the data, an optimal
 <blockquote>
 <div><p>Clustering is the task of partitioning the data points into natural groups called
 clusters, such that points within a group are very similar, whereas points between
-different groups are as dissimilar as possible <span id="id1">[<a class="reference internal" href="intro.html#id2" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span>.</p>
+different groups are as dissimilar as possible <span id="id1">[<a class="reference internal" href="intro.html#id7" title="M.J. Zaki, W. Meira, and W. Meira. Data Mining and Machine Learning: Fundamental Concepts and Algorithms. Cambridge University Press, 2020. ISBN 9781108473989.">ZMM20</a>]</span>.</p>
 </div></blockquote>
 <p>Depending on the data and desired
 cluster characteristics, there are different types of clustering paradigms such as
@@ -704,7 +708,7 @@ Consider the following data, along with the cluster labels found by the typical 
 </div>
 <p>This situation is reminiscent of the discussion in later chapters, where we used a kernel transformation to project the data into a higher dimension where a linear separation is possible.
 We might imagine using the same trick to allow <em>k</em>-means to discover non-linear boundaries.</p>
-<p>One version of this kernelized <em>k</em>-means is implemented in Scikit-Learn within the <code class="docutils literal notranslate"><span class="pre">SpectralClustering</span></code> estimator <span id="id2">[<a class="reference internal" href="intro.html#id10" title="Tayebe Fayaz. Spectral clustering for image segmentation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2015. خوشه‌بندی طیفی برای قطعه بندی تصویر. URL: https://hcloud.hsu.ac.ir/index.php/s/Y4BedGEY7OjXVgK.">Fay15</a>, <a class="reference internal" href="intro.html#id9" title="Mehdi Nemati. A gradient based method for thespectral graph partitioning. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روشی مبتنی بر گرادیان برای افرازبندی طیفی گراف. URL: https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7.">Nem18</a>]</span>.
+<p>One version of this kernelized <em>k</em>-means is implemented in Scikit-Learn within the <code class="docutils literal notranslate"><span class="pre">SpectralClustering</span></code> estimator <span id="id2">[<a class="reference internal" href="intro.html#id15" title="Tayebe Fayaz. Spectral clustering for image segmentation. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2015. خوشه‌بندی طیفی برای قطعه بندی تصویر. URL: https://hcloud.hsu.ac.ir/index.php/s/Y4BedGEY7OjXVgK.">Fay15</a>, <a class="reference internal" href="intro.html#id14" title="Mehdi Nemati. A gradient based method for thespectral graph partitioning. Master's thesis, Hakim Sabzevari University, Faculty of Mathematics and Computer Science, September 2018. روشی مبتنی بر گرادیان برای افرازبندی طیفی گراف. URL: https://hcloud.hsu.ac.ir/index.php/s/tR53d9306yZSAc7.">Nem18</a>]</span>.
 It uses the graph of nearest neighbors to compute a higher-dimensional representation of the data, and then assigns labels using a <em>k</em>-means algorithm:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
