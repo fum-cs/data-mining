@@ -28,7 +28,7 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=03e43079" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
@@ -215,7 +215,6 @@
 
 
 
-
 <li class="toctree-l2"><a class="reference internal" href="Clustering-Validation-Metrics.html">Clustering Validation Metrics</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis.html">Principal Component Analysis</a></li>
@@ -224,6 +223,8 @@
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.13-Kernel-Density-Estimation.html">Kernel Density Estimation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.14-Image-Features.html">Application: A Face Detection Pipeline</a></li>
+<li class="toctree-l2"><a class="reference internal" href="App-Mathematics-and-Machine-Learning.html">Appendix: Mathematics and Machine Learning</a></li>
+
 </ul>
 </details></li>
 </ul>
@@ -462,30 +463,11 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-l-2-regularization">Ridge Regression (<span class="math notranslate nohighlight">\(L_2\)</span> Regularization)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-overfitting">Understanding Overfitting</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-linear-regression-with-different-polynomial-degrees">Comparing Linear Regression with Different Polynomial Degrees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-model-complexity-and-overfitting">Analyzing Model Complexity and Overfitting</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-effect-of-alpha-on-coefficients">Visualizing the Effect of Alpha on Coefficients</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression-l-1-regularization">Lasso Regression (<span class="math notranslate nohighlight">\(L_1\)</span> Regularization)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications-further-reading">Sparse Optimization: Theory and Applications (Further Reading)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-fixed-bases-to-learned-representations">From Fixed Bases to Learned Representations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolving-role-of-sparse-methods">The Evolving Role of Sparse Methods</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mri-reconstruction">MRI reconstruction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytomography">PyTomography</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features"><strong>Key Features</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-pytomography"><strong>Why Use PyTomography?</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pysap">PySAP</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-predicting-bicycle-traffic">Example: Predicting Bicycle Traffic</a></li>
@@ -507,20 +489,25 @@ document.write(`
 <h1>Linear Regression, Part 2<a class="headerlink" href="#linear-regression-part-2" title="Link to this heading">#</a></h1>
 <p>In this chapter we will start with a quick walkthrough of the mathematics behind this well-known problem, before moving on to see how linear models can be generalized to account for more complicated patterns in data.</p>
 <p>We begin with the standard imports:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 
 <span class="c1"># Import necessary libraries</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Ridge</span>
-<span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
-<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span>
-<span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Ridge</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
 
 <span class="c1"># Set plot style</span>
 <span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
@@ -528,6 +515,7 @@ document.write(`
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 <section id="simple-linear-regression">
 <h2>Simple Linear Regression<a class="headerlink" href="#simple-linear-regression" title="Link to this heading">#</a></h2>
@@ -549,13 +537,18 @@ y = ax + b
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/0805c52ba17b1b34abc8825648c2dcafd5a6e0f7765cc4a94181ba09db68b403.png" src="_images/0805c52ba17b1b34abc8825648c2dcafd5a6e0f7765cc4a94181ba09db68b403.png" />
+<img alt="_images/76e6cb6300c2fd7c5b436f0e2e93d2becd1a4c7ba6f778fa0241c460d996e87d.png" src="_images/76e6cb6300c2fd7c5b436f0e2e93d2becd1a4c7ba6f778fa0241c460d996e87d.png" />
 </div>
 </div>
 <p>We can use Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> estimator to fit this data and construct the best-fit line, as shown in the following figure:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.linear_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">LinearRegression</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">(</span><span class="n">fit_intercept</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 
 <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">y</span><span class="p">)</span>
@@ -568,19 +561,26 @@ y = ax + b
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/c2185647aeb78aaf684df5317574b32fed471d4d5d137ea6f37fe02a496eef11.png" src="_images/c2185647aeb78aaf684df5317574b32fed471d4d5d137ea6f37fe02a496eef11.png" />
+<img alt="_images/9d874fbecd71b65dfc0404f162544dc69d740c1ff8c747e77fad1067c49bee68.png" src="_images/9d874fbecd71b65dfc0404f162544dc69d740c1ff8c747e77fad1067c49bee68.png" />
 </div>
 </div>
 <p>The slope and intercept of the data are contained in the model’s fit parameters, which in Scikit-Learn are always marked by a trailing underscore.
 Here the relevant parameters are <code class="docutils literal notranslate"><span class="pre">coef_</span></code> and <code class="docutils literal notranslate"><span class="pre">intercept_</span></code>:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model slope:    &quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model intercept:&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">.</span><span class="n">intercept_</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Model slope:     2.0272088103606944
 Model intercept: -4.9985770855532
@@ -589,11 +589,12 @@ Model intercept: -4.9985770855532
 </div>
 </div>
 <p>We see that the results are very close to the values used to generate the data, as we might hope.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> estimator is much more capable than this, however—in addition to simple straight-line fits, it can also handle multidimensional linear models of the form:
-$<span class="math notranslate nohighlight">\(
+<p>The <code class="docutils literal notranslate"><span class="pre">LinearRegression</span></code> estimator is much more capable than this, however—in addition to simple straight-line fits, it can also handle multidimensional linear models of the form:</p>
+<div class="math notranslate nohighlight">
+\[
 y = a_0 + a_1 x_1 + a_2 x_2 + \cdots
-\)</span><span class="math notranslate nohighlight">\(
-where there are multiple \)</span>x$ values.
+\]</div>
+<p>where there are multiple <span class="math notranslate nohighlight">\(x\)</span> values.
 Geometrically, this is akin to fitting a plane to points in three dimensions, or fitting a hyperplane to points in higher dimensions.</p>
 <p>The multidimensional nature of such regressions makes them more difficult to visualize, but we can see one of these fits in action by building some example data, using NumPy’s matrix multiplication operator:</p>
 <div class="cell docutils container">
@@ -642,7 +643,7 @@ What we have effectively done is taken our one-dimensional <span class="math not
 <p>This polynomial projection is useful enough that it is built into Scikit-Learn, using the <code class="docutils literal notranslate"><span class="pre">PolynomialFeatures</span></code> transformer:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">PolynomialFeatures</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">PolynomialFeatures</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 <span class="n">poly</span> <span class="o">=</span> <span class="n">PolynomialFeatures</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">include_bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <span class="n">poly</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">x</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">])</span>
@@ -663,7 +664,7 @@ This new, higher-dimensional data representation can then be plugged into a line
 Let’s make a 7th-degree polynomial model in this way:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.pipeline</span> <span class="kn">import</span> <span class="n">make_pipeline</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.pipeline</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_pipeline</span>
 <span class="n">poly_model</span> <span class="o">=</span> <span class="n">make_pipeline</span><span class="p">(</span><span class="n">PolynomialFeatures</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span>
                            <span class="n">LinearRegression</span><span class="p">())</span>
 </pre></div>
@@ -691,10 +692,10 @@ For example, here is a sine wave with noise (see the following figure):</p>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x2491cdc8670&gt;]
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x219ae4a7430&gt;]
 </pre></div>
 </div>
-<img alt="_images/8190b185e9924f4eefa03aa6fcebb553a52138a7eb0824c7a19574553b40f984.png" src="_images/8190b185e9924f4eefa03aa6fcebb553a52138a7eb0824c7a19574553b40f984.png" />
+<img alt="_images/2805d70fe6bdf95c9562212de13ece2aea60a3ceea1922574a432e4fcde5dbed.png" src="_images/2805d70fe6bdf95c9562212de13ece2aea60a3ceea1922574a432e4fcde5dbed.png" />
 </div>
 </div>
 <p>Our linear model, through the use of seventh-order polynomial basis functions, can provide an excellent fit to this nonlinear data!</p>
@@ -722,7 +723,12 @@ In the limit <span class="math notranslate nohighlight">\(\alpha \to 0\)</span>,
 One advantage of ridge regression in particular is that it can be computed very efficiently—at hardly more computational cost than the original linear regression model.</p>
 <p><strong>Generate Synthetic Data</strong></p>
 <p>Let’s create some synthetic data that follows a non-linear pattern with some noise:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Set random seed for reproducibility</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
@@ -731,9 +737,6 @@ One advantage of ridge regression in particular is that it can be computed very 
 <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">))</span>
 <span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">X</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span>
-
-<span class="c1"># X = 10 * rng.rand(n_samples)</span>
-<span class="c1"># y = np.sin(X) + 0.1 * rng.randn(n_samples)</span>
 
 <span class="c1"># Create a dataframe</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
@@ -755,17 +758,23 @@ One advantage of ridge regression in particular is that it can be computed very 
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<img alt="_images/3ae41e330bb9180754ea153fd98c545efb6ce910965495ccc4c61b3a8e45e821.png" src="_images/3ae41e330bb9180754ea153fd98c545efb6ce910965495ccc4c61b3a8e45e821.png" />
+<img alt="_images/2c217055070b817aada4a89a0f052e78d44cc69f1d90fe7381b8c4dd6bff2066.png" src="_images/2c217055070b817aada4a89a0f052e78d44cc69f1d90fe7381b8c4dd6bff2066.png" />
 </div>
 </div>
 </section>
 <section id="understanding-overfitting">
 <h3>Understanding Overfitting<a class="headerlink" href="#understanding-overfitting" title="Link to this heading">#</a></h3>
 <p>Let’s implement functions to fit both standard linear regression and Ridge regression with polynomial features:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">linear_regression</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">models_to_plot</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">linear_regression</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">models_to_plot</span><span class="p">):</span>
     <span class="c1"># Initialize predictors</span>
     <span class="n">predictors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">power</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
@@ -797,7 +806,7 @@ One advantage of ridge regression in particular is that it can be computed very 
     
     <span class="k">return</span> <span class="n">ret</span><span class="p">[:</span><span class="mi">17</span><span class="p">]</span>  <span class="c1"># Ensure we return exactly the right number of values</span>
 
-<span class="k">def</span> <span class="nf">ridge_regression</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">models_to_plot</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">ridge_regression</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">models_to_plot</span><span class="p">):</span>
     <span class="c1"># Initialize predictors</span>
     <span class="n">predictors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">power</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
@@ -833,12 +842,18 @@ One advantage of ridge regression in particular is that it can be computed very 
 </pre></div>
 </div>
 </div>
+</details>
 </div>
 </section>
 <section id="comparing-linear-regression-with-different-polynomial-degrees">
 <h3>Comparing Linear Regression with Different Polynomial Degrees<a class="headerlink" href="#comparing-linear-regression-with-different-polynomial-degrees" title="Link to this heading">#</a></h3>
 <p>Let’s visualize how standard linear regression behaves with increasing polynomial degrees:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a dataframe to store the results</span>
 <span class="c1"># This should have 17 columns: &#39;rss&#39;, &#39;intercept&#39;, and 15 coefficient columns</span>
@@ -848,10 +863,10 @@ One advantage of ridge regression in particular is that it can be computed very 
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Number of columns in DataFrame: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">linear_model</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
 <span class="c1"># Set the powers for which we want to plot the models</span>
-<span class="n">models_to_plot</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">221</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">222</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">223</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span> <span class="mi">224</span><span class="p">}</span>
+<span class="n">models_to_plot</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">131</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">132</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span> <span class="mi">133</span><span class="p">}</span>
 
 <span class="c1"># Fit linear regression models with different powers</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
 <span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
     <span class="n">linear_model</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">power</span><span class="p">]</span> <span class="o">=</span> <span class="n">linear_regression</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">power</span><span class="p">,</span> <span class="n">models_to_plot</span><span class="p">)</span>
 
@@ -860,11 +875,121 @@ One advantage of ridge regression in particular is that it can be computed very 
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of columns in DataFrame: 17
 </pre></div>
 </div>
-<img alt="_images/0086785479ae47d9dcde99e5e8f5c4af6d56e2d042ea73d8c1a27b5786322d9a.png" src="_images/0086785479ae47d9dcde99e5e8f5c4af6d56e2d042ea73d8c1a27b5786322d9a.png" />
+<img alt="_images/629b66091543933fb4983c42f1f8865e641c3451d8083271aaf73391aea3bfee.png" src="_images/629b66091543933fb4983c42f1f8865e641c3451d8083271aaf73391aea3bfee.png" />
+</div>
+</div>
+</section>
+<section id="analyzing-model-complexity-and-overfitting">
+<h3>Analyzing Model Complexity and Overfitting<a class="headerlink" href="#analyzing-model-complexity-and-overfitting" title="Link to this heading">#</a></h3>
+<p>In this example, we’ll explore how increasing the complexity of a polynomial regression model affects its performance on both training and test data. We’ll:</p>
+<ol class="arabic simple">
+<li><p>Split our synthetic data into training (50%) and test (50%) sets</p></li>
+<li><p>Fit polynomial regression models with degrees from 1 to 15</p></li>
+<li><p>Visualize the model predictions for degrees 1, 3, 6, 12, and 15</p></li>
+<li><p>Plot the training and test errors (RSS) against model complexity</p></li>
+</ol>
+<p>Key observations to look for:</p>
+<ul class="simple">
+<li><p>How well does each model fit the training data?</p></li>
+<li><p>Does increasing polynomial degree always lead to better predictions?</p></li>
+<li><p>Can you identify where overfitting begins to occur?</p></li>
+<li><p>Notice how the training error consistently decreases while the test error might start increasing</p></li>
+</ul>
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Split the data into training and testing sets</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.model_selection</span><span class="w"> </span><span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># Create training and testing dataframes</span>
+<span class="n">train_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">X_train</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_train</span><span class="p">})</span>
+<span class="n">test_data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">X_test</span><span class="p">,</span> <span class="s1">&#39;y&#39;</span><span class="p">:</span> <span class="n">y_test</span><span class="p">})</span>
+
+<span class="c1"># Generate polynomial features for both sets</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
+    <span class="n">train_data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;x_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="n">i</span>
+    <span class="n">test_data</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;x_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span> <span class="o">**</span> <span class="n">i</span>
+
+<span class="c1"># Initialize a dataframe to store the results</span>
+<span class="n">linear_model</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;train_rss&#39;</span><span class="p">,</span> <span class="s1">&#39;test_rss&#39;</span><span class="p">,</span> <span class="s1">&#39;intercept&#39;</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="sa">f</span><span class="s1">&#39;coef_x_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">)])</span>
+
+<span class="c1"># Set the powers for which we want to plot the models</span>
+<span class="n">models_to_plot</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span> <span class="mi">231</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">232</span><span class="p">,</span> <span class="mi">6</span><span class="p">:</span> <span class="mi">233</span><span class="p">,</span> <span class="mi">12</span><span class="p">:</span> <span class="mi">234</span><span class="p">,</span> <span class="mi">15</span><span class="p">:</span><span class="mi">235</span><span class="p">}</span>
+
+<span class="c1"># Create figure with more subplots</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+<span class="c1"># Lists to store errors for plotting</span>
+<span class="n">train_errors</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">test_errors</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1"># Fit linear regression models with different powers</span>
+<span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">):</span>
+    <span class="c1"># Initialize predictors</span>
+    <span class="n">predictors</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">power</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">predictors</span><span class="o">.</span><span class="n">extend</span><span class="p">([</span><span class="sa">f</span><span class="s1">&#39;x_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s1">&#39;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">power</span><span class="o">+</span><span class="mi">1</span><span class="p">)])</span>
+    
+    <span class="c1"># Fit the model</span>
+    <span class="n">linreg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+    <span class="n">linreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">predictors</span><span class="p">],</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span>
+    
+    <span class="c1"># Make predictions</span>
+    <span class="n">y_train_pred</span> <span class="o">=</span> <span class="n">linreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="n">predictors</span><span class="p">])</span>
+    <span class="n">y_test_pred</span> <span class="o">=</span> <span class="n">linreg</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="n">predictors</span><span class="p">])</span>
+    
+    <span class="c1"># Calculate RSS for both sets</span>
+    <span class="n">train_rss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">y_train_pred</span> <span class="o">-</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">test_rss</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">((</span><span class="n">y_test_pred</span> <span class="o">-</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">])</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+    
+    <span class="c1"># Store errors for plotting</span>
+    <span class="n">train_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">train_rss</span><span class="p">)</span>
+    <span class="n">test_errors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">test_rss</span><span class="p">)</span>
+    
+    <span class="c1"># Store results</span>
+    <span class="n">ret</span> <span class="o">=</span> <span class="p">[</span><span class="n">train_rss</span><span class="p">,</span> <span class="n">test_rss</span><span class="p">,</span> <span class="n">linreg</span><span class="o">.</span><span class="n">intercept_</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">linreg</span><span class="o">.</span><span class="n">coef_</span><span class="p">)</span> <span class="o">+</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="p">(</span><span class="mi">15</span> <span class="o">-</span> <span class="n">power</span><span class="p">)</span>
+    <span class="n">linear_model</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">power</span><span class="p">]</span> <span class="o">=</span> <span class="n">ret</span>
+    
+    <span class="c1"># Plot if this is one of our selected models</span>
+    <span class="k">if</span> <span class="n">power</span> <span class="ow">in</span> <span class="n">models_to_plot</span><span class="p">:</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="n">models_to_plot</span><span class="p">[</span><span class="n">power</span><span class="p">])</span>
+        <span class="c1"># Sort for proper line plotting</span>
+        <span class="n">train_points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="s1">&#39;y_pred&#39;</span><span class="p">:</span> <span class="n">y_train_pred</span><span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+        <span class="n">test_points</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="s1">&#39;y_pred&#39;</span><span class="p">:</span> <span class="n">y_test_pred</span><span class="p">})</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+        
+        <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">train_points</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">train_points</span><span class="p">[</span><span class="s1">&#39;y_pred&#39;</span><span class="p">],</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Prediction&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">train_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Train&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;x&#39;</span><span class="p">],</span> <span class="n">test_data</span><span class="p">[</span><span class="s1">&#39;y&#39;</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Polynomial Degree: </span><span class="si">{</span><span class="n">power</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="c1"># Add the error plot</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">236</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">train_errors</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Training Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">),</span> <span class="n">test_errors</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Test Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;Polynomial Degree&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;RSS&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Training vs Testing Error&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</details>
+<div class="cell_output docutils container">
+<img alt="_images/89180ac80b8b8f74af11e37e95552fad61db3eda164ac545269ea593b175fc4a.png" src="_images/89180ac80b8b8f74af11e37e95552fad61db3eda164ac545269ea593b175fc4a.png" />
 </div>
 </div>
 <p>Ridge regression adds a penalty term to the cost function, which is the sum of the squared coefficients multiplied by a regularization parameter alpha. This helps prevent overfitting by keeping the coefficients small.</p>
@@ -878,14 +1003,19 @@ One advantage of ridge regression in particular is that it can be computed very 
 <li><p>θᵢ are the model coefficients (excluding the intercept)</p></li>
 </ul>
 <p>Let’s compare Ridge regression with different alpha values for a high-degree polynomial:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Initialize a dataframe to store the results</span>
 <span class="n">ridge_models</span> <span class="o">=</span> <span class="p">{}</span>
 <span class="n">alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span>  <span class="mf">0.01</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
 <span class="n">power</span> <span class="o">=</span> <span class="mi">12</span>  <span class="c1"># Using a high polynomial degree to demonstrate overfitting</span>
 
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">12</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 <span class="n">counter</span> <span class="o">=</span> <span class="mi">1</span>
 
 <span class="k">for</span> <span class="n">alpha</span> <span class="ow">in</span> <span class="n">alphas</span><span class="p">:</span>
@@ -899,19 +1029,25 @@ One advantage of ridge regression in particular is that it can be computed very 
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Programs\Anaconda3\envs\pth\lib\site-packages\sklearn\linear_model\_ridge.py:216: LinAlgWarning: Ill-conditioned matrix (rcond=1.187e-18): result may not be accurate.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>c:\Users\m.amintoosi\.conda\envs\pth-gpu\lib\site-packages\sklearn\linear_model\_ridge.py:215: LinAlgWarning: Ill-conditioned matrix (rcond=1.187e-18): result may not be accurate.
   return linalg.solve(A, Xy, assume_a=&quot;pos&quot;, overwrite_a=True).T
 </pre></div>
 </div>
-<img alt="_images/fbefffc691ae79d5bd7e7959b3242c65e7b16d618899a9c073f6467aa7e1722d.png" src="_images/fbefffc691ae79d5bd7e7959b3242c65e7b16d618899a9c073f6467aa7e1722d.png" />
+<img alt="_images/d8403259fdeacc721e4f5475fdc59ab3932b8da2978c4e4f992e55a78b7a06f7.png" src="_images/d8403259fdeacc721e4f5475fdc59ab3932b8da2978c4e4f992e55a78b7a06f7.png" />
 </div>
 </div>
 </section>
 <section id="visualizing-the-effect-of-alpha-on-coefficients">
 <h3>Visualizing the Effect of Alpha on Coefficients<a class="headerlink" href="#visualizing-the-effect-of-alpha-on-coefficients" title="Link to this heading">#</a></h3>
 <p>Let’s see how the coefficients change with different alpha values:</p>
-<div class="cell docutils container">
+<div class="cell tag_hide-input docutils container">
+<details class="hide above-input">
+<summary aria-label="Toggle hidden content">
+<span class="collapsed">Show code cell source</span>
+<span class="expanded">Hide code cell source</span>
+</summary>
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Extract the coefficients for different alpha values</span>
 <span class="n">coef_matrix</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">power</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
@@ -936,6 +1072,7 @@ One advantage of ridge regression in particular is that it can be computed very 
 </pre></div>
 </div>
 </div>
+</details>
 <div class="cell_output docutils container">
 <img alt="_images/5bd1eaa7e20cbeee974ff958d1f2145b130c24ec1800b183d406373acc881607.png" src="_images/5bd1eaa7e20cbeee974ff958d1f2145b130c24ec1800b183d406373acc881607.png" />
 </div>
@@ -951,164 +1088,10 @@ P = \alpha\sum_{n=1}^N |\theta_n|
 <p>Though this is conceptually very similar to ridge regression, the results can differ surprisingly. For example, due to its construction, lasso regression tends to favor <em>sparse models</em> where possible: that is, it preferentially sets many model coefficients to exactly zero.</p>
 <!-- We can see this behavior if we duplicate the previous example using L1-normalized coefficients (see the following figure): --><p>With the lasso regression penalty, the majority of the coefficients are exactly zero, with the functional behavior being modeled by a small subset of the available basis functions.
 As with ridge regularization, the <span class="math notranslate nohighlight">\(\alpha\)</span> parameter tunes the strength of the penalty and should be determined via, for example, cross-validation (refer back to <a class="reference internal" href="05.03-Hyperparameters-and-Model-Validation.html"><span class="std std-doc">Hyperparameters and Model Validation</span></a> for a discussion of this).</p>
+<p>For further information about related materials see <a class="reference internal" href="App-Mathematics-and-Machine-Learning.html"><span class="std std-doc">Appendix: Mathematics and Machine Learning</span></a></p>
 </section>
 </section>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="sparse-optimization-theory-and-applications-further-reading">
-<h1>Sparse Optimization: Theory and Applications (Further Reading)<a class="headerlink" href="#sparse-optimization-theory-and-applications-further-reading" title="Link to this heading">#</a></h1>
-<p>Sparse optimization is a fundamental paradigm in mathematical modeling that seeks solutions with few non-zero elements, often formalized through ℓ₁-norm regularization or non-convex penalties. This framework is grounded in the <strong>Compressed Sensing (CS)</strong> theory <span id="id1">[<a class="reference internal" href="intro.html#id2" title="David L. Donoho. Compressed sensing. IEEE Transactions on Information Theory, 52(4):1289–1306, 2006. doi:10.1109/TIT.2006.871582.">Don06</a>]</span>, which guarantees exact signal recovery from sub-Nyquist measurements if the signal is sparse in some basis. Key applications include:</p>
-<ol class="arabic simple">
-<li><p><strong>Medical Imaging</strong>: CS enables faster MRI scans by reconstructing images from limited k-space samples (Lustig et al., 2007), as highlighted in the <a class="reference external" href="http://dsp.ee.cuhk.edu.hk/eleg5481/Lecture%20notes/13-%20compressive%20sensing/cs.pdf">CUHK lecture notes on CS</a> (p. 13).</p></li>
-<li><p><strong>Signal Processing</strong>: Sparse methods underpin denoising (e.g., wavelet shrinkage) and inpainting, where total variation minimization preserves edges while removing noise (Figueiredo, 2021, <a class="reference external" href="https://indico.math.cnrs.fr/event/6637/contributions/5334/attachments/3055/3951/Figueiredo_CIMI-ANITI_Toulouse_2021.pdf">slides p. 8</a>).</p></li>
-<li><p><strong>Machine Learning</strong>: Sparse regression (e.g., LASSO; Tibshirani, 1996) and robust PCA (Candès et al., 2011) are critical for feature selection and anomaly detection. The <a class="reference external" href="https://telin.ugent.be/~sanja/Presentation/Tutorial_IMREC_Part1.pdf">Ghent tutorial</a> (p. 5) further links sparsity to deep network pruning.</p></li>
-<li><p><strong>Statistics</strong>: High-dimensional inference (e.g., genomics) benefits from sparsity-induced interpretability (Bühlmann &amp; Van de Geer, 2011).</p></li>
-</ol>
-<p>The field continues to evolve with <strong>non-convex penalties</strong> (e.g., SCAD) and <strong>greedy algorithms</strong> (OMP), balancing computational efficiency and statistical guarantees. For a unified perspective, see the cited references and tutorials.</p>
-<hr class="docutils" />
-<section id="connection-between-sparse-learning-and-functional-analysis">
-<h2>Connection Between Sparse Learning and Functional Analysis<a class="headerlink" href="#connection-between-sparse-learning-and-functional-analysis" title="Link to this heading">#</a></h2>
-<p>Sparse recovery techniques like <strong>OMP</strong> and <strong>LASSO</strong> are deeply rooted in <strong>functional analysis</strong>, which explains why terms like <strong>Hilbert spaces</strong> and <strong>Banach spaces</strong> frequently appear in machine learning research. These mathematical frameworks provide the theoretical foundation for understanding sparsity-inducing methods.</p>
-<section id="hilbert-spaces-and-orthogonal-projections">
-<h3>Hilbert Spaces and Orthogonal Projections<a class="headerlink" href="#hilbert-spaces-and-orthogonal-projections" title="Link to this heading">#</a></h3>
-<p>Hilbert spaces (complete inner product spaces) are essential for analyzing <strong>orthogonal projections</strong> and <strong>basis expansions</strong>. For example:</p>
-<ul class="simple">
-<li><p><strong>OMP</strong> iteratively projects the residual onto the span of selected basis vectors, leveraging the <strong>orthogonality principle</strong> to minimize error at each step.</p></li>
-<li><p>The <strong>inner product structure</strong> of Hilbert spaces enables efficient computation of correlations between residuals and dictionary atoms (columns of <span class="math notranslate nohighlight">\( X \)</span>).</p></li>
-</ul>
-</section>
-<section id="banach-spaces-and-ell-1-regularization">
-<h3>Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization<a class="headerlink" href="#banach-spaces-and-ell-1-regularization" title="Link to this heading">#</a></h3>
-<p><strong>LASSO</strong> operates in the context of Banach spaces (complete normed vector spaces) due to its reliance on the <span class="math notranslate nohighlight">\( \ell_1 \)</span>-norm:</p>
-<ul class="simple">
-<li><p>The <span class="math notranslate nohighlight">\( \ell_1 \)</span>-norm’s <strong>non-smoothness</strong> at the origin induces sparsity, a property studied in Banach space geometry.</p></li>
-<li><p>Unlike Hilbert spaces, Banach spaces generalize optimization techniques to <strong>non-Euclidean settings</strong>, crucial for sparse regularization.</p></li>
-</ul>
-</section>
-<section id="fourier-wavelet-and-other-representations">
-<h3>Fourier, Wavelet, and Other Representations<a class="headerlink" href="#fourier-wavelet-and-other-representations" title="Link to this heading">#</a></h3>
-<p>Sparse learning often exploits <strong>transform domains</strong> (e.g., Fourier, wavelet, or learned dictionaries) where signals admit <strong>concise representations</strong>: - These domains provide <strong>structured bases</strong> where only a few coefficients are significant. - The <strong>connection to functional analysis</strong> arises because such bases typically form <strong>frames</strong> or <strong>Riesz bases</strong> in Hilbert spaces, ensuring stable sparse approximations.</p>
-</section>
-</section>
-<section id="from-fixed-bases-to-learned-representations">
-<h2>From Fixed Bases to Learned Representations<a class="headerlink" href="#from-fixed-bases-to-learned-representations" title="Link to this heading">#</a></h2>
-<ol class="arabic simple">
-<li><p><strong>Classical Sparse Coding</strong>:</p>
-<ul class="simple">
-<li><p>Relies on <strong>predefined bases</strong> (e.g., Fourier, wavelets) where signals admit sparse representations.</p></li>
-<li><p>These bases often form <strong>frames</strong> or <strong>Riesz bases</strong> in Hilbert spaces, ensuring stable approximations.</p></li>
-</ul>
-</li>
-<li><p><strong>Convolutional Neural Networks (CNNs)</strong>:</p>
-<ul class="simple">
-<li><p>Learn <strong>adaptive bases/filters</strong> from data, implicitly constructing sparse-like representations through:</p>
-<ul>
-<li><p><strong>Local connectivity</strong>: Filters act as localized basis functions.</p></li>
-<li><p><strong>Activation sparsity</strong>: ReLU promotes de facto sparsity in feature maps.</p></li>
-</ul>
-</li>
-<li><p>While CNNs lack explicit <span class="math notranslate nohighlight">\( \ell_0 \)</span>/<span class="math notranslate nohighlight">\( \ell_1 \)</span> constraints, their hierarchical structure approximates <strong>multi-scale sparse decompositions</strong>, akin to wavelet analysis but data-driven.</p></li>
-</ul>
-</li>
-</ol>
-<section id="the-evolving-role-of-sparse-methods">
-<h3>The Evolving Role of Sparse Methods<a class="headerlink" href="#the-evolving-role-of-sparse-methods" title="Link to this heading">#</a></h3>
-<p>While deep learning has reduced reliance on <em>handcrafted</em> sparse models in some domains, sparse methods remain relevant because:</p>
-<ol class="arabic simple">
-<li><p><strong>Interpretability</strong>:</p>
-<ul class="simple">
-<li><p>OMP/LASSO yield <strong>explicit basis selections</strong>, whereas CNNs operate as black boxes.</p></li>
-<li><p>Critical in fields like medicine or physics where model transparency is required.</p></li>
-</ul>
-</li>
-<li><p><strong>Data-Efficiency</strong>:</p>
-<ul class="simple">
-<li><p>Sparse methods often outperform DL in <strong>low-data regimes</strong> (e.g., medical imaging with small datasets).</p></li>
-</ul>
-</li>
-<li><p><strong>Theoretical Guarantees</strong>:</p>
-<ul class="simple">
-<li><p>Compressed sensing (<strong>OMP</strong>) and convex optimization (<strong>LASSO</strong>) provide <strong>recovery guarantees</strong> under precise conditions, unlike empirical DL results.</p></li>
-</ul>
-</li>
-<li><p><strong>Hybrid Approaches</strong>:</p>
-<ul class="simple">
-<li><p>Modern architectures (e.g., <strong>ISTA-Net</strong>, <strong>Learned Iterative Shrinkage</strong>) blend sparse priors with deep learning, showing that sparsity remains a useful <em>inductive bias</em>.</p></li>
-</ul>
-</li>
-</ol>
-<p>Sparse learning and deep learning are complementary:</p>
-<ul class="simple">
-<li><p><strong>CNNs</strong> dominate when data is abundant and interpretability is secondary.</p></li>
-<li><p><strong>OMP/LASSO</strong> persist in scenarios requiring rigor, efficiency, or transparency.</p></li>
-<li><p><strong>Functional analysis</strong> bridges these paradigms, providing tools to analyze both fixed and learned representations.</p></li>
-</ul>
-</section>
-</section>
-<hr class="docutils" />
-<section id="mri-reconstruction">
-<h2>MRI reconstruction<a class="headerlink" href="#mri-reconstruction" title="Link to this heading">#</a></h2>
-<p>MRI reconstruction can be formulated as an inverse problem where the goal is to recover the original image <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> from under-sampled k-space measurements <span class="math notranslate nohighlight">\( \mathbf{y} \)</span>. This is achieved using sparse optimization techniques.</p>
-<p>A common formulation for MRI reconstruction is:</p>
-<div class="math notranslate nohighlight">
-\[
-\min_{\mathbf{m}} \|\mathbf{F}_u \mathbf{m} - \mathbf{y}\|_2^2 + \lambda \|\Psi \mathbf{m}\|_p
-\]</div>
-<p>where:</p>
-<ul class="simple">
-<li><p><span class="math notranslate nohighlight">\( \mathbf{m} \)</span> represents the MRI image to be reconstructed.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \mathbf{F}_u \)</span> is the <strong>under-sampled Fourier operator</strong>, mapping the image to k-space.</p></li>
-<li><p><span class="math notranslate nohighlight">\( \mathbf{y} \)</span> is the <strong>acquired k-space data</strong> (limited measurements).</p></li>
-<li><p><span class="math notranslate nohighlight">\( \Psi \)</span> is the <strong>sparsifying transform</strong> (e.g., wavelet or total variation).</p></li>
-<li><p><span class="math notranslate nohighlight">\( \|\Psi \mathbf{m}\|_p \)</span> represents the <strong>sparsity constraint</strong>, often chosen as <span class="math notranslate nohighlight">\( \ell_1 \)</span> (similar to LASSO) or <span class="math notranslate nohighlight">\( \ell_0 \)</span> (similar to OMP).</p></li>
-<li><p><span class="math notranslate nohighlight">\( \lambda \)</span> controls the balance between data fidelity and sparsity enforcement.</p></li>
-</ul>
-<p>By leveraging sparsity, MRI reconstruction enables faster scans with fewer measurements while preserving essential anatomical details.</p>
-</section>
-<section id="pytomography">
-<h2>PyTomography<a class="headerlink" href="#pytomography" title="Link to this heading">#</a></h2>
-<p><strong>PyTomography</strong> is an open-source Python library designed for <strong>medical image reconstruction</strong>, particularly in <strong>SPECT (Single-Photon Emission Computed Tomography)</strong> and <strong>PET (Positron Emission Tomography)</strong> imaging. Developed to address the challenges of <strong>quantitative tomographic reconstruction</strong>, PyTomography provides a <strong>flexible, modular framework</strong> for implementing advanced reconstruction algorithms, including <strong>attenuation correction, scatter correction, and resolution modeling</strong>.</p>
-<section id="key-features">
-<h3><strong>Key Features</strong><a class="headerlink" href="#key-features" title="Link to this heading">#</a></h3>
-<p>✅ <strong>Open-source &amp; community-driven</strong> (<a class="reference external" href="https://github.com/PyTomography/PyTomography">GitHub</a>)<br />
-✅ <strong>Supports multiple reconstruction techniques</strong> (OSEM, MLEM, deep learning-based methods)<br />
-✅ <strong>Integrates with GPU acceleration</strong> for faster computations<br />
-✅ <strong>Well-documented</strong> with tutorials and API references (<a class="reference external" href="https://pytomography.readthedocs.io/en/latest/">ReadTheDocs</a>)<br />
-✅ <strong>Validated in peer-reviewed research</strong> (<a class="reference external" href="https://www.sciencedirect.com/science/article/pii/S235271102400390X">Scientific Reports, 2024</a>)</p>
-</section>
-<section id="why-use-pytomography">
-<h3><strong>Why Use PyTomography?</strong><a class="headerlink" href="#why-use-pytomography" title="Link to this heading">#</a></h3>
-<p>PyTomography bridges the gap between <strong>research and clinical applications</strong> by offering:</p>
-<ul class="simple">
-<li><p><strong>Reproducible</strong> reconstruction workflows</p></li>
-<li><p><strong>Customizable</strong> forward and backward projection models</p></li>
-<li><p><strong>Seamless integration</strong> with Python’s scientific computing stack (NumPy, PyTorch)</p></li>
-</ul>
-<p>Whether for <strong>academic research, algorithm development, or clinical prototyping</strong>, PyTomography provides a <strong>powerful, accessible toolkit</strong> for next-generation medical imaging reconstruction.</p>
-</section>
-</section>
-<section id="pysap">
-<h2>PySAP<a class="headerlink" href="#pysap" title="Link to this heading">#</a></h2>
-<p>The <strong>Python Sparse data Analysis Package (PySAP)</strong> was developed as part of COSMIC, a multi-disciplinary collaboration between <strong>NeuroSpin</strong>, experts in biomedical imaging, and <strong>CosmoStat</strong>, experts in astrophysical image processing. PySAP is designed to provide state-of-the-art signal processing tools for various imaging domains, including:</p>
-<ul class="simple">
-<li><p><strong>Astronomy</strong></p></li>
-<li><p><strong>Electron Tomography</strong></p></li>
-<li><p><strong>Magnetic Resonance Imaging (MRI)</strong></p></li>
-</ul>
-<p>One of PySAP’s core contributions lies in <strong>sparse optimization</strong>, a powerful technique widely used for reconstructing images from incomplete or noisy data. The package implements advanced <strong>compressed sensing algorithms</strong><span id="id2">[<a class="reference internal" href="intro.html#id4" title="S. Theodoridis. Machine Learning: A Bayesian and Optimization Perspective. Academic Press, 2020. ISBN 9780128188040. URL: https://books.google.com/books?id=l-nEDwAAQBAJ.">The20</a>]</span>, allowing efficient image restoration while preserving essential features.</p>
-<p>In medical imaging, PySAP plays a crucial role in MRI reconstruction by leveraging <strong>sparsity-based approaches</strong> to improve scan efficiency. It enables:</p>
-<ul class="simple">
-<li><p>Reduced scanning time while maintaining image quality</p></li>
-<li><p>Improved reconstruction of under-sampled k-space data</p></li>
-<li><p>Integration of machine learning techniques for further enhancement</p></li>
-</ul>
-<p>The first release of PySAP was presented in Farrens et al. <span id="id3">[<a class="reference internal" href="intro.html#id3" title="Loubna El Gueddari, Chaithya Giliyar Radhakrishna, Zaccharie Ramzi, Samuel Farrens, Sophie Starck, Antoine Grigis, Jean-Luc Starck, and Philippe Ciuciu. PySAP-MRI: a Python Package for MR Image Reconstruction. In ISMRM workshop on Data Sampling and Image Reconstruction. Sedona, AZ, United States, January 2020. URL: https://inria.hal.science/hal-02399267.">GGRR+20</a>]</span> and continues to evolve as a robust tool for sparse signal processing.</p>
-<p>For further exploration, visit the <a class="reference external" href="https://github.com/CEA-COSMIC/pysap">PySAP GitHub repository</a>.</p>
-<p>In <a class="reference external" href="http://fum-cs.github.io/dl">deep learning course</a>, we will encounter additional examples of minimizing <span class="math notranslate nohighlight">\( ||Ax - b|| \)</span>, including applications like image deblurring and super-resolution.</p>
-<p><img alt="" src="_images/Rank-Based-Methods.jpg" /></p>
-<p>For valuable references on Ridge and Shrinkage methods, consider consulting Prof. Arashi’s books <span id="id4">[<a class="reference internal" href="intro.html#id6" title="A.K.M.E. Saleh, M. Arashi, and B.M.G. Kibria. Theory of Ridge Regression Estimation with Applications. Wiley Series in Probability and Statistics. Wiley, 2019. ISBN 9781118644614. URL: https://books.google.com/books?id=v0KCDwAAQBAJ.">SAK19</a>, <a class="reference internal" href="intro.html#id5" title="A.K.M.E. Saleh, M. Arashi, R.A. Saleh, and M. Norouzirad. Rank-Based Methods for Shrinkage and Selection: With Application to Machine Learning. Wiley, 2022. ISBN 9781119625391. URL: https://books.google.com/books?id=f8p6EAAAQBAJ.">SASN22</a>]</span>.</p>
-</section>
-</section>
-<hr class="docutils" />
 <section class="tex2jax_ignore mathjax_ignore" id="example-predicting-bicycle-traffic">
 <h1>Example: Predicting Bicycle Traffic<a class="headerlink" href="#example-predicting-bicycle-traffic" title="Link to this heading">#</a></h1>
 <p>As an example, let’s take a look at whether we can predict the number of bicycle trips across Seattle’s Fremont Bridge based on weather, season, and other factors.
@@ -1120,7 +1103,8 @@ As discussed previously, this is not a standard approach within machine learning
 <p>Let’s start by loading the two datasets, indexing by date:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># url = &#39;https://raw.githubusercontent.com/jakevdp/bicycle-data/main&#39;</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># These files are included in the course repository</span>
+<span class="c1"># url = &#39;https://raw.githubusercontent.com/jakevdp/bicycle-data/main&#39;</span>
 <span class="c1"># !curl -O {url}/FremontBridge.csv</span>
 <span class="c1"># !curl -O {url}/SeattleWeather.csv</span>
 </pre></div>
@@ -1129,14 +1113,281 @@ As discussed previously, this is not a standard approach within machine learning
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 <span class="n">counts</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;FremontBridge.csv&#39;</span><span class="p">,</span>
                      <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;Date&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="n">weather</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;SeattleWeather.csv&#39;</span><span class="p">,</span>
-                      <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">counts</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\m.amintoosi\AppData\Local\Temp\ipykernel_12700\62250122.py:2: UserWarning: Could not infer format, so each element will be parsed individually, falling back to `dateutil`. To ensure parsing is consistent and as-expected, please specify a format.
+  counts = pd.read_csv(&#39;FremontBridge.csv&#39;,
+</pre></div>
+</div>
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Fremont Bridge Total</th>
+      <th>Fremont Bridge East Sidewalk</th>
+      <th>Fremont Bridge West Sidewalk</th>
+    </tr>
+    <tr>
+      <th>Date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2019-11-01 00:00:00</th>
+      <td>12.0</td>
+      <td>7.0</td>
+      <td>5.0</td>
+    </tr>
+    <tr>
+      <th>2019-11-01 01:00:00</th>
+      <td>7.0</td>
+      <td>0.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>2019-11-01 02:00:00</th>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2019-11-01 03:00:00</th>
+      <td>6.0</td>
+      <td>6.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2019-11-01 04:00:00</th>
+      <td>6.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+</div></div></div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">weather</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;SeattleWeather.csv&#39;</span><span class="p">,</span>
+                      <span class="n">index_col</span><span class="o">=</span><span class="s1">&#39;DATE&#39;</span><span class="p">,</span> <span class="n">parse_dates</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">weather</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>                      
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_html"><div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>STATION</th>
+      <th>NAME</th>
+      <th>AWND</th>
+      <th>FMTM</th>
+      <th>PGTM</th>
+      <th>PRCP</th>
+      <th>SNOW</th>
+      <th>SNWD</th>
+      <th>TAVG</th>
+      <th>TMAX</th>
+      <th>...</th>
+      <th>WT04</th>
+      <th>WT05</th>
+      <th>WT08</th>
+      <th>WT09</th>
+      <th>WT13</th>
+      <th>WT14</th>
+      <th>WT16</th>
+      <th>WT17</th>
+      <th>WT18</th>
+      <th>WT22</th>
+    </tr>
+    <tr>
+      <th>DATE</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>2012-01-01</th>
+      <td>USW00024233</td>
+      <td>SEATTLE TACOMA AIRPORT, WA US</td>
+      <td>10.51</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.00</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>55</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2012-01-02</th>
+      <td>USW00024233</td>
+      <td>SEATTLE TACOMA AIRPORT, WA US</td>
+      <td>10.07</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.43</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>51</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2012-01-03</th>
+      <td>USW00024233</td>
+      <td>SEATTLE TACOMA AIRPORT, WA US</td>
+      <td>5.14</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.03</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>53</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2012-01-04</th>
+      <td>USW00024233</td>
+      <td>SEATTLE TACOMA AIRPORT, WA US</td>
+      <td>10.51</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.80</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>54</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+    <tr>
+      <th>2012-01-05</th>
+      <td>USW00024233</td>
+      <td>SEATTLE TACOMA AIRPORT, WA US</td>
+      <td>13.65</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>0.05</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>NaN</td>
+      <td>48</td>
+      <td>...</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+    </tr>
+  </tbody>
+</table>
+<p>5 rows × 28 columns</p>
+</div></div></div>
 </div>
 <p>For simplicity, let’s look at data prior to 2020 in order to avoid the effects of the COVID-19 pandemic, which significantly affected commuting patterns in Seattle:</p>
 <div class="cell docutils container">
@@ -1170,7 +1421,7 @@ As discussed previously, this is not a standard approach within machine learning
 <p>Similarly, we might expect riders to behave differently on holidays; let’s add an indicator of this as well:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pandas.tseries.holiday</span> <span class="kn">import</span> <span class="n">USFederalHolidayCalendar</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pandas.tseries.holiday</span><span class="w"> </span><span class="kn">import</span> <span class="n">USFederalHolidayCalendar</span>
 <span class="n">cal</span> <span class="o">=</span> <span class="n">USFederalHolidayCalendar</span><span class="p">()</span>
 <span class="n">holidays</span> <span class="o">=</span> <span class="n">cal</span><span class="o">.</span><span class="n">holidays</span><span class="p">(</span><span class="s1">&#39;2012&#39;</span><span class="p">,</span> <span class="s1">&#39;2020&#39;</span><span class="p">)</span>
 <span class="n">daily</span> <span class="o">=</span> <span class="n">daily</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">holidays</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;holiday&#39;</span><span class="p">))</span>
@@ -1178,13 +1429,24 @@ As discussed previously, this is not a standard approach within machine learning
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\m.amintoosi\AppData\Local\Temp\ipykernel_12700\3085141007.py:5: FutureWarning: A value is trying to be set on a copy of a DataFrame or Series through chained assignment using an inplace method.
+The behavior will change in pandas 3.0. This inplace method will never work because the intermediate object on which we are setting values always behaves as a copy.
+
+For example, when doing &#39;df[col].method(value, inplace=True)&#39;, try using &#39;df.method({col: value}, inplace=True)&#39; or df[col] = df[col].method(value) instead, to perform the operation inplace on the original object.
+
+
+  daily[&#39;holiday&#39;].fillna(0, inplace=True)
+</pre></div>
+</div>
+</div>
 </div>
 <p>We also might suspect that the hours of daylight would affect how many people ride. Let’s use the standard astronomical calculation to add this information (see the following figure):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">hours_of_daylight</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mf">23.44</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="mf">47.61</span><span class="p">):</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">hours_of_daylight</span><span class="p">(</span><span class="n">date</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mf">23.44</span><span class="p">,</span> <span class="n">latitude</span><span class="o">=</span><span class="mf">47.61</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Compute the hours of daylight for the given date&quot;&quot;&quot;</span>
-    <span class="n">days</span> <span class="o">=</span> <span class="p">(</span><span class="n">date</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span><span class="o">.</span><span class="n">days</span>
+    <span class="n">days</span> <span class="o">=</span> <span class="p">(</span><span class="n">date</span> <span class="o">-</span> <span class="n">pd</span><span class="o">.</span><span class="n">Timestamp</span><span class="p">(</span><span class="mi">2000</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">))</span><span class="o">.</span><span class="n">days</span>
     <span class="n">m</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
          <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">axis</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">days</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">/</span> <span class="mf">365.25</span><span class="p">)))</span>
     <span class="k">return</span> <span class="mf">24.</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">)))</span> <span class="o">/</span> <span class="mf">180.</span>
@@ -1199,7 +1461,7 @@ As discussed previously, this is not a standard approach within machine learning
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(8.0, 17.0)
 </pre></div>
 </div>
-<img alt="_images/52520443ee86046a936479abe919d23fc37d519ea4d8991d49c9b24c1eaf897c.png" src="_images/52520443ee86046a936479abe919d23fc37d519ea4d8991d49c9b24c1eaf897c.png" />
+<img alt="_images/822fec7bc829e8a9fd66c4e0826fe741dcb37435d80fe891fb5f816c8fc4d196.png" src="_images/822fec7bc829e8a9fd66c4e0826fe741dcb37435d80fe891fb5f816c8fc4d196.png" />
 </div>
 </div>
 <p>We can also add the average temperature and total precipitation to the data.
@@ -1401,7 +1663,7 @@ We will set <code class="docutils literal notranslate"><span class="pre">fit_int
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="_images/2f1108ff8012a05016ec5e87476d644bb42a9f28ae69b987ad32a57d4698bde8.png" src="_images/2f1108ff8012a05016ec5e87476d644bb42a9f28ae69b987ad32a57d4698bde8.png" />
+<img alt="_images/1ca4a75b4c3bfdffec3fd48ff6d57f0d9b5ef2d4e1870e50cf4741c994bea5c9.png" src="_images/1ca4a75b4c3bfdffec3fd48ff6d57f0d9b5ef2d4e1870e50cf4741c994bea5c9.png" />
 </div>
 </div>
 <p>From the fact that the data and model predictions don’t line up exactly, it is evident that we have missed some key features.
@@ -1437,7 +1699,7 @@ dtype: float64
 We can compute these uncertainties quickly using bootstrap resamplings of the data:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.utils</span> <span class="kn">import</span> <span class="n">resample</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">resample</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">err</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">([</span><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="o">*</span><span class="n">resample</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">coef_</span>
               <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1000</span><span class="p">)],</span> <span class="mi">0</span><span class="p">)</span>
@@ -1589,30 +1851,11 @@ These are all potentially interesting effects, and you now have the tools to beg
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ridge-regression-l-2-regularization">Ridge Regression (<span class="math notranslate nohighlight">\(L_2\)</span> Regularization)</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#understanding-overfitting">Understanding Overfitting</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-linear-regression-with-different-polynomial-degrees">Comparing Linear Regression with Different Polynomial Degrees</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyzing-model-complexity-and-overfitting">Analyzing Model Complexity and Overfitting</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualizing-the-effect-of-alpha-on-coefficients">Visualizing the Effect of Alpha on Coefficients</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lasso-regression-l-1-regularization">Lasso Regression (<span class="math notranslate nohighlight">\(L_1\)</span> Regularization)</a></li>
 </ul>
 </li>
-</ul>
-</li>
-<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#sparse-optimization-theory-and-applications-further-reading">Sparse Optimization: Theory and Applications (Further Reading)</a><ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-between-sparse-learning-and-functional-analysis">Connection Between Sparse Learning and Functional Analysis</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hilbert-spaces-and-orthogonal-projections">Hilbert Spaces and Orthogonal Projections</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#banach-spaces-and-ell-1-regularization">Banach Spaces and <span class="math notranslate nohighlight">\( \ell_1 \)</span>-Regularization</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fourier-wavelet-and-other-representations">Fourier, Wavelet, and Other Representations</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#from-fixed-bases-to-learned-representations">From Fixed Bases to Learned Representations</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolving-role-of-sparse-methods">The Evolving Role of Sparse Methods</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mri-reconstruction">MRI reconstruction</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytomography">PyTomography</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features"><strong>Key Features</strong></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-use-pytomography"><strong>Why Use PyTomography?</strong></a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pysap">PySAP</a></li>
 </ul>
 </li>
 <li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#example-predicting-bicycle-traffic">Example: Predicting Bicycle Traffic</a></li>
