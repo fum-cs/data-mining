@@ -37,3 +37,4 @@ parts:
       - file: 05.10-Manifold-Learning
       - file: 05.13-Kernel-Density-Estimation
       - file: 05.14-Image-Features
+      - file: App-Mathematics-and-Machine-Learning
