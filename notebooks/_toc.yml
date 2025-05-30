@@ -31,7 +31,8 @@ parts:
       - file: 05.06-Linear-Regression-part1
       - file: 05.06-Linear-Regression-part2
       - file: Clustering-Validation-Metrics
-      - file: 05.09-Principal-Component-Analysis
+      - file: 05.09-Principal-Component-Analysis-part1
+      - file: 05.09-Principal-Component-Analysis-part2
       - file: 05.07-Support-Vector-Machines
       - file: 05.08-Random-Forests
       - file: 05.10-Manifold-Learning
