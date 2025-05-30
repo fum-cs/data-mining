@@ -575,7 +575,7 @@ document.write(`
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">centered_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">centered_data</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original Data&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot principal components as elegant vectors</span>
-<span class="n">pc_scale</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># Scaling factor for PC vectors</span>
+<span class="n">pc_scale</span> <span class="o">=</span> <span class="mf">2.1</span>  <span class="c1"># Scaling factor for PC vectors</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="n">pc_scale</span><span class="p">,</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">pc_scale</span><span class="p">,</span> 
           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;lightcoral&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span>
           <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;PC1 (Variance: </span><span class="si">{</span><span class="mi">100</span><span class="o">*</span><span class="n">explained_variance</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">:</span><span class="s1">.1f</span><span class="si">}</span><span class="s1">%)&#39;</span><span class="p">)</span>
@@ -587,13 +587,13 @@ document.write(`
 <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">centered_data</span><span class="p">:</span>
     <span class="n">projection_pc1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">projection_pc1</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">projection_pc1</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> 
-             <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+             <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="c1"># Plot projections onto PC2 (second principal component)</span>
 <span class="k">for</span> <span class="n">point</span> <span class="ow">in</span> <span class="n">centered_data</span><span class="p">:</span>
     <span class="n">projection_pc2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">point</span><span class="p">,</span> <span class="n">components</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">*</span> <span class="n">components</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">projection_pc2</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">projection_pc2</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> 
-             <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+             <span class="s1">&#39;g--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.6</span><span class="p">)</span>
 
 <span class="c1"># Plot the projected points on PC1</span>
 <span class="n">projected_pc1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">projected_data</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">],</span> <span class="n">components</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span> <span class="p">:])</span>
@@ -622,11 +622,11 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mamin\AppData\Local\Temp\ipykernel_6948\2601321519.py:10: RuntimeWarning: covariance is not positive-semidefinite.
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mamin\AppData\Local\Temp\ipykernel_14000\550911956.py:10: RuntimeWarning: covariance is not positive-semidefinite.
   data = np.random.multivariate_normal(mean, cov, n_samples)
 </pre></div>
 </div>
-<img alt="_images/25dc3404d8a828331379ab0b6c395da79020cec95f28fd62e17ce0cd0ffe8c7d.png" src="_images/25dc3404d8a828331379ab0b6c395da79020cec95f28fd62e17ce0cd0ffe8c7d.png" />
+<img alt="_images/5e18e2bbfb9be7a47c9db4556a6099f867debf79e192c0dca5a85000bd6ae872.png" src="_images/5e18e2bbfb9be7a47c9db4556a6099f867debf79e192c0dca5a85000bd6ae872.png" />
 </div>
 </div>
 <section id="linear-algebra-foundations">
@@ -691,7 +691,8 @@ document.write(`
 </section>
 <section id="angle-between-vectors">
 <h4>Angle between Vectors<a class="headerlink" href="#angle-between-vectors" title="Link to this heading">#</a></h4>
-<p>$$\cos \theta = \frac{\mathbf{a}^T\mathbf{b}}{|\mathbf{a}||\mathbf{b}|}</p>
+<div class="math notranslate nohighlight">
+\[\cos \theta = \frac{\mathbf{a}^T\mathbf{b}}{\|\mathbf{a}\|\|\mathbf{b}\|}\]</div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Example: Vector operations</span>
@@ -990,7 +991,7 @@ In standard basis: 0.5i + 1.0j + 2.0k
 <div class="cell_output docutils container">
 <img alt="_images/b7a946ba033c3798c5d9ad99b5ebd7eaaaeeda6e8cc186dbe5dd671a2fa1c79a.png" src="_images/b7a946ba033c3798c5d9ad99b5ebd7eaaaeeda6e8cc186dbe5dd671a2fa1c79a.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector x in standard basis: [0.5 1.  2. ]
-Vector x in rotated basis: [3 0]
+Vector x in rotated basis: [1 0]
 </pre></div>
 </div>
 </div>
@@ -1014,14 +1015,15 @@ Vector x in rotated basis: [3 0]
 \[
 \cos(45°) = \sin(45°) = \frac{1}{\sqrt{2}} \approx 0.7071
 \]</div>
-<p>Thus, the 45° rotation matrix becomes:
-$<span class="math notranslate nohighlight">\(
+<p>Thus, the 45° rotation matrix becomes:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
 \mathbf{R}_{45°} = \begin{bmatrix}
 \frac{1}{\sqrt{2}} &amp; -\frac{1}{\sqrt{2}} &amp; 0 \\
 \frac{1}{\sqrt{2}} &amp; \frac{1}{\sqrt{2}} &amp; 0 \\
 0 &amp; 0 &amp; 1
 \end{bmatrix}
-\)</span>$</p>
+\end{split}\]</div>
 </section>
 <section id="id1">
 <h4>Basis Transformation<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
@@ -1248,6 +1250,12 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 </div>
 </div>
 </details>
+<div class="cell_output docutils container">
+<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mamin\AppData\Local\Temp\ipykernel_14000\3347236997.py:8: RuntimeWarning: covariance is not positive-semidefinite.
+  X = np.random.multivariate_normal(mean, cov, 100)
+</pre></div>
+</div>
+</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1284,7 +1292,7 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
 
 <span class="c1"># Plot original centered data</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original Data (Centered)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original Data (Centered)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot PC1 direction (scaled by standard deviation)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ1</span><span class="p">),</span> <span class="n">u1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ1</span><span class="p">),</span> 
@@ -1301,7 +1309,7 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 <span class="c1"># Draw projection lines</span>
 <span class="k">for</span> <span class="n">point</span><span class="p">,</span> <span class="n">proj</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="n">projections</span><span class="p">):</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">([</span><span class="n">point</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">proj</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span> <span class="p">[</span><span class="n">point</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">proj</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> 
-             <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+             <span class="s1">&#39;r--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span> <span class="n">linewidth</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
 
 <span class="c1"># Formatting</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;--&#39;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
@@ -1319,7 +1327,7 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/20d978097e1bbcd914360af5198044cd724e7cb989ae042734e7e77677cd4bc0.png" src="_images/20d978097e1bbcd914360af5198044cd724e7cb989ae042734e7e77677cd4bc0.png" />
+<img alt="_images/b223a655a9d96cbeb5b03fe4cc9451958106bc982434b6f396d90d67cbcbac11.png" src="_images/b223a655a9d96cbeb5b03fe4cc9451958106bc982434b6f396d90d67cbcbac11.png" />
 </div>
 </div>
 </section>
@@ -1588,7 +1596,7 @@ Total: 0.978 (97.8%)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/ac7e1eebca3a805ff0ad81dacc1cda07d0973bdd398b468be107f77180744602.png" src="_images/ac7e1eebca3a805ff0ad81dacc1cda07d0973bdd398b468be107f77180744602.png" />
+<img alt="_images/75620254842f9ba87fdf64cacd78ae45c6738fc7eaa4a2dc0fb22d1de64c38dc.png" src="_images/75620254842f9ba87fdf64cacd78ae45c6738fc7eaa4a2dc0fb22d1de64c38dc.png" />
 </div>
 </div>
 </section>
@@ -1634,7 +1642,7 @@ Total: 0.978 (97.8%)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b87b9789d3062380957ac367c7a9286e823496202cc2e551970c97cfa2222876.png" src="_images/b87b9789d3062380957ac367c7a9286e823496202cc2e551970c97cfa2222876.png" />
+<img alt="_images/c030df0c94f614e6fb4b3d57a52c2e2d6c29cb6fb30d658724fddee9a835f1dc.png" src="_images/c030df0c94f614e6fb4b3d57a52c2e2d6c29cb6fb30d658724fddee9a835f1dc.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reconstruction errors:
 1 components: MSE = 0.085604
 2 components: MSE = 0.025341
@@ -1749,7 +1757,7 @@ PC10: 0.000 (cumulative: 0.998)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/52b091d5fc911d7662df93be860261216445d74ffd8a3ff21db2e7d6fdd72a5d.png" src="_images/52b091d5fc911d7662df93be860261216445d74ffd8a3ff21db2e7d6fdd72a5d.png" />
+<img alt="_images/559c68ef665db0d744856e4d3b98501ef61a4fd1558d6cbb51d9164a9a82d608.png" src="_images/559c68ef665db0d744856e4d3b98501ef61a4fd1558d6cbb51d9164a9a82d608.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of components needed for 95% variance: 3
 This is close to the true intrinsic dimensionality of 3
 </pre></div>
@@ -1812,10 +1820,10 @@ Sklearn explained variance ratio: [0.92461872 0.05306648]
 Mean absolute difference in transformed data: 0.0000000000
 </pre></div>
 </div>
-<img alt="_images/4302982a4ab7bfa824f728d918db60bb7ec6eacf719923aa054392372da449b8.png" src="_images/4302982a4ab7bfa824f728d918db60bb7ec6eacf719923aa054392372da449b8.png" />
+<img alt="_images/cf3342dea6cadef33853e6dd9a426e804f01f9f64b439658595053724adcea17.png" src="_images/cf3342dea6cadef33853e6dd9a426e804f01f9f64b439658595053724adcea17.png" />
 </div>
 </div>
-<p>Some of my previous papers are about PCA, including <span id="id2">[<a class="reference internal" href="intro.html#id90" title="M. Amintoosi, F. Farbiz, and M. Fathy. A QR Decomposition based mixture model algorithm for background modeling. In ICICS2007, Sixth International Conference on Information, Communication and Signal Processing, 1–5. Singapore, December 2007. Indexed by IEEE and SCOPUS.">AFF07</a>, <a class="reference internal" href="intro.html#id37" title="Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? Journal of Mathematical Imaging and Vision, 64(5):463-477, 2022.">AF22</a>, <a class="reference internal" href="intro.html#id89" title="M. Fathy, N. Mozayani, and M. Amintoosi. Outlier removal for super-resolution problem using QR-Decomposition. In Proceedings of the International Conference on Image Processing, Computer Vision, and Pattern Recognition, 271-277. USA, July 14-17 2008. Indexed by DBLP. URL: http://webpages.iust.ac.ir/mamintoosi/papers/IPCV08.pdf.">FMA08</a>, <a class="reference internal" href="intro.html#id68" title="محمود امین‌طوسی and سمیه پورصدیق. افزایش سرعت شناسایی زمینه ویديو با محاسبه مرحله‌ای تجزیه QR. In هشتمین سمینار جبرخطی و کابردهای آن. دانشگاه کردستان, ۱۳۹۴. Increasing the speed of video background Subtraction by incremental QR decomposition, (2015).">۹۴</a>]</span></p>
+<p>Some of my previous papers are about PCA, including <span id="id2">[<a class="reference internal" href="intro.html#id90" title="M. Amintoosi, F. Farbiz, and M. Fathy. A QR Decomposition based mixture model algorithm for background modeling. In ICICS2007, Sixth International Conference on Information, Communication and Signal Processing, 1–5. Singapore, December 2007. Indexed by IEEE and SCOPUS.">AFF07</a>, <a class="reference internal" href="intro.html#id37" title="Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? Journal of Mathematical Imaging and Vision, 64(5):463-477, 2022.">AF22</a>, <a class="reference internal" href="intro.html#id68" title="Mahmood Amintoosi and Somayeh Poursediq. افزایش سرعت شناسایی زمینه ویديو با محاسبه مرحله‌ای تجزیه QR. In هشتمین سمینار جبرخطی و کابردهای آن. دانشگاه کردستان, 2015. Increasing the speed of video background Subtraction by incremental QR decomposition, (2015).">AP15</a>, <a class="reference internal" href="intro.html#id89" title="M. Fathy, N. Mozayani, and M. Amintoosi. Outlier removal for super-resolution problem using QR-Decomposition. In Proceedings of the International Conference on Image Processing, Computer Vision, and Pattern Recognition, 271-277. USA, July 14-17 2008. Indexed by DBLP. URL: http://webpages.iust.ac.ir/mamintoosi/papers/IPCV08.pdf.">FMA08</a>]</span></p>
 </section>
 </section>
 <section id="summary">
