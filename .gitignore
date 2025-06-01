@@ -175,3 +175,5 @@ cython_debug/
 notebooks/_build
 notebooks/_build/*/
 __pycache__
+
+markdown_output/
