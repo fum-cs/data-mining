@@ -219,6 +219,10 @@
 
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html">Principal Component Analysis, Part 1</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Principal Component Analysis, Part 2</a></li>
+
+
+
+
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
@@ -454,6 +458,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Principal Component Analysis, Part 2</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra-foundations">Linear Algebra Foundations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-matrix-representation">Data Matrix Representation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-operations">Vector Operations</a><ul class="nav section-nav flex-column">
@@ -464,8 +469,9 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angle-between-vectors">Angle between Vectors</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-projections">Vector Projections</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-formula">Projection Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-projections-derivation-geometric-intuition">Vector Projections (Derivation &amp; Geometric Intuition)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-projection-formula">Derivation of Projection Formula</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-projection-formula">Final Projection Formula</a></li>
 </ul>
 </li>
 </ul>
@@ -493,27 +499,56 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-algorithm">PCA Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-and-reconstruction-in-pca">Projection and Reconstruction in PCA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundations">Mathematical Foundations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-reconstruction">Step-by-Step Reconstruction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-implementation">Connecting to Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-relationships">Visualization of Relationships</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis-detailed">Error Analysis (Detailed)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insights">Key Insights</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-and-applications">Examples and Applications</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset-example">Iris Dataset Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction-error-analysis">Reconstruction Error Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensional-data-example">High-Dimensional Data Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-scikit-learn">Comparison with Scikit-learn</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-workflow-from-single-sample-to-full-matrix">PCA Workflow: From Single Sample to Full Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-reconstruction-single-data-point">Projection &amp; Reconstruction (Single Data Point)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mean-centering">Step 1: Mean-Centering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-projection-dimensionality-reduction">Step 2: Projection (Dimensionality Reduction)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-reconstruction-approximation">Step 3: Reconstruction (Approximation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geometric-interpretation">Geometric Interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-full-data-matrix">Generalization to Full Data Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mean-centering-matrix-form">Step 1: Mean-Centering (Matrix Form)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-projection-pca-transformation">Step 2: Projection (PCA Transformation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-reconstruction-matrix-form">Step 3: Reconstruction (Matrix Form)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-python-implementation">Connection to Python Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-dimensionality-reduction">Projection (Dimensionality Reduction)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction">Reconstruction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-of-pca-s-two-optimization-perspectives-and-error-analysis-further-reading">Equivalence of PCA’s Two Optimization Perspectives and Error Analysis (Further Reading)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-maximization-formulation">1. Variance Maximization Formulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction-error-minimization">2. Reconstruction Error Minimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-of-equivalence">3. Proof of Equivalence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis-in-pca">4. Error Analysis in PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-and-residual-components">Projection and Residual Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-mse-derivation">Mean Squared Error (MSE) Derivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-eigenvalues">Link to Eigenvalues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-summary">5. Conclusion and Summary</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-and-applications">Examples and Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset-example">Iris Dataset Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction-error-analysis">Reconstruction Error Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensional-data-example">High-Dimensional Data Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-scikit-learn">Comparison with Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Key Takeaways:</a></li>
 </ul>
 </li>
 </ul>
+
             </nav>
         </div>
     </div>
@@ -553,7 +588,7 @@ document.write(`
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">n_samples</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="n">mean</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span>  <span class="c1"># Covariance matrix for elliptical distribution</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]</span>  <span class="c1"># Covariance matrix for elliptical distribution</span>
 <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="n">n_samples</span><span class="p">)</span>
 
 <span class="c1"># Center the data</span>
@@ -622,11 +657,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mamin\AppData\Local\Temp\ipykernel_14000\550911956.py:10: RuntimeWarning: covariance is not positive-semidefinite.
-  data = np.random.multivariate_normal(mean, cov, n_samples)
-</pre></div>
-</div>
-<img alt="_images/5e18e2bbfb9be7a47c9db4556a6099f867debf79e192c0dca5a85000bd6ae872.png" src="_images/5e18e2bbfb9be7a47c9db4556a6099f867debf79e192c0dca5a85000bd6ae872.png" />
+<img alt="_images/4446785ff8a55fbd8ede62e8e9e22e66e7ee28cdeb99239ec10661670013eb0d.png" src="_images/4446785ff8a55fbd8ede62e8e9e22e66e7ee28cdeb99239ec10661670013eb0d.png" />
 </div>
 </div>
 <section id="linear-algebra-foundations">
@@ -728,41 +759,62 @@ Angle between vectors: 10.30 degrees
 </div>
 </section>
 </section>
-<section id="vector-projections">
-<h3>Vector Projections<a class="headerlink" href="#vector-projections" title="Link to this heading">#</a></h3>
-<section id="projection-formula">
-<h4>Projection Formula<a class="headerlink" href="#projection-formula" title="Link to this heading">#</a></h4>
-<p>The projection of vector <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> onto vector <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> (denoted as <span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel}\)</span>) represents the component of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> that lies along the direction of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>. This projection is computed as:</p>
-<div class="math notranslate nohighlight">
-\[
-\mathbf{b}_{\parallel} = (\mathbf{a}^T \mathbf{b})\frac{\mathbf{a}}{\|\mathbf{a}\|^2}
-\]</div>
-<p><strong>Key Insights:</strong></p>
+<section id="vector-projections-derivation-geometric-intuition">
+<h3>Vector Projections (Derivation &amp; Geometric Intuition)<a class="headerlink" href="#vector-projections-derivation-geometric-intuition" title="Link to this heading">#</a></h3>
+<section id="derivation-of-projection-formula">
+<h4>Derivation of Projection Formula<a class="headerlink" href="#derivation-of-projection-formula" title="Link to this heading">#</a></h4>
+<p>We begin with fundamental vector operations to derive the projection formula naturally:</p>
 <ol class="arabic">
-<li><p><strong>Dot Product Interpretation (<span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b}\)</span>):</strong></p>
-<ul class="simple">
-<li><p>The dot product <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b}\)</span> measures the <strong>alignment</strong> between <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> and <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> are <strong>unit vectors</strong>, <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b} = \cos \theta\)</span> (where <span class="math notranslate nohighlight">\(\theta\)</span> is the angle between them).</p></li>
-<li><p>For non-unit vectors, <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \cos \theta\)</span>.</p></li>
-</ul>
-</li>
-<li><p><strong>Normalization by <span class="math notranslate nohighlight">\(\|\mathbf{a}\|^2\)</span>:</strong></p>
-<ul>
-<li><p>Dividing by <span class="math notranslate nohighlight">\(\|\mathbf{a}\|^2\)</span> scales the projection correctly to account for the length of <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>.</p></li>
-<li><p>If <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is a unit vector (<span class="math notranslate nohighlight">\(\|\mathbf{a}\| = 1\)</span>), the formula simplifies to:</p>
+<li><p><strong>Dot Product and Angle Relationship</strong>:<br />
+From our previous definitions, we know:</p>
 <div class="math notranslate nohighlight">
 \[
-     \mathbf{b}_{\parallel} = (\mathbf{a}^T \mathbf{b}) \mathbf{a}
-     \]</div>
-<p>Here, <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b}\)</span> directly gives the <strong>scalar projection</strong> (length of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> along <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>), and multiplying by <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> converts it into a vector.</p>
+   \mathbf{a}^T \mathbf{b} = \|\mathbf{a}\| \|\mathbf{b}\| \cos \theta
+   \]</div>
+<p>This measures alignment between vectors.</p>
 </li>
+<li><p><strong>Scalar Projection (Length of Shadow)</strong>:<br />
+The length of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>’s shadow along <span class="math notranslate nohighlight">\(\mathbf{a}\)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+   \text{Scalar projection} = \|\mathbf{b}\| \cos \theta = \frac{\mathbf{a}^T \mathbf{b}}{\|\mathbf{a}\|}
+   \]</div>
+<p>For unit vectors, this simplifies to <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b}\)</span>.</p>
+</li>
+<li><p><strong>Vector Projection</strong>:<br />
+To get the vector form, we multiply the scalar projection by <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>’s unit vector:</p>
+<div class="math notranslate nohighlight">
+\[
+   \mathbf{b}_{\parallel} = \left( \frac{\mathbf{a}^T \mathbf{b}}{\|\mathbf{a}\|} \right) \left( \frac{\mathbf{a}}{\|\mathbf{a}\|} \right) = \frac{\mathbf{a}^T \mathbf{b}}{\|\mathbf{a}\|^2} \mathbf{a}
+   \]</div>
+</li>
+</ol>
+</section>
+<section id="final-projection-formula">
+<h4>Final Projection Formula<a class="headerlink" href="#final-projection-formula" title="Link to this heading">#</a></h4>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{b}_{\parallel} = \left( \frac{\mathbf{a}^T \mathbf{b}}{\|\mathbf{a}\|^2} \right) \mathbf{a}
+\]</div>
+<p><strong>Key Insights</strong>:</p>
+<ol class="arabic">
+<li><p><strong>Dot Product Interpretation</strong>:</p>
+<ul class="simple">
+<li><p>The numerator <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b}\)</span> measures alignment</p></li>
+<li><p>The denominator <span class="math notranslate nohighlight">\(\|\mathbf{a}\|^2\)</span> normalizes for vector length</p></li>
 </ul>
 </li>
-<li><p><strong>Geometric Interpretation:</strong></p>
+<li><p><strong>Special Case - Unit Vector</strong>:
+When <span class="math notranslate nohighlight">\(\|\mathbf{a}\|=1\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+   \mathbf{b}_{\parallel} = (\mathbf{a}^T \mathbf{b}) \mathbf{a}
+   \]</div>
+</li>
+<li><p><strong>Geometric Meaning</strong>:</p>
 <ul class="simple">
-<li><p>The projection <span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel}\)</span> represents the <strong>shadow</strong> of <span class="math notranslate nohighlight">\(\mathbf{b}\)</span> cast onto <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>.</p></li>
-<li><p>The <strong>residual</strong> (perpendicular component) <span class="math notranslate nohighlight">\(\mathbf{b}_{\perp} = \mathbf{b} - \mathbf{b}_{\parallel}\)</span> is orthogonal to <span class="math notranslate nohighlight">\(\mathbf{a}\)</span>.</p></li>
-<li><p>This decomposition is fundamental to PCA as it shows how we can represent data in terms of projections onto different directions.</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel}\)</span> is <span class="math notranslate nohighlight">\(\mathbf{b}\)</span>’s shadow on <span class="math notranslate nohighlight">\(\mathbf{a}\)</span></p></li>
+<li><p>The residual <span class="math notranslate nohighlight">\(\mathbf{b}_{\perp} = \mathbf{b} - \mathbf{b}_{\parallel}\)</span> is orthogonal to <span class="math notranslate nohighlight">\(\mathbf{a}\)</span></p></li>
 </ul>
 </li>
 </ol>
@@ -771,7 +823,7 @@ Angle between vectors: 10.30 degrees
 <ul class="simple">
 <li><p><strong>Step 1:</strong> Compute <span class="math notranslate nohighlight">\(\mathbf{a}^T \mathbf{b} = 1 \times 3 + 0 \times 2 = 3\)</span>.</p></li>
 <li><p><strong>Step 2:</strong> Compute <span class="math notranslate nohighlight">\(\|\mathbf{a}\|^2 = 1^2 + 0^2 = 1\)</span>.</p></li>
-<li><p><strong>Step 3:</strong> Projection <span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel} = \frac{3}{1} \begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 3 \\ 0 \end{bmatrix}\)</span>.</p></li>
+<li><p><strong>Step 3:</strong> Projection <span class="math notranslate nohighlight">\(\mathbf{b}_{\parallel} = 3\begin{bmatrix} 1 \\ 0 \end{bmatrix} = \begin{bmatrix} 3 \\ 0 \end{bmatrix}\)</span>.</p></li>
 <li><p><strong>Perpendicular Component:</strong> <span class="math notranslate nohighlight">\(\mathbf{b}_{\perp} = \begin{bmatrix} 3 \\ 2 \end{bmatrix} - \begin{bmatrix} 3 \\ 0 \end{bmatrix} = \begin{bmatrix} 0 \\ 2 \end{bmatrix}\)</span>.</p></li>
 </ul>
 <p><strong>Visualization:</strong></p>
@@ -980,20 +1032,12 @@ In standard basis: 0.5i + 1.0j + 2.0k
 
 <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-
-<span class="c1"># Print the vector coordinates in both bases</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector x in standard basis: </span><span class="si">{</span><span class="n">x</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Vector x in rotated basis: </span><span class="si">{</span><span class="n">a</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
 <div class="cell_output docutils container">
 <img alt="_images/b7a946ba033c3798c5d9ad99b5ebd7eaaaeeda6e8cc186dbe5dd671a2fa1c79a.png" src="_images/b7a946ba033c3798c5d9ad99b5ebd7eaaaeeda6e8cc186dbe5dd671a2fa1c79a.png" />
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector x in standard basis: [0.5 1.  2. ]
-Vector x in rotated basis: [1 0]
-</pre></div>
-</div>
 </div>
 </div>
 </section>
@@ -1244,18 +1288,12 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 <span class="c1"># Generate synthetic data</span>
 <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
 <span class="n">mean</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]]</span>
+<span class="n">cov</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.6</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]]</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">multivariate_normal</span><span class="p">(</span><span class="n">mean</span><span class="p">,</span> <span class="n">cov</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 </details>
-<div class="cell_output docutils container">
-<div class="output stderr highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>C:\Users\mamin\AppData\Local\Temp\ipykernel_14000\3347236997.py:8: RuntimeWarning: covariance is not positive-semidefinite.
-  X = np.random.multivariate_normal(mean, cov, 100)
-</pre></div>
-</div>
-</div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1275,8 +1313,14 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
 
 <span class="c1"># Extract PC1 (first principal component)</span>
-<span class="n">u1</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">eigu1</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">λ1</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;u1 = </span><span class="si">{</span><span class="n">u1</span><span class="si">}</span><span class="s2">, λ1 = </span><span class="si">{</span><span class="n">λ1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>u1 = [-0.83818843 -0.54538075], λ1 = 1.03
 </pre></div>
 </div>
 </div>
@@ -1295,8 +1339,8 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">Z</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">Z</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.9</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;Original Data (Centered)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Plot PC1 direction (scaled by standard deviation)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ1</span><span class="p">),</span> <span class="n">u1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">3</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ1</span><span class="p">),</span> 
-           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.002</span><span class="p">,</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">u1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ1</span><span class="p">),</span> <span class="n">u1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">λ1</span><span class="p">),</span> 
+           <span class="n">color</span><span class="o">=</span><span class="s1">&#39;green&#39;</span><span class="p">,</span> <span class="n">scale</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">scale_units</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mf">0.007</span><span class="p">,</span>
            <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s1">&#39;PC1 (λ=</span><span class="si">{</span><span class="n">λ1</span><span class="si">:</span><span class="s1">.2f</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">)</span>
 
 <span class="c1"># Project data onto PC1</span>
@@ -1327,7 +1371,7 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b223a655a9d96cbeb5b03fe4cc9451958106bc982434b6f396d90d67cbcbac11.png" src="_images/b223a655a9d96cbeb5b03fe4cc9451958106bc982434b6f396d90d67cbcbac11.png" />
+<img alt="_images/a14810ff1fe0ec5573a857fc7151dc6a7ba9f3e5a9395254299cb3619c1f475e.png" src="_images/a14810ff1fe0ec5573a857fc7151dc6a7ba9f3e5a9395254299cb3619c1f475e.png" />
 </div>
 </div>
 </section>
@@ -1392,127 +1436,293 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 </div>
 </div>
 </section>
-<section id="projection-and-reconstruction-in-pca">
-<h2>Projection and Reconstruction in PCA<a class="headerlink" href="#projection-and-reconstruction-in-pca" title="Link to this heading">#</a></h2>
-<section id="mathematical-foundations">
-<h3>Mathematical Foundations<a class="headerlink" href="#mathematical-foundations" title="Link to this heading">#</a></h3>
-<p>Given a centered data matrix <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span> (where <span class="math notranslate nohighlight">\(\mathbf{Z} = \mathbf{X} - \mathbf{1}\mathbf{\mu}^T\)</span>) and principal components <span class="math notranslate nohighlight">\(\{\mathbf{u}_1, ..., \mathbf{u}_r\}\)</span>:</p>
-<ol class="arabic">
-<li><p><strong>Projection Coordinates</strong>:
-The transformed coordinates <span class="math notranslate nohighlight">\(a_i\)</span> represent how much each data point aligns with the principal directions:</p>
-<div class="math notranslate nohighlight">
-\[
-   a_i^{(j)} = \mathbf{u}_i^T\mathbf{z}_j = \|\mathbf{z}_j\|\cos\theta_{i,j}
-   \]</div>
-<p>where <span class="math notranslate nohighlight">\(\theta_{i,j}\)</span> is the angle between <span class="math notranslate nohighlight">\(\mathbf{z}_j\)</span> and <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span>.</p>
-</li>
-<li><p><strong>Matrix Form</strong>:
-The full projection:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}
-   \mathbf{X}_{\text{PC}} = \mathbf{Z}\mathbf{U}_r = 
-   \begin{bmatrix}
-   \mathbf{z}_1^T\mathbf{u}_1 &amp; \cdots &amp; \mathbf{z}_1^T\mathbf{u}_r \\
-   \vdots &amp; \ddots &amp; \vdots \\
-   \mathbf{z}_n^T\mathbf{u}_1 &amp; \cdots &amp; \mathbf{z}_n^T\mathbf{u}_r
-   \end{bmatrix}
-   \end{split}\]</div>
-</li>
-</ol>
 </section>
-<section id="step-by-step-reconstruction">
-<h3>Step-by-Step Reconstruction<a class="headerlink" href="#step-by-step-reconstruction" title="Link to this heading">#</a></h3>
-<ol class="arabic">
-<li><p><strong>Reconstructing Centered Data</strong>:</p>
-<div class="math notranslate nohighlight">
-\[
-   \mathbf{Z}' = \mathbf{X}_{\text{PC}}\mathbf{U}_r^T = \sum_{i=1}^r a_i\mathbf{u}_i^T
-   \]</div>
-<p>This is the best rank-<span class="math notranslate nohighlight">\(r\)</span> approximation of <span class="math notranslate nohighlight">\(\mathbf{Z}\)</span>.</p>
+<section class="tex2jax_ignore mathjax_ignore" id="pca-workflow-from-single-sample-to-full-matrix">
+<h1>PCA Workflow: From Single Sample to Full Matrix<a class="headerlink" href="#pca-workflow-from-single-sample-to-full-matrix" title="Link to this heading">#</a></h1>
+<section id="projection-reconstruction-single-data-point">
+<h2>Projection &amp; Reconstruction (Single Data Point)<a class="headerlink" href="#projection-reconstruction-single-data-point" title="Link to this heading">#</a></h2>
+<section id="step-1-mean-centering">
+<h3>Step 1: Mean-Centering<a class="headerlink" href="#step-1-mean-centering" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Given a raw data vector:   <span class="math notranslate nohighlight">\(
+\mathbf{x} = [x_1, x_2, \dots, x_d]^T \quad \text{(original space)}  \)</span></p></li>
+<li><p>Subtract the mean vector:  <span class="math notranslate nohighlight">\(
+\mathbf{z} = \mathbf{x} - \mathbf{\mu} \quad \text{(centered)}  \)</span></p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{\mu}\)</span> is the mean of all samples.</p>
 </li>
-<li><p><strong>Returning to Original Space</strong>:</p>
-<div class="math notranslate nohighlight">
-\[
-   \mathbf{X}_{\text{recon}} = \mathbf{Z}' + \mathbf{1}\mathbf{\mu}^T
-   \]</div>
-</li>
-</ol>
+</ul>
 </section>
-<section id="connecting-to-implementation">
-<h3>Connecting to Implementation<a class="headerlink" href="#connecting-to-implementation" title="Link to this heading">#</a></h3>
-<p>The Python functions implement these concepts as:</p>
-<ol class="arabic">
-<li><p><strong>Projection</strong> (<code class="docutils literal notranslate"><span class="pre">pca_from_scratch</span></code>):</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_transformed</span> <span class="o">=</span> <span class="n">Z</span> <span class="o">@</span> <span class="n">components</span>  <span class="c1"># ≡ 𝐙𝐔_r</span>
+<section id="step-2-projection-dimensionality-reduction">
+<h3>Step 2: Projection (Dimensionality Reduction)<a class="headerlink" href="#step-2-projection-dimensionality-reduction" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Project <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> onto the first <span class="math notranslate nohighlight">\(r\)</span> principal components (PCs) <span class="math notranslate nohighlight">\(\mathbf{u}_1, \dots, \mathbf{u}_r\)</span>:  <span class="math notranslate nohighlight">\(a_i = \mathbf{u}_i^T \mathbf{z}\)</span> (scalar, projection of <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> onto <span class="math notranslate nohighlight">\(\mathbf{u}_i\)</span>)</p></li>
+<li><p>The reduced representation (in PCA space) is:  <span class="math notranslate nohighlight">\(\mathbf{a} = [a_1, a_2, \dots, a_r]^T  \)</span></p></li>
+</ul>
+</section>
+<section id="step-3-reconstruction-approximation">
+<h3>Step 3: Reconstruction (Approximation)<a class="headerlink" href="#step-3-reconstruction-approximation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Reconstruct the centered data using the PCs: <span class="math notranslate nohighlight">\(
+\mathbf{z}' = \sum_{i=1}^r a_i \mathbf{u}_i = a_1 \mathbf{u}_1 + a_2 \mathbf{u}_2 + \dots + a_r \mathbf{u}_r\)</span></p></li>
+<li><p>Add back the mean to return to original space:  <span class="math notranslate nohighlight">\(
+\mathbf{x}_{\text{recon}} = \mathbf{z}' + \mathbf{\mu}\)</span></p></li>
+</ul>
+</section>
+<section id="geometric-interpretation">
+<h3>Geometric Interpretation<a class="headerlink" href="#geometric-interpretation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>The reconstruction <span class="math notranslate nohighlight">\(\mathbf{z}'\)</span> is the closest approximation of <span class="math notranslate nohighlight">\(\mathbf{z}\)</span> using only <span class="math notranslate nohighlight">\(r\)</span> directions.</p></li>
+<li><p>The error <span class="math notranslate nohighlight">\(\|\mathbf{z} - \mathbf{z}'\|\)</span> comes from discarding the remaining PCs.</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="generalization-to-full-data-matrix">
+<h2>Generalization to Full Data Matrix<a class="headerlink" href="#generalization-to-full-data-matrix" title="Link to this heading">#</a></h2>
+<section id="step-1-mean-centering-matrix-form">
+<h3>Step 1: Mean-Centering (Matrix Form)<a class="headerlink" href="#step-1-mean-centering-matrix-form" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Original data matrix:</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbf{X} = [\mathbf{x}_1 | \mathbf{x}_2 | \dots | \mathbf{x}_n]^T \quad \text{($n \times d$)}
+  \]</div>
+</li>
+<li><p>Mean-centered data:</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbf{Z} = \mathbf{X} - \mathbf{1} \mathbf{\mu}^T
+  \]</div>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{1}\)</span> is a column vector of ones.</p>
+</li>
+</ul>
+</section>
+<section id="step-2-projection-pca-transformation">
+<h3>Step 2: Projection (PCA Transformation)<a class="headerlink" href="#step-2-projection-pca-transformation" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Project all samples onto the first <span class="math notranslate nohighlight">\(r\)</span> PCs (<span class="math notranslate nohighlight">\(\mathbf{U}_r = [\mathbf{u}_1 | \dots | \mathbf{u}_r]\)</span>):</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbf{A} = \mathbf{Z} \mathbf{U}_r \quad \text{($n \times r$ matrix of PCA coordinates)}
+  \]</div>
+<ul class="simple">
+<li><p>Each row of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> contains the reduced representation of a sample.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="step-3-reconstruction-matrix-form">
+<h3>Step 3: Reconstruction (Matrix Form)<a class="headerlink" href="#step-3-reconstruction-matrix-form" title="Link to this heading">#</a></h3>
+<ul>
+<li><p>Reconstruct the centered data:</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbf{Z}' = \mathbf{A} \mathbf{U}_r^T = \sum_{i=1}^r \mathbf{a}_i \mathbf{u}_i^T
+  \]</div>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\mathbf{a}_i\)</span> = <span class="math notranslate nohighlight">\(i\)</span>-th column of <span class="math notranslate nohighlight">\(\mathbf{A}\)</span> (scores for PC <span class="math notranslate nohighlight">\(i\)</span>).</p></li>
+<li><p>Each term <span class="math notranslate nohighlight">\(\mathbf{a}_i \mathbf{u}_i^T\)</span> is a rank-1 matrix.</p></li>
+</ul>
+</li>
+<li><p>Return to original space:</p>
+<div class="math notranslate nohighlight">
+\[
+  \mathbf{X}_{\text{recon}} = \mathbf{Z}' + \mathbf{1} \mathbf{\mu}^T
+  \]</div>
+</li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="connection-to-python-implementation">
+<h2>Connection to Python Implementation<a class="headerlink" href="#connection-to-python-implementation" title="Link to this heading">#</a></h2>
+<section id="projection-dimensionality-reduction">
+<h3>Projection (Dimensionality Reduction)<a class="headerlink" href="#projection-dimensionality-reduction" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">X_transformed</span> <span class="o">=</span> <span class="n">Z</span> <span class="o">@</span> <span class="n">U_r</span>  <span class="c1"># ≡ Z U_r (n × r matrix)</span>
 </pre></div>
 </div>
-</li>
-<li><p><strong>Reconstruction</strong>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Z_recon</span> <span class="o">=</span> <span class="n">X_transformed</span> <span class="o">@</span> <span class="n">components</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># ≡ 𝐗_pc𝐔_r^T</span>
-<span class="n">X_recon</span> <span class="o">=</span> <span class="n">Z_recon</span> <span class="o">+</span> <span class="n">mean</span>              <span class="c1"># ≡ 𝐙&#39; + 𝛍</span>
+</section>
+<section id="reconstruction">
+<h3>Reconstruction<a class="headerlink" href="#reconstruction" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Z_recon</span> <span class="o">=</span> <span class="n">X_transformed</span> <span class="o">@</span> <span class="n">U_r</span><span class="o">.</span><span class="n">T</span>  <span class="c1"># ≡ A U_r^T (n × d)</span>
+<span class="n">X_recon</span> <span class="o">=</span> <span class="n">Z_recon</span> <span class="o">+</span> <span class="n">mean</span>        <span class="c1"># Add back mean</span>
 </pre></div>
 </div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="key-takeaways">
+<h2>Key Takeaways<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Single Sample → Full Matrix:</p>
+<ul class="simple">
+<li><p>Start with a single vector to understand projection/reconstruction.</p></li>
+<li><p>Generalize to the full dataset using matrix operations.</p></li>
+</ul>
+</li>
+<li><p>Lossy Compression:</p>
+<ul class="simple">
+<li><p>Keeping only <span class="math notranslate nohighlight">\(r &lt; d\)</span> PCs means the reconstruction is approximate.</p></li>
+<li><p>The error depends on the discarded eigenvalues.</p></li>
+</ul>
+</li>
+<li><p>PCA as a Rotation:</p>
+<ul class="simple">
+<li><p>Projection = Rotate data to align with maximum variance directions.</p></li>
+<li><p>Reconstruction = Rotate back, using only the most important directions.</p></li>
+</ul>
 </li>
 </ol>
-</section>
-<section id="visualization-of-relationships">
-<h3>Visualization of Relationships<a class="headerlink" href="#visualization-of-relationships" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Original Data → Center → Project → Reconstruct → Add Mean
+<!-- ### Visualization of Relationships
+
+```
+Original Data → Center → Project → Reconstruct → Add Mean
 (X)          → (Z)    → (X_pc)  → (Z_recon)   → (X_recon)
                 ↓                    ↑
              Covariance           Eigenvectors
                 ↓                    ↑
              λ_i, 𝐮_i ←──────────────┘
-</pre></div>
+
+``` --></section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="equivalence-of-pca-s-two-optimization-perspectives-and-error-analysis-further-reading">
+<h1>Equivalence of PCA’s Two Optimization Perspectives and Error Analysis (Further Reading)<a class="headerlink" href="#equivalence-of-pca-s-two-optimization-perspectives-and-error-analysis-further-reading" title="Link to this heading">#</a></h1>
+<p>PCA can be derived from two equivalent perspectives:</p>
+<ol class="arabic simple">
+<li><p>Variance Maximization: Find directions that maximize projected variance.</p></li>
+<li><p>Reconstruction Error Minimization: Find directions that minimize the mean squared reconstruction error.</p></li>
+</ol>
+<p>We’ll prove their equivalence mathematically and analyze the error.</p>
+<hr class="docutils" />
+<section id="variance-maximization-formulation">
+<h2>1. Variance Maximization Formulation<a class="headerlink" href="#variance-maximization-formulation" title="Link to this heading">#</a></h2>
+<p>Goal: Find unit vector <span class="math notranslate nohighlight">\( \mathbf{u} \)</span> that maximizes the variance of projected data:</p>
+<div class="math notranslate nohighlight">
+\[
+\max_{\mathbf{u}} \frac{1}{n} \sum_{j=1}^n (\mathbf{u}^T \mathbf{z}_j)^2 \quad \text{subject to} \quad \|\mathbf{u}\| = 1.
+\]</div>
+<ul class="simple">
+<li><p>The solution is the eigenvector of <span class="math notranslate nohighlight">\( \mathbf{Z}^T \mathbf{Z} \)</span> with largest eigenvalue.</p></li>
+</ul>
+<hr class="docutils" />
+</section>
+<section id="reconstruction-error-minimization">
+<h2>2. Reconstruction Error Minimization<a class="headerlink" href="#reconstruction-error-minimization" title="Link to this heading">#</a></h2>
+<p>Goal: Find <span class="math notranslate nohighlight">\( \mathbf{u} \)</span> that minimizes the MSE between original data <span class="math notranslate nohighlight">\( \mathbf{z}_j \)</span> and its reconstruction <span class="math notranslate nohighlight">\( \mathbf{z}_j' = (\mathbf{u}^T \mathbf{z}_j)\mathbf{u} \)</span>:</p>
+<div class="math notranslate nohighlight">
+\[
+\min_{\mathbf{u}} \frac{1}{n} \sum_{j=1}^n \|\mathbf{z}_j - (\mathbf{u}^T \mathbf{z}_j)\mathbf{u}\|^2 \quad \text{subject to} \quad \|\mathbf{u}\| = 1.
+\]</div>
+<hr class="docutils" />
+</section>
+<section id="proof-of-equivalence">
+<h2>3. Proof of Equivalence<a class="headerlink" href="#proof-of-equivalence" title="Link to this heading">#</a></h2>
+<p>Expand the reconstruction error:</p>
+<div class="math notranslate nohighlight">
+\[
+\|\mathbf{z}_j - (\mathbf{u}^T \mathbf{z}_j)\mathbf{u}\|^2 = \|\mathbf{z}_j\|^2 - (\mathbf{u}^T \mathbf{z}_j)^2.
+\]</div>
+<p>Thus, the MSE becomes:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE} = \frac{1}{n} \sum_{j=1}^n \|\mathbf{z}_j\|^2 - \frac{1}{n} \sum_{j=1}^n (\mathbf{u}^T \mathbf{z}_j)^2.
+\]</div>
+<p>Key Observations:</p>
+<ol class="arabic simple">
+<li><p>The term <span class="math notranslate nohighlight">\( \frac{1}{n} \sum \|\mathbf{z}_j\|^2 \)</span> is constant (total variance in data).</p></li>
+<li><p>Minimizing MSE is equivalent to maximizing <span class="math notranslate nohighlight">\( \frac{1}{n} \sum (\mathbf{u}^T \mathbf{z}_j)^2 \)</span> (projected variance).</p></li>
+</ol>
+<hr class="docutils" />
+</section>
+<section id="error-analysis-in-pca">
+<h2>4. Error Analysis in PCA<a class="headerlink" href="#error-analysis-in-pca" title="Link to this heading">#</a></h2>
+<section id="projection-and-residual-components">
+<h3>Projection and Residual Components<a class="headerlink" href="#projection-and-residual-components" title="Link to this heading">#</a></h3>
+<p>For a data point <span class="math notranslate nohighlight">\( \mathbf{z}_j \)</span> (centered) and its reconstruction <span class="math notranslate nohighlight">\( \mathbf{z}_j' \)</span> using <span class="math notranslate nohighlight">\( r \)</span> PCs:</p>
+<div class="math notranslate nohighlight">
+\[
+\mathbf{z}_j = \underbrace{\sum_{i=1}^r (\mathbf{u}_i^T \mathbf{z}_j)\mathbf{u}_i}_{\text{Reconstruction } \mathbf{z}_j'} + \underbrace{\sum_{i=r+1}^d (\mathbf{u}_i^T \mathbf{z}_j)\mathbf{u}_i}_{\text{Error } \mathbf{\epsilon}_j}
+\]</div>
+<ul class="simple">
+<li><p>Error vector: <span class="math notranslate nohighlight">\( \mathbf{\epsilon}_j = \mathbf{z}_j - \mathbf{z}_j' = \sum_{i=r+1}^d (\mathbf{u}_i^T \mathbf{z}_j)\mathbf{u}_i \)</span>.</p></li>
+</ul>
+</section>
+<hr class="docutils" />
+<section id="mean-squared-error-mse-derivation">
+<h3>Mean Squared Error (MSE) Derivation<a class="headerlink" href="#mean-squared-error-mse-derivation" title="Link to this heading">#</a></h3>
+<p>The total MSE across all samples is:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE} = \frac{1}{n} \sum_{j=1}^n \|\mathbf{\epsilon}_j\|^2 = \frac{1}{n} \sum_{j=1}^n \left\| \sum_{i=r+1}^d (\mathbf{u}_i^T \mathbf{z}_j)\mathbf{u}_i \right\|^2.
+\]</div>
+<!-- Since PCs are orthonormal ($ \mathbf{u}_i^T \mathbf{u}_k = 0 $ for $ i \neq k $): -->
+<div class="math notranslate nohighlight">
+\[
+\|\mathbf{\epsilon}_j\|^2 = \sum_{i=r+1}^d (\mathbf{u}_i^T \mathbf{z}_j)^2 \underbrace{\|\mathbf{u}_i\|^2}_{=1} = \sum_{i=r+1}^d (\mathbf{u}_i^T \mathbf{z}_j)^2
+\]</div>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE} = \frac{1}{n} \sum_{j=1}^n \sum_{i=r+1}^d (\mathbf{u}_i^T \mathbf{z}_j)^2 = \sum_{i=r+1}^d \left( \frac{1}{n} \sum_{j=1}^n (\mathbf{u}_i^T \mathbf{z}_j)^2 \right).
+\]</div>
+</section>
+<hr class="docutils" />
+<section id="link-to-eigenvalues">
+<h3>Link to Eigenvalues<a class="headerlink" href="#link-to-eigenvalues" title="Link to this heading">#</a></h3>
+<p>By definition, the variance along <span class="math notranslate nohighlight">\( \mathbf{u}_i \)</span> is:</p>
+<div class="math notranslate nohighlight">
+\[
+\lambda_i = \frac{1}{n} \sum_{j=1}^n (\mathbf{u}_i^T \mathbf{z}_j)^2.
+\]</div>
+<p>Thus:</p>
+<div class="math notranslate nohighlight">
+\[
+\text{MSE} = \sum_{i=r+1}^d \lambda_i.
+\]</div>
+<hr class="docutils" />
+</section>
+</section>
+<section id="conclusion-and-summary">
+<h2>5. Conclusion and Summary<a class="headerlink" href="#conclusion-and-summary" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Dual Formulations: Variance maximization and error minimization are equivalent in PCA.</p></li>
+<li><p>Eigenvalue Interpretation: The MSE equals the sum of discarded eigenvalues because:</p>
+<ul>
+<li><p>Each <span class="math notranslate nohighlight">\( \lambda_i \)</span> represents variance along PC <span class="math notranslate nohighlight">\( \mathbf{u}_i \)</span>.</p></li>
+<li><p>Discarding PCs <span class="math notranslate nohighlight">\( r+1 \)</span> to <span class="math notranslate nohighlight">\( d \)</span> loses exactly <span class="math notranslate nohighlight">\( \sum_{i=r+1}^d \lambda_i \)</span> variance.</p></li>
+</ul>
+</li>
+<li><p>Optimality: PCA’s solution simultaneously maximizes preserved variance and minimizes reconstruction error.</p></li>
+</ul>
+<p>Key Relationships:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Concept</p></th>
+<th class="head"><p>Formula</p></th>
+<th class="head"><p>Interpretation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Projection</p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbf{z}_j' = \sum_{i=1}^r (\mathbf{u}_i^T \mathbf{z}_j)\mathbf{u}_i \)</span></p></td>
+<td><p>Reconstruction using top <span class="math notranslate nohighlight">\( r \)</span> PCs</p></td>
+</tr>
+<tr class="row-odd"><td><p>Error</p></td>
+<td><p><span class="math notranslate nohighlight">\( \mathbf{\epsilon}_j = \sum_{i=r+1}^d (\mathbf{u}_i^T \mathbf{z}_j)\mathbf{u}_i \)</span></p></td>
+<td><p>Residual from discarded PCs</p></td>
+</tr>
+<tr class="row-even"><td><p>MSE</p></td>
+<td><p><span class="math notranslate nohighlight">\( \text{MSE} = \sum_{i=r+1}^d \lambda_i \)</span></p></td>
+<td><p>Sum of variances of discarded PCs</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </section>
-<section id="error-analysis-detailed">
-<h3>Error Analysis (Detailed)<a class="headerlink" href="#error-analysis-detailed" title="Link to this heading">#</a></h3>
-<p>The reconstruction error decomposes into:</p>
-<ol class="arabic">
-<li><p><strong>Per-point Error</strong>:</p>
-<div class="math notranslate nohighlight">
-\[
-   \mathbf{\epsilon}_j = \mathbf{z}_j - \mathbf{z}_j' = \sum_{i=r+1}^d (\mathbf{u}_i^T\mathbf{z}_j)\mathbf{u}_i
-   \]</div>
-</li>
-<li><p><strong>Total Error</strong>:</p>
-<div class="math notranslate nohighlight">
-\[
-   \text{MSE} = \frac{1}{n}\sum_{j=1}^n \|\mathbf{\epsilon}_j\|^2 = \sum_{i=r+1}^d \lambda_i
-   \]</div>
-</li>
-</ol>
 </section>
-<section id="key-insights">
-<h3>Key Insights<a class="headerlink" href="#key-insights" title="Link to this heading">#</a></h3>
-<ol class="arabic simple">
-<li><p><strong>Geometric Interpretation</strong>:</p>
-<ul class="simple">
-<li><p>Each principal component defines a new axis</p></li>
-<li><p>Projection = orthogonal shadow onto these axes</p></li>
-<li><p>Reconstruction = sum of shadows along all kept axes</p></li>
-</ul>
-</li>
-<li><p><strong>Dimensionality Trade-off</strong>:</p>
-<ul class="simple">
-<li><p>Keeping all components (<span class="math notranslate nohighlight">\(r=d\)</span>) gives perfect reconstruction</p></li>
-<li><p>Reduced dimensions (<span class="math notranslate nohighlight">\(r&lt;d\)</span>) lose <span class="math notranslate nohighlight">\(\sum_{i=r+1}^d \lambda_i\)</span> variance</p></li>
-</ul>
-</li>
-<li><p><strong>Computational Notes</strong>:</p>
-<ul class="simple">
-<li><p>Centering ensures the first PC captures true max variance direction</p></li>
-<li><p>Eigenvalues quantify how much each PC contributes to total variance</p></li>
-</ul>
-</li>
-</ol>
-</section>
-</section>
-<section id="examples-and-applications">
-<h2>Examples and Applications<a class="headerlink" href="#examples-and-applications" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="examples-and-applications">
+<h1>Examples and Applications<a class="headerlink" href="#examples-and-applications" title="Link to this heading">#</a></h1>
 <section id="iris-dataset-example">
-<h3>Iris Dataset Example<a class="headerlink" href="#iris-dataset-example" title="Link to this heading">#</a></h3>
+<h2>Iris Dataset Example<a class="headerlink" href="#iris-dataset-example" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1601,7 +1811,7 @@ Total: 0.978 (97.8%)
 </div>
 </section>
 <section id="reconstruction-error-analysis">
-<h3>Reconstruction Error Analysis<a class="headerlink" href="#reconstruction-error-analysis" title="Link to this heading">#</a></h3>
+<h2>Reconstruction Error Analysis<a class="headerlink" href="#reconstruction-error-analysis" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1654,7 +1864,7 @@ Total: 0.978 (97.8%)
 </div>
 </section>
 <section id="high-dimensional-data-example">
-<h3>High-Dimensional Data Example<a class="headerlink" href="#high-dimensional-data-example" title="Link to this heading">#</a></h3>
+<h2>High-Dimensional Data Example<a class="headerlink" href="#high-dimensional-data-example" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1766,7 +1976,7 @@ This is close to the true intrinsic dimensionality of 3
 </div>
 </section>
 <section id="comparison-with-scikit-learn">
-<h3>Comparison with Scikit-learn<a class="headerlink" href="#comparison-with-scikit-learn" title="Link to this heading">#</a></h3>
+<h2>Comparison with Scikit-learn<a class="headerlink" href="#comparison-with-scikit-learn" title="Link to this heading">#</a></h2>
 <div class="cell tag_hide-input docutils container">
 <details class="hide above-input">
 <summary aria-label="Toggle hidden content">
@@ -1826,8 +2036,8 @@ Mean absolute difference in transformed data: 0.0000000000
 <p>Some of my previous papers are about PCA, including <span id="id2">[<a class="reference internal" href="intro.html#id90" title="M. Amintoosi, F. Farbiz, and M. Fathy. A QR Decomposition based mixture model algorithm for background modeling. In ICICS2007, Sixth International Conference on Information, Communication and Signal Processing, 1–5. Singapore, December 2007. Indexed by IEEE and SCOPUS.">AFF07</a>, <a class="reference internal" href="intro.html#id37" title="Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? Journal of Mathematical Imaging and Vision, 64(5):463-477, 2022.">AF22</a>, <a class="reference internal" href="intro.html#id68" title="Mahmood Amintoosi and Somayeh Poursediq. افزایش سرعت شناسایی زمینه ویديو با محاسبه مرحله‌ای تجزیه QR. In هشتمین سمینار جبرخطی و کابردهای آن. دانشگاه کردستان, 2015. Increasing the speed of video background Subtraction by incremental QR decomposition, (2015).">AP15</a>, <a class="reference internal" href="intro.html#id89" title="M. Fathy, N. Mozayani, and M. Amintoosi. Outlier removal for super-resolution problem using QR-Decomposition. In Proceedings of the International Conference on Image Processing, Computer Vision, and Pattern Recognition, 271-277. USA, July 14-17 2008. Indexed by DBLP. URL: http://webpages.iust.ac.ir/mamintoosi/papers/IPCV08.pdf.">FMA08</a>]</span></p>
 </section>
 </section>
-<section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h2>
+<section class="tex2jax_ignore mathjax_ignore" id="summary">
+<h1>Summary<a class="headerlink" href="#summary" title="Link to this heading">#</a></h1>
 <p>This tutorial covered:</p>
 <ol class="arabic simple">
 <li><p><strong>Linear Algebra Foundations</strong>: Vector operations, norms, and angles</p></li>
@@ -1837,8 +2047,8 @@ Mean absolute difference in transformed data: 0.0000000000
 <li><p><strong>Implementation</strong>: Step-by-step PCA algorithm from scratch</p></li>
 <li><p><strong>Applications</strong>: Real examples with Iris dataset and high-dimensional data</p></li>
 </ol>
-<section id="key-takeaways">
-<h3>Key Takeaways:<a class="headerlink" href="#key-takeaways" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h2>Key Takeaways:<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>PCA finds directions of maximum variance in the data</p></li>
 <li><p>Principal components are eigenvectors of the covariance matrix</p></li>
@@ -1846,7 +2056,6 @@ Mean absolute difference in transformed data: 0.0000000000
 <li><p>PCA provides optimal linear dimensionality reduction in terms of reconstruction error</p></li>
 <li><p>The number of components can be chosen based on desired explained variance threshold</p></li>
 </ul>
-</section>
 </section>
 </section>
 
@@ -1914,6 +2123,7 @@ Mean absolute difference in transformed data: 0.0000000000
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Principal Component Analysis, Part 2</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-algebra-foundations">Linear Algebra Foundations</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-matrix-representation">Data Matrix Representation</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-operations">Vector Operations</a><ul class="nav section-nav flex-column">
@@ -1924,8 +2134,9 @@ Mean absolute difference in transformed data: 0.0000000000
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#angle-between-vectors">Angle between Vectors</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-projections">Vector Projections</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-formula">Projection Formula</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vector-projections-derivation-geometric-intuition">Vector Projections (Derivation &amp; Geometric Intuition)</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#derivation-of-projection-formula">Derivation of Projection Formula</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#final-projection-formula">Final Projection Formula</a></li>
 </ul>
 </li>
 </ul>
@@ -1953,27 +2164,56 @@ Mean absolute difference in transformed data: 0.0000000000
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-algorithm">PCA Algorithm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-and-reconstruction-in-pca">Projection and Reconstruction in PCA</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-foundations">Mathematical Foundations</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-by-step-reconstruction">Step-by-Step Reconstruction</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#connecting-to-implementation">Connecting to Implementation</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visualization-of-relationships">Visualization of Relationships</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis-detailed">Error Analysis (Detailed)</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insights">Key Insights</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-and-applications">Examples and Applications</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset-example">Iris Dataset Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction-error-analysis">Reconstruction Error Analysis</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensional-data-example">High-Dimensional Data Example</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-scikit-learn">Comparison with Scikit-learn</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#pca-workflow-from-single-sample-to-full-matrix">PCA Workflow: From Single Sample to Full Matrix</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-reconstruction-single-data-point">Projection &amp; Reconstruction (Single Data Point)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mean-centering">Step 1: Mean-Centering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-projection-dimensionality-reduction">Step 2: Projection (Dimensionality Reduction)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-reconstruction-approximation">Step 3: Reconstruction (Approximation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#geometric-interpretation">Geometric Interpretation</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generalization-to-full-data-matrix">Generalization to Full Data Matrix</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-mean-centering-matrix-form">Step 1: Mean-Centering (Matrix Form)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-projection-pca-transformation">Step 2: Projection (PCA Transformation)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-reconstruction-matrix-form">Step 3: Reconstruction (Matrix Form)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#connection-to-python-implementation">Connection to Python Implementation</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-dimensionality-reduction">Projection (Dimensionality Reduction)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction">Reconstruction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-takeaways">Key Takeaways</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#equivalence-of-pca-s-two-optimization-perspectives-and-error-analysis-further-reading">Equivalence of PCA’s Two Optimization Perspectives and Error Analysis (Further Reading)</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variance-maximization-formulation">1. Variance Maximization Formulation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction-error-minimization">2. Reconstruction Error Minimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#proof-of-equivalence">3. Proof of Equivalence</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#error-analysis-in-pca">4. Error Analysis in PCA</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#projection-and-residual-components">Projection and Residual Components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mean-squared-error-mse-derivation">Mean Squared Error (MSE) Derivation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#link-to-eigenvalues">Link to Eigenvalues</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-and-summary">5. Conclusion and Summary</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-and-applications">Examples and Applications</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#iris-dataset-example">Iris Dataset Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reconstruction-error-analysis">Reconstruction Error Analysis</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#high-dimensional-data-example">High-Dimensional Data Example</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-with-scikit-learn">Comparison with Scikit-learn</a></li>
+</ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#summary">Summary</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Key Takeaways:</a></li>
 </ul>
 </li>
 </ul>
+
   </nav></div>
 
 </div></div>
