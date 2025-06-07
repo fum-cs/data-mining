@@ -221,6 +221,8 @@
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
+
+
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
@@ -514,7 +516,7 @@ Consider these 200 points (see the following figure):</p>
 </div>
 </div>
 <p>By eye, it is clear that there is a nearly linear relationship between the <em>x</em> and <em>y</em> variables.
-This is reminiscent of the linear regression data we explored in <a class="reference internal" href="#05.06-Linear-Regression.ipynb"><span class="xref myst">Linear Regression</span></a>, but the problem setting here is slightly different: rather than attempting to <em>predict</em> the <em>y</em> values from the <em>x</em> values, the unsupervised learning problem attempts to learn about the <em>relationship</em> between the <em>x</em> and <em>y</em> values.</p>
+This is reminiscent of the linear regression data we explored in <a class="reference internal" href="05.06-Linear-Regression-part1.html"><span class="std std-doc">Linear Regression</span></a>, but the problem setting here is slightly different: rather than attempting to <em>predict</em> the <em>y</em> values from the <em>x</em> values, the unsupervised learning problem attempts to learn about the <em>relationship</em> between the <em>x</em> and <em>y</em> values.</p>
 <p>In principal component analysis, this relationship is quantified by finding a list of the <em>principal axes</em> in the data, and using those axes to describe the dataset.
 Using Scikit-Learn’s <code class="docutils literal notranslate"><span class="pre">PCA</span></code> estimator, we can compute this as follows:</p>
 <div class="cell docutils container">
@@ -934,7 +936,7 @@ Given any high-dimensional dataset, I tend to start with PCA in order to visuali
 Certainly PCA is not useful for every high-dimensional dataset, but it offers a straightforward and efficient path to gaining insight into high-dimensional data.</p>
 <p>PCA’s main weakness is that it tends to be highly affected by outliers in the data.
 For this reason, several robust variants of PCA have been developed, many of which act to iteratively discard data points that are poorly described by the initial components.
-Scikit-Learn includes a number of interesting variants on PCA in the <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code> submodule; one example is <code class="docutils literal notranslate"><span class="pre">SparsePCA</span></code>, which introduces a regularization term (see <a class="reference internal" href="#05.06-Linear-Regression.ipynb"><span class="xref myst">Linear Regression</span></a>) that serves to enforce sparsity of the components.</p>
+Scikit-Learn includes a number of interesting variants on PCA in the <code class="docutils literal notranslate"><span class="pre">sklearn.decomposition</span></code> submodule; one example is <code class="docutils literal notranslate"><span class="pre">SparsePCA</span></code>, which introduces a regularization term (see <a class="reference internal" href="05.06-Linear-Regression-part1.html"><span class="std std-doc">Linear Regression</span></a>) that serves to enforce sparsity of the components.</p>
 <p>In the following chapters, we will look at other unsupervised learning methods that build on some of the ideas of PCA.</p>
 </section>
 </section>

@@ -221,6 +221,8 @@
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
+
+
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.10-Manifold-Learning.html">Manifold Learning</a></li>
@@ -690,7 +692,7 @@ This insensitivity to the exact behavior of distant points is one of the strengt
 <section id="beyond-linear-boundaries-kernel-svm">
 <h3>Beyond Linear Boundaries: Kernel SVM<a class="headerlink" href="#beyond-linear-boundaries-kernel-svm" title="Link to this heading">#</a></h3>
 <p>Where SVM can become quite powerful is when it is combined with <em>kernels</em>.
-We have seen a version of kernels before, in the basis function regressions of <a class="reference internal" href="#05.06-Linear-Regression.ipynb"><span class="xref myst"> Linear Regression</span></a>.
+We have seen a version of kernels before, in the basis function regressions of <a class="reference internal" href="05.06-Linear-Regression-part1.html"><span class="std std-doc"> Linear Regression</span></a>.
 There we projected our data into a higher-dimensional space defined by polynomials and Gaussian basis functions, and thereby were able to fit for nonlinear relationships with a linear classifier.</p>
 <p>In SVM models, we can use a version of the same idea.
 To motivate the need for kernels, let’s look at some data that is not linearly separable (see the following figure):</p>
@@ -711,7 +713,7 @@ To motivate the need for kernels, let’s look at some data that is not linearly
 </div>
 </div>
 <p>It is clear that no linear discrimination will <em>ever</em> be able to separate this data.
-But we can draw a lesson from the basis function regressions in <a class="reference internal" href="#05.06-Linear-Regression.ipynb"><span class="xref myst"> Linear Regression</span></a>, and think about how we might project the data into a higher dimension such that a linear separator <em>would</em> be sufficient.
+But we can draw a lesson from the basis function regressions in <a class="reference internal" href="05.06-Linear-Regression-part1.html"><span class="std std-doc"> Linear Regression</span></a>, and think about how we might project the data into a higher dimension such that a linear separator <em>would</em> be sufficient.
 For example, one simple projection we could use would be to compute a <em>radial basis function</em> (RBF) centered on the middle clump:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -863,7 +865,7 @@ A fetcher for the dataset is built into Scikit-Learn:</p>
 </div>
 </div>
 <p>Each image contains 62 × 47, or around 3,000, pixels.
-We could proceed by simply using each pixel value as a feature, but often it is more effective to use some sort of preprocessor to extract more meaningful features; here we will use principal component analysis (see <a class="reference internal" href="#05.09-Principal-Component-Analysis.ipynb"><span class="xref myst"> Principal Component Analysis</span></a>) to extract 150 fundamental components to feed into our support vector machine classifier.
+We could proceed by simply using each pixel value as a feature, but often it is more effective to use some sort of preprocessor to extract more meaningful features; here we will use principal component analysis (see <a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html"><span class="std std-doc"> Principal Component Analysis</span></a>) to extract 150 fundamental components to feed into our support vector machine classifier.
 We can do this most straightforwardly by packaging the preprocessor and the classifier into a single pipeline:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">

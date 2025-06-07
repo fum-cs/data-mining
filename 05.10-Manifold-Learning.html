@@ -221,6 +221,8 @@
 <li class="toctree-l2"><a class="reference internal" href="05.09-Principal-Component-Analysis-part2.html">Principal Component Analysis, Part 2</a></li>
 
 
+
+
 <li class="toctree-l2"><a class="reference internal" href="05.07-Support-Vector-Machines.html">Support Vector Machines</a></li>
 <li class="toctree-l2"><a class="reference internal" href="05.08-Random-Forests.html">Decision Trees and Random Forests</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Manifold Learning</a></li>
@@ -801,7 +803,7 @@ Based on my own experience, I would give the following recommendations:</p>
 <h2>Example: Isomap on Faces<a class="headerlink" href="#example-isomap-on-faces" title="Link to this heading">#</a></h2>
 <p>One place manifold learning is often used is in understanding the relationship between high-dimensional data points.
 A common case of high-dimensional data is images: for example, a set of images with 1,000 pixels each can be thought of as a collection of points in 1,000 dimensions, with the brightness of each pixel in each image defining the coordinate in that dimension.</p>
-<p>To illustrate, let’s apply Isomap on some data from the Labeled Faces in the Wild dataset, which we previously saw in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc"> Support Vector Machines</span></a> and <a class="reference internal" href="#05.09-Principal-Component-Analysis.ipynb"><span class="xref myst"> Principal Component Analysis</span></a>.
+<p>To illustrate, let’s apply Isomap on some data from the Labeled Faces in the Wild dataset, which we previously saw in <a class="reference internal" href="05.07-Support-Vector-Machines.html"><span class="std std-doc"> Support Vector Machines</span></a> and <a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html"><span class="std std-doc"> Principal Component Analysis</span></a>.
 Running this command will download the dataset and cache it in your home directory for later use:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -832,7 +834,7 @@ In other words, the images can be thought of as data points in a 2,914-dimension
 <img alt="_images/9ed39f6ca215857e236a4ded5f1db9d0231eabb96926db6002ba5dde8c54c662.png" src="_images/9ed39f6ca215857e236a4ded5f1db9d0231eabb96926db6002ba5dde8c54c662.png" />
 </div>
 </div>
-<p>When we encountered this data in <a class="reference internal" href="#05.09-Principal-Component-Analysis.ipynb"><span class="xref myst"> Principal Component Analysis</span></a>, our goal was essentially compression: to use the components to reconstruct the inputs from the lower-dimensional representation.</p>
+<p>When we encountered this data in <a class="reference internal" href="05.09-Principal-Component-Analysis-part1.html"><span class="std std-doc"> Principal Component Analysis</span></a>, our goal was essentially compression: to use the components to reconstruct the inputs from the lower-dimensional representation.</p>
 <p>PCA is versatile enough that we can also use it in this context, where we would like to plot a low-dimensional embedding of the 2,914-dimensional data to learn the fundamental relationships between the images. Let’s again look at the explained variance ratio, which will give us an idea of how many linear features are required to describe the data (see the following figure):</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
