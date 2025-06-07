@@ -570,7 +570,7 @@ document.write(`
 <p>This optimization leads to the key eigenvalue problem:</p>
 <div class="math notranslate nohighlight">
 \[\mathbf{C}\mathbf{u} = \lambda\mathbf{u}\]</div>
-<p>where <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is the covariance matrix.</p>
+<p>where <span class="math notranslate nohighlight">\(\mathbf{C}\)</span> is a covariance matrix.</p>
 <p><strong>In the following sections, we will systematically derive the solution to this problem and demonstrate its geometric interpretation.</strong></p>
 <hr class="docutils" />
 <div class="cell tag_hide-input docutils container">
@@ -657,7 +657,7 @@ document.write(`
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/4446785ff8a55fbd8ede62e8e9e22e66e7ee28cdeb99239ec10661670013eb0d.png" src="_images/4446785ff8a55fbd8ede62e8e9e22e66e7ee28cdeb99239ec10661670013eb0d.png" />
+<img alt="_images/45204a67ac059c816dfffcebc3f984dd4ed14b391e3c4158029e5192aedec441.png" src="_images/45204a67ac059c816dfffcebc3f984dd4ed14b391e3c4158029e5192aedec441.png" />
 </div>
 </div>
 <section id="linear-algebra-foundations">
@@ -910,7 +910,7 @@ Verification (should equal b): [3. 2.]
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/dd793630d031a11cbd93ac7b6efd2e7e4098421ca6ea68221ef832536452a09b.png" src="_images/dd793630d031a11cbd93ac7b6efd2e7e4098421ca6ea68221ef832536452a09b.png" />
+<img alt="_images/cf55bdde38f68b14271ee4a13c13bb5befb43e42bc838f616c404f1f38a6d2ea.png" src="_images/cf55bdde38f68b14271ee4a13c13bb5befb43e42bc838f616c404f1f38a6d2ea.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Vector a: [1 0], magnitude: 1.00
 Vector b: [3 2], magnitude: 3.61
 b_parallel: [3. 0.], magnitude: 3.00
@@ -1037,7 +1037,7 @@ In standard basis: 0.5i + 1.0j + 2.0k
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/b7a946ba033c3798c5d9ad99b5ebd7eaaaeeda6e8cc186dbe5dd671a2fa1c79a.png" src="_images/b7a946ba033c3798c5d9ad99b5ebd7eaaaeeda6e8cc186dbe5dd671a2fa1c79a.png" />
+<img alt="_images/3f01ca6bf0d8b345ea8b51b3c957414490805de3990a51ca693b658f526cf42f.png" src="_images/3f01ca6bf0d8b345ea8b51b3c957414490805de3990a51ca693b658f526cf42f.png" />
 </div>
 </div>
 </section>
@@ -1313,7 +1313,7 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 <span class="n">eigenvectors</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="n">idx</span><span class="p">]</span>
 
 <span class="c1"># Extract PC1 (first principal component)</span>
-<span class="n">u1</span> <span class="o">=</span> <span class="n">eigu1</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
+<span class="n">u1</span> <span class="o">=</span> <span class="n">eigenvectors</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]</span>
 <span class="n">λ1</span> <span class="o">=</span> <span class="n">eigenvalues</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;u1 = </span><span class="si">{</span><span class="n">u1</span><span class="si">}</span><span class="s2">, λ1 = </span><span class="si">{</span><span class="n">λ1</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
@@ -1371,7 +1371,7 @@ Each <span class="math notranslate nohighlight">\(\mathbf{u}_k\)</span> is found
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/a14810ff1fe0ec5573a857fc7151dc6a7ba9f3e5a9395254299cb3619c1f475e.png" src="_images/a14810ff1fe0ec5573a857fc7151dc6a7ba9f3e5a9395254299cb3619c1f475e.png" />
+<img alt="_images/38253dcc9fb0d26204d1def0c345a99050c63981701fecf619efca0b88d13fad.png" src="_images/38253dcc9fb0d26204d1def0c345a99050c63981701fecf619efca0b88d13fad.png" />
 </div>
 </div>
 </section>
@@ -1806,7 +1806,7 @@ Total: 0.978 (97.8%)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/75620254842f9ba87fdf64cacd78ae45c6738fc7eaa4a2dc0fb22d1de64c38dc.png" src="_images/75620254842f9ba87fdf64cacd78ae45c6738fc7eaa4a2dc0fb22d1de64c38dc.png" />
+<img alt="_images/fa6ff02f870b3e3c1884065565dfdeb3cfa2fea45f4550d7e0ea19386f6d689e.png" src="_images/fa6ff02f870b3e3c1884065565dfdeb3cfa2fea45f4550d7e0ea19386f6d689e.png" />
 </div>
 </div>
 </section>
@@ -1852,7 +1852,7 @@ Total: 0.978 (97.8%)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/c030df0c94f614e6fb4b3d57a52c2e2d6c29cb6fb30d658724fddee9a835f1dc.png" src="_images/c030df0c94f614e6fb4b3d57a52c2e2d6c29cb6fb30d658724fddee9a835f1dc.png" />
+<img alt="_images/3484ec3b07e9e2e0cb540c1872500f628d6ec8a4ef350b599a0487089369cbd5.png" src="_images/3484ec3b07e9e2e0cb540c1872500f628d6ec8a4ef350b599a0487089369cbd5.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Reconstruction errors:
 1 components: MSE = 0.085604
 2 components: MSE = 0.025341
@@ -1967,7 +1967,7 @@ PC10: 0.000 (cumulative: 0.998)
 </div>
 </details>
 <div class="cell_output docutils container">
-<img alt="_images/559c68ef665db0d744856e4d3b98501ef61a4fd1558d6cbb51d9164a9a82d608.png" src="_images/559c68ef665db0d744856e4d3b98501ef61a4fd1558d6cbb51d9164a9a82d608.png" />
+<img alt="_images/5434631d3e36d864ece41438c356aeb94b888f5d7dd36fa5848e608229ab9e54.png" src="_images/5434631d3e36d864ece41438c356aeb94b888f5d7dd36fa5848e608229ab9e54.png" />
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Number of components needed for 95% variance: 3
 This is close to the true intrinsic dimensionality of 3
 </pre></div>
@@ -2030,7 +2030,7 @@ Sklearn explained variance ratio: [0.92461872 0.05306648]
 Mean absolute difference in transformed data: 0.0000000000
 </pre></div>
 </div>
-<img alt="_images/cf3342dea6cadef33853e6dd9a426e804f01f9f64b439658595053724adcea17.png" src="_images/cf3342dea6cadef33853e6dd9a426e804f01f9f64b439658595053724adcea17.png" />
+<img alt="_images/eadebf8b240f5ad53969e1865fc21cbf0171fbf8a1201b798faaa307e27361ed.png" src="_images/eadebf8b240f5ad53969e1865fc21cbf0171fbf8a1201b798faaa307e27361ed.png" />
 </div>
 </div>
 <p>Some of my previous papers are about PCA, including <span id="id2">[<a class="reference internal" href="intro.html#id90" title="M. Amintoosi, F. Farbiz, and M. Fathy. A QR Decomposition based mixture model algorithm for background modeling. In ICICS2007, Sixth International Conference on Information, Communication and Signal Processing, 1–5. Singapore, December 2007. Indexed by IEEE and SCOPUS.">AFF07</a>, <a class="reference internal" href="intro.html#id37" title="Mahmood Amintoosi and Farzam Farbiz. Eigenbackground revisited: can we model the background with eigenvectors? Journal of Mathematical Imaging and Vision, 64(5):463-477, 2022.">AF22</a>, <a class="reference internal" href="intro.html#id68" title="Mahmood Amintoosi and Somayeh Poursediq. افزایش سرعت شناسایی زمینه ویديو با محاسبه مرحله‌ای تجزیه QR. In هشتمین سمینار جبرخطی و کابردهای آن. دانشگاه کردستان, 2015. Increasing the speed of video background Subtraction by incremental QR decomposition, (2015).">AP15</a>, <a class="reference internal" href="intro.html#id89" title="M. Fathy, N. Mozayani, and M. Amintoosi. Outlier removal for super-resolution problem using QR-Decomposition. In Proceedings of the International Conference on Image Processing, Computer Vision, and Pattern Recognition, 271-277. USA, July 14-17 2008. Indexed by DBLP. URL: http://webpages.iust.ac.ir/mamintoosi/papers/IPCV08.pdf.">FMA08</a>]</span></p>
