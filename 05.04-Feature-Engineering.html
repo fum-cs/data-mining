@@ -516,6 +516,11 @@ For example, your data might look something like this:</p>
 </pre></div>
 </div>
 </div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>{&#39;Queen Anne&#39;: 1, &#39;Fremont&#39;: 2, &#39;Wallingford&#39;: 3}
+</pre></div>
+</div>
+</div>
 </div>
 <p>But it turns out that this is not generally a useful approach in Scikit-Learn. The package’s models make the fundamental assumption that numerical features reflect algebraic quantities, so such a mapping would imply, for example, that <em>Queen Anne &lt; Fremont &lt; Wallingford</em>, or even that <em>Wallingford–Queen Anne = Fremont</em>, which (niche demographic jokes aside) does not make much sense.</p>
 <p>In this case, one proven technique is to use <em>one-hot encoding</em>, which effectively creates extra columns indicating the presence or absence of a category with a value of 1 or 0, respectively.
@@ -563,7 +568,7 @@ However, because the encoded data contains mostly zeros, a sparse output can be 
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4x5 sparse matrix of type &#39;&lt;class &#39;numpy.int64&#39;&gt;&#39;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;4x5 sparse matrix of type &#39;&lt;class &#39;numpy.int32&#39;&gt;&#39;
 	with 12 stored elements in Compressed Sparse Row format&gt;
 </pre></div>
 </div>
