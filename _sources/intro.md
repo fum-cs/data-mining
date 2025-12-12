@@ -4,14 +4,14 @@
 
 Computer Science Dept, Ferdowsi University of Mashhad
 
-```{note}
-These lectures were built using the new Sphinx-based [Jupyter Book
-2.0](https://jupyterbook.org/) tool set, as part of the
-[ExecutableBookProject](https://ebp.jupyterbook.org/en/latest/).  They are
-intended mainly as a demonstration of these tools.
-Instructions for how to build them from source can be found in the Jupyter
-Book documentation.
-```
+### 🎧 Course Podcast
+
+A short podcast (about 5 minutes) has been prepared with **NotebookLM**, introducing the content of the course.  
+You can listen to it here (In Persian):
+
+<audio controls>
+  <source src="Welcome to Data Mining Course - Persian.wav" type="audio/wav">
+</audio>
 
 # Table of Contents
 
@@ -90,6 +90,15 @@ Book documentation.
 I should mention that the original material was from [Jake VanderPlas's Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/). I used his notebooks and modified it to suit my own needs and preferences. I would like to thank him for his great work and generosity.
 
 ---
+
+```{note}
+These lectures were built using the new Sphinx-based [Jupyter Book
+2.0](https://jupyterbook.org/) tool set, as part of the
+[ExecutableBookProject](https://ebp.jupyterbook.org/en/latest/).  They are
+intended mainly as a demonstration of these tools.
+Instructions for how to build them from source can be found in the Jupyter
+Book documentation.
+```
 
 ## References
 
